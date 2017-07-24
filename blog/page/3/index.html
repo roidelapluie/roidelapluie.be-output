@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="nav-item nav-link " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2015/12/27/wi-fi-protected-setup/" class="text-gray-dark">
+    wpa_supplicant and WPS
+</a></h1>
+<div class="content text-justify">
+    <p>I do not rely on graphical tools or any third party tools for connecting to
+wireless networks. I use plain wpa_supplicant with hand-crafted configuation
+files (one config file per network).</p>
+
+<p>Nowadays, lots of wireless setups have a way to use <a href="https://en.wikipedia.org/wiki/Wi-Fi_Protected_Setup">Wi-Fi Protected
+Setup</a>, in particular the Push-Button method. The way it works is simple:
+you click a button in your computer, another one on the router and they
+magically connect.</p>
+
+<p>When you only have wpa_supplicant to do so, here is the procedure.</p>
+
+<p>First, create and minimal config file <code>/etc/wpa_supplicant/wps.conf</code>:</p>
+
+<pre><code>ctrl_interface=/var/run/wpa_supplicant
+</code></pre>
+
+<p>That line allows you to use wpa_cli.</p>
+
+<p>Launch wpa_supplicant:</p>
+
+<pre><code># wpa_supplicant -t -Dwext -i wlp3s0 -c /etc/wpa_supplicant/wps.conf -B
+</code></pre>
+
+<p>Then, launch <code>wpa_cli</code> and do the WPS Push-Button.</p>
+
+<pre><code># wpa_cli
+wpa_cli v2.4
+</code></pre>
+
+<p>Initiate a scan:</p>
+
+<pre><code>&gt; scan
+OK
+&lt;3&gt;CTRL-EVENT-SCAN-RESULTS
+&lt;3&gt;WPS-AP-AVAILABLE
+</code></pre>
+
+<p>Get the BSSID:</p>
+
+<pre><code>&gt; scan_results
+bssid / frequency / signal level / flags / ssid
+92:3c:d1:d3:d7:dc       2437    -47     [WPA2-PSK-CCMP][WPS][ESS]       MyWireless
+</code></pre>
+
+<p>Initiate the WPS procedure. Meanwhile, press the button on the network device:</p>
+
+<pre><code>&gt; wps_pbc 92:3c:d1:d3:d7:dc
+OK
+&lt;3&gt;Trying to associate with 92:3c:d1:d3:d7:dc (SSID='MyWireless' freq=2437 MHz)
+&lt;3&gt;Association request to the driver failed
+&lt;3&gt;Associated with 92:3c:d1:d3:d7:dc
+&lt;3&gt;CTRL-EVENT-EAP-STARTED EAP authentication started
+&lt;3&gt;CTRL-EVENT-EAP-STATUS status='started' parameter=''
+&lt;3&gt;CTRL-EVENT-EAP-PROPOSED-METHOD vendor=14122 method=1
+&lt;3&gt;CTRL-EVENT-EAP-STATUS status='accept proposed method' parameter='WSC'
+&lt;3&gt;CTRL-EVENT-EAP-METHOD EAP vendor 14122 method 1 (WSC) selected
+&lt;3&gt;WPS-CRED-RECEIVED
+&lt;3&gt;WPS-SUCCESS
+&lt;3&gt;CTRL-EVENT-EAP-STATUS status='completion' parameter='failure'
+&lt;3&gt;CTRL-EVENT-EAP-FAILURE EAP authentication failed
+&lt;3&gt;CTRL-EVENT-DISCONNECTED bssid=92:3c:d1:d3:d7:dc reason=3 locally_generated=1
+&lt;3&gt;Trying to associate with 92:3c:d1:d3:d7:dc (SSID='MyWireless' freq=2437 MHz)
+&lt;3&gt;Association request to the driver failed
+&lt;3&gt;Associated with 92:3c:d1:d3:d7:dc
+&lt;3&gt;WPA: Key negotiation completed with 92:3c:d1:d3:d7:dc [PTK=CCMP GTK=CCMP]
+&lt;3&gt;CTRL-EVENT-CONNECTED - Connection to 92:3c:d1:d3:d7:dc completed [id=0 id_str=]
+</code></pre>
+
+<p>If you see <code>CTRL-EVENT-CONNECTED</code>, congratulations!</p>
+
+<p>It is not finished yet, we want to save the result to get the password:</p>
+
+<pre><code>&gt; set update_config 1
+OK
+&gt; save_config
+OK
+</code></pre>
+
+<p>Now, open <code>/etc/wpa_supplicant/wps.conf</code>:</p>
+
+<pre><code>ctrl_interface=/var/run/wpa_supplicant
+update_config=1
+
+network={
+        ssid=&quot;MyWireless&quot;
+        psk=&quot;12345678&quot;
+        proto=RSN
+        key_mgmt=WPA-PSK
+        pairwise=CCMP
+        auth_alg=OPEN
+}
+</code></pre>
+
+<p>Enjoy!</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/12/27/wi-fi-protected-setup/">Permalink</a>. Category: Linux. Tags: network planet-inuits.<br/>
+        First published on Sun 27 December 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2015/10/29/puppet-sigint/" class="text-gray-dark">
+    A fix for the Puppet Agent not exiting with SIGINT
+</a></h1>
+<div class="content text-justify">
+    <p>Since <a href="https://puppetlabs.com">Puppet</a> 3.7.5 and 4.0.0, the Puppet Agent does not exit when it receives
+a SIGINT signal (^C). That is very annoying when developing Puppet modules.</p>
+
+<p>A fix has been pushed yesterday by <a href="https://github.com/joshcooper">Josh Cooper</a> for the next 3.x and 4.x
+releases. There is only one file changed, so if it&rsquo;s really a problem for you,
+patching is trivial. Unfortunately it is not yet possible to easily rebuild
+the puppet-agent RPM, but that will come very soon.</p>
+
+<p>Links:</p>
+
+<ul>
+<li><a href="https://github.com/puppetlabs/puppet/commit/c9a7e6d506768cb1c00767f785339bec512d069e.patch">The patch</a>, with a detailed explanation</li>
+<li><a href="https://tickets.puppetlabs.com/browse/PUP-4516">Related ticket</a> in the Puppetlabs ticketing system</li>
+</ul>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/10/29/puppet-sigint/">Permalink</a>. Category: Automation. Tags: automation planet-inuits puppet.<br/>
+        First published on Thu 29 October 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2015/10/28/letsencrypt/" class="text-gray-dark">
+    This blog runs a Let&#39;s Encrypt certificate
+</a></h1>
+<div class="content text-justify">
+    <p>I am part of the <a href="https://letsencrypt.org">Let&rsquo;s Encrypt</a> beta test. As part of it,
+I generated a SSL certificate for my blog, and it is now live.</p>
+
+<p>In the past I used <a href="https://cert.startcom.org/">Startssl</a> to get free certificates.
+Those certificates expired in September. At that time I switched to a <a href="https://comodo.com">Comodo</a>
+certificate, because the validity was only 3 months and I hoped Let&rsquo;s Encrypt to
+be there before the end of the year.</p>
+
+<p>And it came. Here is how it works: you have <a href="https://github.com/letsencrypt/letsencrypt">a tool</a>
+to get your certificates. You run the tool, you agree the TOS and then you give
+your email address and the domains that will be covered by the certificate.</p>
+
+<p>After that, you need to put a file in <a href="http://example.com/.well-known/acme-challenge/">http://example.com/.well-known/acme-challenge/</a>
+to check that you are the owner of the domain. This is a poor verification proof
+but this is the only way you can do that fast and automatically.</p>
+
+<p>You need to serve a JSON file with a specific Content-Type header. I added the following
+snippet to my apache vhost configuration:</p>
+
+<pre><code>&lt;LocationMatch &quot;/.well-known/acme-challenge/*&quot;&gt;
+  Header set Content-Type &quot;application/jose+json&quot;
+&lt;/LocationMatch&gt;
+</code></pre>
+
+<p>And then I got the certificates. As I expected, it only contains the domain names.
+No email, name or anything else. The certificates are valid for 3 months, so if
+some SSL protocols become deprecated they will be able to switch all the certificates
+in 3 months. That is probably the price to get a fully automated procedure.</p>
+
+<p>Conclusion: it just works and I like it. It will not be a danger for the other CA
+because most of the companies will want to have more fields in their certificates,
+like Company name, and a longer validity.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/10/28/letsencrypt/">Permalink</a>. Category: Blog. Tags: ssl security.<br/>
+        First published on Wed 28 October 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2015/10/13/specific-routing-table/" class="text-gray-dark">
+    Specific routing table for one process
+</a></h1>
+<div class="content text-justify">
+    <p>I have multiple VPNs launched at any time that route all of my traffic outside
+the eyes of my ISP (including default gateway).</p>
+
+<p>Some services however require me to have my &lsquo;belgian&rsquo; ip address. The easy
+solution is of course to stop my VPN but hey, no way!</p>
+
+<p>So here is another solution, quite simple (it does not involve mangling or bridges).</p>
+
+<p>This solution is with network namespaces and multiple routing tables.</p>
+
+<p>First, create a &ldquo;belgium&rdquo; network namespace.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip netns add belgium
+</pre></div>
+
+<p>Create a pair of virtual ethernet interfaces (veth0 and veth1).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip link add veth0 <span style="color: #008000">type</span> veth peer name veth1
+</pre></div>
+
+<p>Move veth1 to your &ldquo;belgium&rdquo; namespace.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip link <span style="color: #008000">set</span> veth1 netns belgium
+</pre></div>
+
+<p>Set appropriate IP addresses to veth0 and veth1.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip ad ad <span style="color: #666666">192</span>.168.11.0/24 dev veth0
+ip netns <span style="color: #008000">exec</span> belgium ip ad ad <span style="color: #666666">192</span>.168.11.2/24 dev veth1
+</pre></div>
+
+<p>Add appropriate routes in the &ldquo;belgium&rdquo; namespace.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip netns <span style="color: #008000">exec</span> belgium ip r add default via <span style="color: #666666">192</span>.168.11.1
+</pre></div>
+
+<p>Create a second routing table in the main network namespace by adding a line &ldquo;1 rt2&rdquo; to /etc/iproute2/rt_tables.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000">echo</span> <span style="color: #666666">1</span> rt2 &gt;&gt; /etc/iproute2/rt_tables
+</pre></div>
+
+<p>Set appropriate routes in this routing table:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip r add <span style="color: #666666">192</span>.168.1.0/24 dev wlp3s0 table rt2
+ip r add default via <span style="color: #666666">192</span>.168.1.1 dev wlp3s0 table rt2
+ip r add <span style="color: #666666">192</span>.168.11.0/24 dev veth0 table rt2
+</pre></div>
+
+<p>Set the rules for that routing table to catch the right packages:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip rule add from <span style="color: #666666">192</span>.168.11.0/24 table rt2
+ip rule add to <span style="color: #666666">192</span>.168.11.0/24 table rt2
+</pre></div>
+
+<p>Allow IP forwarding and Masquerade.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000">echo</span> <span style="color: #666666">1</span> &gt; /proc/sys/net/ipv4/ip_forward
+iptables -t nat -A POSTROUTING -s <span style="color: #666666">192</span>.168.11.2 -j MASQUERADE
+</pre></div>
+
+<p>Enjoy Football.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip netns <span style="color: #008000">exec</span> belgium su roidelapluie -c <span style="color: #BA2121">&quot;mpv rtsp://rtmp.rtbf.be/livecast/laune&quot;</span>
+</pre></div>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/10/13/specific-routing-table/">Permalink</a>. Category: Linux. Tags: network planet-inuits.<br/>
+        First published on Tue 13 October 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2015/10/03/foreman-puppet-4/" class="text-gray-dark">
+    Foreman could get Puppet 4 support sooner than expected
+</a></h1>
+<div class="content text-justify">
+    <p><a href="http://theforeman.org">Foreman</a> is one of the key tools of many <a href="https://github.com/puppetlabs/puppet">puppet</a>-based infrastructures.
+It can interact with the Puppet stack in different ways, by acting as a reporting
+dashboard or a complete ENC.</p>
+
+<p>So far Foreman only supports up to Puppet 3. Puppet 4 brings in many changes, and
+that involves <a href="http://projects.theforeman.org/issues/8447">a lot of changes</a> in the foreman side. Even the foreman-installer is <a href="https://github.com/theforeman/kafo">based on Puppet</a>.</p>
+
+<p>But slowly, Puppet 4 supports starts to come to reality. The <a href="https://github.com/theforeman/puppet-puppet">puppet module</a> to
+install and manage Puppet now supports Puppet 4.</p>
+
+<p>But another great achievement is that the next major version of <a href="https://github.com/theforeman/smart-proxy">foreman smart-proxy</a>
+will contain Puppet 4 support, thanks to 2 <a href="https://github.com/theforeman/smart-proxy/pull/313">pull</a> <a href="https://github.com/theforeman/smart-proxy/pull/317">request</a> (special thanks
+<a href="https://github.com/damoxc">Damien Churchill</a> and <a href="https://github.com/witlessbird">Dmitri Dolguikh</a>).</p>
+
+<p>It means that it could be able to test a Puppet 4 smart proxy for the foreman
+in the next release. It will probably get then one extra major release to get something
+more production-ready (understand: that will have been more tested). And there
+are still other <a href="http://projects.theforeman.org/issues/11992">problems</a> related to the new Puppet AIO package to fix first.</p>
+
+<p>Puppet 4 is slowly coming to the community and Foreman,
+which is great. We need Open-Source applications like the Foreman more than ever
+because Puppetlabs is pushing more and more closed-source puppet dashboards
+and &lsquo;applications&rsquo;.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/10/03/foreman-puppet-4/">Permalink</a>. Category: Automation. Tags: foreman puppet automation planet-inuits.<br/>
+        First published on Sat 3 October 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li class="page-item ">
+                <a class="page-link" href="/blog/page/2/" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/2/">2</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item  active"><a class="page-link" href="/blog/page/3/">3</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/4/">4</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li  class="page-item disabled"><a class="page-link">...</a></li>
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/14/">14</a></li>
+            
+            
+        <li class="page-item">
+            <a class="page-link" href="/blog/page/4/" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

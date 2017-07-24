@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Homepages on Julien Pivotto</title>
+    <link>https://roidelapluie.be/homepage/</link>
+    <description>Recent content in Homepages on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 15 Jan 2017 17:26:37 +0100</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/homepage/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Julien Pivotto</title>
+      <link>https://roidelapluie.be/homepage/about-me/</link>
+      <pubDate>Sun, 15 Jan 2017 17:26:37 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/homepage/about-me/</guid>
+      <description>Julien Pivotto is a young Open-Source consultant at Inuits where he is helping organisations with the deployment of long-term solutions based on Open-Source infrastructure. He is a strong believer in the devops movement and has technical focus towards infrastructure automation, continuous integration, monitoring and high availability.</description>
+    </item>
+    
+    <item>
+      <title>Welcome</title>
+      <link>https://roidelapluie.be/homepage/welcome/</link>
+      <pubDate>Sun, 15 Jan 2017 15:17:11 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/homepage/welcome/</guid>
+      <description>This is my personal website.
+It is composed of two main parts: my blog and my notes. The second part is like a wiki that is mainly there so I can google myself problems I had in the past.
+You might be interresting to directly jump to the planet-inuits tag, which contains the more technical articles. Articles not in this tag are mainly opinions or very short articles.</description>
+    </item>
+    
+    <item>
+      <title>Inuits</title>
+      <link>https://roidelapluie.be/homepage/inuits/</link>
+      <pubDate>Sun, 15 Jan 2017 16:54:03 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/homepage/inuits/</guid>
+      <description>The opinions and views expressed on this site do not reflect my employer&amp;rsquo;s views. I am working at Inuits, a large open-source consultancy company based in Belgium.</description>
+    </item>
+    
+  </channel>
+</rss>

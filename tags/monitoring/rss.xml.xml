@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monitoring on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/monitoring/</link>
+    <description>Recent content in Monitoring on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 02 Sep 2014 08:49:58 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/monitoring/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Munin 2 &#34;not a reference&#34; error</title>
+      <link>https://roidelapluie.be/blog/2014/09/02/munin2-not-a-reference-error/</link>
+      <pubDate>Tue, 02 Sep 2014 08:49:58 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/02/munin2-not-a-reference-error/</guid>
+      <description>This morning I worked with Munin, discovering that Munin 2 has made it to EPEL.
+Thus I started to look at puppet modules. I tried two of them (ssm-munin and duritong-munin), and no one seemed to be working.
+I was then digging deeper about what the problem could be, so I logged in to the machine with the munin user:
+::text # su - munin --shell=/bin/bash  Then I ran the script by hand:</description>
+    </item>
+    
+    <item>
+      <title>Collectd 5.4.1 RPM&#39;s</title>
+      <link>https://roidelapluie.be/blog/2014/04/08/vagrant-collectd/</link>
+      <pubDate>Tue, 08 Apr 2014 13:01:44 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/04/08/vagrant-collectd/</guid>
+      <description>In the list of the things I like, there are vagrant, RPM&amp;rsquo;s and being able to reproduce a build.
+As I did two years ago with mapnik, I have created a Vagrantfile with a script to build the latest version of collectd. Indeed, the version of collectd available in EPEL is quite outdated. That new version supports some very nice plugins natively, including statsd and graphite plugins.
+This Vagrantfile uses the spec files that are provided upstream.</description>
+    </item>
+    
+  </channel>
+</rss>

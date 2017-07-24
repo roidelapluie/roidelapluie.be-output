@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Julien Pivotto</title>
+    <link>https://roidelapluie.be/categories/linux/</link>
+    <description>Recent content in Linux on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 30 Mar 2017 21:19:55 +0200</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/categories/linux/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Setting a Socks Proxy in Firefox Webdriver with Robot Framework</title>
+      <link>https://roidelapluie.be/blog/2017/03/30/robot-firefox-socks/</link>
+      <pubDate>Thu, 30 Mar 2017 21:19:55 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/03/30/robot-firefox-socks/</guid>
+      <description>Here are the Robot Framework keywords needed nowadays to setup a socks5 proxy (e.g ssh -ND 9050 bastion.example.com):
+*** Settings *** Documentation Open a Web Page using a socks 5 proxy (demo) Library Selenium2Library *** Test Cases *** Create Webdriver and Open Page ${profile}= Evaluate sys.modules[&amp;#39;selenium.webdriver&amp;#39;].FirefoxProfile() sys Call Method ${profile} set_preference network.proxy.socks 127.0.0.1 Call Method ${profile} set_preference network.proxy.socks_port ${9060} Call Method ${profile} set_preference network.proxy.socks_remote_dns ${True} Call Method ${profile} set_preference network.proxy.type ${1} Create WebDriver Firefox firefox_profile=${profile} Go To http://internal.</description>
+    </item>
+    
+    <item>
+      <title>Augeas resource for mgmt</title>
+      <link>https://roidelapluie.be/blog/2017/02/14/mgmt-augeas/</link>
+      <pubDate>Tue, 14 Feb 2017 20:34:13 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/02/14/mgmt-augeas/</guid>
+      <description>Last week, I joined the mgmt hackathon, just after Config Management Camp Ghent. It helped me understanding how mgmt actually works and that helped me to introduce two improvements in the codebase: prometheus support, and an augeas resource.
+I will blog later about the prometheus support, today I will focus about the Augeas resource.
+Defining a resource Currently, mgmt does not have a DSL, it only uses plain yaml.</description>
+    </item>
+    
+    <item>
+      <title>mgmt</title>
+      <link>https://roidelapluie.be/blog/2017/02/09/mgmt/</link>
+      <pubDate>Thu, 09 Feb 2017 11:33:25 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/02/09/mgmt/</guid>
+      <description>At Config Management Camp, James was once again presenting mgmt. He presented the project one year ago, on his blog. There are multiple ideas behind mgmt (as you can read on his blog):
+ Parallel execution Event driven Distributed topology  And all of that makes a lot of sense. I really like it. I do really think that this might become a huge deal in the future. But there are a couple of concerns I would like to raise.</description>
+    </item>
+    
+    <item>
+      <title>Gitslave for Jenkins Pipelines</title>
+      <link>https://roidelapluie.be/blog/2016/11/18/gitslave-jenkins/</link>
+      <pubDate>Fri, 18 Nov 2016 10:38:11 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2016/11/18/gitslave-jenkins/</guid>
+      <description>At customer, we are using GitSlave, as a way to build and release multiple releases at the same time. Gitslave is like git submodules, except that you always get the latest version of the submodules (no commits needed in the super repository).
+For CI, we are using Jenkins. A Jenkins plugin was developed for it. Unfortunately, it was written in a way that would make the work of opensourcing that module too big (IP was all over the place in the testsuite).</description>
+    </item>
+    
+    <item>
+      <title>wpa_supplicant and WPS</title>
+      <link>https://roidelapluie.be/blog/2015/12/27/wi-fi-protected-setup/</link>
+      <pubDate>Sun, 27 Dec 2015 20:07:53 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/12/27/wi-fi-protected-setup/</guid>
+      <description>I do not rely on graphical tools or any third party tools for connecting to wireless networks. I use plain wpa_supplicant with hand-crafted configuation files (one config file per network).
+Nowadays, lots of wireless setups have a way to use Wi-Fi Protected Setup, in particular the Push-Button method. The way it works is simple: you click a button in your computer, another one on the router and they magically connect.</description>
+    </item>
+    
+    <item>
+      <title>Specific routing table for one process</title>
+      <link>https://roidelapluie.be/blog/2015/10/13/specific-routing-table/</link>
+      <pubDate>Tue, 13 Oct 2015 21:53:15 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/10/13/specific-routing-table/</guid>
+      <description>I have multiple VPNs launched at any time that route all of my traffic outside the eyes of my ISP (including default gateway).
+Some services however require me to have my &amp;lsquo;belgian&amp;rsquo; ip address. The easy solution is of course to stop my VPN but hey, no way!
+So here is another solution, quite simple (it does not involve mangling or bridges).
+This solution is with network namespaces and multiple routing tables.</description>
+    </item>
+    
+    <item>
+      <title>pcsd limitations in EL7</title>
+      <link>https://roidelapluie.be/blog/2015/09/17/pcsd/</link>
+      <pubDate>Thu, 17 Sep 2015 13:31:42 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/09/17/pcsd/</guid>
+      <description>The High Availability stack shipped with CentOS/RHEL 7.1 comes with a daemon called pcsd that provides a web UI to manage a clusters. You can reach it at https://hostname:2224/.
+I gave it a try and here is the list of limitations I have found so far:
+ It does not show colocation sets at all. It does not show the &amp;ldquo;kind&amp;rdquo; of resource ordering preferences (optional, mandatory, serialize). It does not show failcounts.</description>
+    </item>
+    
+    <item>
+      <title>Debugging resource failures with pcs</title>
+      <link>https://roidelapluie.be/blog/2015/09/16/pcs-resource-debug/</link>
+      <pubDate>Wed, 16 Sep 2015 10:44:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/09/16/pcs-resource-debug/</guid>
+      <description>Here is a small script to debug pacemaker resource failures in EL7.
+It is more helpful than pcs resource debug-start and is based on the clusterlabs wiki.
+All you need is to adapt resource= and operation=. You can also make an executable script that will take them as first and second parameter, as below:
+#!/bin/bash resource=$1 operation=$2 # Unmanage the resource pcs resource unmanage $resource # OCF_ROOT is needed and might be OS dependent export OCF_ROOT=/usr/lib/ocf # Setting variables for the parameters eval $(pcs resource show $resource| grep Attributes:| awk &amp;#39;{$1=&amp;quot;&amp;quot;; print}&amp;#39;| tr &amp;quot; &amp;quot; &amp;quot;\n&amp;quot;| grep .</description>
+    </item>
+    
+    <item>
+      <title>Access Control Lists: the hidden feature of EL7</title>
+      <link>https://roidelapluie.be/blog/2015/08/14/acl-el7/</link>
+      <pubDate>Fri, 14 Aug 2015 08:36:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/08/14/acl-el7/</guid>
+      <description>CentOS 7 and its upstream, RHEL7, come by default with the XFS filesystem.
+As it looks like it will not change a lot in our everyday sysadmin lifes, this is not strictly true. There is a big side effect of this change: by default, ACL are enabled in that filesystem.
+It means that without changing the fstab, you can now give additional rights to files and directories. You can find a lot of guides about how to use them everywhere on the internet.</description>
+    </item>
+    
+    <item>
+      <title>Official CentOS boxes for CentOS</title>
+      <link>https://roidelapluie.be/blog/2015/08/12/vagrant-centos/</link>
+      <pubDate>Wed, 12 Aug 2015 09:10:52 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/08/12/vagrant-centos/</guid>
+      <description>CentOS has published in June Vagrant Boxes for both Libvirt and VirtualBox provider. I will focus on the VirtualBox one.
+Those images are great for many reasons:
+ They come directly from the CentOS project, so it is reasonable to trust them They do not come with any 3rd party repositories (and so, without Puppet/Chef&amp;hellip;) They are minimal images They support multiple providers  They contain what is needed for basic tasks, like the vagrant user so vagrant works.</description>
+    </item>
+    
+    <item>
+      <title>Script, a must-know command for sysadmins</title>
+      <link>https://roidelapluie.be/blog/2015/07/04/script/</link>
+      <pubDate>Sat, 04 Jul 2015 12:04:14 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/07/04/script/</guid>
+      <description>script is a famous command in the unix world. Part of the util-linux package of Linux distros, and so available almost everywhere, it has some very interesting features.
+Recording a shell session This is the primary usage. Just type:
+script output.txt  A new shell will open, and you can just do whatever you want.
+$ script output.txt Script started, file is output.txt $ echo hello world hello world $ exit Script done, file is output.</description>
+    </item>
+    
+    <item>
+      <title>Vagrant will support VirtualBox linked clones</title>
+      <link>https://roidelapluie.be/blog/2015/06/05/vagrant-will-support-vbox-clones/</link>
+      <pubDate>Fri, 05 Jun 2015 08:40:59 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/06/05/vagrant-will-support-vbox-clones/</guid>
+      <description>Here is a good news for the vagrant users that still use VirtualBox. While vagrant has support for many other providers, I guess that VirtualBox is probably still in the top 3.
+A September 2014 Pull Request by mpoeter has been updated some days ago. That pull request is about the support of a long-existing VirtualBox feature, linked clones. And it will more than probably be integrated in the next release.</description>
+    </item>
+    
+    <item>
+      <title>Mutt</title>
+      <link>https://roidelapluie.be/blog/2015/05/09/mutt/</link>
+      <pubDate>Sat, 09 May 2015 21:29:49 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/05/09/mutt/</guid>
+      <description>In the past, I have used several mail clients, including Thunderbird, Claws Mail, Alpine and Evolution.
+But since a few years, I have been using exclusively Mutt. I would like to share pieces of configuration from my personal setup today.
+~/.mutt/muttrc unset mark_old  With that line, Mutt will stop marking New email messages (N) as Old (O) when you change directory or exit. With that the flag will stay N.</description>
+    </item>
+    
+    <item>
+      <title>Easily extract files from qemu-kvm guests</title>
+      <link>https://roidelapluie.be/blog/2015/04/28/virt-copy-out/</link>
+      <pubDate>Tue, 28 Apr 2015 09:08:34 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/04/28/virt-copy-out/</guid>
+      <description>qemu-kvm libvirt users, here is a trick to get or put a file on a guest. It allows you to access easily files stored on the guests disks. Useful when the guest has no network connectivity or is just offline.
+Here is it:
+virt-copy-out -d myvm.example.com /root/myfile.txt /tmp/extract/  The file you want is /root/myfile.txt and you want it in /tmp/extract/. It works even with lvm-based disks and is a lot more easy to use than working with kpartx or other voodoo as often seen on the web.</description>
+    </item>
+    
+    <item>
+      <title>Git status and submodules</title>
+      <link>https://roidelapluie.be/blog/2015/04/22/git-status-submodules/</link>
+      <pubDate>Wed, 22 Apr 2015 13:40:03 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/04/22/git-status-submodules/</guid>
+      <description>Here is an awesome trick for people using git submodules:
+In your ~/.gitconfig, add the following snippet:
+[status] submodulesummary = true  You should now get more information when running git status (&amp;gt; new commits, &amp;lt; &amp;lsquo;removed&amp;rsquo; commits):
+On branch master Changes to be committed: (use &amp;quot;git reset HEAD &amp;lt;file&amp;gt;...&amp;quot; to unstage) modified: submodule1 modified: submodule2 Submodule changes to be committed: * submodule1 5c675a2...569574e (1): &amp;gt; One new feature * submodule2 5c03abb.</description>
+    </item>
+    
+    <item>
+      <title>Percona XtraBackup 2.2.10 is incompatible with MariaDB 10.0</title>
+      <link>https://roidelapluie.be/blog/2015/04/15/xtrabackup-and-mariadb/</link>
+      <pubDate>Wed, 15 Apr 2015 21:31:19 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/04/15/xtrabackup-and-mariadb/</guid>
+      <description>Percona XtraBackup is probably the most relevant open-source backup solution for both MySQL and MariaDB. It has all the required features that you need to backup your database, especially if you use innodb (or xtradb).
+One of the features are Incremental backups. It is an easy way to get a consistent backup of your databases in a short amount of time.
+But the latest version of XtraBackup (2.2.10) breaks that feature with MariaDB 10.</description>
+    </item>
+    
+    <item>
+      <title>Importing a CA into OpenLDAP</title>
+      <link>https://roidelapluie.be/blog/2014/12/05/openldap-ca/</link>
+      <pubDate>Fri, 05 Dec 2014 23:42:17 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/12/05/openldap-ca/</guid>
+      <description>Here is a quick how to about OpenLDAP under CentOS 6 and a custom Certificate Authority..
+OpenLDAP in CentOS 6 is built with NSS to deal with ssl/tls.
+When you try to securely connect to a LDAP host that, you will get the following errors:
+$ ldapsearch -H ldaps://172.28.5.5 -d -1 [...snip...] TLS: certificate [CN=ldap.inuits.eu,OU=Infra,O=Inuits,ST=Antwerp,C=BE] is not valid - error -8179:Peer&#39;s Certificate issuer is not recognized.. tls_write: want=7, written=7 0000: 15 03 01 00 02 TLS: error: connect - force handshake failure: errno 0 - moznss error -8179 TLS: can&#39;t connect: TLS error -8179:Peer&#39;s Certificate issuer is not recognized.</description>
+    </item>
+    
+    <item>
+      <title>About Devuan</title>
+      <link>https://roidelapluie.be/blog/2014/11/29/devuan/</link>
+      <pubDate>Sat, 29 Nov 2014 12:58:56 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/11/29/devuan/</guid>
+      <description>It looks like that a new Linux Distribution is born: Devuan. Yet another fork of Debian.
+Debian is a really good ground for forks, it seems: Ubuntu, Linux Mint, and a lot of others. So, what does make this one different?
+This fork wants to remove systemd from Debian. It is really strange that so many people are reacting against systemd so late. Systemd has been around for many years. I do not want to enter the debate about systemd.</description>
+    </item>
+    
+    <item>
+      <title>A classical pulp upgrade ....</title>
+      <link>https://roidelapluie.be/blog/2014/10/08/pulp-horror-fest/</link>
+      <pubDate>Wed, 08 Oct 2014 09:27:12 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/10/08/pulp-horror-fest/</guid>
+      <description>Yesterday I did upgrade a pulp instance from pulp 2.2 to pulp 2.4. Here is my story&amp;hellip;
+Upgrading pulp seems very very simple. You update the RPMs then you run the migration script, pulp-manage-db. Well, at least that&amp;rsquo;s the theory.
+First step: packages changes The release note tell us a couple of things: some packages to install, some configuration files to save&amp;hellip;
+So here we go:
+ Install some qpid packages Upgrade mongodb to 2.</description>
+    </item>
+    
+    <item>
+      <title>5 bugs</title>
+      <link>https://roidelapluie.be/blog/2014/09/25/bugs-bugs-bugs/</link>
+      <pubDate>Thu, 25 Sep 2014 21:28:21 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/25/bugs-bugs-bugs/</guid>
+      <description> Bash remote code execution vulnerability Heartbleed bug Getting mysql root acces 1&amp;frasl;256 times Bumblebee deleting /usr Use glibc to get root access  </description>
+    </item>
+    
+    <item>
+      <title>It&#39;s not time to split Linux distros in two</title>
+      <link>https://roidelapluie.be/blog/2014/09/13/dont-split-linux-in-two/</link>
+      <pubDate>Sat, 13 Sep 2014 21:24:25 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/13/dont-split-linux-in-two/</guid>
+      <description>This article is a reaction to the following article: It&amp;rsquo;s time to split Linux distros in two written by @pvenezia.
+There are a lot of changes nowadays in the way GNU/Linux evolves: systemd, steamOS, android, and a bunch of other stuff in several domains.
+So I read Paul&amp;rsquo;s article with attention because it&amp;rsquo;s seems that GNU/Linux will evolve a lot in the following years. He is right when he points out that on one side we want stability and scalability and on the other side we want performances and wide hardware support.</description>
+    </item>
+    
+    <item>
+      <title>EPEL 7 released</title>
+      <link>https://roidelapluie.be/blog/2014/09/04/epel7/</link>
+      <pubDate>Thu, 04 Sep 2014 22:50:49 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/04/epel7/</guid>
+      <description>EPEL 7 has been released. It contains interesting packages:
+ ansible (orchestration) collectd (monitoring) mariadb-galera (database replication) mate (gnome 2 fork) mcollective (orchestration) munin (monitoring; version 2) puppet (configuration management, latest version) sl :) varnish (caching)  And obviously a lot of other stuff to discover.
+ EPEL wiki page List of packages Puppet module stahnma-epel  </description>
+    </item>
+    
+    <item>
+      <title>Pt-heartbeat can&#39;t use an undefined value as an ARRAY reference</title>
+      <link>https://roidelapluie.be/blog/2014/05/19/pt-heartbeat-array-error/</link>
+      <pubDate>Mon, 19 May 2014 22:54:08 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/05/19/pt-heartbeat-array-error/</guid>
+      <description>Today I got a strange issue with pt-heartbeat.
+When I launched pt-heartbeat:
+pt-heartbeat --pid /var/opt/inu/pt-heartbeat.pid --update --database \ pth --create-table --socket /var/opt/inu/mysql/mysql.sock --user=pth \ --password=str0ng  I got the following error message:
+Can&#39;t use an undefined value as an ARRAY reference at /usr/bin/pt-heartbeat line 4297.  It was because I did not have access to the /tmp/percona-version-check file. The file was created under an other user and the current user could not access it.</description>
+    </item>
+    
+    <item>
+      <title>Collectd 5.4.1 RPM&#39;s</title>
+      <link>https://roidelapluie.be/blog/2014/04/08/vagrant-collectd/</link>
+      <pubDate>Tue, 08 Apr 2014 13:01:44 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/04/08/vagrant-collectd/</guid>
+      <description>In the list of the things I like, there are vagrant, RPM&amp;rsquo;s and being able to reproduce a build.
+As I did two years ago with mapnik, I have created a Vagrantfile with a script to build the latest version of collectd. Indeed, the version of collectd available in EPEL is quite outdated. That new version supports some very nice plugins natively, including statsd and graphite plugins.
+This Vagrantfile uses the spec files that are provided upstream.</description>
+    </item>
+    
+    <item>
+      <title>Paludis, a package manager</title>
+      <link>https://roidelapluie.be/blog/2014/02/02/paludis/</link>
+      <pubDate>Sun, 02 Feb 2014 21:24:44 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/02/02/paludis/</guid>
+      <description>This weekend, the Fosdem was still full of geeks and a lot of discussions happened. Package managers were still in the discussions, while a lot of projects try to fix their problems:
+ FPM tito bower omnibus tar :-)  Let me explain you some stuff about the Exherbo package manager, Paludis.
+It is a performant package manager, which build packages from source, and it does not solve all the traditional problems related to the package managers.</description>
+    </item>
+    
+    <item>
+      <title>Soft-fixing Lenovo touchpad</title>
+      <link>https://roidelapluie.be/blog/2014/01/22/lenovo-touchpad/</link>
+      <pubDate>Wed, 22 Jan 2014 07:38:18 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/01/22/lenovo-touchpad/</guid>
+      <description>I have a new lenovo laptop but it has no physical button (the whole touchpad is a button). It is almost impossible to right click and impossible to middle-click, which is critical for me.
+I solved this with the following synclient options:
+synclient TapButton1=1 synclient TapButton2=2 synclient TapButton3=3  When I click the touch pad with one finger, it will left-click, two will middle-click and three will left-click.</description>
+    </item>
+    
+    <item>
+      <title>Make stuck in a loop</title>
+      <link>https://roidelapluie.be/blog/2014/01/20/make-in-a-loop/</link>
+      <pubDate>Mon, 20 Jan 2014 08:44:57 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/01/20/make-in-a-loop/</guid>
+      <description>I got an unexpected result when I was trying to compile a small lib: it seems to never finished (I stopped it after 3 hours).
+The problem was that I had in /usr/lib64 files timestamped in the future.
+The following command fixed it and I have eventually compiled my library in 30 seconds.
+touch now find /usr/lib64 -newer now -exec touch ´{}´ ´;´  </description>
+    </item>
+    
+    <item>
+      <title>Mcollective agent to use drush</title>
+      <link>https://roidelapluie.be/blog/2013/07/23/drush-mcollective/</link>
+      <pubDate>Tue, 23 Jul 2013 13:09:07 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/07/23/drush-mcollective/</guid>
+      <description> I have written a mcollective agent to run drush commands. It will help you to automate the deployments of your drupal websites.
+I have implemented two drush commands so far:
+ cache-clear updatedb  The full configuration is available on the github project.
+Examples Updatedb ::text mco rpc drush updatedb root=/var/vhost/frontend-demo yes=true  Cache-clear ::text mco rpc drush cache-clear root=/var/vhost/frontend-demo uri=http://demo.example.net type=all  Links  mcollective drush the agent on github  </description>
+    </item>
+    
+    <item>
+      <title>GlusterFS quorums</title>
+      <link>https://roidelapluie.be/blog/2013/07/18/glusterfs-quorum/</link>
+      <pubDate>Thu, 18 Jul 2013 15:27:11 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/07/18/glusterfs-quorum/</guid>
+      <description>GlusterFS quorums should prevent brain-split by deactivating the nodes when less that 50% of the servers are connected (you can change that number).
+To enable the feature, it is simple:
+srv01$ sudo gluster volume set gv0 cluster.server-quorum-type server volume set: success  Then I isolated one VM on the network. I could not access the files on that node:
+srv03$ ls /mnt ls: cannot access /mnt: No such file or directory  But it worked on the other nodes:</description>
+    </item>
+    
+    <item>
+      <title>Peering a server to a GlusterFS cluster</title>
+      <link>https://roidelapluie.be/blog/2013/07/18/peering-a-server-to-a-glusterfs-cluster/</link>
+      <pubDate>Thu, 18 Jul 2013 13:46:57 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/07/18/peering-a-server-to-a-glusterfs-cluster/</guid>
+      <description>Some notes about how to add server to a GlusterFS cluster and to replicata data to it.
+::bash srv03$ sudo gluster peer probe 192.168.1.10 peer probe: failed: 192.168.1.10 is already part of another cluster  It is logical that anyone may not add a server to a gluster cluster.
+::bash srv01$ sudo gluster peer probe 192.168.1.12 peer probe: success  It is successful.
+::bash srv01$ sudo gluster peer status Number of Peers: 2 Hostname: 192.</description>
+    </item>
+    
+    <item>
+      <title>Fixing a GlusterFS split-brain</title>
+      <link>https://roidelapluie.be/blog/2013/07/17/glusterfs-split-brain/</link>
+      <pubDate>Wed, 17 Jul 2013 16:27:17 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/07/17/glusterfs-split-brain/</guid>
+      <description>I have found some time to test GlusterFS, in order to use it to replicate data between several servers.
+I have created two vagrant boxes to set up a basic cluster.
+And, during my tests, I have shut down the network interfaces and started writing different things on the same file, to create a split-brain.
+srv01$ echo good &amp;gt; /mnt/test srv02$ echo bad &amp;gt; /mnt/test  When the interfaces were up again, the split-brain was obviously present:</description>
+    </item>
+    
+    <item>
+      <title>Fill your Belgian tax form with Linux</title>
+      <link>https://roidelapluie.be/blog/2013/07/15/tax-on-web/</link>
+      <pubDate>Mon, 15 Jul 2013 21:52:50 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/07/15/tax-on-web/</guid>
+      <description>Tax-on-web is the online service that enable you to fill in your Belgian tax form.
+In order to be able to read you beid card, and so to connect to the online website, follow the following instructions.
+First, get a card reader, and install the relevant driver. The following will often be enough (if you are using debian/ubuntu):
+$ sudo apt-get install libacr38u pcscd  Then, do not install the software provided by the government.</description>
+    </item>
+    
+    <item>
+      <title>Rattaching a running process to a screen</title>
+      <link>https://roidelapluie.be/blog/2013/06/25/reptyr/</link>
+      <pubDate>Tue, 25 Jun 2013 22:15:13 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/06/25/reptyr/</guid>
+      <description>Reptyr is a small project written in C that enable you to &amp;ldquo;re-pty&amp;rdquo; your process. It means you can, for example, attach a running process inside a screen.
+For example, you launched irssi outside your screen, and you do not want to relaunch it.
+Install reptyr, then, in a screen, run the following commands:
+$ pidof irssi 27518 $ reptyr 27518  That&amp;rsquo;s it. The process will be rattached to Init but you will be able to use it directly from your screen, without notifying the difference.</description>
+    </item>
+    
+  </channel>
+</rss>

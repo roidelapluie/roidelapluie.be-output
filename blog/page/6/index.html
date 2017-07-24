@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="nav-item nav-link " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2015/07/26/puppet-puppet-4/" class="text-gray-dark">
+    A Puppet module for Puppet 4
+</a></h1>
+<div class="content text-justify">
+    <p>I have been working today on a <a href="https://github.com/theforeman/puppet-puppet/pull/290">pull request</a> for the <a href="https://github.com/theforeman/puppet-puppet/">puppet-puppet</a>
+module. That module, part of the foreman puppet modules suite, is probably the
+most used in its category.</p>
+
+<p>The pull request I&rsquo;ve been working on is about support of the new <a href="https://puppetlabs.com/blog/say-hello-open-source-puppet-4">&lsquo;All In One&rsquo;</a>
+package and Puppet 4. It will probably be merged very soon.</p>
+
+<p>An important part of the work was done by <a href="https://github.com/mcanevet">Mickaël Canévet</a>, from <a href="http://camptocamp.com">camptocamp</a>.
+I did polish it a bit, rebase it and make the tests pass.</p>
+
+<p>With our combined work, you can now use the great puppet-puppet module to deploy
+a puppet stack with AIO packages, and start testing the new Puppet 4 features right now!</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/07/26/puppet-puppet-4/">Permalink</a>. Category: Automation. Tags: automation planet-inuits puppet.<br/>
+        First published on Sun 26 July 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2015/07/04/script/" class="text-gray-dark">
+    Script, a must-know command for sysadmins
+</a></h1>
+<div class="content text-justify">
+    
+
+<p><code>script</code> is a famous command in the unix world. Part of the <a href="https://www.kernel.org/pub/linux/utils/util-linux/">util-linux</a>
+package of Linux distros, and so available almost everywhere, it has some very interesting features.</p>
+
+<h2 id="recording-a-shell-session">Recording a shell session</h2>
+
+<p>This is the primary usage. Just type:</p>
+
+<pre><code>script output.txt
+</code></pre>
+
+<p>A new shell will open, and you can just do whatever you want.</p>
+
+<pre><code>$ script output.txt
+Script started, file is output.txt
+$ echo hello world
+hello world
+$ exit
+Script done, file is output.txt
+</code></pre>
+
+<p>Once you have
+finished, you close the shell (<code>exit</code> or <code>^D</code>) and then you can replay your session
+with <code>cat</code>:</p>
+
+<pre><code>$ cat output.txt
+Script started on Sat 04 Jul 2015 11:15:15 AM CEST
+$ echo hello world
+hello world
+$ exit
+
+Script done on Sat 04 Jul 2015 11:15:21 AM CEST
+</code></pre>
+
+<p>It also records what you type, your bash PS1 etc&hellip;</p>
+
+<p>But that would replay everything at once. You can improve that by recording with
+timing (<code>-t</code>). Timing information is sent do stderr.</p>
+
+<pre><code>script -t output.txt 2&gt;output.txt.timing
+</code></pre>
+
+<p>You can then replay easily with:</p>
+
+<pre><code>scriptreplay output.txt.timing output.txt
+</code></pre>
+
+<p><code>scriptreplay</code> has a lot of interesting options, like <code>--divisor</code> and
+<code>--maxdelay</code>.</p>
+
+<h2 id="real-time-terminal-sharing">Real-time terminal sharing</h2>
+
+<p>It is also possible to stream what you are doing. To do so, you can use a named pipe.</p>
+
+<pre><code>mkfifo /tmp/mystream
+script -f /tmp/mystream
+</code></pre>
+
+<p>The <code>-f</code> option means &lsquo;flush at every write&rsquo;.</p>
+
+<p>On the other hand, the person that wants to see what you are doing just has to run:</p>
+
+<pre><code>cat /tmp/mystream
+</code></pre>
+
+<p>Now you will see the same things.</p>
+
+<p>You can do the same with <code>screen</code>, except that <code>screen</code> is not installed everywhere
+and you can not have a <code>screen</code> read-only.</p>
+
+<h2 id="own-your-tty">Own your tty</h2>
+
+<p>This is the last use case I have with <code>script</code> and it useful as well. In some situations,
+you have to &lsquo;own&rsquo; your own tty.</p>
+
+<p>Examples of such situations include <code>screen</code> and <code>sudo</code> commands.</p>
+
+<pre><code># su - roidelapluie
+$ screen
+Cannot open your terminal '/dev/pts/38' - please check.
+</code></pre>
+
+<p>In that case, script can help you:</p>
+
+<pre><code># su - roidelapluie
+$ script /dev/null
+Script started, file is /dev/null
+$ screen
+</code></pre>
+
+<p>It also works to run <code>sudo</code> when you forget to use <code>ssh -t</code>.</p>
+
+<p>You can also run a command directly with <code>-c</code>. In that case do not forget to add
+<code>-e</code> if you are interested by the exit code of the command you launch.</p>
+
+<pre><code>script -c mycommand -e
+</code></pre>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p><code>script</code> is a nice command that can be useful in several situations, and it has
+the advantage to be present almost everywhere.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/07/04/script/">Permalink</a>. Category: Linux. Tags: sysadmin planet-inuits.<br/>
+        First published on Sat 4 July 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2015/06/05/vagrant-will-support-vbox-clones/" class="text-gray-dark">
+    Vagrant will support VirtualBox linked clones
+</a></h1>
+<div class="content text-justify">
+    <p>Here is a good news for the <a href="http://vagrantup.com">vagrant</a> users that still use VirtualBox.
+While vagrant has support for many other providers, I guess that VirtualBox is probably still
+in the top 3.</p>
+
+<p>A September 2014 <a href="https://github.com/mitchellh/vagrant/pull/4484">Pull Request</a> by <a href="https://github.com/mpoeter">mpoeter</a> has been updated some days ago. That
+pull request is about the support of a long-existing VirtualBox feature, linked clones.
+And it will more than probably be integrated in the next release.</p>
+
+<p>Linked clones are just like Clones, except that the disks are linked to the &ldquo;master&rdquo;
+disks, and the data are written incrementally on another disk. It means that the initial import
+of the Vagrant boxes will be instant, even if your laptop has non-ssd disks.</p>
+
+<p>The initial import of the VirtualBox boxes was one of the bottlenecks of this plugin,
+and a disadvantage compared to those based on LXC, KVM or docker.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/06/05/vagrant-will-support-vbox-clones/">Permalink</a>. Category: Linux. Tags: vagrant virtualbox planet-inuits.<br/>
+        First published on Fri 5 June 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2015/05/22/gitlab-ee/" class="text-gray-dark">
+    Gitlab makes the Entreprise edition code public
+</a></h1>
+<div class="content text-justify">
+    <p>It is a very sad day for Open-Source. Gitlab has opened its repository for the
+Entreprise Edition (I am not going to put a link to it).</p>
+
+<p>It is a very sad day because even if the code is available, it is still proprietary.
+If you are interested in implementing features of the EE into the CE edition,
+you have to make sure that you never look at the proprietary code. Otherwise your
+changes will be illegal if they are too close to the proprietary ones.</p>
+
+<p>We have the same kind of problems with other projects. The MariaDB Java connector is
+LGPL and the Mysql Java Connector is under GPL. It means that it is legal to put any
+great feature of the MariaDB Connector into the MySQL Connector but not the opposite.</p>
+
+<p>GitLab EE would not be possible with its old competitor, now dead, Gitorious, because
+it was under the GPL. I hope that some people will continue to develop Gitorious to
+make it as best as Gitlab.</p>
+
+<p>Opening the code without releasing it under an open source licence is not nice
+for the community, not nice for the contributors and will not help that much the project:
+will you review/contribute to a repository you can not use?</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/05/22/gitlab-ee/">Permalink</a>. Category: Open-Source. Tags: licenses philosophy.<br/>
+        First published on Fri 22 May 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2015/05/13/r-and-graphite/" class="text-gray-dark">
+    R and Graphite
+</a></h1>
+<div class="content text-justify">
+    <p><a href="http://www.r-project.org/">R</a> is a famous language in the statistical world. It
+has a large ecosystem and today I wanted to try to do some predictions with R and
+Graphite.</p>
+
+<pre><code>library(&quot;rjson&quot;)
+library(&quot;RCurl&quot;)
+library(&quot;forecast&quot;)
+library(&quot;xts&quot;)
+
+metric &lt;- &quot;myhost.load.load.longterm&quot;
+time &lt;- &quot;3days&quot;
+host &lt;- &quot;graphite.example.com&quot;
+
+url &lt;- paste(&quot;https://&quot;, host, &quot;/render/?target=&quot;, metric, &quot;&amp;format=json&amp;from=-&quot;, time, sep=&quot;&quot;)[1]
+
+json_content &lt;- getURL(url, userpwd=&quot;myuser:mypass&quot;, httpauth = 1L)
+json_data &lt;- fromJSON(json_content)
+
+values &lt;- c()
+
+datapoints &lt;- json_data[[1]]$datapoints
+target &lt;- json_data[[1]]$target
+
+for(d in datapoints){
+    value &lt;- (d[[1]])
+    values &lt;- c(values, value)
+}
+
+values &lt;- ts(values, frequency=30)
+fit &lt;- Arima(values, order=c(1,0,30))
+fcast &lt;- forecast(fit)
+plot(fcast, main=target)
+</code></pre>
+
+<p>Result:</p>
+
+<img src="/images/r.png" class="img-fluid" alt="R and Graphite"/>
+
+
+<p>This POC could be improved of course, it was just to make some fun with R and predictions.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/05/13/r-and-graphite/">Permalink</a>. Category: Monitoring. Tags: statistics graphite planet-inuits.<br/>
+        First published on Wed 13 May 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li class="page-item ">
+                <a class="page-link" href="/blog/page/5/" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li  class="page-item disabled"><a class="page-link">...</a></li>
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/5/">5</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item  active"><a class="page-link" href="/blog/page/6/">6</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/7/">7</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li  class="page-item disabled"><a class="page-link">...</a></li>
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/14/">14</a></li>
+            
+            
+        <li class="page-item">
+            <a class="page-link" href="/blog/page/7/" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Speed up Puppet and Augeas - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link " href="/fr">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+<h1 class="title mt-3 mb-3"><a href="/blog/2015/08/19/speed-up-puppet-augeas/" class="text-gray-dark">
+    Speed up Puppet and Augeas
+</a></h1>
+<div class="content text-justify">
+    <p>Here is a tip for those using the Puppet &lsquo;augeas&rsquo; native resource: always use the &lsquo;incl&rsquo; and the &lsquo;lens&rsquo; parameters.</p>
+
+<p>Without that, Augeas will autoload all of the files defined in its lenses. On an empty VM that can take up to 1 second.</p>
+
+<p>Here is my base test file:</p>
+
+<pre><code>$logrotate_file = '/etc/logrotate.d/httpd'
+augeas {
+ 'logrotate-httpd':
+    context =&gt; &quot;/files${logrotate_file}/rule/&quot;,
+    changes =&gt; [
+      'set schedule daily',
+      'set rotate 6',
+      'set compress compress',
+    ],
+}
+</code></pre>
+
+<p>It takes 0.91 seconds:</p>
+
+<pre><code># puppet apply test.pp
+Notice: Compiled catalog for localhost in environment production in 0.14 seconds
+Notice: Finished catalog run in 0.91 seconds
+</code></pre>
+
+<p>If I specify the file and the lens:</p>
+
+<pre><code>$logrotate_file = '/etc/logrotate.d/httpd'
+augeas {
+ 'logrotate-httpd':
+    context =&gt; &quot;/files${logrotate_file}/rule/&quot;,
+    incl    =&gt; $logrotate_file,
+    lens    =&gt; 'Logrotate.lns',
+    changes =&gt; [
+      'set schedule daily',
+      'set rotate 6',
+      'set compress compress',
+    ],
+}
+</code></pre>
+
+<p>It takes 0.08 seconds:</p>
+
+<pre><code># puppet apply test.pp
+Notice: Compiled catalog for localhost in environment production in 0.13 seconds
+Notice: Finished catalog run in 0.08 seconds
+</code></pre>
+
+<p>Note that this is linear. Augeas will load all its know files for each of the resources,
+so you will lose one second for each resource without these arguments.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/08/19/speed-up-puppet-augeas/">Permalink</a>. Category: Automation. Tags: automation planet-inuits puppet.<br/>
+        First published on Wed 19 August 2015.
+    </div>
+</div>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

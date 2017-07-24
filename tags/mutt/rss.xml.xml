@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mutt on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/mutt/</link>
+    <description>Recent content in Mutt on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 09 May 2015 21:29:49 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/mutt/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mutt</title>
+      <link>https://roidelapluie.be/blog/2015/05/09/mutt/</link>
+      <pubDate>Sat, 09 May 2015 21:29:49 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/05/09/mutt/</guid>
+      <description>In the past, I have used several mail clients, including Thunderbird, Claws Mail, Alpine and Evolution.
+But since a few years, I have been using exclusively Mutt. I would like to share pieces of configuration from my personal setup today.
+~/.mutt/muttrc unset mark_old  With that line, Mutt will stop marking New email messages (N) as Old (O) when you change directory or exit. With that the flag will stay N.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,2151 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://roidelapluie.be/homepage/about-me/</loc>
+    <lastmod>2017-01-15T17:26:37+01:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/homepage/about-me/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/homepage/about-me/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/homepage/welcome/</loc>
+    <lastmod>2017-01-15T15:17:11+01:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/homepage/welcome/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/homepage/welcome/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/homepage/inuits/</loc>
+    <lastmod>2017-01-15T16:54:03+01:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/homepage/inuits/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/homepage/inuits/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2017/ato/</loc>
+    <lastmod>2017-10-23T16:36:40+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2017/ato/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2017/ato/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2017/promcon/</loc>
+    <lastmod>2017-08-17T08:40:53+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2017/promcon/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2017/promcon/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2017/07/20/custom-sudo-command-with-ansible/</loc>
+    <lastmod>2017-07-20T09:29:55+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2017/rmll/</loc>
+    <lastmod>2017-07-04T20:57:37+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2012/rmll/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2017/rmll/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2017/percona/</loc>
+    <lastmod>2017-06-22T16:38:45+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2017/percona/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2017/percona/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2017/doj-osl/</loc>
+    <lastmod>2017-06-01T22:16:19+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2017/doj-osl/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2017/doj-osl/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2017/doj-gbg/</loc>
+    <lastmod>2017-05-30T22:16:19+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2017/doj-gbg/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2017/doj-gbg/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2017/osdc/</loc>
+    <lastmod>2017-05-18T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2016/osdc/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2017/osdc/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2017/craft/</loc>
+    <lastmod>2017-04-26T20:41:11+01:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2017/craft/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2017/craft/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2017/04/21/digitalocean-terraform-packer/</loc>
+    <lastmod>2017-04-21T20:12:29+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2017/03/30/nightly-jobs-jenkins/</loc>
+    <lastmod>2017-03-30T21:33:11+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2017/03/30/robot-firefox-socks/</loc>
+    <lastmod>2017-03-30T21:19:55+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2017/03/22/first-open-source-contribution/</loc>
+    <lastmod>2017-03-22T21:32:57+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/gitolite/</loc>
+    <lastmod>2017-03-21T17:47:31+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/pytest/</loc>
+    <lastmod>2017-03-21T17:45:37+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/prometheus/</loc>
+    <lastmod>2017-03-21T17:42:23+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/tt-rss/</loc>
+    <lastmod>2017-03-21T17:41:03+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/mailman/</loc>
+    <lastmod>2017-03-21T17:28:27+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/jenkins/</loc>
+    <lastmod>2017-03-21T17:27:16+01:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2014/jenkins/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/skill/jenkins/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/icinga/</loc>
+    <lastmod>2017-03-21T17:24:42+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/nagios/</loc>
+    <lastmod>2017-03-21T17:24:03+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/grafana2/</loc>
+    <lastmod>2017-03-21T17:19:41+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/grafana1/</loc>
+    <lastmod>2017-03-21T17:18:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/centos/</loc>
+    <lastmod>2017-03-20T22:23:20+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/exherbo/</loc>
+    <lastmod>2017-03-20T22:23:20+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/gentoo/</loc>
+    <lastmod>2017-03-20T22:23:20+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/rhel/</loc>
+    <lastmod>2017-03-20T22:23:20+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/ubuntu/</loc>
+    <lastmod>2017-03-20T22:23:20+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/munin/</loc>
+    <lastmod>2017-03-20T22:22:08+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/ansible/</loc>
+    <lastmod>2017-03-20T22:09:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/mariadb/</loc>
+    <lastmod>2017-03-20T22:09:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/postgresql/</loc>
+    <lastmod>2017-03-20T22:09:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/puppet/</loc>
+    <lastmod>2017-03-20T22:09:34+01:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2014/puppet/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/skill/puppet/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/python/</loc>
+    <lastmod>2017-03-20T21:56:45+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/svn/</loc>
+    <lastmod>2017-03-20T21:56:45+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/git/</loc>
+    <lastmod>2017-03-20T21:56:45+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2017/flossuk/</loc>
+    <lastmod>2017-03-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2015/flossuk/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2017/flossuk/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1488116380696751677/</loc>
+    <lastmod>2017-02-26T14:39:40+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1488091221881200967/</loc>
+    <lastmod>2017-02-26T07:40:22+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2017/02/14/mgmt-augeas/</loc>
+    <lastmod>2017-02-14T20:34:13+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1486937556629461600/</loc>
+    <lastmod>2017-02-12T23:12:36+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1486639344664357165/</loc>
+    <lastmod>2017-02-09T12:22:24+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2017/02/09/mgmt/</loc>
+    <lastmod>2017-02-09T11:33:25+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2017/cfgmgmtcamp/</loc>
+    <lastmod>2017-02-05T17:00:00+01:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2016/cfgmgmtcamp/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2017/cfgmgmtcamp/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2017/voxpupuli/</loc>
+    <lastmod>2017-02-05T12:00:00+01:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2016/voxpupuli/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2017/voxpupuli/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1485942621933488112/</loc>
+    <lastmod>2017-02-01T10:50:22+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1485706459151328023/</loc>
+    <lastmod>2017-01-29T17:14:19+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1485514744609825001/</loc>
+    <lastmod>2017-01-27T11:59:04+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1485256265872678589/</loc>
+    <lastmod>2017-01-24T12:11:05+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1485244900186573882/</loc>
+    <lastmod>2017-01-24T09:01:40+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1485154832358266254/</loc>
+    <lastmod>2017-01-23T08:00:32+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1485150663316522346/</loc>
+    <lastmod>2017-01-23T06:51:03+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1485150424135995823/</loc>
+    <lastmod>2017-01-23T06:47:04+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1484907150858917674/</loc>
+    <lastmod>2017-01-20T11:12:30+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1484894274122579604/</loc>
+    <lastmod>2017-01-20T07:37:54+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1484861854831516641/</loc>
+    <lastmod>2017-01-19T22:37:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1484821926344702794/</loc>
+    <lastmod>2017-01-19T11:32:06+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1484821035453063636/</loc>
+    <lastmod>2017-01-19T11:17:15+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1484811709161728944/</loc>
+    <lastmod>2017-01-19T08:41:49+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1484806738966234654/</loc>
+    <lastmod>2017-01-19T07:18:58+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1484635040471429841/</loc>
+    <lastmod>2017-01-17T07:37:20+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/1484634571082302761/</loc>
+    <lastmod>2017-01-17T07:29:31+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2016/11/18/gitslave-jenkins/</loc>
+    <lastmod>2016-11-18T10:38:11+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2016/11/02/about-puppet-4.8/</loc>
+    <lastmod>2016-11-02T08:44:30+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2016/voxpupuli/</loc>
+    <lastmod>2016-10-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2016/voxpupuli/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2016/voxpupuli/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2016/foreman/</loc>
+    <lastmod>2016-07-13T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2015/foreman/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2016/foreman/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2016/rmll/</loc>
+    <lastmod>2016-07-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2012/rmll/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2016/rmll/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2016/puppet/</loc>
+    <lastmod>2016-06-07T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2014/puppet/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2016/puppet/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2016/osdc/</loc>
+    <lastmod>2016-04-28T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2016/osdc/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2016/osdc/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2016/flossuk/</loc>
+    <lastmod>2016-03-16T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2015/flossuk/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2016/flossuk/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2016/rpm/</loc>
+    <lastmod>2016-02-26T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2016/rpm/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2016/rpm/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/bash-puppet/</loc>
+    <lastmod>2016-02-24T11:48:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2016/02/05/puppetlabs-concat/</loc>
+    <lastmod>2016-02-05T16:50:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2016/cfgmgmtcamp/</loc>
+    <lastmod>2016-02-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2016/cfgmgmtcamp/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2016/cfgmgmtcamp/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2016/cfgmgmtcamp2/</loc>
+    <lastmod>2016-02-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2016/cfgmgmtcamp2/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2016/cfgmgmtcamp2/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/12/27/wi-fi-protected-setup/</loc>
+    <lastmod>2015-12-27T20:07:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2015/systemd/</loc>
+    <lastmod>2015-11-06T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2015/systemd/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2015/systemd/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/10/29/puppet-sigint/</loc>
+    <lastmod>2015-10-29T07:56:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/10/28/letsencrypt/</loc>
+    <lastmod>2015-10-28T08:43:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/verifytree/</loc>
+    <lastmod>2015-10-22T11:44:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/10/13/specific-routing-table/</loc>
+    <lastmod>2015-10-13T21:53:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2015/linuxcon/</loc>
+    <lastmod>2015-10-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2015/linuxcon/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2015/linuxcon/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/10/03/foreman-puppet-4/</loc>
+    <lastmod>2015-10-03T14:25:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/deprecated/</loc>
+    <lastmod>2015-10-03T11:09:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2015/puppet4/</loc>
+    <lastmod>2015-09-25T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2015/puppet4/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2015/puppet4/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/09/23/open-source-myth/</loc>
+    <lastmod>2015-09-23T21:04:31+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/blog/2015/09/23/open-source-myth/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/blog/2015/09/23/open-source-myth/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/09/17/pcsd/</loc>
+    <lastmod>2015-09-17T13:31:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/09/16/pcs-resource-debug/</loc>
+    <lastmod>2015-09-16T10:44:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/09/15/puppet-4-create-resources/</loc>
+    <lastmod>2015-09-15T23:22:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/09/15/puppet-4-types/</loc>
+    <lastmod>2015-09-15T00:04:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2015/bpug2/</loc>
+    <lastmod>2015-09-10T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2015/bpug2/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2015/bpug2/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/08/19/speed-up-puppet-augeas/</loc>
+    <lastmod>2015-08-19T12:06:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/08/14/acl-el7/</loc>
+    <lastmod>2015-08-14T08:36:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/08/12/vagrant-centos/</loc>
+    <lastmod>2015-08-12T09:10:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/08/10/niches/</loc>
+    <lastmod>2015-08-10T18:45:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/07/31/augeas-tmpfiles/</loc>
+    <lastmod>2015-07-31T21:45:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2015/pytriage/</loc>
+    <lastmod>2015-07-31T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2015/pytriage/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2015/pytriage/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/07/26/puppet-puppet-4/</loc>
+    <lastmod>2015-07-26T22:05:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/solaris-md5/</loc>
+    <lastmod>2015-07-16T11:09:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/node/</loc>
+    <lastmod>2015-07-15T17:06:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/ffmpeg/</loc>
+    <lastmod>2015-07-05T17:00:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/07/04/script/</loc>
+    <lastmod>2015-07-04T12:04:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2015/foreman/</loc>
+    <lastmod>2015-06-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2015/foreman/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2015/foreman/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/06/05/vagrant-will-support-vbox-clones/</loc>
+    <lastmod>2015-06-05T08:40:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2015/pulp/</loc>
+    <lastmod>2015-05-29T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2015/pulp/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2015/pulp/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/05/22/gitlab-ee/</loc>
+    <lastmod>2015-05-22T22:15:27+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2014/gitlab/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/blog/2015/05/22/gitlab-ee/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/05/13/r-and-graphite/</loc>
+    <lastmod>2015-05-13T01:45:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/05/10/f-droid-firefox/</loc>
+    <lastmod>2015-05-10T17:22:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/05/09/mutt/</loc>
+    <lastmod>2015-05-09T21:29:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/04/28/virt-copy-out/</loc>
+    <lastmod>2015-04-28T09:08:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/geekcode/</loc>
+    <lastmod>2015-04-25T21:19:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/04/22/git-status-submodules/</loc>
+    <lastmod>2015-04-22T13:40:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/04/20/libreoffice-calc-1024-columns/</loc>
+    <lastmod>2015-04-20T21:51:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/04/15/xtrabackup-and-mariadb/</loc>
+    <lastmod>2015-04-15T21:31:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2015/loadays/</loc>
+    <lastmod>2015-04-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2012/loadays/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2015/loadays/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/03/26/css-update/</loc>
+    <lastmod>2015-03-26T17:39:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2015/flossuk/</loc>
+    <lastmod>2015-03-25T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2015/flossuk/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2015/flossuk/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2015/bpug/</loc>
+    <lastmod>2015-03-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2014/bpug/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2015/bpug/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2015/03/12/google-to-shut-down-google-code/</loc>
+    <lastmod>2015-03-12T21:45:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/perl/</loc>
+    <lastmod>2015-02-27T16:26:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2015/pcs/</loc>
+    <lastmod>2015-02-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2015/pcs/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2015/pcs/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2015/dojo/</loc>
+    <lastmod>2015-01-30T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2014/dojo/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2015/dojo/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/yumpycurlerror/</loc>
+    <lastmod>2015-01-16T10:50:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/burncd/</loc>
+    <lastmod>2014-12-24T16:27:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/pythoncopy/</loc>
+    <lastmod>2014-12-24T16:27:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/12/09/puppet-server/</loc>
+    <lastmod>2014-12-09T21:27:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/12/05/openldap-ca/</loc>
+    <lastmod>2014-12-05T23:42:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/advent/</loc>
+    <lastmod>2014-12-02T23:41:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/11/29/devuan/</loc>
+    <lastmod>2014-11-29T12:58:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/11/17/3-years-of-puppet/</loc>
+    <lastmod>2014-11-17T22:24:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2014/puppet/</loc>
+    <lastmod>2014-11-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2014/puppet/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2014/puppet/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2014/bpug/</loc>
+    <lastmod>2014-11-12T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2014/bpug/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2014/bpug/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2014/lkfr/</loc>
+    <lastmod>2014-11-06T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2014/lkfr/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2014/lkfr/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2014/t-dose/</loc>
+    <lastmod>2014-10-26T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2014/t-dose/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2014/t-dose/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/10/20/f-droid-welcomes-betrains/</loc>
+    <lastmod>2014-10-20T21:26:11+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/xsolaris/</loc>
+    <lastmod>2014-10-14T15:31:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/10/08/pulp-horror-fest/</loc>
+    <lastmod>2014-10-08T09:27:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/puppet-json/</loc>
+    <lastmod>2014-10-07T08:27:11+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/10/04/i-ve-backed-matchstick/</loc>
+    <lastmod>2014-10-04T12:31:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/09/25/bugs-bugs-bugs/</loc>
+    <lastmod>2014-09-25T21:28:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/blogroll/</loc>
+    <lastmod>2014-09-20T00:13:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/09/17/vagrant-puppet-agent/</loc>
+    <lastmod>2014-09-17T10:08:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/09/13/dont-split-linux-in-two/</loc>
+    <lastmod>2014-09-13T21:24:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/09/04/epel7/</loc>
+    <lastmod>2014-09-04T22:50:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/gpg/</loc>
+    <lastmod>2014-09-04T22:23:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/09/02/munin2-not-a-reference-error/</loc>
+    <lastmod>2014-09-02T08:49:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/08/28/rss-feed-update/</loc>
+    <lastmod>2014-08-28T07:08:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2014/dojo2/</loc>
+    <lastmod>2014-08-25T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2014/dojo2/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2014/dojo2/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/08/15/caldav-android/</loc>
+    <lastmod>2014-08-15T07:38:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/gdkpixbuf/</loc>
+    <lastmod>2014-07-07T09:07:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/07/02/puppetlabs-corosync-pcs/</loc>
+    <lastmod>2014-07-02T08:32:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2014/jenkins/</loc>
+    <lastmod>2014-06-25T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2014/jenkins/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2014/jenkins/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2014/gitlab/</loc>
+    <lastmod>2014-06-04T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2014/gitlab/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2014/gitlab/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/sysdig/</loc>
+    <lastmod>2014-05-26T20:59:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/05/26/puppet-361-depreciation/</loc>
+    <lastmod>2014-05-26T10:48:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/05/19/pt-heartbeat-array-error/</loc>
+    <lastmod>2014-05-19T22:54:08+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/04/11/puppet-350-yumrepo/</loc>
+    <lastmod>2014-04-11T09:51:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/04/08/vagrant-collectd/</loc>
+    <lastmod>2014-04-08T13:01:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2014/loadays/</loc>
+    <lastmod>2014-04-04T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2012/loadays/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2014/loadays/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/git-last-commit/</loc>
+    <lastmod>2014-03-28T09:23:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/03/14/lab0/</loc>
+    <lastmod>2014-03-14T08:50:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/ipv6/</loc>
+    <lastmod>2014-02-10T22:02:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/02/02/paludis/</loc>
+    <lastmod>2014-02-02T21:24:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2014/dojo/</loc>
+    <lastmod>2014-01-31T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2014/dojo/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2014/dojo/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/01/28/puppet-corosync-pcs/</loc>
+    <lastmod>2014-01-28T20:40:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/01/22/lenovo-touchpad/</loc>
+    <lastmod>2014-01-22T07:38:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2014/01/20/make-in-a-loop/</loc>
+    <lastmod>2014-01-20T08:44:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/exherbo/</loc>
+    <lastmod>2014-01-09T21:25:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/foreman/</loc>
+    <lastmod>2013-12-18T10:53:40+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2015/foreman/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/wiki/foreman/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/crm-config/</loc>
+    <lastmod>2013-12-18T10:19:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/calculation/</loc>
+    <lastmod>2013-12-17T18:23:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/android/</loc>
+    <lastmod>2013-12-17T18:23:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/cyrus/</loc>
+    <lastmod>2013-12-17T18:23:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/archlinux/</loc>
+    <lastmod>2013-12-16T08:57:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/caldav/</loc>
+    <lastmod>2013-12-16T08:57:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/pipeline/</loc>
+    <lastmod>2013-12-16T08:57:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/fs/</loc>
+    <lastmod>2013-12-16T08:57:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/little-software/</loc>
+    <lastmod>2013-12-16T08:57:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/redshift/</loc>
+    <lastmod>2013-12-16T08:57:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/strace/</loc>
+    <lastmod>2013-12-16T08:57:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2013/agile/</loc>
+    <lastmod>2013-10-31T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2013/agile/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2013/agile/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2013/10/28/open-source-matters/</loc>
+    <lastmod>2013-10-28T21:59:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2013/pycon/</loc>
+    <lastmod>2013-10-26T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2013/pycon/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2013/pycon/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2013/ocf/</loc>
+    <lastmod>2013-10-05T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2013/ocf/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2013/ocf/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2013/drupalcon/</loc>
+    <lastmod>2013-09-26T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2013/drupalcon/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2013/drupalcon/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2013/logstash/</loc>
+    <lastmod>2013-09-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2013/logstash/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2013/logstash/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2013/07/23/drush-mcollective/</loc>
+    <lastmod>2013-07-23T13:09:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2013/07/18/glusterfs-quorum/</loc>
+    <lastmod>2013-07-18T15:27:11+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2013/07/18/peering-a-server-to-a-glusterfs-cluster/</loc>
+    <lastmod>2013-07-18T13:46:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2013/07/17/glusterfs-split-brain/</loc>
+    <lastmod>2013-07-17T16:27:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2013/07/15/tax-on-web/</loc>
+    <lastmod>2013-07-15T21:52:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2013/rmll/</loc>
+    <lastmod>2013-07-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2012/rmll/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2013/rmll/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2013/06/25/reptyr/</loc>
+    <lastmod>2013-06-25T22:15:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/2013/06/17/grok-httpd/</loc>
+    <lastmod>2013-06-17T12:13:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2013/bacd/</loc>
+    <lastmod>2013-06-13T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2013/bacd/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2013/bacd/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2012/rmll/</loc>
+    <lastmod>2012-07-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2012/rmll/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2012/rmll/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/2012/loadays/</loc>
+    <lastmod>2012-04-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/2012/loadays/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/2012/loadays/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/categories/android/</loc>
+    <lastmod>2015-05-10T17:22:27+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/ansible/</loc>
+    <lastmod>2017-07-20T09:29:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/augeas/</loc>
+    <lastmod>2015-07-31T21:45:27+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/automation/</loc>
+    <lastmod>2017-03-30T21:19:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/categories/automation/</loc>
+    <lastmod>2017-07-20T09:29:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/belgium/</loc>
+    <lastmod>2014-10-20T21:26:11+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/categories/blog/</loc>
+    <lastmod>2015-10-28T08:43:26+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/categories/blog/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/categories/blog/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/blog/</loc>
+    <lastmod>2017-07-20T09:29:55+02:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/blog/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/blog/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/caldav/</loc>
+    <lastmod>2014-08-15T07:38:54+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/calendar/</loc>
+    <lastmod>2014-08-15T07:38:54+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/categories/</loc>
+    <lastmod>2015-05-10T17:22:27+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/centos/</loc>
+    <lastmod>2015-09-17T13:31:42+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/cfgmgmt/</loc>
+    <lastmod>2017-02-09T11:33:25+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/categories/cloud/</loc>
+    <lastmod>2017-04-21T20:12:29+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/code/</loc>
+    <lastmod>2015-03-12T21:45:31+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/collectd/</loc>
+    <lastmod>2014-04-08T13:01:44+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/crowdfunding/</loc>
+    <lastmod>2014-10-04T12:31:48+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/css/</loc>
+    <lastmod>2015-03-26T17:39:22+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/drupal/</loc>
+    <lastmod>2013-07-23T13:09:07+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/exherbo/</loc>
+    <lastmod>2014-02-02T21:24:44+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/firefox/</loc>
+    <lastmod>2015-05-10T17:22:27+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/firefox-os/</loc>
+    <lastmod>2014-10-04T12:31:48+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/foreman/</loc>
+    <lastmod>2015-10-03T14:25:37+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/git/</loc>
+    <lastmod>2015-04-22T13:40:03+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/glusterfs/</loc>
+    <lastmod>2013-07-18T15:27:11+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/gpl/</loc>
+    <lastmod>2017-03-22T21:32:57+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/graphite/</loc>
+    <lastmod>2015-05-13T01:45:07+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/grok/</loc>
+    <lastmod>2013-06-17T12:13:20+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/ha/</loc>
+    <lastmod>2015-09-17T13:31:42+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/hardware/</loc>
+    <lastmod>2014-01-22T07:38:18+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/hashicorp/</loc>
+    <lastmod>2017-04-21T20:12:29+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/high-availability/</loc>
+    <lastmod>2014-01-28T20:40:19+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/homepage/</loc>
+    <lastmod>2017-01-15T17:26:37+01:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/homepage/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/homepage/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/imho/</loc>
+    <lastmod>2014-09-13T21:24:25+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/jenkins/</loc>
+    <lastmod>2017-03-30T21:33:11+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/</loc>
+    <lastmod>2017-01-15T17:26:37+01:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/kvm/</loc>
+    <lastmod>2015-04-28T09:08:34+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/ldap/</loc>
+    <lastmod>2014-12-05T23:42:17+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/libreoffice/</loc>
+    <lastmod>2015-04-20T21:51:52+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/licenses/</loc>
+    <lastmod>2015-09-23T21:04:31+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/linux/</loc>
+    <lastmod>2017-07-20T09:29:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/categories/linux/</loc>
+    <lastmod>2017-03-30T21:19:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/logbook/</loc>
+    <lastmod>2017-02-26T14:39:40+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/logstash/</loc>
+    <lastmod>2013-06-17T12:13:20+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/mail/</loc>
+    <lastmod>2015-05-09T21:29:49+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/mongodb/</loc>
+    <lastmod>2014-10-08T09:27:12+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/monitoring/</loc>
+    <lastmod>2014-09-02T08:49:58+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/categories/monitoring/</loc>
+    <lastmod>2015-05-13T01:45:07+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/mozilla/</loc>
+    <lastmod>2015-05-10T17:22:27+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/munin/</loc>
+    <lastmod>2014-09-02T08:49:58+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/mutt/</loc>
+    <lastmod>2015-05-09T21:29:49+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/mysql/</loc>
+    <lastmod>2015-04-15T21:31:19+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/network/</loc>
+    <lastmod>2015-12-27T20:07:53+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/office/</loc>
+    <lastmod>2015-04-20T21:51:52+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/open-source/</loc>
+    <lastmod>2017-03-30T21:19:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/categories/open-source/</loc>
+    <lastmod>2017-03-22T21:32:57+01:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/categories/open-source/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/categories/open-source/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/packaging/</loc>
+    <lastmod>2014-09-04T22:50:49+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/pelican/</loc>
+    <lastmod>2015-03-26T17:39:22+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/philosophy/</loc>
+    <lastmod>2015-09-23T21:04:31+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/pidgin/</loc>
+    <lastmod>2017-03-22T21:32:57+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/planet-inuits/</loc>
+    <lastmod>2017-07-20T09:29:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/public-services/</loc>
+    <lastmod>2014-10-20T21:26:11+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/pulp/</loc>
+    <lastmod>2014-10-08T09:27:12+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/puppet/</loc>
+    <lastmod>2016-11-02T08:44:30+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/qemu/</loc>
+    <lastmod>2015-04-28T09:08:34+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/rss/</loc>
+    <lastmod>2014-08-28T07:08:54+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/screen/</loc>
+    <lastmod>2013-06-25T22:15:13+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/security/</loc>
+    <lastmod>2017-07-20T09:29:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/skill/</loc>
+    <lastmod>2017-03-21T17:47:31+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/ssl/</loc>
+    <lastmod>2015-10-28T08:43:26+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/statistics/</loc>
+    <lastmod>2015-05-13T01:45:07+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/sysadmin/</loc>
+    <lastmod>2015-07-04T12:04:14+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/systemd/</loc>
+    <lastmod>2015-07-31T21:45:27+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/</loc>
+    <lastmod>2017-07-20T09:29:55+02:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/talk/</loc>
+    <lastmod>2017-10-23T16:36:40+02:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://roidelapluie.be/fr/talk/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://roidelapluie.be/talk/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/testing/</loc>
+    <lastmod>2017-03-30T21:33:11+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/vagrant/</loc>
+    <lastmod>2015-08-12T09:10:52+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/virtualbox/</loc>
+    <lastmod>2015-06-05T08:40:59+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/virtualization/</loc>
+    <lastmod>2015-04-28T09:08:34+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/wiki/</loc>
+    <lastmod>2016-02-24T11:48:27+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://roidelapluie.be/tags/zimbra/</loc>
+    <lastmod>2014-08-15T07:38:54+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

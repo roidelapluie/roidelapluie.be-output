@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="nav-item nav-link " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/09/25/bugs-bugs-bugs/" class="text-gray-dark">
+    5 bugs
+</a></h1>
+<div class="content text-justify">
+    <ul>
+<li><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-6271">Bash remote code execution vulnerability</a></li>
+<li><a href="https://www.openssl.org/news/secadv_20140407.txt">Heartbleed bug</a></li>
+<li><a href="http://seclists.org/oss-sec/2012/q2/493">Getting mysql root acces <sup>1</sup>&frasl;<sub>256</sub> times</a></li>
+<li><a href="https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/commit/a047be85247755cdbe0acce6f1dafc8beb84f2ac">Bumblebee deleting /usr</a></li>
+<li><a href="http://seclists.org/fulldisclosure/2010/Oct/257">Use glibc to get root access</a></li>
+</ul>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/09/25/bugs-bugs-bugs/">Permalink</a>. Category: Linux. Tags: security.<br/>
+        First published on Thu 25 September 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/09/17/vagrant-puppet-agent/" class="text-gray-dark">
+    Vagrant puppet_server tip
+</a></h1>
+<div class="content text-justify">
+    <p>This is a small tip for everyone using the <a href="https://docs.vagrantup.com/v2/provisioning/puppet_agent.html">vagrant puppet_server provisioner</a>, which allows you to run a puppet agent inside your vagrant box:</p>
+
+<pre><code>Vagrant.configure(&quot;2&quot;) do |config|
+  config.vm.box = &quot;vStone/centos-6.x-puppet.3.x&quot;
+  config.vm.hostname = &quot;puppet.vagrant.inuits.eu&quot;
+  config.vm.box_check_update = false
+  config.vm.network &quot;private_network&quot;, ip: &quot;192.168.33.2&quot;
+  config.vm.provision &quot;puppet_server&quot; do |puppet|
+    puppet.puppet_server = &quot;puppetmaster.vagrant.inuits.eu&quot;
+    puppet.options = [&quot;--environment&quot;, &quot;devel&quot;, &quot;--test&quot;]
+  end
+end
+</code></pre>
+
+<p>The tip is to add <code>puppet.options = [&quot;--test&quot;]</code> so you have the debug information, the diff of the files, &hellip; If you want more you can also add <code>--debug</code>.</p>
+
+<p>By default the provisioner uses the <code>--onetime</code> option which is not verbose at all.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/09/17/vagrant-puppet-agent/">Permalink</a>. Category: Automation. Tags: vagrant puppet planet-inuits.<br/>
+        First published on Wed 17 September 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/09/13/dont-split-linux-in-two/" class="text-gray-dark">
+    It&#39;s not time to split Linux distros in two
+</a></h1>
+<div class="content text-justify">
+    <p><em>This article is a reaction to the following article:</em> <a href="http://www.infoworld.com/d/data-center/its-time-split-linux-in-two-249704">It&rsquo;s time to split Linux distros in two</a> written by <a href="https://twitter.com/pvenezia">@pvenezia</a>.</p>
+
+<p>There are a lot of changes nowadays in the way GNU/Linux evolves: systemd, steamOS, android, and a bunch of other stuff in several domains.</p>
+
+<p>So I read Paul&rsquo;s article with attention because it&rsquo;s seems that GNU/Linux will evolve a lot in the following years. He is right when he points out that on one side we want stability and scalability and on the other side we want performances and wide hardware support. But it does not mean that we want to have to chose from these two aspects.</p>
+
+<p>Linux can do all the things. And it can do them right. I don&rsquo;t want to have to choose between server and desktop, what I want is a smallish image that I can use and deploy and then choose whatever I want to install on it. I want to be able to give a kickstart and eventually get a GNOME Desktop or a httpd server.</p>
+
+<p>The open-source world is moving fast. Containers, declarative distributions, and who knows what will be the next hipster stuff.. There is no room for a ballot screen that would allow you to download a desktop or a server-centric distribution.</p>
+
+<p>One of the reasons is that a desktop should be able to run server applications and a server should be able to run desktop softwares. Let me show you some example.</p>
+
+<p>On desktop A, a developer is running a lot of different virtual machines. To facilitate his work, he has deployed a small DNS server on it, so it is easy to work accross several projects. If the distributions were splitted, which one should he use?</p>
+
+<p>On a server, I want to run acceptance tests for a website. So I need a jenkins slave, Xvfb (headless X11 server) and a browser. Which distribution should I use?</p>
+
+<p>There are many risks in splitting distributions into desktop/server roles:</p>
+
+<ul>
+<li>No one would have all the packages he needs</li>
+<li>Server-centric distributions would have outdated desktop-related packages and vice-versa</li>
+<li>People would install packages that come from anywhere coz they are on the other distributions</li>
+<li>There would be a lot of double work - work that has to take place in both desktop and server distributions</li>
+</ul>
+
+<p>But, if you look closer, you will also understand that there is already a natural way of using distributions. SteamOS and Fedora will be used more as desktops, and CentOS will more be used as server. The limits are however less important with debian-related systems.</p>
+
+<p>In some special cases like SteamOS, it is right that Desktop support will come first. Maybe they won&rsquo;t package httpd or bind, but that would be their choice. There is not need for a big schism into every distribution because one of them has chosen to support only one of the two sides.</p>
+
+<p>To conclude this article, I like the idea that with a small image, I can get whatever I want. It&rsquo;s really cellular differentiation. Let&rsquo;s avoid to do mistakes because of systemd or any other software. Let&rsquo;s follow what the community wants, and what business needs. Let&rsquo;s keep Linux distributions capable of handling all the stuff we love.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/09/13/dont-split-linux-in-two/">Permalink</a>. Category: Linux. Tags: linux imho planet-inuits.<br/>
+        First published on Sat 13 September 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/09/04/epel7/" class="text-gray-dark">
+    EPEL 7 released
+</a></h1>
+<div class="content text-justify">
+    <p>EPEL 7 has been released. It contains <a href="http://dl.fedoraproject.org/pub/epel/7/SRPMS/repoview/">interesting packages</a>:</p>
+
+<ul>
+<li>ansible (orchestration)</li>
+<li>collectd (monitoring)</li>
+<li>mariadb-galera (database replication)</li>
+<li>mate (gnome 2 fork)</li>
+<li>mcollective (orchestration)</li>
+<li>munin (monitoring; version 2)</li>
+<li>puppet (configuration management, latest version)</li>
+<li>sl :)</li>
+<li>varnish (caching)</li>
+</ul>
+
+<p>And obviously a lot of other stuff to discover.</p>
+
+<ul>
+<li><a href="https://fedoraproject.org/wiki/EPEL">EPEL wiki page</a></li>
+<li><a href="http://dl.fedoraproject.org/pub/epel/7/SRPMS/repoview/">List of packages</a></li>
+<li><a href="https://forge.puppetlabs.com/stahnma/epel">Puppet module stahnma-epel</a></li>
+</ul>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/09/04/epel7/">Permalink</a>. Category: Linux. Tags: centos planet-inuits packaging.<br/>
+        First published on Thu 4 September 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/09/02/munin2-not-a-reference-error/" class="text-gray-dark">
+    Munin 2 &#34;not a reference&#34; error
+</a></h1>
+<div class="content text-justify">
+    <p>This morning I worked with Munin, discovering that Munin 2 has made it to EPEL.</p>
+
+<p>Thus I started to look at puppet modules. I tried two of them (<a href="https://github.com/ssm/ssm-munin">ssm-munin</a> and <a href="https://github.com/duritong/puppet-munin">duritong-munin</a>), and no one seemed to be working.</p>
+
+<p>I was then digging deeper about what the problem could be, so I logged in to the machine with the munin user:</p>
+
+<pre><code>::text
+# su - munin --shell=/bin/bash
+</code></pre>
+
+<p>Then I ran the script by hand:</p>
+
+<pre><code>::
+$ test -x /usr/bin/munin-cron &amp;&amp; /usr/bin/munin-cron
+not a reference at /usr/share/perl5/vendor_perl/Munin/Master/Utils.pm line 866
+</code></pre>
+
+<p>Which leaded me to <a href="https://bugzilla.redhat.com/show_bug.cgi?id=955902">the RedHat bugzilla</a>. But the different answers did not make me happy, even if the bug is more than one year old. Proposed solutions were doing some NSS voodoo, rebooting, restarting the node&hellip;</p>
+
+<p>I then ran the script again with the &ndash;debug flag:</p>
+
+<pre><code>::
+$ test -x /usr/bin/munin-cron &amp;&amp; /usr/bin/munin-cron --debug
+</code></pre>
+
+<p>And the error message was more clear: munin did not get any data because it could not connect to the node, because of a firewall trouble. So the &ldquo;not a reference at&rdquo; error just means that munin does not get any data.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/09/02/munin2-not-a-reference-error/">Permalink</a>. Category: Monitoring. Tags: munin monitoring planet-inuits puppet.<br/>
+        First published on Tue 2 September 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li class="page-item ">
+                <a class="page-link" href="/blog/page/9/" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li  class="page-item disabled"><a class="page-link">...</a></li>
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/9/">9</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item  active"><a class="page-link" href="/blog/page/10/">10</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/11/">11</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li  class="page-item disabled"><a class="page-link">...</a></li>
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/14/">14</a></li>
+            
+            
+        <li class="page-item">
+            <a class="page-link" href="/blog/page/11/" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

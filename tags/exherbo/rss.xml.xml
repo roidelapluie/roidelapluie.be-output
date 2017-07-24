@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Exherbo on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/exherbo/</link>
+    <description>Recent content in Exherbo on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 02 Feb 2014 21:24:44 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/exherbo/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Paludis, a package manager</title>
+      <link>https://roidelapluie.be/blog/2014/02/02/paludis/</link>
+      <pubDate>Sun, 02 Feb 2014 21:24:44 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/02/02/paludis/</guid>
+      <description>This weekend, the Fosdem was still full of geeks and a lot of discussions happened. Package managers were still in the discussions, while a lot of projects try to fix their problems:
+ FPM tito bower omnibus tar :-)  Let me explain you some stuff about the Exherbo package manager, Paludis.
+It is a performant package manager, which build packages from source, and it does not solve all the traditional problems related to the package managers.</description>
+    </item>
+    
+    <item>
+      <title>Make stuck in a loop</title>
+      <link>https://roidelapluie.be/blog/2014/01/20/make-in-a-loop/</link>
+      <pubDate>Mon, 20 Jan 2014 08:44:57 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/01/20/make-in-a-loop/</guid>
+      <description>I got an unexpected result when I was trying to compile a small lib: it seems to never finished (I stopped it after 3 hours).
+The problem was that I had in /usr/lib64 files timestamped in the future.
+The following command fixed it and I have eventually compiled my library in 30 seconds.
+touch now find /usr/lib64 -newer now -exec touch ´{}´ ´;´  </description>
+    </item>
+    
+  </channel>
+</rss>

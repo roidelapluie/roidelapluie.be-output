@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Munin on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/munin/</link>
+    <description>Recent content in Munin on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 02 Sep 2014 08:49:58 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/munin/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Munin 2 &#34;not a reference&#34; error</title>
+      <link>https://roidelapluie.be/blog/2014/09/02/munin2-not-a-reference-error/</link>
+      <pubDate>Tue, 02 Sep 2014 08:49:58 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/02/munin2-not-a-reference-error/</guid>
+      <description>This morning I worked with Munin, discovering that Munin 2 has made it to EPEL.
+Thus I started to look at puppet modules. I tried two of them (ssm-munin and duritong-munin), and no one seemed to be working.
+I was then digging deeper about what the problem could be, so I logged in to the machine with the munin user:
+::text # su - munin --shell=/bin/bash  Then I ran the script by hand:</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Specific routing table for one process - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link " href="/fr">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+<h1 class="title mt-3 mb-3"><a href="/blog/2015/10/13/specific-routing-table/" class="text-gray-dark">
+    Specific routing table for one process
+</a></h1>
+<div class="content text-justify">
+    <p>I have multiple VPNs launched at any time that route all of my traffic outside
+the eyes of my ISP (including default gateway).</p>
+
+<p>Some services however require me to have my &lsquo;belgian&rsquo; ip address. The easy
+solution is of course to stop my VPN but hey, no way!</p>
+
+<p>So here is another solution, quite simple (it does not involve mangling or bridges).</p>
+
+<p>This solution is with network namespaces and multiple routing tables.</p>
+
+<p>First, create a &ldquo;belgium&rdquo; network namespace.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip netns add belgium
+</pre></div>
+
+<p>Create a pair of virtual ethernet interfaces (veth0 and veth1).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip link add veth0 <span style="color: #008000">type</span> veth peer name veth1
+</pre></div>
+
+<p>Move veth1 to your &ldquo;belgium&rdquo; namespace.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip link <span style="color: #008000">set</span> veth1 netns belgium
+</pre></div>
+
+<p>Set appropriate IP addresses to veth0 and veth1.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip ad ad <span style="color: #666666">192</span>.168.11.0/24 dev veth0
+ip netns <span style="color: #008000">exec</span> belgium ip ad ad <span style="color: #666666">192</span>.168.11.2/24 dev veth1
+</pre></div>
+
+<p>Add appropriate routes in the &ldquo;belgium&rdquo; namespace.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip netns <span style="color: #008000">exec</span> belgium ip r add default via <span style="color: #666666">192</span>.168.11.1
+</pre></div>
+
+<p>Create a second routing table in the main network namespace by adding a line &ldquo;1 rt2&rdquo; to /etc/iproute2/rt_tables.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000">echo</span> <span style="color: #666666">1</span> rt2 &gt;&gt; /etc/iproute2/rt_tables
+</pre></div>
+
+<p>Set appropriate routes in this routing table:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip r add <span style="color: #666666">192</span>.168.1.0/24 dev wlp3s0 table rt2
+ip r add default via <span style="color: #666666">192</span>.168.1.1 dev wlp3s0 table rt2
+ip r add <span style="color: #666666">192</span>.168.11.0/24 dev veth0 table rt2
+</pre></div>
+
+<p>Set the rules for that routing table to catch the right packages:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip rule add from <span style="color: #666666">192</span>.168.11.0/24 table rt2
+ip rule add to <span style="color: #666666">192</span>.168.11.0/24 table rt2
+</pre></div>
+
+<p>Allow IP forwarding and Masquerade.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000">echo</span> <span style="color: #666666">1</span> &gt; /proc/sys/net/ipv4/ip_forward
+iptables -t nat -A POSTROUTING -s <span style="color: #666666">192</span>.168.11.2 -j MASQUERADE
+</pre></div>
+
+<p>Enjoy Football.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ip netns <span style="color: #008000">exec</span> belgium su roidelapluie -c <span style="color: #BA2121">&quot;mpv rtsp://rtmp.rtbf.be/livecast/laune&quot;</span>
+</pre></div>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/10/13/specific-routing-table/">Permalink</a>. Category: Linux. Tags: network planet-inuits.<br/>
+        First published on Tue 13 October 2015.
+    </div>
+</div>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

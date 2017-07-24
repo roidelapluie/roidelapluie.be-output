@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Logbooks on Julien Pivotto</title>
+    <link>https://roidelapluie.be/logbook/</link>
+    <description>Recent content in Logbooks on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 26 Feb 2017 14:39:40 +0100</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/logbook/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>1488116380696751677</title>
+      <link>https://roidelapluie.be/logbook/1488116380696751677/</link>
+      <pubDate>Sun, 26 Feb 2017 14:39:40 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1488116380696751677/</guid>
+      <description>Pagure is a great self hosted git repo manager.
+With a few missing features to be more adopted:
+ Just supports local and OpenID (FAS) authentication Does not support private projects  Otherwise, it has lots of great features:
+ Pull requests (even from external public git URL&amp;rsquo;s!) Issues (With custom fields) Built-in documentation management Jenkins integration Packaged in EPEL  Looks like a lot of useful code&amp;hellip; But unfortunately the missing features are too blocking at the moment to be useful in any of the projects I am involved in&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>1488091221881200967</title>
+      <link>https://roidelapluie.be/logbook/1488091221881200967/</link>
+      <pubDate>Sun, 26 Feb 2017 07:40:22 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1488091221881200967/</guid>
+      <description>10 years after I started doing so, I am still installing Linux for close family and vary close friends.
+10 years ago, I used Ubuntu. 5 years ago, Linux Mint. 3 years ago, Ubuntu Gnome.
+But yesterday, Ubuntu just let me the choice between a black screen (amdgru-pro closed source driver) and a 800x600 screen resolution (VESA driver), with a Radeon RX460 graphic card. I ended up installing Fedora instead of Ubuntu, for the first time ever.</description>
+    </item>
+    
+    <item>
+      <title>1486937556629461600</title>
+      <link>https://roidelapluie.be/logbook/1486937556629461600/</link>
+      <pubDate>Sun, 12 Feb 2017 23:12:36 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1486937556629461600/</guid>
+      <description>mgmtconfig now has an Augeas resource!</description>
+    </item>
+    
+    <item>
+      <title>1486639344664357165</title>
+      <link>https://roidelapluie.be/logbook/1486639344664357165/</link>
+      <pubDate>Thu, 09 Feb 2017 12:22:24 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1486639344664357165/</guid>
+      <description>So, this was the FOSDEM week again. Six days of talk about how we can improve our daily jobs, and the open-source ecosystem. What makes this week unique is that the main focus is not around each project, but around the collaboration between them. Having high level people from the main Open-Source project in one city, one country, for a couple of days, discussing about cooperation, is really amazing.</description>
+    </item>
+    
+    <item>
+      <title>1485942621933488112</title>
+      <link>https://roidelapluie.be/logbook/1485942621933488112/</link>
+      <pubDate>Wed, 01 Feb 2017 10:50:22 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1485942621933488112/</guid>
+      <description>Not Kidding: Gitlab is down, but status.gitlab.com is completely green. Monitoring http response code is never going to help you.</description>
+    </item>
+    
+    <item>
+      <title>1485706459151328023</title>
+      <link>https://roidelapluie.be/logbook/1485706459151328023/</link>
+      <pubDate>Sun, 29 Jan 2017 17:14:19 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1485706459151328023/</guid>
+      <description>Cookie Cutter, Like Modulesync.</description>
+    </item>
+    
+    <item>
+      <title>1485514744609825001</title>
+      <link>https://roidelapluie.be/logbook/1485514744609825001/</link>
+      <pubDate>Fri, 27 Jan 2017 11:59:04 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1485514744609825001/</guid>
+      <description>To disable all https verif in foreman:
+Add
+require &#39;excon&#39; Excon.defaults[:ssl_verify_peer] = false  ($customer is broken :( )</description>
+    </item>
+    
+    <item>
+      <title>1485256265872678589</title>
+      <link>https://roidelapluie.be/logbook/1485256265872678589/</link>
+      <pubDate>Tue, 24 Jan 2017 12:11:05 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1485256265872678589/</guid>
+      <description>systemd local root exploit</description>
+    </item>
+    
+    <item>
+      <title>1485244900186573882</title>
+      <link>https://roidelapluie.be/logbook/1485244900186573882/</link>
+      <pubDate>Tue, 24 Jan 2017 09:01:40 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1485244900186573882/</guid>
+      <description>Can we please agree? x64, amd64, x64_86&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>1485154832358266254</title>
+      <link>https://roidelapluie.be/logbook/1485154832358266254/</link>
+      <pubDate>Mon, 23 Jan 2017 08:00:32 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1485154832358266254/</guid>
+      <description>If you need some script from the Percona Tolkit, you can use
+curl percona.com/get/pt-heartbeat  That works with any tool in the toolkit.</description>
+    </item>
+    
+    <item>
+      <title>1485150663316522346</title>
+      <link>https://roidelapluie.be/logbook/1485150663316522346/</link>
+      <pubDate>Mon, 23 Jan 2017 06:51:03 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1485150663316522346/</guid>
+      <description>Is automated politeness actually politeness? What if we write a script that replies &amp;ldquo;Thanks!&amp;rdquo; to every merged Pull Request?</description>
+    </item>
+    
+    <item>
+      <title>1485150424135995823</title>
+      <link>https://roidelapluie.be/logbook/1485150424135995823/</link>
+      <pubDate>Mon, 23 Jan 2017 06:47:04 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1485150424135995823/</guid>
+      <description>Pipenv - Joining Virtualenv, Pipfiles, pip in one row &amp;ndash; and creating Pipfile.lock.
+Seems useful. In lots of projects, I have the habit of running always the same commands &amp;ndash; virtualenv venv; . venv/bin/activate; pip install -r requirements.txt; pip freeze &amp;gt; requirements.txt.freeze. Simplifying that looks useful.</description>
+    </item>
+    
+    <item>
+      <title>1484907150858917674</title>
+      <link>https://roidelapluie.be/logbook/1484907150858917674/</link>
+      <pubDate>Fri, 20 Jan 2017 11:12:30 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1484907150858917674/</guid>
+      <description>Jenkins Plugins JavaDocs are available under http://javadoc.jenkins.io/</description>
+    </item>
+    
+    <item>
+      <title>1484894274122579604</title>
+      <link>https://roidelapluie.be/logbook/1484894274122579604/</link>
+      <pubDate>Fri, 20 Jan 2017 07:37:54 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1484894274122579604/</guid>
+      <description>Ansible galaxy does not have a search on its homepage &amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>1484861854831516641</title>
+      <link>https://roidelapluie.be/logbook/1484861854831516641/</link>
+      <pubDate>Thu, 19 Jan 2017 22:37:34 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1484861854831516641/</guid>
+      <description>Put in place some integration for my new website together with travis-ci and github pages.</description>
+    </item>
+    
+    <item>
+      <title>1484821926344702794</title>
+      <link>https://roidelapluie.be/logbook/1484821926344702794/</link>
+      <pubDate>Thu, 19 Jan 2017 11:32:06 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1484821926344702794/</guid>
+      <description>Useful groovy jobs</description>
+    </item>
+    
+    <item>
+      <title>1484821035453063636</title>
+      <link>https://roidelapluie.be/logbook/1484821035453063636/</link>
+      <pubDate>Thu, 19 Jan 2017 11:17:15 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1484821035453063636/</guid>
+      <description>If you need yaml in your Jenkins groovy, you can install pipeline utility step plugin and do
+import org.jenkinsci.plugins.pipeline.utility.steps.shaded.org.yaml.snakeyaml.Yaml.  </description>
+    </item>
+    
+    <item>
+      <title>1484811709161728944</title>
+      <link>https://roidelapluie.be/logbook/1484811709161728944/</link>
+      <pubDate>Thu, 19 Jan 2017 08:41:49 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1484811709161728944/</guid>
+      <description>Funny that auditd, a project that is on the root of the Red Hat Linux security strategy, is built in SVN and hosted on people.redhat.com. You would not expect that from such a project.</description>
+    </item>
+    
+    <item>
+      <title>1484806738966234654</title>
+      <link>https://roidelapluie.be/logbook/1484806738966234654/</link>
+      <pubDate>Thu, 19 Jan 2017 07:18:58 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1484806738966234654/</guid>
+      <description>In Jenkins Blue ocean every step that is not in a stage or in a stage but outside parallels will not be displayed. And it is not actively being worked on. It means that people will need to write very good Jenkinsfiles &amp;ndash; but most of the people won&amp;rsquo;t. Strange that upstream does not consider this as critical. I have commented the ticket to add at least a warning when this is the case.</description>
+    </item>
+    
+    <item>
+      <title>1484635040471429841</title>
+      <link>https://roidelapluie.be/logbook/1484635040471429841/</link>
+      <pubDate>Tue, 17 Jan 2017 07:37:20 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1484635040471429841/</guid>
+      <description>Recently updated my kernel from 4.5 to 4.9 series. I am using nftables. It was not working because of a syntax change. I needed to change ct state { related established } accept to ct state related,established accept.</description>
+    </item>
+    
+    <item>
+      <title>1484634571082302761</title>
+      <link>https://roidelapluie.be/logbook/1484634571082302761/</link>
+      <pubDate>Tue, 17 Jan 2017 07:29:31 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/logbook/1484634571082302761/</guid>
+      <description>Starting a logbook of some stuff I do. Making it simple to update. The goal is to find back links, ideas etc&amp;hellip;</description>
+    </item>
+    
+  </channel>
+</rss>

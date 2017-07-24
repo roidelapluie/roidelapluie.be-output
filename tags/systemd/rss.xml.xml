@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Systemd on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/systemd/</link>
+    <description>Recent content in Systemd on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 31 Jul 2015 21:45:27 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/systemd/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>An Augeas lens for tmpfiles.d</title>
+      <link>https://roidelapluie.be/blog/2015/07/31/augeas-tmpfiles/</link>
+      <pubDate>Fri, 31 Jul 2015 21:45:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/07/31/augeas-tmpfiles/</guid>
+      <description>I have sent recently a Pull Request to the Augeas project. That PR is about a new lens, a tmpfiles.d lens.
+If you want some background, check my slides (or the video) for the talk about Augeas I have given last november at Puppetcamp London.
+When systemd is in charge of the temporary directories of a server, some directories (/tmp, /run, /var/tmp) are mounted in a tmpfs and are just empty at boot time.</description>
+    </item>
+    
+    <item>
+      <title>About Devuan</title>
+      <link>https://roidelapluie.be/blog/2014/11/29/devuan/</link>
+      <pubDate>Sat, 29 Nov 2014 12:58:56 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/11/29/devuan/</guid>
+      <description>It looks like that a new Linux Distribution is born: Devuan. Yet another fork of Debian.
+Debian is a really good ground for forks, it seems: Ubuntu, Linux Mint, and a lot of others. So, what does make this one different?
+This fork wants to remove systemd from Debian. It is really strange that so many people are reacting against systemd so late. Systemd has been around for many years. I do not want to enter the debate about systemd.</description>
+    </item>
+    
+  </channel>
+</rss>

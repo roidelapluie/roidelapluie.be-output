@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sysadmin on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/sysadmin/</link>
+    <description>Recent content in Sysadmin on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 04 Jul 2015 12:04:14 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/sysadmin/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Script, a must-know command for sysadmins</title>
+      <link>https://roidelapluie.be/blog/2015/07/04/script/</link>
+      <pubDate>Sat, 04 Jul 2015 12:04:14 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/07/04/script/</guid>
+      <description>script is a famous command in the unix world. Part of the util-linux package of Linux distros, and so available almost everywhere, it has some very interesting features.
+Recording a shell session This is the primary usage. Just type:
+script output.txt  A new shell will open, and you can just do whatever you want.
+$ script output.txt Script started, file is output.txt $ echo hello world hello world $ exit Script done, file is output.</description>
+    </item>
+    
+    <item>
+      <title>About Devuan</title>
+      <link>https://roidelapluie.be/blog/2014/11/29/devuan/</link>
+      <pubDate>Sat, 29 Nov 2014 12:58:56 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/11/29/devuan/</guid>
+      <description>It looks like that a new Linux Distribution is born: Devuan. Yet another fork of Debian.
+Debian is a really good ground for forks, it seems: Ubuntu, Linux Mint, and a lot of others. So, what does make this one different?
+This fork wants to remove systemd from Debian. It is really strange that so many people are reacting against systemd so late. Systemd has been around for many years. I do not want to enter the debate about systemd.</description>
+    </item>
+    
+    <item>
+      <title>Mcollective agent to use drush</title>
+      <link>https://roidelapluie.be/blog/2013/07/23/drush-mcollective/</link>
+      <pubDate>Tue, 23 Jul 2013 13:09:07 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/07/23/drush-mcollective/</guid>
+      <description> I have written a mcollective agent to run drush commands. It will help you to automate the deployments of your drupal websites.
+I have implemented two drush commands so far:
+ cache-clear updatedb  The full configuration is available on the github project.
+Examples Updatedb ::text mco rpc drush updatedb root=/var/vhost/frontend-demo yes=true  Cache-clear ::text mco rpc drush cache-clear root=/var/vhost/frontend-demo uri=http://demo.example.net type=all  Links  mcollective drush the agent on github  </description>
+    </item>
+    
+    <item>
+      <title>Rattaching a running process to a screen</title>
+      <link>https://roidelapluie.be/blog/2013/06/25/reptyr/</link>
+      <pubDate>Tue, 25 Jun 2013 22:15:13 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/06/25/reptyr/</guid>
+      <description>Reptyr is a small project written in C that enable you to &amp;ldquo;re-pty&amp;rdquo; your process. It means you can, for example, attach a running process inside a screen.
+For example, you launched irssi outside your screen, and you do not want to relaunch it.
+Install reptyr, then, in a screen, run the following commands:
+$ pidof irssi 27518 $ reptyr 27518  That&amp;rsquo;s it. The process will be rattached to Init but you will be able to use it directly from your screen, without notifying the difference.</description>
+    </item>
+    
+  </channel>
+</rss>

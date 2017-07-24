@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Official CentOS boxes for CentOS - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link " href="/fr">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+<h1 class="title mt-3 mb-3"><a href="/blog/2015/08/12/vagrant-centos/" class="text-gray-dark">
+    Official CentOS boxes for CentOS
+</a></h1>
+<div class="content text-justify">
+    <p><a href="http://centos.org">CentOS</a> has published <a href="http://lists.centos.org/pipermail/centos-announce/2015-June/021162.html">in June</a> <a href="https://www.vagrantup.com/">Vagrant</a> <a href="https://atlas.hashicorp.com/centos/">Boxes</a> for both Libvirt and VirtualBox provider.
+I will focus on the VirtualBox one.</p>
+
+<p>Those images are great for many reasons:</p>
+
+<ul>
+<li>They come directly from the CentOS project, so it is reasonable to trust them</li>
+<li>They do not come with any 3rd party repositories (and so, without Puppet/Chef&hellip;)</li>
+<li>They are minimal images</li>
+<li>They support multiple providers</li>
+</ul>
+
+<p>They contain what is needed for basic tasks, like the vagrant user so vagrant works.</p>
+
+<p>The part I appreciate the most is that they come from the project and they are very minimal. It
+means that I can then install any Puppet version I want and the right VboxAdditions.</p>
+
+<p>VboxAdditions are needed for vbox synced folders and internal network features.
+Getting them is important to do a great job. Hopefully, vagrant is modular and
+there is a plugin to install the right VboxAdditions: <a href="https://github.com/dotless-de/vagrant-vbguest">vagrant-vbguest</a>. At the startup
+of the VM, it will install the additions for you. To get it working, I needed to
+add two patches to the plugin: <a href="https://github.com/dotless-de/vagrant-vbguest/pull/162/commits">1</a> and <a href="https://github.com/dotless-de/vagrant-vbguest/pull/155/commits">2</a>. They will probably be integrated
+in further releases.</p>
+
+<p>The other trick is with Puppet. I simply use the shell provider to get
+Puppet 4 installed, as shown <a href="https://github.com/roidelapluie/vagrant-phabricator/blob/master/Vagrantfile#L7-L14">here</a>.</p>
+
+<p>Previously there were <a href="https://atlas.hashicorp.com/boxes/search?utf8=%E2%9C%93&amp;sort=&amp;provider=&amp;q=centos">a lot of boxes</a> available for CentOS. This is confusing,
+and when people were making pull requests about boxes <a href="https://github.com/roidelapluie/vagrant-gerrit/pull/1/files">I did not know about</a>,
+my reaction was to <a href="https://github.com/roidelapluie/vagrant-gerrit/commit/09e1772c902681edb13a1fd87ec2e6111ac60003">use a box I know</a> from <a href="https://atlas.hashicorp.com/vStone">a colleague I trust</a>.
+But the fact that I trust him doesn&rsquo;t mean that you will. In that case an upstream
+neutral box is useful.</p>
+
+<p>For the moment it is only for CentOS 7. As <a href="http://lists.centos.org/pipermail/centos-announce/2015-August/021307.html">CentOS 7.1507 has been released</a>, we can expect
+those boxes to be updated soon.</p>
+
+<pre><code>vagrant init centos/7
+vagrant up
+</code></pre>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/08/12/vagrant-centos/">Permalink</a>. Category: Linux. Tags: centos planet-inuits vagrant.<br/>
+        First published on Wed 12 August 2015.
+    </div>
+</div>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

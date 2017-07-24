@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mozilla on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/mozilla/</link>
+    <description>Recent content in Mozilla on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 10 May 2015 17:22:27 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/mozilla/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>F-Droid drops Firefox</title>
+      <link>https://roidelapluie.be/blog/2015/05/10/f-droid-firefox/</link>
+      <pubDate>Sun, 10 May 2015 17:22:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/05/10/f-droid-firefox/</guid>
+      <description>Firefox will get a new name - at least on F-Droid. Firefox was alreasy known as GNU IceCat and Iceweasel.
+Now F-Droid will have its own rebuild, called Fennec FDroid. It removes the proprietary binaries out of the official builds.
+F-Droid will eventually remove Firefox out of its package list.</description>
+    </item>
+    
+  </channel>
+</rss>

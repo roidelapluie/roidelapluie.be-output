@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="nav-item nav-link " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2015/05/10/f-droid-firefox/" class="text-gray-dark">
+    F-Droid drops Firefox
+</a></h1>
+<div class="content text-justify">
+    <p><a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a> will get a new name - at least on <a href="https://f-droid.org">F-Droid</a>. Firefox was alreasy known as <a href="http://www.gnu.org/software/gnuzilla/">GNU IceCat</a> and <a href="https://wiki.debian.org/Iceweasel">Iceweasel</a>.</p>
+
+<p>Now F-Droid will have its own rebuild, called <a href="https://f-droid.org/repository/browse/?fdfilter=firefox&amp;fdid=org.mozilla.fennec_fdroid">Fennec FDroid</a>. It removes the proprietary binaries out of the official builds.</p>
+
+<p>F-Droid will eventually remove Firefox out of its package list.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/05/10/f-droid-firefox/">Permalink</a>. Category: Android. Tags: mozilla firefox.<br/>
+        First published on Sun 10 May 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2015/05/09/mutt/" class="text-gray-dark">
+    Mutt
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>In the past, I have used several mail clients, including <a href="https://www.mozilla.org/en-US/thunderbird/">Thunderbird</a>,
+<a href="http://www.claws-mail.org/">Claws Mail</a>, <a href="https://www.washington.edu/alpine/">Alpine</a> and <a href="https://help.gnome.org/users/evolution/stable/">Evolution</a>.</p>
+
+<p>But since a few years, I have been using exclusively <a href="http://www.mutt.org/">Mutt</a>.
+I would like to share pieces of configuration from my personal setup today.</p>
+
+<h3 id="mutt-muttrc">~/.mutt/muttrc</h3>
+
+<pre><code>unset mark_old
+</code></pre>
+
+<p>With that line, Mutt will stop marking New email messages (<code>N</code>) as Old (<code>O</code>) when you change directory or exit. With that the flag will stay <code>N</code>. In my case it is useful because Conky only counts New email messages.</p>
+
+<pre><code>set alias_file=~/.mutt/aliases
+source ~/.mutt/aliases
+</code></pre>
+
+<p>These lines tells Mutt than when I register an alias (using the <code>a</code> key), it will
+by default save it into the aliases files. The <code>source</code> line means that there are
+configurations directives in that alias file that needs to be loaded.</p>
+
+<pre><code>alternates '^roidelapluie@example.com$'
+</code></pre>
+
+<p>I have a bunch of these. One line per email address I have. It allows Mutt to know
+which email addresses are mine, which is very useful when, for example, I use the
+&ldquo;reply to all&rdquo; feature (<code>g</code>). In that case Mutt will not re-add email addresses
+from that list in <code>Cc:</code>.</p>
+
+<pre><code>alternative_order text/plain
+</code></pre>
+
+<p>A very useful line that tells Mutt than when an email contains a HTML part and
+a plain text part, I prefer to see the plain text mail and not a dump of the html
+file.</p>
+
+<pre><code>macro attach 'V' &quot;&lt;pipe-entry&gt;cat &gt; ~/.cache/mutt/mail.html &amp;&amp;
+      firefox -new-window ~/.cache/mutt/mail.html &amp;&amp; sleep 2 &amp;&amp;
+      rm ~/.cache/mutt/mail.html&lt;enter&gt;&quot;
+</code></pre>
+
+<p>That line tells than when I am in the list of attachments of a mail and I press <code>V</code>,
+it has to open Firefox with the content of the attachement. I do that when <code>elinks</code>
+is not enough to understand a bloated HTML mail.</p>
+
+<pre><code>unignore sender
+</code></pre>
+
+<p>That line tells Mutt that by default I want to see the <code>Sender:</code> field of the headers of my mails.
+<code>From:</code> is not the only field that matters when you want to know where does a mail come from.</p>
+
+<pre><code>bind compose p noop
+</code></pre>
+
+<p>That line removed the ability to call the pgp-menu before sending a mail. With
+that I ensure that all my mails are signed. When I do not want to sign a mail I
+have to run <code>:exec pgp-menu</code> to get that menu.</p>
+
+<pre><code>send-hook . set from=&quot;roidelapluie@example.com&quot;
+send-hook . set signature=&quot;~/.mutt/signature&quot;
+send-hook &quot;~t @customer.com&quot; set from=&quot;julien.pivotto@customer.com&quot;
+send-hook &quot;~t @customer.com&quot; set signature=&quot;~/.mutt/signature-customer&quot;
+</code></pre>
+
+<p>Those lines tell that I want to send mails with my address <code>@example.com</code> and signature
+<code>~/.mutt/signature</code> but if I send a mail to <code>@customer.com</code> then Mutt will select the
+<code>@customer.com</code> mail address and <code>~/.mutt/signature-customer</code> signature.</p>
+
+<pre><code>macro index     .n      &quot;l((~N|~O|~F)!~D)\n&quot;
+folder-hook     .       push '.n'
+</code></pre>
+
+<p>Thanks to these two lines, when I open a mailbox I only see the important messages.
+The messages that have already been read are hidden (<code>l all</code> to show them again).</p>
+
+<pre><code>set sort=threads
+set narrow_tree
+</code></pre>
+
+<p>Almost self-explicit. The thread trees take less space horizontally.</p>
+
+<pre><code>set pager_stop
+</code></pre>
+
+<p>When I read a mail and I arrive to the end of the mail (with Page Down), it does not
+go to the next mail.</p>
+
+<pre><code>auto_view text/html
+</code></pre>
+
+<p>Automatically open html mails in Mutt.</p>
+
+<pre><code>color index brightcolor001 default &quot;PROBLEM.*CRITICAL&quot;
+color index brightcolor001 default &quot;PROBLEM.*DOWN&quot;
+color index brightcolor202 default &quot;PROBLEM.*UNKNOWN&quot;
+color index color220 default &quot;PROBLEM.*WARNING&quot;
+color index brightcolor028 default &quot;RECOVERY.*OK&quot;
+color index brightcolor028 default &quot;RECOVERY.*UP&quot;
+color index color130 default &quot;ACKNOWLEDGEMENT&quot;
+</code></pre>
+
+<p>Add some colors to Icinga/Nagios emails.</p>
+
+<h3 id="mailcap">~/.mailcap</h3>
+
+<p>The mailcap file tells Mutt how to open attachments.</p>
+
+<pre><code>text/html; elinks -dump %s -eval 'set document.codepage.assume = &quot;%{charset}&quot;' -eval 'set document.dump.width = 66'; nametemplate=%s.html; copiousoutput
+application/pdf; mupdf-x11 %s &amp;&gt;/dev/null
+image/JPG; feh -F -Z %s &amp;&gt;/dev/null
+image/jpeg; feh -F -Z %s &amp;&gt;/dev/null
+image/gif; feh -F -Z %s &amp;&gt;/dev/null
+image/png; feh -F -Z %s &amp;&gt;/dev/null
+application/vnd.oasis.opendocument.text; libreoffice %s &amp;&gt;/dev/null
+application/vnd.ms-excel; libreoffice %s &amp;&gt;/dev/null
+application/vnd.oasis.opendocument.spreadsheet; libreoffice %s &amp;&gt;/dev/null
+application/msword; libreoffice %s &amp;&gt;/dev/null
+</code></pre>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>I hope it will help you if you are using Mutt. Enjoy these tricks!</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/05/09/mutt/">Permalink</a>. Category: Linux. Tags: mail Mutt planet-inuits.<br/>
+        First published on Sat 9 May 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2015/04/28/virt-copy-out/" class="text-gray-dark">
+    Easily extract files from qemu-kvm guests
+</a></h1>
+<div class="content text-justify">
+    <p><code>qemu-kvm libvirt</code> users, here is a trick to get or put a file on a guest. It
+allows you to access easily files stored on the guests disks. Useful when the guest
+has no network connectivity or is just offline.</p>
+
+<p>Here is it:</p>
+
+<pre><code>virt-copy-out -d myvm.example.com /root/myfile.txt /tmp/extract/
+</code></pre>
+
+<p>The file you want is <code>/root/myfile.txt</code> and you want it in <code>/tmp/extract/</code>. It works
+even with <code>lvm-based</code> disks and is a lot more easy to use than working with <code>kpartx</code> or other
+voodoo as often seen on the web.</p>
+
+<p><code>virt-copy-in</code> also exists. In EL6 they are part of the <code>libguestfs-tools-c</code> package.</p>
+
+<p>More details: <code>man virt-copy-out</code> and <code>man guestfish</code>.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/04/28/virt-copy-out/">Permalink</a>. Category: Linux. Tags: kvm qemu virtualization planet-inuits.<br/>
+        First published on Tue 28 April 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2015/04/22/git-status-submodules/" class="text-gray-dark">
+    Git status and submodules
+</a></h1>
+<div class="content text-justify">
+    <p>Here is an awesome trick for people using git submodules:</p>
+
+<p>In your <code>~/.gitconfig</code>, add the following snippet:</p>
+
+<pre><code>[status]
+    submodulesummary = true
+</code></pre>
+
+<p>You should now get more information when running git status (<code>&gt;</code> new commits, <code>&lt;</code> &lsquo;removed&rsquo; commits):</p>
+
+<pre><code>On branch master
+Changes to be committed:
+  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+
+        modified:   submodule1
+        modified:   submodule2
+
+Submodule changes to be committed:
+
+* submodule1 5c675a2...569574e (1):
+  &gt; One new feature
+
+* submodule2 5c03abb...ffe9f66 (1):
+  &lt; One super commit that would disappear :(
+</code></pre>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/04/22/git-status-submodules/">Permalink</a>. Category: Linux. Tags: git planet-inuits.<br/>
+        First published on Wed 22 April 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2015/04/20/libreoffice-calc-1024-columns/" class="text-gray-dark">
+    The LibreOffice Calc 1024 columns bug
+</a></h1>
+<div class="content text-justify">
+    <p>Sometimes it is sad to see some quite important bugs that last in time.</p>
+
+<p>One of the last one I hit is a limitation in LibreOffice Calc. It does not support
+<a href="https://bugs.documentfoundation.org/show_bug.cgi?id=50916">calc spreadsheet with more that 1024 columns</a>.</p>
+
+<p>That bug was already <a href="https://bz.apache.org/ooo/show_bug.cgi?id=86049">opened in 2008</a> in OpenOffice.</p>
+
+<p>It is really a blocker bug for people that receive spreadsheets that have a lof of columns. For example I have
+seen a spreadsheet with one column per day. After 3 years it could not be opened by libreoffice (&gt;1024 columns).</p>
+
+<p>A short fix is to change the maximum number of columns but this would increase memory consumption for every opened spreadsheet. And it is not trivial for everyone to <a href="https://wiki.documentfoundation.org/Development/BuildingOnLinux">recompile libreoffice</a>. Here is how you update to 2048:</p>
+
+<pre><code>::patch
+diff --git a/sc/inc/address.hxx b/sc/inc/address.hxx
+index f6650d4..f1699af 100644
+--- a/sc/inc/address.hxx
++++ b/sc/inc/address.hxx
+@@ -58,7 +58,7 @@ const SCSIZE   SCSIZE_MAX   = ::std::numeric_limits&lt;SCSIZE&gt;::max();
+ // The maximum values. Defines are needed for preprocessor checks, for example
+ // in bcaslot.cxx, otherwise type safe constants are preferred.
+ #define MAXROWCOUNT_DEFINE 1048576
+-#define MAXCOLCOUNT_DEFINE 1024
++#define MAXCOLCOUNT_DEFINE 2048
+
+ // Count values
+ const SCROW       MAXROWCOUNT    = MAXROWCOUNT_DEFINE;
+</code></pre>
+
+<p>Of course there are also alternatives like <a href="http://www.gnumeric.org/">gnumeric</a> or <a href="https://userbase.kde.org/KCells">kcells</a> that supports large spreadsheets, if they are simple enough.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/04/20/libreoffice-calc-1024-columns/">Permalink</a>. Category: Open-Source. Tags: libreoffice office planet-inuits.<br/>
+        First published on Mon 20 April 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li class="page-item ">
+                <a class="page-link" href="/blog/page/6/" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li  class="page-item disabled"><a class="page-link">...</a></li>
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/6/">6</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item  active"><a class="page-link" href="/blog/page/7/">7</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/8/">8</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li  class="page-item disabled"><a class="page-link">...</a></li>
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/14/">14</a></li>
+            
+            
+        <li class="page-item">
+            <a class="page-link" href="/blog/page/8/" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

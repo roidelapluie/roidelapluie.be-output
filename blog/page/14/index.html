@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="nav-item nav-link " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2013/07/18/peering-a-server-to-a-glusterfs-cluster/" class="text-gray-dark">
+    Peering a server to a GlusterFS cluster
+</a></h1>
+<div class="content text-justify">
+    <p>Some notes about how to add server to a <a href="http://gluster.org">GlusterFS</a> cluster and to replicata data to it.</p>
+
+<pre><code>::bash
+srv03$ sudo gluster peer probe 192.168.1.10
+peer probe: failed: 192.168.1.10 is already part of another cluster
+</code></pre>
+
+<p>It is logical that anyone may not add a server to a gluster cluster.</p>
+
+<pre><code>::bash
+srv01$ sudo gluster peer probe 192.168.1.12
+peer probe: success
+</code></pre>
+
+<p>It is successful.</p>
+
+<pre><code>::bash
+srv01$ sudo gluster peer status
+Number of Peers: 2
+
+Hostname: 192.168.1.10
+Uuid: 99f74112-cca9-439e-802e-a7822da446c9
+State: Peer in Cluster (Connected)
+
+Hostname: 192.168.1.12
+Port: 24007
+Uuid: 9099c59c-a667-4bb4-b5ea-fb6bc08e1e9a
+State: Peer in Cluster (Connected)
+</code></pre>
+
+<p>And, first try to add the new node to the cluster will be a failure:</p>
+
+<pre><code>srv02$ sudo gluster volume add-brick gv0 192.168.1.12:/export/brick1/sdb1
+volume add-brick: failed: Incorrect number of bricks supplied 1 with count 2
+</code></pre>
+
+<p>When I created the volume, I set the replica value to 2, so I guess Gluster wants me to add &ldquo;bricks&rdquo; two by two. Instead, I am going to update the replica value.</p>
+
+<pre><code>srv02$ sudo gluster volume add-brick gv0 replica 3 192.168.1.12:/export/brick1/sdb1
+volume add-brick: success
+</code></pre>
+
+<p>Are the file replicated on the third node? Not yet.</p>
+
+<pre><code>srv03$ ls /export/brick1/sdb1/ | wc -l
+0
+</code></pre>
+
+<p>But, the first time I list the files in the <strong>mounted</strong> volume, the files are replicated:</p>
+
+<pre><code>srv01$ ls /mnt|wc -l
+125
+
+srv03$ ls /export/brick1/sdb1/ | wc -l
+125
+</code></pre>
+
+<p>And I am done.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2013/07/18/peering-a-server-to-a-glusterfs-cluster/">Permalink</a>. Category: Linux. Tags: GlusterFS planet-inuits.<br/>
+        First published on Thu 18 July 2013.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2013/07/17/glusterfs-split-brain/" class="text-gray-dark">
+    Fixing a GlusterFS split-brain
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>I have found some time to test <a href="http://gluster.org">GlusterFS</a>, in order to use it to replicate data between several servers.</p>
+
+<p>I have created two <a href="http://vagrantup.com">vagrant</a> boxes to set up a basic cluster.</p>
+
+<p>And, during my tests, I have shut down the network interfaces and started writing different things on the same file, to create a <a href="http://en.wikipedia.org/wiki/Split-brain_%28computing%29">split-brain</a>.</p>
+
+<pre><code>srv01$ echo good &gt; /mnt/test
+srv02$ echo bad &gt; /mnt/test
+</code></pre>
+
+<p>When the interfaces were up again, the split-brain was obviously present:</p>
+
+<pre><code>srv02$ cat /mnt/test
+cat: /mnt/test: Input/output error
+</code></pre>
+
+<p>In the logs, I have found the following sentence:</p>
+
+<pre><code>[2013-07-17 13:57:54.156318] E [afr-self-heal-common.c:197:afr_sh_print_split_brain_log]
+0-gv0-replicate-0: Unable to self-heal contents of '&lt;gfid:470a742c-b0d6-4846-9ab3-2483c3a0c8da&gt;'
+(possible split-brain). Please delete the file from all but the preferred subvolume.-
+Pending matrix:  [ [ 0 1 ] [ 1 0 ] ]
+</code></pre>
+
+<p>So I tried to delete the file in the node that was &ldquo;wrong&rdquo; to me:</p>
+
+<pre><code>srv02$ cat /export/brick1/sdb1/test
+srv02$ sudo rm /export/brick1/sdb1/test
+</code></pre>
+
+<p>But it was obviously not working:</p>
+
+<pre><code>srv02$ cat /mnt/test
+cat: /mnt/test: Input/output error
+</code></pre>
+
+<p>Even more, the file <code>/export/brick1/sdb1/test</code> was recreated by Gluster!</p>
+
+<pre><code>srv02$ cat /export/brick1/sdb1/test
+wrong
+</code></pre>
+
+<p>The solution was the following: Gluster is creating hard links in a .gluster directory, and you have to delete all the hard links to the file to get rid of it.
+Please note that I am working on the &lsquo;brick&rsquo;.</p>
+
+<pre><code>srv02$ sudo find /export/brick1/sdb1/ -samefile /export/brick1/sdb1/test -print -delete
+/export/brick1/sdb1/.glusterfs/47/0a/470a742c-b0d6-4846-9ab3-2483c3a0c8da
+/export/brick1/sdb1/test
+</code></pre>
+
+<p>And it worked!</p>
+
+<pre><code>srv02$ cat /mnt/test
+good
+srv02$ cat /export/brick1/sdb1/test
+good
+</code></pre>
+
+<h3 id="additional-notes">Additional notes</h3>
+
+<p>Only the files that were &ldquo;brain-splitted&rdquo; were unreadable.</p>
+
+<p>You can have the list of these files by running the following command:</p>
+
+<pre><code>$ gluster volume heal gv0 info
+Brick 192.168.1.10:/export/brick1/sdb1
+Number of entries: 1
+/test
+
+Brick 192.168.1.11:/export/brick1/sdb1
+Number of entries: 1
+/test
+</code></pre>
+
+<p>To avoid split-brains, you can enable <a href="http://www.gluster.org/community/documentation/index.php/Features/Server-quorum">quorums</a>.</p>
+
+<h3 id="links">Links</h3>
+
+<ul>
+<li><a href="http://gluster.org">GlusterFS</a></li>
+<li>The <a href="http://www.gluster.org/community/documentation/index.php/QuickStart">quickstart</a> that I have used.</li>
+<li>Explanation of GlusterFS-related <a href="http://www.gluster.org/community/documentation/index.php/GlusterFS_Concepts">terms</a></li>
+</ul>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2013/07/17/glusterfs-split-brain/">Permalink</a>. Category: Linux. Tags: GlusterFS planet-inuits.<br/>
+        First published on Wed 17 July 2013.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2013/07/15/tax-on-web/" class="text-gray-dark">
+    Fill your Belgian tax form with Linux
+</a></h1>
+<div class="content text-justify">
+    <p>Tax-on-web is the online service that enable you to fill in your Belgian tax form.</p>
+
+<p>In order to be able to read you beid card, and so to connect to the online website, follow the following instructions.</p>
+
+<p>First, get a card reader, and install the relevant driver. The following will often be enough (if you are using debian/ubuntu):</p>
+
+<pre><code>$ sudo apt-get install libacr38u pcscd
+</code></pre>
+
+<p>Then, <em>do not</em> install the <a href="http://code.google.com/p/eid-mw/">software provided by the government</a>.</p>
+
+<p>Instead, install opensc.</p>
+
+<pre><code>$ sudo apt-get install opensc
+</code></pre>
+
+<p>Open Firefox, and go to <code>Edit</code> &gt; <code>Preferences</code> &gt; <code>Certificates</code> &gt; <code>Security devices</code>.</p>
+
+<p>Click on <code>Load</code> then enter &ldquo;Beid&rdquo; as module name (it does not matter), and put <code>/usr/lib/opensc-pkcs11.so</code> as second field. You might need to select it with the <code>Browse button</code>. If the file does not exist, try <code>/usr/lib64/opensc-pkcs11.so</code>.</p>
+
+<p>You might need to start openscd:</p>
+
+<pre><code>$ sudo service openscd start
+</code></pre>
+
+<p>Restart Firefox, and go to <a href="http://taxonweb.be">tax-on-web</a>.</p>
+
+<p>You are done.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2013/07/15/tax-on-web/">Permalink</a>. Category: Linux. Tags: belgium planet-inuits.<br/>
+        First published on Mon 15 July 2013.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2013/06/25/reptyr/" class="text-gray-dark">
+    Rattaching a running process to a screen
+</a></h1>
+<div class="content text-justify">
+    <p><a href="https://github.com/nelhage/reptyr">Reptyr</a> is a small project written in C that enable you to &ldquo;re-pty&rdquo; your process. It means you can, for example, attach a running process inside a screen.</p>
+
+<p>For example, you launched irssi outside your screen, and you do not want to relaunch it.</p>
+
+<p>Install reptyr, then, in a screen, run the following commands:</p>
+
+<pre><code>$ pidof irssi
+27518
+$ reptyr 27518
+</code></pre>
+
+<p>That&rsquo;s it. The process will be rattached to Init but you will be able to use it directly from your screen, without notifying the difference.</p>
+
+<p>Tested and approved to rattach a 6-hour process launched outside a screen.</p>
+
+<ul>
+<li><a href="https://github.com/nelhage/reptyr">Reptyr</a>: Tested and approved</li>
+<li><a href="http://pasky.or.cz//dev/retty/">Retty</a>: Alternative, more limitations and only for x86</li>
+</ul>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2013/06/25/reptyr/">Permalink</a>. Category: Linux. Tags: sysadmin screen planet-inuits.<br/>
+        First published on Tue 25 June 2013.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2013/06/17/grok-httpd/" class="text-gray-dark">
+    Grok and httpd
+</a></h1>
+<div class="content text-justify">
+    <p>When you use the <a href="http://httpd.apache.org/docs/current/mod/mod_log_config.html"><code>LogFormat</code></a> parameter in you apache configuration, you may want to use the same logformat in logstash.</p>
+
+<p>I made a small table that will enable you to &ldquo;translate&rdquo; your custom log format into a grok pattern.</p>
+
+<table>
+<thead>
+<tr>
+<th>httpd</th>
+<th>grok</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>%T</code></td>
+<td><code>%{NUMBER:duration_seconds}</code></td>
+</tr>
+
+<tr>
+<td><code>%D</code></td>
+<td><code>%{NUMBER:duration_microseconds}</code></td>
+</tr>
+
+<tr>
+<td><code>%h</code></td>
+<td><code>%{IPORHOST:client}</code></td>
+</tr>
+
+<tr>
+<td><code>%l</code></td>
+<td><code>%{USERNAME:remotelogname}</code></td>
+</tr>
+
+<tr>
+<td><code>%u</code></td>
+<td><code>%{USERNAME:username}</code></td>
+</tr>
+
+<tr>
+<td><code>%t</code></td>
+<td><code>\[%{HTTPDATE:timestamp}\]</code></td>
+</tr>
+
+<tr>
+<td><code>%r</code></td>
+<td><code>%{USERNAME:method} %{URIPATHPARAM:request} HTTP/%{NUMBER:httpversion}</code></td>
+</tr>
+
+<tr>
+<td><code>%s</code></td>
+<td><code>%{NUMBER:response}</code></td>
+</tr>
+
+<tr>
+<td><code>%B</code></td>
+<td><code>%{NUMBER:bytes}</code></td>
+</tr>
+
+<tr>
+<td><code>%b</code></td>
+<td><code>(?:%{NUMBER:bytes}</code>&#124;<code>-)</code></td>
+</tr>
+
+<tr>
+<td><code>\&quot;%{Referer}i\&quot;</code></td>
+<td><code>%{QS:referer}</code></td>
+</tr>
+
+<tr>
+<td><code>\&quot;%{User-Agent}i\&quot;</code></td>
+<td><code>%{QS:useragent}</code></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2013/06/17/grok-httpd/">Permalink</a>. Category: Monitoring. Tags: grok logstash planet-inuits.<br/>
+        First published on Mon 17 June 2013.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li class="page-item ">
+                <a class="page-link" href="/blog/page/13/" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li  class="page-item disabled"><a class="page-link">...</a></li>
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/13/">13</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item  active"><a class="page-link" href="/blog/page/14/">14</a></li>
+            
+            
+        <li class="page-item disabled">
+            <a class="page-link"  aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

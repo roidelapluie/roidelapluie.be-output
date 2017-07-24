@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Cloning jenkins pipelines - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link " href="/fr">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+<h1 class="title mt-3 mb-3">
+    Cloning jenkins pipelines
+</h1>
+<div class="content">
+    
+
+<div class="box error">The content of this page is deprecated. Please see my <a href="http://www.youtube.com/watch?v=xeqk8v7IVCE">talk</a> about building pipelines at scale for more up-to-date information, together with the build flow plugin and the job DSL plugin.</div>
+
+<p>This script allows you to clone an entire pipeline. It clones every job in the pipeline, changes the name of the triggered jobs</p>
+
+<h2 id="usage">Usage</h2>
+
+<pre><code>./clone-pipeline.sh START-JOB PATTERN-TO-FIND-JOBS-TO-CLONE SED-TO-BE-DONE-ON-JOB-NAME
+</code></pre>
+
+<p>if you have a pipeline like that:</p>
+
+<ul>
+<li>customer1-fetcher</li>
+<li>customer1-tests</li>
+<li>customer1-package</li>
+<li>customer1-deploy</li>
+<li>send-metric</li>
+</ul>
+
+<p>you can clone it like that</p>
+
+<pre><code>./clone-pipeline.sh customer1-fetcher customer1 s/customer1/customer2/
+</code></pre>
+
+<p>you will get</p>
+
+<ul>
+<li>customer2-fetcher</li>
+<li>customer2-tests</li>
+<li>customer2-package</li>
+<li>customer2-deploy</li>
+<li>send-metric</li>
+</ul>
+
+<p>remarks:</p>
+
+<ul>
+<li>the job that do not match |grep customer1 will not be cloned.</li>
+<li>the cloned jobs will be disabled</li>
+<li>the script requires augeas</li>
+</ul>
+
+<h2 id="script">Script</h2>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">#!/bin/bash</span>
+<span style="color: #19177C">job</span><span style="color: #666666">=</span><span style="color: #19177C">$1</span>
+<span style="color: #19177C">validate_grep</span><span style="color: #666666">=</span><span style="color: #19177C">$2</span>
+<span style="color: #19177C">sed_command</span><span style="color: #666666">=</span><span style="color: #19177C">$3</span>
+
+print_job<span style="color: #666666">(){</span>
+    <span style="color: #19177C">file</span><span style="color: #666666">=</span>/var/lib/jenkins/jobs/<span style="color: #19177C">$1</span>/config.xml
+    cat <span style="color: #BA2121">&lt;&lt; END | augtool</span>
+<span style="color: #BA2121">set /augeas/load/Xml/incl[3] $file</span>
+<span style="color: #BA2121">set /augeas/load/Xml/lens Xml.lns</span>
+<span style="color: #BA2121">load</span>
+<span style="color: #BA2121">print /files$file</span>
+<span style="color: #BA2121">END</span>
+<span style="color: #666666">}</span>
+get_next_jobs<span style="color: #666666">(){</span>
+    <span style="color: #19177C">file</span><span style="color: #666666">=</span>/var/lib/jenkins/jobs/<span style="color: #19177C">$1</span>/config.xml
+    cat <span style="color: #BA2121">&lt;&lt; END | augtool | awk -F &#39;&quot;&#39; &#39;{print $2}&#39; | sed &#39;s/,/ /g&#39;</span>
+<span style="color: #BA2121">set /augeas/load/Xml/incl[3] $file</span>
+<span style="color: #BA2121">set /augeas/load/Xml/lens Xml.lns</span>
+<span style="color: #BA2121">load</span>
+<span style="color: #BA2121">print /files$file/project/publishers/hudson.plugins.parameterizedtrigger.BuildTrigger/configs/hudson.plugins.parameterizedtrigger.BuildTriggerConfig/projects/#text</span>
+<span style="color: #BA2121">print /files$file/project/builders/hudson.plugins.parameterizedtrigger.TriggerBuilder/configs/hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig/projects/#text</span>
+<span style="color: #BA2121">END</span>
+<span style="color: #666666">}</span>
+test_job<span style="color: #666666">(){</span>
+    <span style="color: #008000">echo</span> <span style="color: #19177C">$1</span>|grep -q <span style="color: #19177C">$validate_grep</span>
+<span style="color: #666666">}</span>
+update_job<span style="color: #666666">(){</span>
+    <span style="color: #008000">echo</span> -en <span style="color: #BA2121">&quot;\e[33m&quot;</span>
+    <span style="color: #008000">echo</span> Reading <span style="color: #19177C">$1</span>
+    <span style="color: #008000">echo</span> -en <span style="color: #BA2121">&quot;\e[0m&quot;</span>
+
+    <span style="color: #008000; font-weight: bold">if</span> test_job <span style="color: #19177C">$1</span>
+    <span style="color: #008000; font-weight: bold">then</span>
+        <span style="color: #19177C">new_job</span><span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">$(</span><span style="color: #008000">echo</span> <span style="color: #19177C">$1</span>|sed <span style="color: #19177C">$sed_command</span><span style="color: #008000; font-weight: bold">)</span>
+        <span style="color: #008000">echo</span> -en <span style="color: #BA2121">&quot;\e[34m&quot;</span>
+        <span style="color: #008000">echo</span> <span style="color: #19177C">$job</span> <span style="color: #BA2121">&quot;-&gt;&quot;</span> <span style="color: #19177C">$new_job</span>
+        <span style="color: #008000">echo</span> -en <span style="color: #BA2121">&quot;\e[0m&quot;</span>
+        mkdir -p /var/lib/jenkins/jobs/<span style="color: #19177C">$new_job</span>/
+        cp /var/lib/jenkins/jobs/<span style="color: #19177C">$1</span>/config.xml /var/lib/jenkins/jobs/<span style="color: #19177C">$new_job</span>/
+        <span style="color: #008000; font-weight: bold">for</span> job in <span style="color: #008000; font-weight: bold">$(</span>get_next_jobs <span style="color: #19177C">$1</span><span style="color: #008000; font-weight: bold">)</span>
+        <span style="color: #008000; font-weight: bold">do</span>
+            <span style="color: #008000; font-weight: bold">if</span> test_job <span style="color: #19177C">$job</span>
+            <span style="color: #008000; font-weight: bold">then</span>
+                sed -i /projects/s/<span style="color: #19177C">$job</span>/<span style="color: #008000; font-weight: bold">$(</span><span style="color: #008000">echo</span> <span style="color: #19177C">$job</span>|sed <span style="color: #19177C">$sed_command</span><span style="color: #008000; font-weight: bold">)</span>/ /var/lib/jenkins/jobs/<span style="color: #19177C">$new_job</span>/config.xml
+            <span style="color: #008000; font-weight: bold">fi</span>
+        <span style="color: #008000; font-weight: bold">done</span>
+        sed -i <span style="color: #BA2121">&#39;/&lt;disabled&gt;&#39;</span>/s/false/true/ /var/lib/jenkins/jobs/<span style="color: #19177C">$new_job</span>/config.xml
+    <span style="color: #008000; font-weight: bold">fi</span>
+
+    <span style="color: #008000; font-weight: bold">for</span> job in <span style="color: #008000; font-weight: bold">$(</span>get_next_jobs <span style="color: #19177C">$1</span><span style="color: #008000; font-weight: bold">)</span>
+        <span style="color: #008000; font-weight: bold">do</span>
+        <span style="color: #008000; font-weight: bold">if</span> test_job <span style="color: #19177C">$job</span>
+        <span style="color: #008000; font-weight: bold">then</span>
+            <span style="color: #008000">echo</span> -en <span style="color: #BA2121">&quot;\e[32m&quot;</span>
+            <span style="color: #008000">echo</span> OK: <span style="color: #19177C">$job</span>
+            <span style="color: #008000">echo</span> -en <span style="color: #BA2121">&quot;\e[0m&quot;</span>
+            update_job <span style="color: #19177C">$job</span>
+        <span style="color: #008000; font-weight: bold">else</span>
+            <span style="color: #008000">echo</span> -en <span style="color: #BA2121">&quot;\e[31m&quot;</span>
+            <span style="color: #008000">echo</span> NOK: <span style="color: #19177C">$job</span>
+            <span style="color: #008000">echo</span> -en <span style="color: #BA2121">&quot;\e[0m&quot;</span>
+        <span style="color: #008000; font-weight: bold">fi</span>
+    <span style="color: #008000; font-weight: bold">done</span>
+<span style="color: #666666">}</span>
+
+
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">[</span> -z <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$job</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">]</span>
+<span style="color: #008000; font-weight: bold">then</span>
+    <span style="color: #008000">echo</span> -e <span style="color: #BA2121">&quot;\e[32m&quot;</span>what is the starting job?<span style="color: #BA2121">&quot;\e[0m&quot;</span>
+    <span style="color: #008000">read</span> job
+<span style="color: #008000; font-weight: bold">fi</span>
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">[</span> -z <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$validate_grep</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">]</span>
+<span style="color: #008000; font-weight: bold">then</span>
+    <span style="color: #008000">echo</span> -e <span style="color: #BA2121">&quot;\e[32m&quot;</span>what is the grep validation <span style="color: #008000; font-weight: bold">for</span> jobs?<span style="color: #BA2121">&quot;\e[0m&quot;</span>
+    <span style="color: #008000">read</span> validate_grep
+<span style="color: #008000; font-weight: bold">fi</span>
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">[</span> -z <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$sed_command</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">]</span>
+<span style="color: #008000; font-weight: bold">then</span>
+    <span style="color: #008000">echo</span> -e <span style="color: #BA2121">&quot;\e[32m&quot;</span>what should I sed?<span style="color: #BA2121">&quot;\e[0m&quot;</span>
+    <span style="color: #008000">read</span> sed_command
+<span style="color: #008000; font-weight: bold">fi</span>
+
+<span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;trying to find the jobs of the pipeline...&quot;</span>
+
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">[</span> -r /var/lib/jenkins/jobs/<span style="color: #19177C">$job</span>/config.xml <span style="color: #666666">]</span>
+<span style="color: #008000; font-weight: bold">then</span>
+
+    <span style="color: #008000">echo</span> -e <span style="color: #BA2121">&quot;\e[32mfound the first one\e[0m&quot;</span>
+    update_job <span style="color: #19177C">$job</span>
+
+<span style="color: #008000; font-weight: bold">else</span>
+    <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;nothing found&quot;</span>
+    <span style="color: #008000">exit</span> <span style="color: #666666">1</span>
+<span style="color: #008000; font-weight: bold">fi</span>
+</pre></div>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/wiki/pipeline/">Permalink</a>. First published on Mon 16 December 2013.
+    </div>
+</div>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

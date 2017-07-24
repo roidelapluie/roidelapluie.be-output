@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Skills on Julien Pivotto</title>
+    <link>https://roidelapluie.be/skill/</link>
+    <description>Recent content in Skills on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 21 Mar 2017 17:47:31 +0100</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/skill/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Gitolite</title>
+      <link>https://roidelapluie.be/skill/gitolite/</link>
+      <pubDate>Tue, 21 Mar 2017 17:47:31 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/gitolite/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pytest</title>
+      <link>https://roidelapluie.be/skill/pytest/</link>
+      <pubDate>Tue, 21 Mar 2017 17:45:37 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/pytest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Prometheus</title>
+      <link>https://roidelapluie.be/skill/prometheus/</link>
+      <pubDate>Tue, 21 Mar 2017 17:42:23 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/prometheus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tt-rss</title>
+      <link>https://roidelapluie.be/skill/tt-rss/</link>
+      <pubDate>Tue, 21 Mar 2017 17:41:03 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/tt-rss/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mailman</title>
+      <link>https://roidelapluie.be/skill/mailman/</link>
+      <pubDate>Tue, 21 Mar 2017 17:28:27 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/mailman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jenkins</title>
+      <link>https://roidelapluie.be/skill/jenkins/</link>
+      <pubDate>Tue, 21 Mar 2017 17:27:16 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Icinga</title>
+      <link>https://roidelapluie.be/skill/icinga/</link>
+      <pubDate>Tue, 21 Mar 2017 17:24:42 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/icinga/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nagios</title>
+      <link>https://roidelapluie.be/skill/nagios/</link>
+      <pubDate>Tue, 21 Mar 2017 17:24:03 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/nagios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Grafana</title>
+      <link>https://roidelapluie.be/skill/grafana2/</link>
+      <pubDate>Tue, 21 Mar 2017 17:19:41 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/grafana2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Grafana</title>
+      <link>https://roidelapluie.be/skill/grafana1/</link>
+      <pubDate>Tue, 21 Mar 2017 17:18:35 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/grafana1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CentOS</title>
+      <link>https://roidelapluie.be/skill/centos/</link>
+      <pubDate>Mon, 20 Mar 2017 22:23:20 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/centos/</guid>
+      <description> CentOS User CentOS Contributor  </description>
+    </item>
+    
+    <item>
+      <title>Exherbo</title>
+      <link>https://roidelapluie.be/skill/exherbo/</link>
+      <pubDate>Mon, 20 Mar 2017 22:23:20 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/exherbo/</guid>
+      <description> Exherbo User  </description>
+    </item>
+    
+    <item>
+      <title>Gentoo</title>
+      <link>https://roidelapluie.be/skill/gentoo/</link>
+      <pubDate>Mon, 20 Mar 2017 22:23:20 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/gentoo/</guid>
+      <description> Gentoo User  </description>
+    </item>
+    
+    <item>
+      <title>RHEL</title>
+      <link>https://roidelapluie.be/skill/rhel/</link>
+      <pubDate>Mon, 20 Mar 2017 22:23:20 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/rhel/</guid>
+      <description> RHEL User  </description>
+    </item>
+    
+    <item>
+      <title>Ubuntu</title>
+      <link>https://roidelapluie.be/skill/ubuntu/</link>
+      <pubDate>Mon, 20 Mar 2017 22:23:20 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/ubuntu/</guid>
+      <description> Ubuntu user  </description>
+    </item>
+    
+    <item>
+      <title>Munin</title>
+      <link>https://roidelapluie.be/skill/munin/</link>
+      <pubDate>Mon, 20 Mar 2017 22:22:08 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/munin/</guid>
+      <description> Monitoring Java application &amp;amp; OS using munin Munin contributor Munin-mysql maintainer  </description>
+    </item>
+    
+    <item>
+      <title>Ansible</title>
+      <link>https://roidelapluie.be/skill/ansible/</link>
+      <pubDate>Mon, 20 Mar 2017 22:09:34 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/ansible/</guid>
+      <description> Ansible user  </description>
+    </item>
+    
+    <item>
+      <title>MariaDB</title>
+      <link>https://roidelapluie.be/skill/mariadb/</link>
+      <pubDate>Mon, 20 Mar 2017 22:09:34 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/mariadb/</guid>
+      <description> MariaDB 10.0/10.1 management MariaDB Connector/J contributor  </description>
+    </item>
+    
+    <item>
+      <title>PostgreSQL</title>
+      <link>https://roidelapluie.be/skill/postgresql/</link>
+      <pubDate>Mon, 20 Mar 2017 22:09:34 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/postgresql/</guid>
+      <description> PostgreSQL management High Availability  </description>
+    </item>
+    
+    <item>
+      <title>Puppet</title>
+      <link>https://roidelapluie.be/skill/puppet/</link>
+      <pubDate>Mon, 20 Mar 2017 22:09:34 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/puppet/</guid>
+      <description> Puppet user Puppet Core contributor Puppet modules contributor Puppet-corosync maintainer  </description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://roidelapluie.be/skill/python/</link>
+      <pubDate>Mon, 20 Mar 2017 21:56:45 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/python/</guid>
+      <description> Contributions to the Gajim project, in python. Web development using the Django framework. Plain python development to install and deploy a java application.  </description>
+    </item>
+    
+    <item>
+      <title>SVN</title>
+      <link>https://roidelapluie.be/skill/svn/</link>
+      <pubDate>Mon, 20 Mar 2017 21:56:45 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/svn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>https://roidelapluie.be/skill/git/</link>
+      <pubDate>Mon, 20 Mar 2017 21:56:45 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/skill/git/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

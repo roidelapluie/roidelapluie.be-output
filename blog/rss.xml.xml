@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Julien Pivotto</title>
+    <link>https://roidelapluie.be/blog/</link>
+    <description>Recent content in Blogs on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 20 Jul 2017 09:29:55 +0200</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/blog/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Custom Sudo command with Ansible</title>
+      <link>https://roidelapluie.be/blog/2017/07/20/custom-sudo-command-with-ansible/</link>
+      <pubDate>Thu, 20 Jul 2017 09:29:55 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/07/20/custom-sudo-command-with-ansible/</guid>
+      <description>While introducing Ansible at customer, I noticed the following problem while using ansible become feature:
+sudo: unable to create /var/log/sudo-io/170718-124212: File exists sudo: error initializing I/O plugin sudoers_io  That was because in the sudoers configuration, you have:
+Defaults syslog=auth,log_input,log_output,iolog_file=%y%m%d-%H%M%S  Which means that sudo sessions will be logged, but there can only be one sudo session per second. While discussing with colleagues what would be the best way to address this &amp;ndash; several options are possible: not logging, logging with seq (Defaults:ansible iolog_file=ansible/%{seq}), logging microseconds, &amp;hellip; &amp;ndash; I have implemented a workaround.</description>
+    </item>
+    
+    <item>
+      <title>A link between DigitalOcean, Packer and Terraform</title>
+      <link>https://roidelapluie.be/blog/2017/04/21/digitalocean-terraform-packer/</link>
+      <pubDate>Fri, 21 Apr 2017 20:12:29 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/04/21/digitalocean-terraform-packer/</guid>
+      <description>In the coming months, I will run several workshops about Jenkins. Those workshops will be hands-on, so people will bring their own laptops to hack on Jenkins instances.
+For that, I expect lots of them will simply run Jenkins on their laptops, or use an external laptop. But, as a backup, or a primary solution, I plan to provision multiple instances of Jenkins, ready to be used, in the cloud.</description>
+    </item>
+    
+    <item>
+      <title>Running Nightly jobs with Jenkins</title>
+      <link>https://roidelapluie.be/blog/2017/03/30/nightly-jobs-jenkins/</link>
+      <pubDate>Thu, 30 Mar 2017 21:33:11 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/03/30/nightly-jobs-jenkins/</guid>
+      <description>Jenkins can spread the load of Jobs by using H instead of * in the cron fields. It means that:
+H 3 * * *  Means: Run between 3 and 4 am.
+The minute will be decided by Jenkins, by applying a hash function over the job name.
+What about this one:
+H H * * *  Means: Run once a day. The moment will be calculated by a Jenkins based on the job name.</description>
+    </item>
+    
+    <item>
+      <title>Setting a Socks Proxy in Firefox Webdriver with Robot Framework</title>
+      <link>https://roidelapluie.be/blog/2017/03/30/robot-firefox-socks/</link>
+      <pubDate>Thu, 30 Mar 2017 21:19:55 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/03/30/robot-firefox-socks/</guid>
+      <description>Here are the Robot Framework keywords needed nowadays to setup a socks5 proxy (e.g ssh -ND 9050 bastion.example.com):
+*** Settings *** Documentation Open a Web Page using a socks 5 proxy (demo) Library Selenium2Library *** Test Cases *** Create Webdriver and Open Page ${profile}= Evaluate sys.modules[&amp;#39;selenium.webdriver&amp;#39;].FirefoxProfile() sys Call Method ${profile} set_preference network.proxy.socks 127.0.0.1 Call Method ${profile} set_preference network.proxy.socks_port ${9060} Call Method ${profile} set_preference network.proxy.socks_remote_dns ${True} Call Method ${profile} set_preference network.proxy.type ${1} Create WebDriver Firefox firefox_profile=${profile} Go To http://internal.</description>
+    </item>
+    
+    <item>
+      <title>My first Open Source contribution</title>
+      <link>https://roidelapluie.be/blog/2017/03/22/first-open-source-contribution/</link>
+      <pubDate>Wed, 22 Mar 2017 21:32:57 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/03/22/first-open-source-contribution/</guid>
+      <description>The first Open-Source contribution I remember happened on December 2005. It happened on Gaim, which is now known as Pidgin.
+It was not a big contribution: I did not like the arrows shown when moving discussion tabs. Those arrows where plain red. I created new ones (using The Gimp), with a gradient. It did not take a long time to make them, but it was definitively an improvement.
+Here it is: It was quickly merged (&amp;lt; 2 hours).</description>
+    </item>
+    
+    <item>
+      <title>Augeas resource for mgmt</title>
+      <link>https://roidelapluie.be/blog/2017/02/14/mgmt-augeas/</link>
+      <pubDate>Tue, 14 Feb 2017 20:34:13 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/02/14/mgmt-augeas/</guid>
+      <description>Last week, I joined the mgmt hackathon, just after Config Management Camp Ghent. It helped me understanding how mgmt actually works and that helped me to introduce two improvements in the codebase: prometheus support, and an augeas resource.
+I will blog later about the prometheus support, today I will focus about the Augeas resource.
+Defining a resource Currently, mgmt does not have a DSL, it only uses plain yaml.</description>
+    </item>
+    
+    <item>
+      <title>mgmt</title>
+      <link>https://roidelapluie.be/blog/2017/02/09/mgmt/</link>
+      <pubDate>Thu, 09 Feb 2017 11:33:25 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/02/09/mgmt/</guid>
+      <description>At Config Management Camp, James was once again presenting mgmt. He presented the project one year ago, on his blog. There are multiple ideas behind mgmt (as you can read on his blog):
+ Parallel execution Event driven Distributed topology  And all of that makes a lot of sense. I really like it. I do really think that this might become a huge deal in the future. But there are a couple of concerns I would like to raise.</description>
+    </item>
+    
+    <item>
+      <title>Gitslave for Jenkins Pipelines</title>
+      <link>https://roidelapluie.be/blog/2016/11/18/gitslave-jenkins/</link>
+      <pubDate>Fri, 18 Nov 2016 10:38:11 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2016/11/18/gitslave-jenkins/</guid>
+      <description>At customer, we are using GitSlave, as a way to build and release multiple releases at the same time. Gitslave is like git submodules, except that you always get the latest version of the submodules (no commits needed in the super repository).
+For CI, we are using Jenkins. A Jenkins plugin was developed for it. Unfortunately, it was written in a way that would make the work of opensourcing that module too big (IP was all over the place in the testsuite).</description>
+    </item>
+    
+    <item>
+      <title>About Puppet 4.8</title>
+      <link>https://roidelapluie.be/blog/2016/11/02/about-puppet-4.8/</link>
+      <pubDate>Wed, 02 Nov 2016 08:44:30 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2016/11/02/about-puppet-4.8/</guid>
+      <description>Puppet, in its new parser (long known as «future parser»), allows you to do things like loops, lambda functions, &amp;hellip; And that was great. It was great because those were things we needed. We needed that so much that the community just went for its own variant, in ruby (create_resources). Being able to remove create_resources is great.
+However, as Daniele stated, Puppet has quite reached Feature Complete. That means that we made Puppet work for all our needs.</description>
+    </item>
+    
+    <item>
+      <title>puppetlabs-concat 2.0</title>
+      <link>https://roidelapluie.be/blog/2016/02/05/puppetlabs-concat/</link>
+      <pubDate>Fri, 05 Feb 2016 16:50:22 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2016/02/05/puppetlabs-concat/</guid>
+      <description>If you are a Puppet user, you know that you have multiple choices regarding the way you manage your files. You might decide to manage the whole file or parts of it. I presented that as part of my augeas talk at PuppetCamp London in 2014.
+One of the solutions out there is concat. Concats allows you to define parts of a file as different resources, then glue them together to create a single file.</description>
+    </item>
+    
+    <item>
+      <title>wpa_supplicant and WPS</title>
+      <link>https://roidelapluie.be/blog/2015/12/27/wi-fi-protected-setup/</link>
+      <pubDate>Sun, 27 Dec 2015 20:07:53 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/12/27/wi-fi-protected-setup/</guid>
+      <description>I do not rely on graphical tools or any third party tools for connecting to wireless networks. I use plain wpa_supplicant with hand-crafted configuation files (one config file per network).
+Nowadays, lots of wireless setups have a way to use Wi-Fi Protected Setup, in particular the Push-Button method. The way it works is simple: you click a button in your computer, another one on the router and they magically connect.</description>
+    </item>
+    
+    <item>
+      <title>A fix for the Puppet Agent not exiting with SIGINT</title>
+      <link>https://roidelapluie.be/blog/2015/10/29/puppet-sigint/</link>
+      <pubDate>Thu, 29 Oct 2015 07:56:38 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/10/29/puppet-sigint/</guid>
+      <description>Since Puppet 3.7.5 and 4.0.0, the Puppet Agent does not exit when it receives a SIGINT signal (^C). That is very annoying when developing Puppet modules.
+A fix has been pushed yesterday by Josh Cooper for the next 3.x and 4.x releases. There is only one file changed, so if it&amp;rsquo;s really a problem for you, patching is trivial. Unfortunately it is not yet possible to easily rebuild the puppet-agent RPM, but that will come very soon.</description>
+    </item>
+    
+    <item>
+      <title>This blog runs a Let&#39;s Encrypt certificate</title>
+      <link>https://roidelapluie.be/blog/2015/10/28/letsencrypt/</link>
+      <pubDate>Wed, 28 Oct 2015 08:43:26 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/10/28/letsencrypt/</guid>
+      <description>I am part of the Let&amp;rsquo;s Encrypt beta test. As part of it, I generated a SSL certificate for my blog, and it is now live.
+In the past I used Startssl to get free certificates. Those certificates expired in September. At that time I switched to a Comodo certificate, because the validity was only 3 months and I hoped Let&amp;rsquo;s Encrypt to be there before the end of the year.</description>
+    </item>
+    
+    <item>
+      <title>Specific routing table for one process</title>
+      <link>https://roidelapluie.be/blog/2015/10/13/specific-routing-table/</link>
+      <pubDate>Tue, 13 Oct 2015 21:53:15 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/10/13/specific-routing-table/</guid>
+      <description>I have multiple VPNs launched at any time that route all of my traffic outside the eyes of my ISP (including default gateway).
+Some services however require me to have my &amp;lsquo;belgian&amp;rsquo; ip address. The easy solution is of course to stop my VPN but hey, no way!
+So here is another solution, quite simple (it does not involve mangling or bridges).
+This solution is with network namespaces and multiple routing tables.</description>
+    </item>
+    
+    <item>
+      <title>Foreman could get Puppet 4 support sooner than expected</title>
+      <link>https://roidelapluie.be/blog/2015/10/03/foreman-puppet-4/</link>
+      <pubDate>Sat, 03 Oct 2015 14:25:37 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/10/03/foreman-puppet-4/</guid>
+      <description>Foreman is one of the key tools of many puppet-based infrastructures. It can interact with the Puppet stack in different ways, by acting as a reporting dashboard or a complete ENC.
+So far Foreman only supports up to Puppet 3. Puppet 4 brings in many changes, and that involves a lot of changes in the foreman side. Even the foreman-installer is based on Puppet.
+But slowly, Puppet 4 supports starts to come to reality.</description>
+    </item>
+    
+    <item>
+      <title>The &#34;It will be Open-Source&#34; myth</title>
+      <link>https://roidelapluie.be/blog/2015/09/23/open-source-myth/</link>
+      <pubDate>Wed, 23 Sep 2015 21:04:31 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/09/23/open-source-myth/</guid>
+      <description>If you are involved in IT and have some interests in Open-Source software, you probably have met some projects that claim that they will be Open-Source &amp;ldquo;one day&amp;rdquo;.
+And guess what? It rarely happens. I would like to clarify some stuff about that kind of sentences.
+You do not owe us anything If you build software and you do not want to open-source it, it&amp;rsquo;s fine. I will not use it, but you are free to do whatever you want to do.</description>
+    </item>
+    
+    <item>
+      <title>pcsd limitations in EL7</title>
+      <link>https://roidelapluie.be/blog/2015/09/17/pcsd/</link>
+      <pubDate>Thu, 17 Sep 2015 13:31:42 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/09/17/pcsd/</guid>
+      <description>The High Availability stack shipped with CentOS/RHEL 7.1 comes with a daemon called pcsd that provides a web UI to manage a clusters. You can reach it at https://hostname:2224/.
+I gave it a try and here is the list of limitations I have found so far:
+ It does not show colocation sets at all. It does not show the &amp;ldquo;kind&amp;rdquo; of resource ordering preferences (optional, mandatory, serialize). It does not show failcounts.</description>
+    </item>
+    
+    <item>
+      <title>Debugging resource failures with pcs</title>
+      <link>https://roidelapluie.be/blog/2015/09/16/pcs-resource-debug/</link>
+      <pubDate>Wed, 16 Sep 2015 10:44:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/09/16/pcs-resource-debug/</guid>
+      <description>Here is a small script to debug pacemaker resource failures in EL7.
+It is more helpful than pcs resource debug-start and is based on the clusterlabs wiki.
+All you need is to adapt resource= and operation=. You can also make an executable script that will take them as first and second parameter, as below:
+#!/bin/bash resource=$1 operation=$2 # Unmanage the resource pcs resource unmanage $resource # OCF_ROOT is needed and might be OS dependent export OCF_ROOT=/usr/lib/ocf # Setting variables for the parameters eval $(pcs resource show $resource| grep Attributes:| awk &amp;#39;{$1=&amp;quot;&amp;quot;; print}&amp;#39;| tr &amp;quot; &amp;quot; &amp;quot;\n&amp;quot;| grep .</description>
+    </item>
+    
+    <item>
+      <title>Puppet 4 create_resource killer</title>
+      <link>https://roidelapluie.be/blog/2015/09/15/puppet-4-create-resources/</link>
+      <pubDate>Tue, 15 Sep 2015 23:22:42 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/09/15/puppet-4-create-resources/</guid>
+      <description>Puppet 4 brings very nice features that will definitely kill the create_resources function.
+Parameters as a hash $parameters = { mode =&amp;gt; &amp;#39;0755&amp;#39;, content =&amp;gt; &amp;#39;foo&amp;#39;, } file { &amp;#39;/tmp/myfile&amp;#39;: * =&amp;gt; $parameters }  It is the same as:
+file { &amp;#39;/tmp/myfile&amp;#39;: mode =&amp;gt; &amp;#39;0755&amp;#39;, content =&amp;gt; &amp;#39;foo&amp;#39;, }  Resource defaults file { default: mode =&amp;gt; &amp;#39;0755&amp;#39;, content =&amp;gt; &amp;#39;foo&amp;#39;; &amp;#39;/tmp/my_file1&amp;#39;:; &amp;#39;/tmp/my_file2&amp;#39;: mode =&amp;gt; &amp;#39;0644&amp;#39;, }  Is the same as:</description>
+    </item>
+    
+    <item>
+      <title>Puppet 4 types and best practices</title>
+      <link>https://roidelapluie.be/blog/2015/09/15/puppet-4-types/</link>
+      <pubDate>Tue, 15 Sep 2015 00:04:38 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/09/15/puppet-4-types/</guid>
+      <description>I have given a talk last week for the Belgian Puppet User Group about Puppet 4 and I would like to post here some practices I want to share with you, in order to have the cleanest Puppet code.
+This can apply to all your local modules (not with the one you share with Puppet 3 users).
+Type all the parameters Each parameter should have a type. You can use the Optional type but you should try to avoid some types as much as possible:</description>
+    </item>
+    
+    <item>
+      <title>Speed up Puppet and Augeas</title>
+      <link>https://roidelapluie.be/blog/2015/08/19/speed-up-puppet-augeas/</link>
+      <pubDate>Wed, 19 Aug 2015 12:06:35 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/08/19/speed-up-puppet-augeas/</guid>
+      <description>Here is a tip for those using the Puppet &amp;lsquo;augeas&amp;rsquo; native resource: always use the &amp;lsquo;incl&amp;rsquo; and the &amp;lsquo;lens&amp;rsquo; parameters.
+Without that, Augeas will autoload all of the files defined in its lenses. On an empty VM that can take up to 1 second.
+Here is my base test file:
+$logrotate_file = &#39;/etc/logrotate.d/httpd&#39; augeas { &#39;logrotate-httpd&#39;: context =&amp;gt; &amp;quot;/files${logrotate_file}/rule/&amp;quot;, changes =&amp;gt; [ &#39;set schedule daily&#39;, &#39;set rotate 6&#39;, &#39;set compress compress&#39;, ], }  It takes 0.</description>
+    </item>
+    
+    <item>
+      <title>Access Control Lists: the hidden feature of EL7</title>
+      <link>https://roidelapluie.be/blog/2015/08/14/acl-el7/</link>
+      <pubDate>Fri, 14 Aug 2015 08:36:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/08/14/acl-el7/</guid>
+      <description>CentOS 7 and its upstream, RHEL7, come by default with the XFS filesystem.
+As it looks like it will not change a lot in our everyday sysadmin lifes, this is not strictly true. There is a big side effect of this change: by default, ACL are enabled in that filesystem.
+It means that without changing the fstab, you can now give additional rights to files and directories. You can find a lot of guides about how to use them everywhere on the internet.</description>
+    </item>
+    
+    <item>
+      <title>Official CentOS boxes for CentOS</title>
+      <link>https://roidelapluie.be/blog/2015/08/12/vagrant-centos/</link>
+      <pubDate>Wed, 12 Aug 2015 09:10:52 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/08/12/vagrant-centos/</guid>
+      <description>CentOS has published in June Vagrant Boxes for both Libvirt and VirtualBox provider. I will focus on the VirtualBox one.
+Those images are great for many reasons:
+ They come directly from the CentOS project, so it is reasonable to trust them They do not come with any 3rd party repositories (and so, without Puppet/Chef&amp;hellip;) They are minimal images They support multiple providers  They contain what is needed for basic tasks, like the vagrant user so vagrant works.</description>
+    </item>
+    
+    <item>
+      <title>Niches</title>
+      <link>https://roidelapluie.be/blog/2015/08/10/niches/</link>
+      <pubDate>Mon, 10 Aug 2015 18:45:15 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/08/10/niches/</guid>
+      <description>I love Open-Source, and the principles attached to it. One of these principle is the principle of choice:
+ The choice of the technology stack The choice of the software you use The choice of the decisions you take The choice of the license you use The choice of how you spend your time  Today I would like to focus on the last part. There are so many open source software around, because every project is organic.</description>
+    </item>
+    
+    <item>
+      <title>An Augeas lens for tmpfiles.d</title>
+      <link>https://roidelapluie.be/blog/2015/07/31/augeas-tmpfiles/</link>
+      <pubDate>Fri, 31 Jul 2015 21:45:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/07/31/augeas-tmpfiles/</guid>
+      <description>I have sent recently a Pull Request to the Augeas project. That PR is about a new lens, a tmpfiles.d lens.
+If you want some background, check my slides (or the video) for the talk about Augeas I have given last november at Puppetcamp London.
+When systemd is in charge of the temporary directories of a server, some directories (/tmp, /run, /var/tmp) are mounted in a tmpfs and are just empty at boot time.</description>
+    </item>
+    
+    <item>
+      <title>A Puppet module for Puppet 4</title>
+      <link>https://roidelapluie.be/blog/2015/07/26/puppet-puppet-4/</link>
+      <pubDate>Sun, 26 Jul 2015 22:05:50 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/07/26/puppet-puppet-4/</guid>
+      <description>I have been working today on a pull request for the puppet-puppet module. That module, part of the foreman puppet modules suite, is probably the most used in its category.
+The pull request I&amp;rsquo;ve been working on is about support of the new &amp;lsquo;All In One&amp;rsquo; package and Puppet 4. It will probably be merged very soon.
+An important part of the work was done by Mickaël Canévet, from camptocamp. I did polish it a bit, rebase it and make the tests pass.</description>
+    </item>
+    
+    <item>
+      <title>Script, a must-know command for sysadmins</title>
+      <link>https://roidelapluie.be/blog/2015/07/04/script/</link>
+      <pubDate>Sat, 04 Jul 2015 12:04:14 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/07/04/script/</guid>
+      <description>script is a famous command in the unix world. Part of the util-linux package of Linux distros, and so available almost everywhere, it has some very interesting features.
+Recording a shell session This is the primary usage. Just type:
+script output.txt  A new shell will open, and you can just do whatever you want.
+$ script output.txt Script started, file is output.txt $ echo hello world hello world $ exit Script done, file is output.</description>
+    </item>
+    
+    <item>
+      <title>Vagrant will support VirtualBox linked clones</title>
+      <link>https://roidelapluie.be/blog/2015/06/05/vagrant-will-support-vbox-clones/</link>
+      <pubDate>Fri, 05 Jun 2015 08:40:59 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/06/05/vagrant-will-support-vbox-clones/</guid>
+      <description>Here is a good news for the vagrant users that still use VirtualBox. While vagrant has support for many other providers, I guess that VirtualBox is probably still in the top 3.
+A September 2014 Pull Request by mpoeter has been updated some days ago. That pull request is about the support of a long-existing VirtualBox feature, linked clones. And it will more than probably be integrated in the next release.</description>
+    </item>
+    
+    <item>
+      <title>Gitlab makes the Entreprise edition code public</title>
+      <link>https://roidelapluie.be/blog/2015/05/22/gitlab-ee/</link>
+      <pubDate>Fri, 22 May 2015 22:15:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/05/22/gitlab-ee/</guid>
+      <description>It is a very sad day for Open-Source. Gitlab has opened its repository for the Entreprise Edition (I am not going to put a link to it).
+It is a very sad day because even if the code is available, it is still proprietary. If you are interested in implementing features of the EE into the CE edition, you have to make sure that you never look at the proprietary code.</description>
+    </item>
+    
+    <item>
+      <title>R and Graphite</title>
+      <link>https://roidelapluie.be/blog/2015/05/13/r-and-graphite/</link>
+      <pubDate>Wed, 13 May 2015 01:45:07 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/05/13/r-and-graphite/</guid>
+      <description>R is a famous language in the statistical world. It has a large ecosystem and today I wanted to try to do some predictions with R and Graphite.
+library(&amp;quot;rjson&amp;quot;) library(&amp;quot;RCurl&amp;quot;) library(&amp;quot;forecast&amp;quot;) library(&amp;quot;xts&amp;quot;) metric &amp;lt;- &amp;quot;myhost.load.load.longterm&amp;quot; time &amp;lt;- &amp;quot;3days&amp;quot; host &amp;lt;- &amp;quot;graphite.example.com&amp;quot; url &amp;lt;- paste(&amp;quot;https://&amp;quot;, host, &amp;quot;/render/?target=&amp;quot;, metric, &amp;quot;&amp;amp;format=json&amp;amp;from=-&amp;quot;, time, sep=&amp;quot;&amp;quot;)[1] json_content &amp;lt;- getURL(url, userpwd=&amp;quot;myuser:mypass&amp;quot;, httpauth = 1L) json_data &amp;lt;- fromJSON(json_content) values &amp;lt;- c() datapoints &amp;lt;- json_data[[1]]$datapoints target &amp;lt;- json_data[[1]]$target for(d in datapoints){ value &amp;lt;- (d[[1]]) values &amp;lt;- c(values, value) } values &amp;lt;- ts(values, frequency=30) fit &amp;lt;- Arima(values, order=c(1,0,30)) fcast &amp;lt;- forecast(fit) plot(fcast, main=target)  Result:</description>
+    </item>
+    
+    <item>
+      <title>F-Droid drops Firefox</title>
+      <link>https://roidelapluie.be/blog/2015/05/10/f-droid-firefox/</link>
+      <pubDate>Sun, 10 May 2015 17:22:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/05/10/f-droid-firefox/</guid>
+      <description>Firefox will get a new name - at least on F-Droid. Firefox was alreasy known as GNU IceCat and Iceweasel.
+Now F-Droid will have its own rebuild, called Fennec FDroid. It removes the proprietary binaries out of the official builds.
+F-Droid will eventually remove Firefox out of its package list.</description>
+    </item>
+    
+    <item>
+      <title>Mutt</title>
+      <link>https://roidelapluie.be/blog/2015/05/09/mutt/</link>
+      <pubDate>Sat, 09 May 2015 21:29:49 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/05/09/mutt/</guid>
+      <description>In the past, I have used several mail clients, including Thunderbird, Claws Mail, Alpine and Evolution.
+But since a few years, I have been using exclusively Mutt. I would like to share pieces of configuration from my personal setup today.
+~/.mutt/muttrc unset mark_old  With that line, Mutt will stop marking New email messages (N) as Old (O) when you change directory or exit. With that the flag will stay N.</description>
+    </item>
+    
+    <item>
+      <title>Easily extract files from qemu-kvm guests</title>
+      <link>https://roidelapluie.be/blog/2015/04/28/virt-copy-out/</link>
+      <pubDate>Tue, 28 Apr 2015 09:08:34 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/04/28/virt-copy-out/</guid>
+      <description>qemu-kvm libvirt users, here is a trick to get or put a file on a guest. It allows you to access easily files stored on the guests disks. Useful when the guest has no network connectivity or is just offline.
+Here is it:
+virt-copy-out -d myvm.example.com /root/myfile.txt /tmp/extract/  The file you want is /root/myfile.txt and you want it in /tmp/extract/. It works even with lvm-based disks and is a lot more easy to use than working with kpartx or other voodoo as often seen on the web.</description>
+    </item>
+    
+    <item>
+      <title>Git status and submodules</title>
+      <link>https://roidelapluie.be/blog/2015/04/22/git-status-submodules/</link>
+      <pubDate>Wed, 22 Apr 2015 13:40:03 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/04/22/git-status-submodules/</guid>
+      <description>Here is an awesome trick for people using git submodules:
+In your ~/.gitconfig, add the following snippet:
+[status] submodulesummary = true  You should now get more information when running git status (&amp;gt; new commits, &amp;lt; &amp;lsquo;removed&amp;rsquo; commits):
+On branch master Changes to be committed: (use &amp;quot;git reset HEAD &amp;lt;file&amp;gt;...&amp;quot; to unstage) modified: submodule1 modified: submodule2 Submodule changes to be committed: * submodule1 5c675a2...569574e (1): &amp;gt; One new feature * submodule2 5c03abb.</description>
+    </item>
+    
+    <item>
+      <title>The LibreOffice Calc 1024 columns bug</title>
+      <link>https://roidelapluie.be/blog/2015/04/20/libreoffice-calc-1024-columns/</link>
+      <pubDate>Mon, 20 Apr 2015 21:51:52 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/04/20/libreoffice-calc-1024-columns/</guid>
+      <description>Sometimes it is sad to see some quite important bugs that last in time.
+One of the last one I hit is a limitation in LibreOffice Calc. It does not support calc spreadsheet with more that 1024 columns.
+That bug was already opened in 2008 in OpenOffice.
+It is really a blocker bug for people that receive spreadsheets that have a lof of columns. For example I have seen a spreadsheet with one column per day.</description>
+    </item>
+    
+    <item>
+      <title>Percona XtraBackup 2.2.10 is incompatible with MariaDB 10.0</title>
+      <link>https://roidelapluie.be/blog/2015/04/15/xtrabackup-and-mariadb/</link>
+      <pubDate>Wed, 15 Apr 2015 21:31:19 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/04/15/xtrabackup-and-mariadb/</guid>
+      <description>Percona XtraBackup is probably the most relevant open-source backup solution for both MySQL and MariaDB. It has all the required features that you need to backup your database, especially if you use innodb (or xtradb).
+One of the features are Incremental backups. It is an easy way to get a consistent backup of your databases in a short amount of time.
+But the latest version of XtraBackup (2.2.10) breaks that feature with MariaDB 10.</description>
+    </item>
+    
+    <item>
+      <title>CSS update</title>
+      <link>https://roidelapluie.be/blog/2015/03/26/css-update/</link>
+      <pubDate>Thu, 26 Mar 2015 17:39:22 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/03/26/css-update/</guid>
+      <description>As the YAML CSS project looks like dead, I have changed the design of my blog to Primer, the CSS Framework made by GitHub.
+I hope that you will enjoy it, it should be more readable and easy to navigate. Everything should have been ported to that new design. I have removed openpgp.js because it was not used.
+As a reminder I have a RSS feed that contains only my technical articles: the planet-inuits tag feed.</description>
+    </item>
+    
+    <item>
+      <title>Google to shut down Google Code</title>
+      <link>https://roidelapluie.be/blog/2015/03/12/google-to-shut-down-google-code/</link>
+      <pubDate>Thu, 12 Mar 2015 21:45:31 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/03/12/google-to-shut-down-google-code/</guid>
+      <description>Google is shutting down Google Code. It was quite expected that it would join the Google graveyard. It was a cool service but the UI never got a lot of attention. Parsing a source tree or looking at issues was like traveling back in 2006.
+This should however be a reminder that all of these platforms (Google Code, Github, Bitbucket) are centralized and closed-source. Even if Github loves Open-Source, and is loved by the Open-Source community, it is a totally closed platform.</description>
+    </item>
+    
+    <item>
+      <title>Puppet Server</title>
+      <link>https://roidelapluie.be/blog/2014/12/09/puppet-server/</link>
+      <pubDate>Tue, 09 Dec 2014 21:27:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/12/09/puppet-server/</guid>
+      <description>I have tested Puppet Server, the new puppet master implementation in Clojure. And I am quite happy.
+It just works
+The first amazing thing was that it did just work the same way as Puppetmaster.
+I did not need to change any configuration file. Every custom function and module just worked like before.
+I am using the puppet-puppet from the Foreman, which already have a server_implementation parameter. Switching it to puppetserver just did the trick.</description>
+    </item>
+    
+    <item>
+      <title>Importing a CA into OpenLDAP</title>
+      <link>https://roidelapluie.be/blog/2014/12/05/openldap-ca/</link>
+      <pubDate>Fri, 05 Dec 2014 23:42:17 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/12/05/openldap-ca/</guid>
+      <description>Here is a quick how to about OpenLDAP under CentOS 6 and a custom Certificate Authority..
+OpenLDAP in CentOS 6 is built with NSS to deal with ssl/tls.
+When you try to securely connect to a LDAP host that, you will get the following errors:
+$ ldapsearch -H ldaps://172.28.5.5 -d -1 [...snip...] TLS: certificate [CN=ldap.inuits.eu,OU=Infra,O=Inuits,ST=Antwerp,C=BE] is not valid - error -8179:Peer&#39;s Certificate issuer is not recognized.. tls_write: want=7, written=7 0000: 15 03 01 00 02 TLS: error: connect - force handshake failure: errno 0 - moznss error -8179 TLS: can&#39;t connect: TLS error -8179:Peer&#39;s Certificate issuer is not recognized.</description>
+    </item>
+    
+    <item>
+      <title>About Devuan</title>
+      <link>https://roidelapluie.be/blog/2014/11/29/devuan/</link>
+      <pubDate>Sat, 29 Nov 2014 12:58:56 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/11/29/devuan/</guid>
+      <description>It looks like that a new Linux Distribution is born: Devuan. Yet another fork of Debian.
+Debian is a really good ground for forks, it seems: Ubuntu, Linux Mint, and a lot of others. So, what does make this one different?
+This fork wants to remove systemd from Debian. It is really strange that so many people are reacting against systemd so late. Systemd has been around for many years. I do not want to enter the debate about systemd.</description>
+    </item>
+    
+    <item>
+      <title>3 years of automation with Puppet</title>
+      <link>https://roidelapluie.be/blog/2014/11/17/3-years-of-puppet/</link>
+      <pubDate>Mon, 17 Nov 2014 22:24:13 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/11/17/3-years-of-puppet/</guid>
+      <description>This article has been triggered by M@ttias.be&amp;rsquo;s article.
+I have been working for Inuits for 3 years, with Puppet 2.6. By that time Puppet 0.23 was still around in many places. Here are some lessons I&amp;rsquo;ve learned during these years.
+Your Puppet code is code This is one of the first lessons I&amp;rsquo;ve learned. In the many environments I&amp;rsquo;ve seen, some of them use some git hooks/rsync/whatever to deploy the puppet code to the different platforms.</description>
+    </item>
+    
+    <item>
+      <title>F-droid welcomes BeTrains</title>
+      <link>https://roidelapluie.be/blog/2014/10/20/f-droid-welcomes-betrains/</link>
+      <pubDate>Mon, 20 Oct 2014 21:26:11 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/10/20/f-droid-welcomes-betrains/</guid>
+      <description>I have discovered that F-Droid contains BeTrains, an open-source android tool to get data like timetables from the Belgian national railway company. Let&amp;rsquo;s take some time to explain you that in details.
+What is F-droid? It is a repository for Android. It contains a lot of different application, that have one thing in common: they are all open-source.
+There is of course one client that you can install on your android device to browse the catalogue and download/update your applications.</description>
+    </item>
+    
+    <item>
+      <title>A classical pulp upgrade ....</title>
+      <link>https://roidelapluie.be/blog/2014/10/08/pulp-horror-fest/</link>
+      <pubDate>Wed, 08 Oct 2014 09:27:12 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/10/08/pulp-horror-fest/</guid>
+      <description>Yesterday I did upgrade a pulp instance from pulp 2.2 to pulp 2.4. Here is my story&amp;hellip;
+Upgrading pulp seems very very simple. You update the RPMs then you run the migration script, pulp-manage-db. Well, at least that&amp;rsquo;s the theory.
+First step: packages changes The release note tell us a couple of things: some packages to install, some configuration files to save&amp;hellip;
+So here we go:
+ Install some qpid packages Upgrade mongodb to 2.</description>
+    </item>
+    
+    <item>
+      <title>I&#39;ve backed Matchstick</title>
+      <link>https://roidelapluie.be/blog/2014/10/04/i-ve-backed-matchstick/</link>
+      <pubDate>Sat, 04 Oct 2014 12:31:48 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/10/04/i-ve-backed-matchstick/</guid>
+      <description>I have backed Matchstick, the HDMI stick based on Firefox OS. It is the first crowdfunding project I participate. And I hope it won&amp;rsquo;t be the last one.
+There are a few reasons why I have chosen to do so.
+The first reason is the open-source part of that project. An open-source software combined with open-source hardware, that is everything I like. Good philosophy is always a good point.
+Next that project is exciting.</description>
+    </item>
+    
+    <item>
+      <title>5 bugs</title>
+      <link>https://roidelapluie.be/blog/2014/09/25/bugs-bugs-bugs/</link>
+      <pubDate>Thu, 25 Sep 2014 21:28:21 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/25/bugs-bugs-bugs/</guid>
+      <description> Bash remote code execution vulnerability Heartbleed bug Getting mysql root acces 1&amp;frasl;256 times Bumblebee deleting /usr Use glibc to get root access  </description>
+    </item>
+    
+    <item>
+      <title>Vagrant puppet_server tip</title>
+      <link>https://roidelapluie.be/blog/2014/09/17/vagrant-puppet-agent/</link>
+      <pubDate>Wed, 17 Sep 2014 10:08:31 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/17/vagrant-puppet-agent/</guid>
+      <description>This is a small tip for everyone using the vagrant puppet_server provisioner, which allows you to run a puppet agent inside your vagrant box:
+Vagrant.configure(&amp;quot;2&amp;quot;) do |config| config.vm.box = &amp;quot;vStone/centos-6.x-puppet.3.x&amp;quot; config.vm.hostname = &amp;quot;puppet.vagrant.inuits.eu&amp;quot; config.vm.box_check_update = false config.vm.network &amp;quot;private_network&amp;quot;, ip: &amp;quot;192.168.33.2&amp;quot; config.vm.provision &amp;quot;puppet_server&amp;quot; do |puppet| puppet.puppet_server = &amp;quot;puppetmaster.vagrant.inuits.eu&amp;quot; puppet.options = [&amp;quot;--environment&amp;quot;, &amp;quot;devel&amp;quot;, &amp;quot;--test&amp;quot;] end end  The tip is to add puppet.options = [&amp;quot;--test&amp;quot;] so you have the debug information, the diff of the files, &amp;hellip; If you want more you can also add --debug.</description>
+    </item>
+    
+    <item>
+      <title>It&#39;s not time to split Linux distros in two</title>
+      <link>https://roidelapluie.be/blog/2014/09/13/dont-split-linux-in-two/</link>
+      <pubDate>Sat, 13 Sep 2014 21:24:25 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/13/dont-split-linux-in-two/</guid>
+      <description>This article is a reaction to the following article: It&amp;rsquo;s time to split Linux distros in two written by @pvenezia.
+There are a lot of changes nowadays in the way GNU/Linux evolves: systemd, steamOS, android, and a bunch of other stuff in several domains.
+So I read Paul&amp;rsquo;s article with attention because it&amp;rsquo;s seems that GNU/Linux will evolve a lot in the following years. He is right when he points out that on one side we want stability and scalability and on the other side we want performances and wide hardware support.</description>
+    </item>
+    
+    <item>
+      <title>EPEL 7 released</title>
+      <link>https://roidelapluie.be/blog/2014/09/04/epel7/</link>
+      <pubDate>Thu, 04 Sep 2014 22:50:49 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/04/epel7/</guid>
+      <description>EPEL 7 has been released. It contains interesting packages:
+ ansible (orchestration) collectd (monitoring) mariadb-galera (database replication) mate (gnome 2 fork) mcollective (orchestration) munin (monitoring; version 2) puppet (configuration management, latest version) sl :) varnish (caching)  And obviously a lot of other stuff to discover.
+ EPEL wiki page List of packages Puppet module stahnma-epel  </description>
+    </item>
+    
+    <item>
+      <title>Munin 2 &#34;not a reference&#34; error</title>
+      <link>https://roidelapluie.be/blog/2014/09/02/munin2-not-a-reference-error/</link>
+      <pubDate>Tue, 02 Sep 2014 08:49:58 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/02/munin2-not-a-reference-error/</guid>
+      <description>This morning I worked with Munin, discovering that Munin 2 has made it to EPEL.
+Thus I started to look at puppet modules. I tried two of them (ssm-munin and duritong-munin), and no one seemed to be working.
+I was then digging deeper about what the problem could be, so I logged in to the machine with the munin user:
+::text # su - munin --shell=/bin/bash  Then I ran the script by hand:</description>
+    </item>
+    
+    <item>
+      <title>RSS/Atom feeds update</title>
+      <link>https://roidelapluie.be/blog/2014/08/28/rss-feed-update/</link>
+      <pubDate>Thu, 28 Aug 2014 07:08:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/08/28/rss-feed-update/</guid>
+      <description>Dear reader,
+If you are following this blog via RSS/Atom feeds, you have probably noticed that all the articles of this one have been marked as unread in your RSS reader. This is due to an small technical change in the URL&amp;rsquo;s of the articles.
+Please also note that I have added several feeds for tags and categories.
+An interesting feed is probably the planet-inuits feed, which contains the articles I publish on the inuits planet.</description>
+    </item>
+    
+    <item>
+      <title>CalDAV, Open-Source and Android</title>
+      <link>https://roidelapluie.be/blog/2014/08/15/caldav-android/</link>
+      <pubDate>Fri, 15 Aug 2014 07:38:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/08/15/caldav-android/</guid>
+      <description>At Inuits, we are using Zimbra as mail and calendaring solution.
+In the past, it used to be very difficult to synchronize the calendar with android phones. The calendar supports ics and CalDAV exports, but none of these solutions was working on android.
+ICS Synchronizing the calendar with ICS had several downsides:
+ You need to create a share of the calendar It is read-only  So I quickly gave up that possibility.</description>
+    </item>
+    
+    <item>
+      <title>Pcs support merged into puppetlabs-corosync</title>
+      <link>https://roidelapluie.be/blog/2014/07/02/puppetlabs-corosync-pcs/</link>
+      <pubDate>Wed, 02 Jul 2014 08:32:42 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/07/02/puppetlabs-corosync-pcs/</guid>
+      <description>Great news for people using an el-based distribution and the puppetlabs-corosync puppet module: pcs support has been merged into master.
+This change is important because it means that all the RPM required for these providers are in the main repositories, which ensure they are tested and supported.
+Starting from CentOS 6.4, the crm shell was not provided by Red Hat anymore, but the puppet module was using that package in its only provider for custom types.</description>
+    </item>
+    
+    <item>
+      <title>Puppet 3.6.1 depreciation warning</title>
+      <link>https://roidelapluie.be/blog/2014/05/26/puppet-361-depreciation/</link>
+      <pubDate>Mon, 26 May 2014 10:48:41 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/05/26/puppet-361-depreciation/</guid>
+      <description>Dear puppet users using a yum-based distribution1, once you will upgrade to puppet 3.6.1, you will notice the following warning message each time you use a package type:
+Warning: The package type&#39;s allow_virtual parameter will be changing its default value from false to true in a future release. If you do not want to allow virtual packages, please explicitly set allow_virtual to false. (at /usr/lib/ruby/site_ruby/1.8/puppet/type.rb:816:in `set_default&#39;)  There is nothing you can do with that except setting a global parameter in your puppet tree, as stated in the release notes:</description>
+    </item>
+    
+    <item>
+      <title>Pt-heartbeat can&#39;t use an undefined value as an ARRAY reference</title>
+      <link>https://roidelapluie.be/blog/2014/05/19/pt-heartbeat-array-error/</link>
+      <pubDate>Mon, 19 May 2014 22:54:08 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/05/19/pt-heartbeat-array-error/</guid>
+      <description>Today I got a strange issue with pt-heartbeat.
+When I launched pt-heartbeat:
+pt-heartbeat --pid /var/opt/inu/pt-heartbeat.pid --update --database \ pth --create-table --socket /var/opt/inu/mysql/mysql.sock --user=pth \ --password=str0ng  I got the following error message:
+Can&#39;t use an undefined value as an ARRAY reference at /usr/bin/pt-heartbeat line 4297.  It was because I did not have access to the /tmp/percona-version-check file. The file was created under an other user and the current user could not access it.</description>
+    </item>
+    
+    <item>
+      <title>CentOS users should skip puppet release 3.5.0</title>
+      <link>https://roidelapluie.be/blog/2014/04/11/puppet-350-yumrepo/</link>
+      <pubDate>Fri, 11 Apr 2014 09:51:14 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/04/11/puppet-350-yumrepo/</guid>
+      <description>Dear puppet users using a yum-based distribution, if you use the Yumrepo resource type, don&amp;rsquo;t upgrade to puppet 3.5.0. That resource type has been rewritten and the release has come with very annoying bugs.
+Bugs  PUP-2163: yumrepo resource completely broken PUP-2150: yumrepo removable URL properties cannot be set to ‘absent’ PUP-2179: Ensuring absent on a yumrepo removes all repos in the same file PUP-2178: yumrepo ‘descr’ property doesn’t map to the ‘name’ INI property PUP-2181: Setting yumrepo string properties to absent assigns the literal ‘absent’ string  Fixes Fixes have been merged to master and will be released with Puppet 3.</description>
+    </item>
+    
+    <item>
+      <title>Collectd 5.4.1 RPM&#39;s</title>
+      <link>https://roidelapluie.be/blog/2014/04/08/vagrant-collectd/</link>
+      <pubDate>Tue, 08 Apr 2014 13:01:44 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/04/08/vagrant-collectd/</guid>
+      <description>In the list of the things I like, there are vagrant, RPM&amp;rsquo;s and being able to reproduce a build.
+As I did two years ago with mapnik, I have created a Vagrantfile with a script to build the latest version of collectd. Indeed, the version of collectd available in EPEL is quite outdated. That new version supports some very nice plugins natively, including statsd and graphite plugins.
+This Vagrantfile uses the spec files that are provided upstream.</description>
+    </item>
+    
+    <item>
+      <title>lab0, a light frontend to foreman</title>
+      <link>https://roidelapluie.be/blog/2014/03/14/lab0/</link>
+      <pubDate>Fri, 14 Mar 2014 08:50:37 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/03/14/lab0/</guid>
+      <description>I have written a small frontend to Foreman and its Puppet integration.
+The only goal is to provide our developers to change the puppet parameters of their hosts in an easy way, and to rebuild the nodes in a few clicks.
+The project consists is presented as a single web page, where you make changes. Angularjs makes that page reactive.
+It requires admin rights on foreman (it uses the API).</description>
+    </item>
+    
+    <item>
+      <title>Paludis, a package manager</title>
+      <link>https://roidelapluie.be/blog/2014/02/02/paludis/</link>
+      <pubDate>Sun, 02 Feb 2014 21:24:44 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/02/02/paludis/</guid>
+      <description>This weekend, the Fosdem was still full of geeks and a lot of discussions happened. Package managers were still in the discussions, while a lot of projects try to fix their problems:
+ FPM tito bower omnibus tar :-)  Let me explain you some stuff about the Exherbo package manager, Paludis.
+It is a performant package manager, which build packages from source, and it does not solve all the traditional problems related to the package managers.</description>
+    </item>
+    
+    <item>
+      <title>Puppet-corosync and pcs provider</title>
+      <link>https://roidelapluie.be/blog/2014/01/28/puppet-corosync-pcs/</link>
+      <pubDate>Tue, 28 Jan 2014 20:40:19 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/01/28/puppet-corosync-pcs/</guid>
+      <description>Since the release 6.4, el-based distributions are not shipped with the crm command by default. pcs is the new recommended way to setup the clusters on CentOS/RHEL &amp;gt;= 6.4.
+A lot of the people using the puppetlabs-corosync module have been surprised and they just installed a RPM found somewhere across the web.
+I adapted the puppetlabs-corosync to end that dependency. My puppetlabs-corosync module is available here.
+It is not perfect, but I still plan on working on it in the following months (and I accept pull requests of course).</description>
+    </item>
+    
+    <item>
+      <title>Soft-fixing Lenovo touchpad</title>
+      <link>https://roidelapluie.be/blog/2014/01/22/lenovo-touchpad/</link>
+      <pubDate>Wed, 22 Jan 2014 07:38:18 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/01/22/lenovo-touchpad/</guid>
+      <description>I have a new lenovo laptop but it has no physical button (the whole touchpad is a button). It is almost impossible to right click and impossible to middle-click, which is critical for me.
+I solved this with the following synclient options:
+synclient TapButton1=1 synclient TapButton2=2 synclient TapButton3=3  When I click the touch pad with one finger, it will left-click, two will middle-click and three will left-click.</description>
+    </item>
+    
+    <item>
+      <title>Make stuck in a loop</title>
+      <link>https://roidelapluie.be/blog/2014/01/20/make-in-a-loop/</link>
+      <pubDate>Mon, 20 Jan 2014 08:44:57 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/01/20/make-in-a-loop/</guid>
+      <description>I got an unexpected result when I was trying to compile a small lib: it seems to never finished (I stopped it after 3 hours).
+The problem was that I had in /usr/lib64 files timestamped in the future.
+The following command fixed it and I have eventually compiled my library in 30 seconds.
+touch now find /usr/lib64 -newer now -exec touch ´{}´ ´;´  </description>
+    </item>
+    
+    <item>
+      <title>Open Source Matters</title>
+      <link>https://roidelapluie.be/blog/2013/10/28/open-source-matters/</link>
+      <pubDate>Mon, 28 Oct 2013 21:59:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/10/28/open-source-matters/</guid>
+      <description>I see a lot of people working in the Open-Source world, defending the Open-Source and besides that, using a lot of closed source applications.
+Each time you run a closed source application, you open a browser with proprietary plugins, you communicate with a closed protocol, it is a defeat for the Open-Source world.
+First, what is Open-Source (and for me it is the same as Free Software) about?
+It is about freedoms.</description>
+    </item>
+    
+    <item>
+      <title>Mcollective agent to use drush</title>
+      <link>https://roidelapluie.be/blog/2013/07/23/drush-mcollective/</link>
+      <pubDate>Tue, 23 Jul 2013 13:09:07 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/07/23/drush-mcollective/</guid>
+      <description> I have written a mcollective agent to run drush commands. It will help you to automate the deployments of your drupal websites.
+I have implemented two drush commands so far:
+ cache-clear updatedb  The full configuration is available on the github project.
+Examples Updatedb ::text mco rpc drush updatedb root=/var/vhost/frontend-demo yes=true  Cache-clear ::text mco rpc drush cache-clear root=/var/vhost/frontend-demo uri=http://demo.example.net type=all  Links  mcollective drush the agent on github  </description>
+    </item>
+    
+    <item>
+      <title>GlusterFS quorums</title>
+      <link>https://roidelapluie.be/blog/2013/07/18/glusterfs-quorum/</link>
+      <pubDate>Thu, 18 Jul 2013 15:27:11 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/07/18/glusterfs-quorum/</guid>
+      <description>GlusterFS quorums should prevent brain-split by deactivating the nodes when less that 50% of the servers are connected (you can change that number).
+To enable the feature, it is simple:
+srv01$ sudo gluster volume set gv0 cluster.server-quorum-type server volume set: success  Then I isolated one VM on the network. I could not access the files on that node:
+srv03$ ls /mnt ls: cannot access /mnt: No such file or directory  But it worked on the other nodes:</description>
+    </item>
+    
+    <item>
+      <title>Peering a server to a GlusterFS cluster</title>
+      <link>https://roidelapluie.be/blog/2013/07/18/peering-a-server-to-a-glusterfs-cluster/</link>
+      <pubDate>Thu, 18 Jul 2013 13:46:57 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/07/18/peering-a-server-to-a-glusterfs-cluster/</guid>
+      <description>Some notes about how to add server to a GlusterFS cluster and to replicata data to it.
+::bash srv03$ sudo gluster peer probe 192.168.1.10 peer probe: failed: 192.168.1.10 is already part of another cluster  It is logical that anyone may not add a server to a gluster cluster.
+::bash srv01$ sudo gluster peer probe 192.168.1.12 peer probe: success  It is successful.
+::bash srv01$ sudo gluster peer status Number of Peers: 2 Hostname: 192.</description>
+    </item>
+    
+    <item>
+      <title>Fixing a GlusterFS split-brain</title>
+      <link>https://roidelapluie.be/blog/2013/07/17/glusterfs-split-brain/</link>
+      <pubDate>Wed, 17 Jul 2013 16:27:17 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/07/17/glusterfs-split-brain/</guid>
+      <description>I have found some time to test GlusterFS, in order to use it to replicate data between several servers.
+I have created two vagrant boxes to set up a basic cluster.
+And, during my tests, I have shut down the network interfaces and started writing different things on the same file, to create a split-brain.
+srv01$ echo good &amp;gt; /mnt/test srv02$ echo bad &amp;gt; /mnt/test  When the interfaces were up again, the split-brain was obviously present:</description>
+    </item>
+    
+    <item>
+      <title>Fill your Belgian tax form with Linux</title>
+      <link>https://roidelapluie.be/blog/2013/07/15/tax-on-web/</link>
+      <pubDate>Mon, 15 Jul 2013 21:52:50 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/07/15/tax-on-web/</guid>
+      <description>Tax-on-web is the online service that enable you to fill in your Belgian tax form.
+In order to be able to read you beid card, and so to connect to the online website, follow the following instructions.
+First, get a card reader, and install the relevant driver. The following will often be enough (if you are using debian/ubuntu):
+$ sudo apt-get install libacr38u pcscd  Then, do not install the software provided by the government.</description>
+    </item>
+    
+    <item>
+      <title>Rattaching a running process to a screen</title>
+      <link>https://roidelapluie.be/blog/2013/06/25/reptyr/</link>
+      <pubDate>Tue, 25 Jun 2013 22:15:13 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/06/25/reptyr/</guid>
+      <description>Reptyr is a small project written in C that enable you to &amp;ldquo;re-pty&amp;rdquo; your process. It means you can, for example, attach a running process inside a screen.
+For example, you launched irssi outside your screen, and you do not want to relaunch it.
+Install reptyr, then, in a screen, run the following commands:
+$ pidof irssi 27518 $ reptyr 27518  That&amp;rsquo;s it. The process will be rattached to Init but you will be able to use it directly from your screen, without notifying the difference.</description>
+    </item>
+    
+    <item>
+      <title>Grok and httpd</title>
+      <link>https://roidelapluie.be/blog/2013/06/17/grok-httpd/</link>
+      <pubDate>Mon, 17 Jun 2013 12:13:20 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/06/17/grok-httpd/</guid>
+      <description>When you use the LogFormat parameter in you apache configuration, you may want to use the same logformat in logstash.
+I made a small table that will enable you to &amp;ldquo;translate&amp;rdquo; your custom log format into a grok pattern.
+   httpd grok     %T %{NUMBER:duration_seconds}   %D %{NUMBER:duration_microseconds}   %h %{IPORHOST:client}   %l %{USERNAME:remotelogname}   %u %{USERNAME:username}   %t \[%{HTTPDATE:timestamp}\]   %r %{USERNAME:method} %{URIPATHPARAM:request} HTTP/%{NUMBER:httpversion}   %s %{NUMBER:response}   %B %{NUMBER:bytes}   %b (?</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>CalDAV, Open-Source and Android - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link " href="/fr">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+<h1 class="title mt-3 mb-3"><a href="/blog/2014/08/15/caldav-android/" class="text-gray-dark">
+    CalDAV, Open-Source and Android
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>At <a href="https://www.inuits.eu">Inuits</a>, we are using <a href="https://www.zimbra.com/community/">Zimbra</a> as mail and calendaring solution.</p>
+
+<p>In the past, it used to be very difficult to synchronize the calendar with android phones.
+The calendar supports ics and CalDAV exports, but none of these solutions was working on android.</p>
+
+<h2 id="ics">ICS</h2>
+
+<p>Synchronizing the calendar with ICS had several downsides:</p>
+
+<ul>
+<li>You need to create a share of the calendar</li>
+<li>It is read-only</li>
+</ul>
+
+<p>So I quickly gave up that possibility.</p>
+
+<h2 id="caldav">CalDAV</h2>
+
+<p><a href="http://caldav.calconnect.org/">CalDAV</a> is the protocol I preferred, because
+it was native on Zimbra, and I could add/modify appointments directly on the phone.</p>
+
+<h3 id="caldav-sync">CalDAV-Sync</h3>
+
+<p>The first solution available is dmfs&rsquo; <a href="http://dmfs.org/caldav/">CalDAV-Sync</a>. But
+the application is closed source. The developer has been promising to open source if for years,
+but nothing has changed yet about that part.</p>
+
+<h3 id="acal">aCal</h3>
+
+<p><a href="https://f-droid.org/repository/browse/?fdfilter=caldav&amp;fdid=com.morphoss.acal">aCal</a>
+was also a solution, but it was not integrated with the android calendaring system and the interface
+was not really usable. Native integration with the android calendaring stack was
+something I really wanted.</p>
+
+<h3 id="caldav-sync-adapter">CalDAV Sync Adapter</h3>
+
+<p>The next candidate that arrived on the market was <a href="https://f-droid.org/repository/browse/?fdid=org.gege.caldavsyncadapter">CalDAV Sync Adapter</a>.
+It worked pretty well but it has some gotcha&rsquo;s that prevented me to see all my calendar.</p>
+
+<p>By the time, it was also only read-only (this could have changed now).</p>
+
+<h3 id="davdroid">DavDroid</h3>
+
+<p>And then came the ultimate solution: <a href="http://davdroid.bitfire.at/what-is-davdroid">DavDroid</a>. Open-Source and available on <a href="https://f-droid.org/repository/browse/?fdfilter=davdroid&amp;fdid=at.bitfire.davdroid">f-droid</a>, it worked OOTB with our setup. It supports two-way sync and is fully integrated with the calendaring stack of my android.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>There are may apps here, because CalDAV is not supported by android by default. I&rsquo;ve chosen DavDroid because it was fitting my needs:</p>
+
+<ul>
+<li>integration with android calendaring</li>
+<li>open-source</li>
+<li>working correctly.</li>
+</ul>
+
+<p>The 3 other options did only pick two of these criteria&rsquo;s.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/08/15/caldav-android/">Permalink</a>. Category: Android. Tags: CalDAV zimbra calendar planet-inuits.<br/>
+        First published on Fri 15 August 2014.
+    </div>
+</div>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

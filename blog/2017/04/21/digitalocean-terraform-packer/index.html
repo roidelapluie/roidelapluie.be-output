@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>A link between DigitalOcean, Packer and Terraform - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link " href="/fr">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+<h1 class="title mt-3 mb-3"><a href="/blog/2017/04/21/digitalocean-terraform-packer/" class="text-gray-dark">
+    A link between DigitalOcean, Packer and Terraform
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>In the coming months, I will run several workshops about Jenkins. Those
+workshops will be hands-on, so people will bring their own laptops to hack on
+Jenkins instances.</p>
+
+<p>For that, I expect lots of them will simply run Jenkins on their laptops, or use
+an external laptop. But, as a backup, or a primary solution, I plan to provision
+multiple instances of Jenkins, ready to be used, in the cloud.</p>
+
+<p>Amongst the cloud providers, <a href="https://www.digitalocean.com/">DigitalOcean</a> is
+great for this purpose: while it is feature limited, it is simple. Its pricing
+model is simple too.</p>
+
+<p>In the cloud, you run images. Like I will spin up a lot of them, I want to have
+those images ready, so I just need to boot them and configure them. The tool for
+that is <a href="https://packer.io">Packer</a>. Packer builds images. For DigitalOcean,
+Docker, AWS, Virtualbox.. It has a great list of providers.</p>
+
+<p>That part was easy. I&rsquo;ve got my snapshots built quickly.</p>
+
+<p>Then enters <a href="https://terraform.io">Terraform</a>. Terraform can deploy the
+snapshots built by Packer. Just like this:</p>
+
+<pre><code>resource &quot;digitalocean_droplet&quot; &quot;jenkins&quot; {
+  image = &quot;1028374&quot;
+  count  = &quot;${var.count}&quot;
+  name = &quot;${format(&quot;jenkins%02d&quot;, count.index + 1)}&quot;
+  ssh_keys = [ &quot;${var.do_ssh_key}&quot; ]
+  region = &quot;${var.do_datacenter}&quot;
+  private_networking = &quot;true&quot;,
+  size = &quot;512mb&quot;
+}
+</code></pre>
+
+<p>That configuration works but has a problem: the image parameter is an ID. For
+Snapshots, you can not use name, slugs, you have to use id numbers. This is very
+annoying, because I to not want the image 1028374, I want the image
+&ldquo;jenkins-1.0.0&rdquo;. Which is the name I defined in Packer.</p>
+
+<h2 id="the-workaround">The workaround</h2>
+
+<p>Like lots of problems with open-source software, there is a workaround.
+Terraform has an <a href="https://www.terraform.io/docs/providers/external/data_source.html">external
+datasource</a>
+plugin. It can run any script. Here is mine:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">#!/bin/bash -e</span>
+<span style="color: #008000">set</span> -o pipefail
+<span style="color: #19177C">snapshots</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #008000; font-weight: bold">$(</span><span style="color: #008000">eval</span> <span style="color: #008000; font-weight: bold">$(</span>jq -r <span style="color: #BA2121">&#39;@sh &quot;doctl -t=\(.api_token) compute snapshot list</span>
+<span style="color: #BA2121">\(.id) -o json&quot;&#39;</span><span style="color: #008000; font-weight: bold">))</span><span style="color: #BA2121">&quot;</span>
+<span style="color: #19177C">nr</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #008000; font-weight: bold">$(</span><span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$snapshots</span><span style="color: #BA2121">&quot;</span>|jq <span style="color: #BA2121">&#39;.|length&#39;</span><span style="color: #008000; font-weight: bold">)</span><span style="color: #BA2121">&quot;</span>
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">[[</span> <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$nr</span><span style="color: #BA2121">&quot;</span> -ne <span style="color: #666666">1</span> <span style="color: #666666">]]</span>
+<span style="color: #008000; font-weight: bold">then</span>
+    <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Expected 1 snapshot, found </span><span style="color: #19177C">$nr</span><span style="color: #BA2121">&quot;</span> &gt;&amp;<span style="color: #666666">2</span>
+    <span style="color: #008000">exit</span> <span style="color: #666666">1</span>
+<span style="color: #008000; font-weight: bold">fi</span>
+<span style="color: #19177C">id</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #008000; font-weight: bold">$(</span><span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$snapshots</span><span style="color: #BA2121">&quot;</span>|jq -r .<span style="color: #666666">[0]</span>.id<span style="color: #008000; font-weight: bold">)</span><span style="color: #BA2121">&quot;</span>
+jq -r -n --arg id <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$id</span><span style="color: #BA2121">&quot;</span> <span style="color: #BA2121">&#39;{&quot;id&quot;:$id}&#39;</span>
+</pre></div>
+
+<p>In Terraform:</p>
+
+<pre><code>data &quot;external&quot; &quot;jenkins_snapshot&quot; {
+  program = [&quot;./do_snapshot_id&quot;]
+  query {
+    id = &quot;jenkins-${var.do_jenkins_droplet_version}&quot;
+    api_token = &quot;${var.do_api_token}&quot;
+  }
+}
+
+resource &quot;digitalocean_droplet&quot; &quot;jenkins&quot; {
+  image = &quot;${data.external.jenkins_snapshot.result.id}&quot;
+  count  = &quot;${var.count}&quot;
+  name = &quot;${format(&quot;jenkins%02d&quot;, count.index + 1)}&quot;
+  ssh_keys = [ &quot;${var.do_ssh_key}&quot; ]
+  region = &quot;${var.do_datacenter}&quot;
+  private_networking = &quot;true&quot;,
+  size = &quot;512mb&quot;
+}
+</code></pre>
+
+<p>That is already better. I can now use the same name as the one I use in Packer.
+No more meaningless ID&rsquo;s.</p>
+
+<p>But this approach has multiple problems:</p>
+
+<ul>
+<li>Bash scripting is unreadable; it is just 10 lines but is a mess.</li>
+<li>It introduces jq and doctl as dependencies. So it will not work for everyone.</li>
+<li>It delegates the digitalocean credentials to multiple processes. I do not like
+that.</li>
+</ul>
+
+<h2 id="the-solution">The Solution</h2>
+
+<p>I ended up spending some time on an implementation in go. It is now <a href="https://github.com/hashicorp/terraform/commit/c2a1e688cb19aef1ac76d7f360876824ce4f8c46">merged</a> en
+Terraform, which means I had to write documentation and tests, so everyone can
+use it now. Here is the DigitalOcean image datasource:</p>
+
+<pre><code>data &quot;digitalocean_image&quot; &quot;jenkins&quot; {
+  name = &quot;jenkins-${var.do_jenkins_droplet_version}&quot;
+}
+
+resource &quot;digitalocean_droplet&quot; &quot;jenkins&quot; {
+  image  = &quot;${data.digitalocean_image.jenkins.image}&quot;
+  count  = &quot;${var.count}&quot;
+  name = &quot;${format(&quot;jenkins%02d&quot;, count.index + 1)}&quot;
+  ssh_keys = [ &quot;${var.do_ssh_key}&quot; ]
+  region = &quot;${var.do_datacenter}&quot;
+  private_networking = &quot;true&quot;,
+  size = &quot;512mb&quot;
+}
+</code></pre>
+
+<p>It is a lot better. No external dependencies, bash scripts, and it is available
+for everyone. And it is shorter and easier to understand.</p>
+
+<p>I hope you will enjoy it. It will be available in the next release of Terraform
+(0.9.4).</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2017/04/21/digitalocean-terraform-packer/">Permalink</a>. Category: cloud. Tags: linux hashicorp.<br/>
+        First published on Fri 21 April 2017.
+    </div>
+</div>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

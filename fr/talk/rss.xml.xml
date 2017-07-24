@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Talks on Julien Pivotto</title>
+    <link>https://roidelapluie.be/fr/talk/</link>
+    <description>Recent content in Talks on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 23 Oct 2017 16:36:40 +0200</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/fr/talk/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>quelque chose à propos de contribuer</title>
+      <link>https://roidelapluie.be/fr/talk/2017/ato/</link>
+      <pubDate>Mon, 23 Oct 2017 16:36:40 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2017/ato/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ligntning talk de 5 min sur pt-heartbeat et prometheus</title>
+      <link>https://roidelapluie.be/fr/talk/2017/promcon/</link>
+      <pubDate>Thu, 17 Aug 2017 08:40:53 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2017/promcon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>An introduction to terraform</title>
+      <link>https://roidelapluie.be/fr/talk/2017/rmll/</link>
+      <pubDate>Tue, 04 Jul 2017 20:57:37 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2017/rmll/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Superviser MySQL avec Prometheus et Grafana</title>
+      <link>https://roidelapluie.be/fr/talk/2017/percona/</link>
+      <pubDate>Thu, 22 Jun 2017 16:38:45 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2017/percona/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Atelier sur les Jenkins Shared Libraries</title>
+      <link>https://roidelapluie.be/fr/talk/2017/doj-osl/</link>
+      <pubDate>Thu, 01 Jun 2017 22:16:19 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2017/doj-osl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Atelier sur les Jenkins Shared Libraries</title>
+      <link>https://roidelapluie.be/fr/talk/2017/doj-gbg/</link>
+      <pubDate>Tue, 30 May 2017 22:16:19 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2017/doj-gbg/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jenkins Automation</title>
+      <link>https://roidelapluie.be/fr/talk/2017/osdc/</link>
+      <pubDate>Thu, 18 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2017/osdc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Do you know all of Puppet?</title>
+      <link>https://roidelapluie.be/fr/talk/2017/craft/</link>
+      <pubDate>Wed, 26 Apr 2017 20:41:11 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2017/craft/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>State of the Jenkins Automation</title>
+      <link>https://roidelapluie.be/fr/talk/2017/flossuk/</link>
+      <pubDate>Wed, 15 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2017/flossuk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Puppet DSL: Back to the basics</title>
+      <link>https://roidelapluie.be/fr/talk/2017/cfgmgmtcamp/</link>
+      <pubDate>Sun, 05 Feb 2017 17:00:00 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2017/cfgmgmtcamp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vox Pupuli</title>
+      <link>https://roidelapluie.be/fr/talk/2017/voxpupuli/</link>
+      <pubDate>Sun, 05 Feb 2017 12:00:00 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2017/voxpupuli/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Voxpupuli: a home for your puppet modules</title>
+      <link>https://roidelapluie.be/fr/talk/2016/voxpupuli/</link>
+      <pubDate>Thu, 27 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2016/voxpupuli/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Managing a R&amp;D Lab with Foreman</title>
+      <link>https://roidelapluie.be/fr/talk/2016/foreman/</link>
+      <pubDate>Wed, 13 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2016/foreman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DNSSec</title>
+      <link>https://roidelapluie.be/fr/talk/2016/rmll/</link>
+      <pubDate>Tue, 05 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2016/rmll/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Diving into Puppet providers development</title>
+      <link>https://roidelapluie.be/fr/talk/2016/puppet/</link>
+      <pubDate>Tue, 07 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2016/puppet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Managing a R&amp;D Lab with Foreman</title>
+      <link>https://roidelapluie.be/fr/talk/2016/osdc/</link>
+      <pubDate>Thu, 28 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2016/osdc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Getting the Maximum out of systemd</title>
+      <link>https://roidelapluie.be/fr/talk/2016/flossuk/</link>
+      <pubDate>Wed, 16 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2016/flossuk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RPM experiments</title>
+      <link>https://roidelapluie.be/fr/talk/2016/rpm/</link>
+      <pubDate>Fri, 26 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2016/rpm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CentOS Config Management SIG</title>
+      <link>https://roidelapluie.be/fr/talk/2016/cfgmgmtcamp/</link>
+      <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2016/cfgmgmtcamp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Demystifying the Foreman</title>
+      <link>https://roidelapluie.be/fr/talk/2016/cfgmgmtcamp2/</link>
+      <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2016/cfgmgmtcamp2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>systemd and Configuration Management</title>
+      <link>https://roidelapluie.be/fr/talk/2015/systemd/</link>
+      <pubDate>Fri, 06 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2015/systemd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Enhance OpenSSH for fun and Security</title>
+      <link>https://roidelapluie.be/fr/talk/2015/linuxcon/</link>
+      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2015/linuxcon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Puppet 4</title>
+      <link>https://roidelapluie.be/fr/talk/2015/puppet4/</link>
+      <pubDate>Fri, 25 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2015/puppet4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dive into Puppet 4</title>
+      <link>https://roidelapluie.be/fr/talk/2015/bpug2/</link>
+      <pubDate>Thu, 10 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2015/bpug2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PyTriage</title>
+      <link>https://roidelapluie.be/fr/talk/2015/pytriage/</link>
+      <pubDate>Fri, 31 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2015/pytriage/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Inuits</title>
+      <link>https://roidelapluie.be/fr/talk/2015/foreman/</link>
+      <pubDate>Wed, 17 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2015/foreman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>An introduction to Pulp</title>
+      <link>https://roidelapluie.be/fr/talk/2015/pulp/</link>
+      <pubDate>Fri, 29 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2015/pulp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Coworking with git</title>
+      <link>https://roidelapluie.be/fr/talk/2015/loadays/</link>
+      <pubDate>Sat, 11 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2015/loadays/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Puppet and Software delivery</title>
+      <link>https://roidelapluie.be/fr/talk/2015/flossuk/</link>
+      <pubDate>Wed, 25 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2015/flossuk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Puppet and Software delivery</title>
+      <link>https://roidelapluie.be/fr/talk/2015/bpug/</link>
+      <pubDate>Tue, 17 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2015/bpug/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>a call to give back puppetlabs-corosync to the community</title>
+      <link>https://roidelapluie.be/fr/talk/2015/pcs/</link>
+      <pubDate>Thu, 05 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2015/pcs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>An introduction to Pulp</title>
+      <link>https://roidelapluie.be/fr/talk/2015/dojo/</link>
+      <pubDate>Fri, 30 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2015/dojo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Augeas, swiss knife resources for your puppet tree</title>
+      <link>https://roidelapluie.be/fr/talk/2014/puppet/</link>
+      <pubDate>Mon, 17 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2014/puppet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Augeas, swiss knife resources for your puppet tree</title>
+      <link>https://roidelapluie.be/fr/talk/2014/bpug/</link>
+      <pubDate>Wed, 12 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2014/bpug/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Introduction to DevOps</title>
+      <link>https://roidelapluie.be/fr/talk/2014/lkfr/</link>
+      <pubDate>Thu, 06 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2014/lkfr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Working with multiple git repositories</title>
+      <link>https://roidelapluie.be/fr/talk/2014/t-dose/</link>
+      <pubDate>Sun, 26 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2014/t-dose/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vagrant and CentOS 7</title>
+      <link>https://roidelapluie.be/fr/talk/2014/dojo2/</link>
+      <pubDate>Mon, 25 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2014/dojo2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Building Pipelines at Scale</title>
+      <link>https://roidelapluie.be/fr/talk/2014/jenkins/</link>
+      <pubDate>Wed, 25 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2014/jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Introduction to Gitlab</title>
+      <link>https://roidelapluie.be/fr/talk/2014/gitlab/</link>
+      <pubDate>Wed, 04 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2014/gitlab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux HA anno 2014</title>
+      <link>https://roidelapluie.be/fr/talk/2014/loadays/</link>
+      <pubDate>Fri, 04 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2014/loadays/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lifecycle Management with Foreman</title>
+      <link>https://roidelapluie.be/fr/talk/2014/dojo/</link>
+      <pubDate>Fri, 31 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2014/dojo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DevOps, beyond agile</title>
+      <link>https://roidelapluie.be/fr/talk/2013/agile/</link>
+      <pubDate>Thu, 31 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2013/agile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deployment and Continuous Integration of a Zope/Plone application</title>
+      <link>https://roidelapluie.be/fr/talk/2013/pycon/</link>
+      <pubDate>Sat, 26 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2013/pycon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DevOps, Monitoring, Open Source and Infrastructure as Code</title>
+      <link>https://roidelapluie.be/fr/talk/2013/ocf/</link>
+      <pubDate>Sat, 05 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2013/ocf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Building and Deploing Mediasalsa</title>
+      <link>https://roidelapluie.be/fr/talk/2013/drupalcon/</link>
+      <pubDate>Thu, 26 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2013/drupalcon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Logstash and Friends</title>
+      <link>https://roidelapluie.be/fr/talk/2013/logstash/</link>
+      <pubDate>Mon, 02 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2013/logstash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Testing your puppet code</title>
+      <link>https://roidelapluie.be/fr/talk/2013/rmll/</link>
+      <pubDate>Mon, 15 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2013/rmll/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Monitoring at Cloud Scale</title>
+      <link>https://roidelapluie.be/fr/talk/2013/bacd/</link>
+      <pubDate>Thu, 13 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2013/bacd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PostgreSQL 9.0 HA</title>
+      <link>https://roidelapluie.be/fr/talk/2012/rmll/</link>
+      <pubDate>Wed, 11 Jul 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2012/rmll/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PostgreSQL 9.0 HA</title>
+      <link>https://roidelapluie.be/fr/talk/2012/loadays/</link>
+      <pubDate>Sun, 01 Apr 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/talk/2012/loadays/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

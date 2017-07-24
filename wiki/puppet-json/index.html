@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Puppet: no such file to load -- json (LoadError) - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link " href="/fr">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+<h1 class="title mt-3 mb-3">
+    Puppet: no such file to load -- json (LoadError)
+</h1>
+<div class="content">
+    <p>A Ruby &amp; Json error</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">[</span>root@localhost ~<span style="color: #666666">]</span><span style="color: #408080; font-style: italic"># puppet agent --test</span>
+/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in <span style="color: #BA2121">`</span>gem_original_require<span style="color: #BA2121">&#39;: no such file to load -- json (LoadError)</span>
+<span style="color: #BA2121">        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;</span>
+        from /usr/lib/ruby/site_ruby/1.8/puppet/module.rb:3
+        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in <span style="color: #BA2121">`</span>gem_original_require<span style="color: #BA2121">&#39;</span>
+<span style="color: #BA2121">        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;</span>
+        from /usr/lib/ruby/site_ruby/1.8/puppet/parser/files.rb:1
+        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in <span style="color: #BA2121">`</span>gem_original_require<span style="color: #BA2121">&#39;</span>
+<span style="color: #BA2121">        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;</span>
+        from /usr/lib/ruby/site_ruby/1.8/puppet/parser/templatewrapper.rb:1
+        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in <span style="color: #BA2121">`</span>gem_original_require<span style="color: #BA2121">&#39;</span>
+<span style="color: #BA2121">        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;</span>
+        from /usr/lib/ruby/site_ruby/1.8/puppet/parser/scope.rb:6
+        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in <span style="color: #BA2121">`</span>gem_original_require<span style="color: #BA2121">&#39;</span>
+<span style="color: #BA2121">        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;</span>
+        from /usr/lib/ruby/site_ruby/1.8/puppet/parser/methods.rb:2
+        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in <span style="color: #BA2121">`</span>gem_original_require<span style="color: #BA2121">&#39;</span>
+<span style="color: #BA2121">        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;</span>
+        from /usr/lib/ruby/site_ruby/1.8/puppet/parser/ast/method_call.rb:2
+        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in <span style="color: #BA2121">`</span>gem_original_require<span style="color: #BA2121">&#39;</span>
+<span style="color: #BA2121">        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;</span>
+        from /usr/lib/ruby/site_ruby/1.8/puppet/parser/ast.rb:115
+        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in <span style="color: #BA2121">`</span>gem_original_require<span style="color: #BA2121">&#39;</span>
+<span style="color: #BA2121">        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;</span>
+        from /usr/lib/ruby/site_ruby/1.8/puppet/parser/parser.rb:11
+        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in <span style="color: #BA2121">`</span>gem_original_require<span style="color: #BA2121">&#39;</span>
+<span style="color: #BA2121">        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;</span>
+        from /usr/lib/ruby/site_ruby/1.8/puppet/parser.rb:4
+        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in <span style="color: #BA2121">`</span>gem_original_require<span style="color: #BA2121">&#39;</span>
+<span style="color: #BA2121">        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;</span>
+        from /usr/lib/ruby/site_ruby/1.8/puppet.rb:270
+        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in <span style="color: #BA2121">`</span>gem_original_require<span style="color: #BA2121">&#39;</span>
+<span style="color: #BA2121">        from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;</span>
+        from /usr/lib/ruby/site_ruby/1.8/puppet/util/command_line.rb:12
+        from /usr/bin/puppet:7:in <span style="color: #BA2121">`</span>require<span style="border: 1px solid #FF0000">&#39;</span>
+        from /usr/bin/puppet:7
+</pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">[</span>root@localhost ~<span style="color: #666666">]</span><span style="color: #408080; font-style: italic"># rpm -qi rubygem-json</span>
+Name        : rubygem-json                 Relocations: / 
+Version     : <span style="color: #666666">1</span>.8.0                             Vendor: Florian Frank
+Release     : <span style="color: #666666">1</span>                             Build Date: Wed <span style="color: #666666">05</span> Jun <span style="color: #666666">2013</span> <span style="color: #666666">10</span>:44:15 AM CEST
+Install Date: Tue <span style="color: #666666">07</span> Oct <span style="color: #666666">2014</span> <span style="color: #666666">08</span>:13:41 AM CEST      Build Host: build.inuits.eu
+Group       : Languages/Development/Ruby    Source RPM: rubygem-json-1.8.0-1.src.rpm
+Size        : <span style="color: #666666">1214696</span>                          License: Ruby
+Signature   : <span style="color: #666666">(</span>none<span style="color: #666666">)</span>
+Packager    : &lt;jenkins@inuits.eu&gt;
+URL         : http://flori.github.com/json
+Summary     : This is a JSON implementation as a Ruby extension in C.
+Description :
+This is a JSON implementation as a Ruby extension in C.
+</pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">[</span>root@localhost ~<span style="color: #666666">]</span><span style="color: #408080; font-style: italic"># yum install ruby-json</span>
+Loaded plugins: security
+Setting up Install Process
+Resolving Dependencies
+--&gt; Running transaction check
+---&gt; Package ruby-json.x86_64 <span style="color: #666666">0</span>:1.5.5-3.el6 will be installed
+--&gt; Processing Dependency: rubygem-json <span style="color: #666666">=</span> <span style="color: #666666">1</span>.5.5-3.el6 <span style="color: #008000; font-weight: bold">for</span> package: ruby-json-1.5.5-3.el6.x86_64
+--&gt; Finished Dependency Resolution
+Error: Package: ruby-json-1.5.5-3.el6.x86_64 <span style="color: #666666">(</span>Puppetlabs-deps<span style="color: #666666">)</span>
+           Requires: rubygem-json <span style="color: #666666">=</span> <span style="color: #666666">1</span>.5.5-3.el6
+           Installed: <span style="color: #666666">1</span>:rubygem-json-1.8.0-1.noarch <span style="color: #666666">(</span>@internal<span style="color: #666666">)</span>
+               rubygem-json <span style="color: #666666">=</span> <span style="color: #666666">1</span>:1.8.0-1
+           Available: rubygem-json-1.4.6-1.el6.x86_64 <span style="color: #666666">(</span>Puppetlabs-deps<span style="color: #666666">)</span>
+               rubygem-json <span style="color: #666666">=</span> <span style="color: #666666">1</span>.4.6-1.el6
+           Available: rubygem-json-1.4.6-2.el6.x86_64 <span style="color: #666666">(</span>Puppetlabs-deps<span style="color: #666666">)</span>
+               rubygem-json <span style="color: #666666">=</span> <span style="color: #666666">1</span>.4.6-2.el6
+           Available: rubygem-json-1.5.5-1.el6.x86_64 <span style="color: #666666">(</span>Puppetlabs-deps<span style="color: #666666">)</span>
+               rubygem-json <span style="color: #666666">=</span> <span style="color: #666666">1</span>.5.5-1.el6
+           Available: rubygem-json-1.5.5-3.el6.x86_64 <span style="color: #666666">(</span>Puppetlabs-deps<span style="color: #666666">)</span>
+               rubygem-json <span style="color: #666666">=</span> <span style="color: #666666">1</span>.5.5-3.el6
+           Available: rubygem-json-1.6.6-2.el6.x86_64 <span style="color: #666666">(</span>upstream<span style="color: #666666">)</span>
+               rubygem-json <span style="color: #666666">=</span> <span style="color: #666666">1</span>.6.6-2.el6
+           Available: <span style="color: #666666">1</span>:rubygem-json-1.5.4-1.noarch <span style="color: #666666">(</span>internal<span style="color: #666666">)</span>
+               rubygem-json <span style="color: #666666">=</span> <span style="color: #666666">1</span>:1.5.4-1
+           Available: <span style="color: #666666">1</span>:rubygem-json-1.6.6-1.noarch <span style="color: #666666">(</span>internal<span style="color: #666666">)</span>
+               rubygem-json <span style="color: #666666">=</span> <span style="color: #666666">1</span>:1.6.6-1
+           Available: <span style="color: #666666">1</span>:rubygem-json-1.7.6-1.noarch <span style="color: #666666">(</span>internal<span style="color: #666666">)</span>
+               rubygem-json <span style="color: #666666">=</span> <span style="color: #666666">1</span>:1.7.6-1
+ You could try using --skip-broken to work around the problem
+ You could try running: rpm -Va --nofiles --nodigest
+</pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">[</span>root@localhost ~<span style="color: #666666">]</span><span style="color: #408080; font-style: italic"># yum shell</span>
+Loaded plugins: security
+Setting up Yum Shell
+&gt; remove rubygem-json
+Setting up Remove Process
+&gt; install rubygem-json-1.5.5-3.el6
+Setting up Install Process
+&gt; install ruby-json
+&gt; run
+--&gt; Running transaction check
+---&gt; Package ruby-json.x86_64 <span style="color: #666666">0</span>:1.5.5-3.el6 will be installed
+---&gt; Package rubygem-json.x86_64 <span style="color: #666666">0</span>:1.5.5-3.el6 will be installed
+---&gt; Package rubygem-json.noarch <span style="color: #666666">1</span>:1.8.0-1 will be erased
+--&gt; Finished Dependency <span style="color: #19177C">Resolution</span>
+
+<span style="color: #666666">====================================================================================</span>
+ Package             Arch          Version             Repository              <span style="color: #19177C">Size</span>
+<span style="color: #666666">====================================================================================</span>
+Installing:
+ ruby-json           x86_64        <span style="color: #666666">1</span>.5.5-3.el6         Puppetlabs-deps        <span style="color: #666666">9</span>.1 k
+ rubygem-json        x86_64        <span style="color: #666666">1</span>.5.5-3.el6         Puppetlabs-deps        <span style="color: #666666">763</span> k
+Removing:
+ rubygem-json        noarch        <span style="color: #666666">1</span>:1.8.0-1           @internal        <span style="color: #666666">1</span>.2 M
+
+Transaction <span style="color: #19177C">Summary</span>
+<span style="color: #666666">====================================================================================</span>
+Install       <span style="color: #666666">2</span> Package<span style="color: #666666">(</span>s<span style="color: #666666">)</span>
+Remove        <span style="color: #666666">1</span> Package<span style="color: #666666">(</span>s<span style="color: #666666">)</span>
+
+Total download size: <span style="color: #666666">772</span> k
+Is this ok <span style="color: #666666">[</span>y/N<span style="color: #666666">]</span>: y
+Downloading Packages:
+<span style="color: #666666">(1</span>/2<span style="color: #666666">)</span>: ruby-json-1.5.5-3.el6.x86_64.rpm                      | <span style="color: #666666">9</span>.1 kB     <span style="color: #666666">00</span>:00
+<span style="color: #666666">(2</span>/2<span style="color: #666666">)</span>: rubygem-json-1.5.5-3.el6.x86_64.rpm                   | <span style="color: #666666">763</span> kB     <span style="color: #666666">00</span>:00
+------------------------------------------------------------------------------------
+Total                                               <span style="color: #666666">5</span>.3 MB/s | <span style="color: #666666">772</span> kB     <span style="color: #666666">00</span>:00
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : rubygem-json-1.5.5-3.el6.x86_64                                  <span style="color: #666666">1</span>/3
+  Installing : ruby-json-1.5.5-3.el6.x86_64                                     <span style="color: #666666">2</span>/3
+  Cleanup    : <span style="color: #666666">1</span>:rubygem-json-1.8.0-1.noarch                                    <span style="color: #666666">3</span>/3
+  Verifying  : ruby-json-1.5.5-3.el6.x86_64                                     <span style="color: #666666">1</span>/3
+  Verifying  : rubygem-json-1.5.5-3.el6.x86_64                                  <span style="color: #666666">2</span>/3
+  Verifying  : <span style="color: #666666">1</span>:rubygem-json-1.8.0-1.noarch                                    <span style="color: #666666">3</span>/3
+
+Removed:
+  rubygem-json.noarch <span style="color: #666666">1</span>:1.8.0-1
+
+Installed:
+  ruby-json.x86_64 <span style="color: #666666">0</span>:1.5.5-3.el6          rubygem-json.x86_64 <span style="color: #666666">0</span>:1.5.5-3.el6
+
+Finished Transaction
+&gt; Leaving Shell
+</pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">[</span>root@localhost ~<span style="color: #666666">]</span><span style="color: #408080; font-style: italic"># puppet agent --test</span>
+Info: Retrieving pluginfacts
+</pre></div>
+
+<p>The yum shell command avoids the removal of the puppet package.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/wiki/puppet-json/">Permalink</a>. First published on Tue 7 December 2014.
+    </div>
+</div>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

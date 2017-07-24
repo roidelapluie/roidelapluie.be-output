@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Puppet 4 types and best practices - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link " href="/fr">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+<h1 class="title mt-3 mb-3"><a href="/blog/2015/09/15/puppet-4-types/" class="text-gray-dark">
+    Puppet 4 types and best practices
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>I have given a talk last week for the Belgian Puppet User Group about Puppet 4
+and I would like to post here some practices I want to share with you, in
+order to have the cleanest Puppet code.</p>
+
+<p>This can apply to all your local modules (not with the one you share with
+Puppet 3 users).</p>
+
+<h3 id="type-all-the-parameters">Type all the parameters</h3>
+
+<p>Each parameter should have a type. You can use the <code>Optional</code> type but you
+should try to avoid some types as much as possible:</p>
+
+<ul>
+<li><code>Variant</code>: because then you have to recheck the type after in your manifest.</li>
+<li><code>Data</code> <code>Scalar</code>: it is way to generic and makes it hard to know what is behind.</li>
+</ul>
+
+<p>Bad:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #7D9029">demo</span>::<span style="color: #7D9029">server</span> (
+  <span style="color: #19177C">$ensure,</span>
+  <span style="color: #19177C">$manage_service,</span>
+  <span style="color: #19177C">$password,</span>
+){}
+</pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #7D9029">demo</span>::<span style="color: #7D9029">server</span> (
+  <span style="color: #7D9029">Enum</span>[<span style="color: #BA2121">&#39;running&#39;</span>, <span style="color: #BA2121">&#39;stopped&#39;</span>] <span style="color: #19177C">$ensure,</span>
+  <span style="color: #19177C">$manage_service,</span>
+  <span style="color: #19177C">$password,</span>
+){}
+</pre></div>
+
+<p>Good:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #7D9029">demo</span>::<span style="color: #7D9029">server</span> (
+  <span style="color: #7D9029">Enum</span>[<span style="color: #BA2121">&#39;running&#39;</span>, <span style="color: #BA2121">&#39;stopped&#39;</span>] <span style="color: #19177C">$ensure,</span>
+  <span style="color: #7D9029">Boolean</span> <span style="color: #19177C">$manage_service,</span>
+  <span style="color: #7D9029">String</span>[<span style="color: #666666">8</span>] <span style="color: #19177C">$password,</span>
+){}
+</pre></div>
+
+<h3 id="use-complete-types-as-much-as-possible">Use complete types as much as possible</h3>
+
+<p>Avoid <code>Hash</code>, <code>Array</code>, <code>NotUndef</code>, <code>Optional</code> without parameters.</p>
+
+<p>Try to always define the content of a <code>Hash</code> or an <code>Array</code>. <code>Struct</code> and <code>Tuple</code>
+can help you with that.</p>
+
+<p>Bad:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #7D9029">demo</span>::<span style="color: #7D9029">server</span> (
+    <span style="color: #7D9029">Hash</span> <span style="color: #19177C">$extra_parameters,</span>
+    <span style="color: #7D9029">Array</span> <span style="color: #19177C">$databases,</span>
+){}
+</pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #7D9029">demo</span>::<span style="color: #7D9029">server</span> (
+    <span style="color: #7D9029">Hash</span>[<span style="color: #7D9029">String</span>, <span style="color: #7D9029">Hash</span>] <span style="color: #19177C">$extra_parameters,</span>
+    <span style="color: #7D9029">Array</span> <span style="color: #19177C">$databases,</span>
+){}
+</pre></div>
+
+<p>Good:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #7D9029">demo</span>::<span style="color: #7D9029">server</span> (
+    <span style="color: #7D9029">Hash</span>[<span style="color: #7D9029">String</span>[<span style="color: #666666">1</span>], <span style="color: #7D9029">Hash</span>[<span style="color: #7D9029">String</span>[<span style="color: #666666">1</span>], <span style="color: #7D9029">String</span>[<span style="color: #666666">1</span>]]] <span style="color: #19177C">$extra_parameters,</span>
+    <span style="color: #7D9029">Array</span>[<span style="color: #7D9029">String</span>[<span style="color: #666666">1</span>]] <span style="color: #19177C">$databases,</span>
+){}
+</pre></div>
+
+<h3 id="define-basic-parameters-like-length-and-minimum-value">Define basic parameters like length and minimum value</h3>
+
+<p>In most of the cases, you do not want empty <code>String</code>. You should in most of the
+cases use <code>String[1]</code>. The same applies for <code>Integer</code>: most of the case you want
+integers being greater than 0. Use <code>Integer[0]</code> to do so.</p>
+
+<p>Bad:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #7D9029">demo</span>::<span style="color: #7D9029">server</span>(
+  <span style="color: #7D9029">String</span> <span style="color: #19177C">$username,</span>
+  <span style="color: #7D9029">Array</span>[<span style="color: #7D9029">String</span>] <span style="color: #19177C">$packages,</span>
+){}
+</pre></div>
+
+<p>Good:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #7D9029">demo</span>::<span style="color: #7D9029">server</span>(
+  <span style="color: #7D9029">String</span>[<span style="color: #666666">4</span>] <span style="color: #19177C">$username,</span>
+  <span style="color: #7D9029">Array</span>[<span style="color: #7D9029">String</span>[<span style="color: #666666">1</span>], <span style="color: #666666">1</span>] <span style="color: #19177C">$packages,</span>
+){}
+</pre></div>
+
+<h3 id="use-the-right-type">Use the right type</h3>
+
+<ul>
+<li>Never use <code>Variant[Type, Undef]</code>, use <code>Optional</code> directly.</li>
+<li>If you have a limited number of choices, use an <code>Enum</code>. Unless the number of
+choices it too important and reduce visibility. In that case think about <code>Pattern</code>
+if possible.</li>
+<li>Do not check the type again in the manifest itself.</li>
+</ul>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #7D9029">demo</span>::<span style="color: #7D9029">server</span>(
+  <span style="color: #7D9029">Variant</span>[<span style="color: #7D9029">String</span>, <span style="color: #008000; font-weight: bold">Undef</span>] <span style="color: #19177C">$remote_host,</span>
+  <span style="color: #7D9029">Enum</span>[<span style="color: #BA2121">&#39;httpd&#39;</span>, <span style="color: #BA2121">&#39;mysql&#39;</span>, <span style="color: #BA2121">&#39;ntp&#39;</span>, <span style="color: #BA2121">&#39;mariadb&#39;</span>, <span style="color: #BA2121">&#39;dhcpd&#39;</span>] <span style="color: #19177C">$packages,</span>
+){}
+</pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #7D9029">demo</span>::<span style="color: #7D9029">server</span>(
+  <span style="color: #7D9029">Optional</span>[<span style="color: #7D9029">String</span>[<span style="color: #666666">1</span>]] <span style="color: #19177C">$remote_host,</span>
+  <span style="color: #7D9029">String</span>[<span style="color: #666666">3</span>] <span style="color: #19177C">$packages,</span>
+){}
+</pre></div>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/09/15/puppet-4-types/">Permalink</a>. Category: Automation. Tags: automation planet-inuits puppet.<br/>
+        First published on Tue 15 September 2015.
+    </div>
+</div>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

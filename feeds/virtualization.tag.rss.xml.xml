@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Virtualization on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/virtualization/</link>
+    <description>Recent content in Virtualization on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 28 Apr 2015 09:08:34 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/virtualization/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Easily extract files from qemu-kvm guests</title>
+      <link>https://roidelapluie.be/blog/2015/04/28/virt-copy-out/</link>
+      <pubDate>Tue, 28 Apr 2015 09:08:34 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/04/28/virt-copy-out/</guid>
+      <description>qemu-kvm libvirt users, here is a trick to get or put a file on a guest. It allows you to access easily files stored on the guests disks. Useful when the guest has no network connectivity or is just offline.
+Here is it:
+virt-copy-out -d myvm.example.com /root/myfile.txt /tmp/extract/  The file you want is /root/myfile.txt and you want it in /tmp/extract/. It works even with lvm-based disks and is a lot more easy to use than working with kpartx or other voodoo as often seen on the web.</description>
+    </item>
+    
+  </channel>
+</rss>

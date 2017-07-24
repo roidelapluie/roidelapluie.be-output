@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Screen on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/screen/</link>
+    <description>Recent content in Screen on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 25 Jun 2013 22:15:13 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/screen/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Rattaching a running process to a screen</title>
+      <link>https://roidelapluie.be/blog/2013/06/25/reptyr/</link>
+      <pubDate>Tue, 25 Jun 2013 22:15:13 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/06/25/reptyr/</guid>
+      <description>Reptyr is a small project written in C that enable you to &amp;ldquo;re-pty&amp;rdquo; your process. It means you can, for example, attach a running process inside a screen.
+For example, you launched irssi outside your screen, and you do not want to relaunch it.
+Install reptyr, then, in a screen, run the following commands:
+$ pidof irssi 27518 $ reptyr 27518  That&amp;rsquo;s it. The process will be rattached to Init but you will be able to use it directly from your screen, without notifying the difference.</description>
+    </item>
+    
+  </channel>
+</rss>

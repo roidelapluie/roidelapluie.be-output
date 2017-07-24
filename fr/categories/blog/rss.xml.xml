@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Julien Pivotto</title>
+    <link>https://roidelapluie.be/fr/categories/blog/</link>
+    <description>Recent content in Blog on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 05 Sep 2016 23:48:10 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/fr/categories/blog/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Les data ou la vie</title>
+      <link>https://roidelapluie.be/fr/blog/2016/09/05/les-data-ou-la-vie/</link>
+      <pubDate>Mon, 05 Sep 2016 23:48:10 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/blog/2016/09/05/les-data-ou-la-vie/</guid>
+      <description>Le big data est certainement à la mode, tout comme les objects connectés et l&amp;rsquo;internet des objets. Derrière tout ce blabla, on retrouve des problématiques que l&amp;rsquo;on nous vend comme étant le progrès et que l&amp;rsquo;on va bientôt nous obliger à acheter.
+Tout d&amp;rsquo;abord, tout va devenir connecté. D&amp;rsquo;ici 10 ans, la grande majorité des systèmes électroménagers seront juste connectés à internet. Ils se connecteront tous à leur fournisseur (qui y trouveront un nouveau moyen de se faire de l&amp;rsquo;argent).</description>
+    </item>
+    
+    <item>
+      <title>Blog en Français</title>
+      <link>https://roidelapluie.be/fr/blog/2015/09/04/blog-en-fran%C3%A7ais/</link>
+      <pubDate>Fri, 04 Sep 2015 23:42:16 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/fr/blog/2015/09/04/blog-en-fran%C3%A7ais/</guid>
+      <description>Voila, je me lance dans un blog en Français. Je ne sais pas vraiment ce que j&amp;rsquo;y mettrai. Je ne traduirai probablement pas tous mes posts écrits en Anglais car il n&amp;rsquo;y a pas beaucoup d&amp;rsquo;intérêt à bloguer en français sur des thèmes techniques.
+On va commencer par quelques opinions de temps en temps&amp;hellip;</description>
+    </item>
+    
+  </channel>
+</rss>

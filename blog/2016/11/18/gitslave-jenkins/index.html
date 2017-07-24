@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Gitslave for Jenkins Pipelines - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link " href="/fr">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+<h1 class="title mt-3 mb-3"><a href="/blog/2016/11/18/gitslave-jenkins/" class="text-gray-dark">
+    Gitslave for Jenkins Pipelines
+</a></h1>
+<div class="content text-justify">
+    <p>At customer, we are using <a href="http://gitslave.sourceforge.net/">GitSlave</a>, as a way
+to build and release multiple releases at the same time. Gitslave is like git
+submodules, except that you always get the latest version of the submodules (no
+commits needed in the super repository).</p>
+
+<p>For CI, we are using <a href="https://jenkins.io">Jenkins</a>. A Jenkins plugin was developed for it.
+Unfortunately, it was written in a way that would make the work of opensourcing
+that module too big (IP was all over the place in the testsuite). In addition to
+that, the integration with Jenkins was not as best as with the Git plugin.</p>
+
+<p>The multi scm plugin is not an option as the list of repos to clone is in a
+file; and that it sometimes changes.</p>
+
+<p>Fortunately, we will eventually drop that proprietary module, switching to the
+new <a href="https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Plugin">Pipeline plugin</a>.
+I would then like to share a Jenkinsfile script that takes the <code>.gitslave</code>
+configuration file and clones every repository. Please note that it takes some
+parameters: <code>gitBaseUrl</code>, and <code>superRepo</code>. It will clone the repositories in
+multiple threads.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>lock<span style="color: #666666">(</span><span style="color: #BA2121">&#39;checkout&#39;</span><span style="color: #666666">)</span> <span style="color: #666666">{</span>
+    <span style="color: #B00040">def</span> checkouts <span style="color: #666666">=</span> <span style="color: #666666">[:]</span>
+    <span style="color: #B00040">def</span> threads <span style="color: #666666">=</span> <span style="color: #666666">8</span>
+
+    stage<span style="color: #666666">(</span><span style="color: #BA2121">&#39;Super Repo&#39;</span><span style="color: #666666">)</span> <span style="color: #666666">{</span>
+        checkout<span style="color: #666666">([</span>$class<span style="color: #666666">:</span> <span style="color: #BA2121">&#39;GitSCM&#39;</span><span style="color: #666666">,</span>
+                <span style="color: #A0A000">branches:</span> <span style="color: #666666">[[</span><span style="color: #A0A000">name:</span> branch<span style="color: #666666">]],</span>
+                <span style="color: #A0A000">doGenerateSubmoduleConfigurations:</span> <span style="color: #008000; font-weight: bold">false</span><span style="color: #666666">,</span>
+                <span style="color: #A0A000">extensions:</span> <span style="color: #666666">[[</span>$class<span style="color: #666666">:</span> <span style="color: #BA2121">&#39;CleanCheckout&#39;</span><span style="color: #666666">],</span> <span style="color: #666666">[</span>$class<span style="color: #666666">:</span> <span style="color: #BA2121">&#39;ScmName&#39;</span><span style="color: #666666">,</span> <span style="color: #A0A000">name:</span> <span style="color: #BA2121">&#39;super&#39;</span><span style="color: #666666">]],</span>
+                <span style="color: #A0A000">submoduleCfg:</span> <span style="color: #666666">[],</span>
+                <span style="color: #A0A000">userRemoteConfigs:</span> <span style="color: #666666">[[</span><span style="color: #A0A000">url:</span> <span style="color: #BA2121">&quot;${gitBaseUrl}/${superRepo}&quot;</span><span style="color: #666666">]]])</span>
+
+        <span style="color: #B00040">def</span> repos <span style="color: #666666">=</span> readFile<span style="color: #666666">(</span><span style="color: #BA2121">&#39;.gitslave&#39;</span><span style="color: #666666">)</span>
+        <span style="color: #B00040">def</span> reposLines <span style="color: #666666">=</span> repos<span style="color: #666666">.</span><span style="color: #7D9029">readLines</span><span style="color: #666666">()</span>
+        <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span>i <span style="color: #666666">=</span> <span style="color: #666666">0;</span> i <span style="color: #666666">&lt;</span> threads<span style="color: #666666">;</span> i<span style="color: #666666">++){</span>
+            checkouts<span style="color: #666666">[</span><span style="color: #BA2121">&quot;Thread ${i}&quot;</span><span style="color: #666666">]</span> <span style="color: #666666">=</span> <span style="color: #666666">[]</span>
+        <span style="color: #666666">}</span>
+        <span style="color: #B00040">def</span> idx <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+        <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span>line <span style="color: #008000; font-weight: bold">in</span> reposLines<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+            <span style="color: #B00040">def</span> repoInfo <span style="color: #666666">=</span> line<span style="color: #666666">.</span><span style="color: #7D9029">split</span><span style="color: #666666">(</span><span style="color: #BA2121">&#39; &#39;</span><span style="color: #666666">)</span>
+            <span style="color: #B00040">def</span> repoUrl <span style="color: #666666">=</span> repoInfo<span style="color: #666666">[0]</span>
+            <span style="color: #B00040">def</span> repoPath <span style="color: #666666">=</span> repoInfo<span style="color: #666666">[1]</span>
+            <span style="color: #B00040">def</span> curatedRepoUrl <span style="color: #666666">=</span> repoUrl<span style="color: #666666">.</span><span style="color: #7D9029">substring</span><span style="color: #666666">(4,</span> repoUrl<span style="color: #666666">.</span><span style="color: #7D9029">length</span><span style="color: #666666">()-1)</span>
+            <span style="color: #B00040">def</span> curatedRepoPath <span style="color: #666666">=</span> repoPath<span style="color: #666666">.</span><span style="color: #7D9029">substring</span><span style="color: #666666">(1,</span> repoPath<span style="color: #666666">.</span><span style="color: #7D9029">length</span><span style="color: #666666">()-1)</span>
+            echo<span style="color: #666666">(</span><span style="color: #BA2121">&quot;Thread ${idx%threads}&quot;</span><span style="color: #666666">)</span>
+            checkouts<span style="color: #666666">[</span><span style="color: #BA2121">&quot;Thread ${idx%threads}&quot;</span><span style="color: #666666">]</span> <span style="color: #666666">&lt;&lt;</span> <span style="color: #666666">[</span><span style="color: #A0A000">path:</span> curatedRepoPath<span style="color: #666666">,</span> <span style="color: #A0A000">url:</span> <span style="color: #BA2121">&quot;${gitBaseUrl}/${curatedRepoUrl}&quot;</span><span style="color: #666666">]</span>
+            idx<span style="color: #666666">++</span>
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+    stage<span style="color: #666666">(</span><span style="color: #BA2121">&#39;GitSlave Repos&#39;</span><span style="color: #666666">)</span> <span style="color: #666666">{</span>
+        <span style="color: #B00040">def</span> doCheckouts <span style="color: #666666">=</span> <span style="color: #666666">[:]</span>
+        <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span>i <span style="color: #666666">=</span> <span style="color: #666666">0;</span> i <span style="color: #666666">&lt;</span> threads<span style="color: #666666">;</span> i<span style="color: #666666">++){</span>
+            <span style="color: #B00040">def</span> j <span style="color: #666666">=</span> i
+            doCheckouts<span style="color: #666666">[</span><span style="color: #BA2121">&quot;Thread ${j}&quot;</span><span style="color: #666666">]</span> <span style="color: #666666">=</span> <span style="color: #666666">{</span>
+                <span style="color: #008000; font-weight: bold">for</span> <span style="color: #666666">(</span>co <span style="color: #008000; font-weight: bold">in</span> checkouts<span style="color: #666666">[</span><span style="color: #BA2121">&quot;Thread ${j}&quot;</span><span style="color: #666666">])</span> <span style="color: #666666">{</span>
+                    retry<span style="color: #666666">(3)</span> <span style="color: #666666">{</span>
+                        checkout<span style="color: #666666">([</span>$class<span style="color: #666666">:</span> <span style="color: #BA2121">&#39;GitSCM&#39;</span><span style="color: #666666">,</span>
+                                <span style="color: #A0A000">branches:</span> <span style="color: #666666">[[</span><span style="color: #A0A000">name:</span> branch<span style="color: #666666">]],</span>
+                                <span style="color: #A0A000">doGenerateSubmoduleConfigurations:</span> <span style="color: #008000; font-weight: bold">false</span><span style="color: #666666">,</span>
+                                <span style="color: #A0A000">extensions:</span> <span style="color: #666666">[[</span>$class<span style="color: #666666">:</span> <span style="color: #BA2121">&#39;RelativeTargetDirectory&#39;</span><span style="color: #666666">,</span> <span style="color: #A0A000">relativeTargetDir:</span> co<span style="color: #666666">.</span><span style="color: #7D9029">path</span><span style="color: #666666">],</span> <span style="color: #666666">[</span>$class<span style="color: #666666">:</span> <span style="color: #BA2121">&#39;CleanCheckout&#39;</span><span style="color: #666666">],</span> <span style="color: #666666">[</span>$class<span style="color: #666666">:</span> <span style="color: #BA2121">&#39;ScmName&#39;</span><span style="color: #666666">,</span> <span style="color: #A0A000">name:</span> co<span style="color: #666666">.</span><span style="color: #7D9029">path</span><span style="color: #666666">]],</span>
+                                <span style="color: #A0A000">submoduleCfg:</span> <span style="color: #666666">[],</span>
+                                <span style="color: #A0A000">userRemoteConfigs:</span> <span style="color: #666666">[[</span><span style="color: #A0A000">url:</span> co<span style="color: #666666">.</span><span style="color: #7D9029">url</span><span style="color: #666666">]]])</span>
+                    <span style="color: #666666">}</span>
+                <span style="color: #666666">}</span>
+            <span style="color: #666666">}</span>
+        <span style="color: #666666">}</span>
+        parallel doCheckouts
+    <span style="color: #666666">}</span>
+<span style="color: #666666">}</span>
+</pre></div>
+
+<p>That script is under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>.</p>
+
+<p>Why do we run in threads and not everything in parallel? First, <a href="https://jenkins.io/projects/blueocean/">Blue Ocean</a>
+<a href="https://issues.jenkins-ci.org/browse/JENKINS-39770">can only display 100 threads</a>. Running several operations in all the repos
+would end up with more that 100 threads. Plus it is probably not clever to
+run such a big amount of parallelism.</p>
+
+<p>What is still to be done? We do not delete repositories that disappear from the
+<code>.gitslave</code> file.</p>
+
+<p>Here is the result:</p>
+
+<img src="/images/jenkins-bo-gitslave.png" class="img-fluid" alt="GitSlave in Jenkins Pipeline"/>
+
+
+<p>PS: GitSlave is named GitSlave. I do not like the name &ndash; and kudos to the
+Jenkins team to drop the Master/Slave terminology as part of the Jenkins 2.0
+release.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2016/11/18/gitslave-jenkins/">Permalink</a>. Category: Linux. Tags: jenkins planet-inuits.<br/>
+        First published on Fri 18 November 2016.
+    </div>
+</div>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

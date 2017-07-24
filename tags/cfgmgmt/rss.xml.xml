@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cfgmgmt on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/cfgmgmt/</link>
+    <description>Recent content in Cfgmgmt on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 09 Feb 2017 11:33:25 +0100</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/cfgmgmt/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>mgmt</title>
+      <link>https://roidelapluie.be/blog/2017/02/09/mgmt/</link>
+      <pubDate>Thu, 09 Feb 2017 11:33:25 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/02/09/mgmt/</guid>
+      <description>At Config Management Camp, James was once again presenting mgmt. He presented the project one year ago, on his blog. There are multiple ideas behind mgmt (as you can read on his blog):
+ Parallel execution Event driven Distributed topology  And all of that makes a lot of sense. I really like it. I do really think that this might become a huge deal in the future. But there are a couple of concerns I would like to raise.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on Julien Pivotto</title>
+    <link>https://roidelapluie.be/categories/android/</link>
+    <description>Recent content in Android on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 10 May 2015 17:22:27 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/categories/android/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>F-Droid drops Firefox</title>
+      <link>https://roidelapluie.be/blog/2015/05/10/f-droid-firefox/</link>
+      <pubDate>Sun, 10 May 2015 17:22:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/05/10/f-droid-firefox/</guid>
+      <description>Firefox will get a new name - at least on F-Droid. Firefox was alreasy known as GNU IceCat and Iceweasel.
+Now F-Droid will have its own rebuild, called Fennec FDroid. It removes the proprietary binaries out of the official builds.
+F-Droid will eventually remove Firefox out of its package list.</description>
+    </item>
+    
+    <item>
+      <title>F-droid welcomes BeTrains</title>
+      <link>https://roidelapluie.be/blog/2014/10/20/f-droid-welcomes-betrains/</link>
+      <pubDate>Mon, 20 Oct 2014 21:26:11 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/10/20/f-droid-welcomes-betrains/</guid>
+      <description>I have discovered that F-Droid contains BeTrains, an open-source android tool to get data like timetables from the Belgian national railway company. Let&amp;rsquo;s take some time to explain you that in details.
+What is F-droid? It is a repository for Android. It contains a lot of different application, that have one thing in common: they are all open-source.
+There is of course one client that you can install on your android device to browse the catalogue and download/update your applications.</description>
+    </item>
+    
+    <item>
+      <title>CalDAV, Open-Source and Android</title>
+      <link>https://roidelapluie.be/blog/2014/08/15/caldav-android/</link>
+      <pubDate>Fri, 15 Aug 2014 07:38:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/08/15/caldav-android/</guid>
+      <description>At Inuits, we are using Zimbra as mail and calendaring solution.
+In the past, it used to be very difficult to synchronize the calendar with android phones. The calendar supports ics and CalDAV exports, but none of these solutions was working on android.
+ICS Synchronizing the calendar with ICS had several downsides:
+ You need to create a share of the calendar It is read-only  So I quickly gave up that possibility.</description>
+    </item>
+    
+  </channel>
+</rss>

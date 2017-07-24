@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/network/</link>
+    <description>Recent content in Network on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 27 Dec 2015 20:07:53 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/network/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>wpa_supplicant and WPS</title>
+      <link>https://roidelapluie.be/blog/2015/12/27/wi-fi-protected-setup/</link>
+      <pubDate>Sun, 27 Dec 2015 20:07:53 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/12/27/wi-fi-protected-setup/</guid>
+      <description>I do not rely on graphical tools or any third party tools for connecting to wireless networks. I use plain wpa_supplicant with hand-crafted configuation files (one config file per network).
+Nowadays, lots of wireless setups have a way to use Wi-Fi Protected Setup, in particular the Push-Button method. The way it works is simple: you click a button in your computer, another one on the router and they magically connect.</description>
+    </item>
+    
+    <item>
+      <title>Specific routing table for one process</title>
+      <link>https://roidelapluie.be/blog/2015/10/13/specific-routing-table/</link>
+      <pubDate>Tue, 13 Oct 2015 21:53:15 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/10/13/specific-routing-table/</guid>
+      <description>I have multiple VPNs launched at any time that route all of my traffic outside the eyes of my ISP (including default gateway).
+Some services however require me to have my &amp;lsquo;belgian&amp;rsquo; ip address. The easy solution is of course to stop my VPN but hey, no way!
+So here is another solution, quite simple (it does not involve mangling or bridges).
+This solution is with network namespaces and multiple routing tables.</description>
+    </item>
+    
+  </channel>
+</rss>

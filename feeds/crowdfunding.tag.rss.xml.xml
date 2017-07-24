@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Crowdfunding on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/crowdfunding/</link>
+    <description>Recent content in Crowdfunding on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 04 Oct 2014 12:31:48 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/crowdfunding/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>I&#39;ve backed Matchstick</title>
+      <link>https://roidelapluie.be/blog/2014/10/04/i-ve-backed-matchstick/</link>
+      <pubDate>Sat, 04 Oct 2014 12:31:48 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/10/04/i-ve-backed-matchstick/</guid>
+      <description>I have backed Matchstick, the HDMI stick based on Firefox OS. It is the first crowdfunding project I participate. And I hope it won&amp;rsquo;t be the last one.
+There are a few reasons why I have chosen to do so.
+The first reason is the open-source part of that project. An open-source software combined with open-source hardware, that is everything I like. Good philosophy is always a good point.
+Next that project is exciting.</description>
+    </item>
+    
+  </channel>
+</rss>

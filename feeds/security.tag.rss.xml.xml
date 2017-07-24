@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/security/</link>
+    <description>Recent content in Security on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 20 Jul 2017 09:29:55 +0200</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/security/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Custom Sudo command with Ansible</title>
+      <link>https://roidelapluie.be/blog/2017/07/20/custom-sudo-command-with-ansible/</link>
+      <pubDate>Thu, 20 Jul 2017 09:29:55 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/07/20/custom-sudo-command-with-ansible/</guid>
+      <description>While introducing Ansible at customer, I noticed the following problem while using ansible become feature:
+sudo: unable to create /var/log/sudo-io/170718-124212: File exists sudo: error initializing I/O plugin sudoers_io  That was because in the sudoers configuration, you have:
+Defaults syslog=auth,log_input,log_output,iolog_file=%y%m%d-%H%M%S  Which means that sudo sessions will be logged, but there can only be one sudo session per second. While discussing with colleagues what would be the best way to address this &amp;ndash; several options are possible: not logging, logging with seq (Defaults:ansible iolog_file=ansible/%{seq}), logging microseconds, &amp;hellip; &amp;ndash; I have implemented a workaround.</description>
+    </item>
+    
+    <item>
+      <title>This blog runs a Let&#39;s Encrypt certificate</title>
+      <link>https://roidelapluie.be/blog/2015/10/28/letsencrypt/</link>
+      <pubDate>Wed, 28 Oct 2015 08:43:26 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/10/28/letsencrypt/</guid>
+      <description>I am part of the Let&amp;rsquo;s Encrypt beta test. As part of it, I generated a SSL certificate for my blog, and it is now live.
+In the past I used Startssl to get free certificates. Those certificates expired in September. At that time I switched to a Comodo certificate, because the validity was only 3 months and I hoped Let&amp;rsquo;s Encrypt to be there before the end of the year.</description>
+    </item>
+    
+    <item>
+      <title>5 bugs</title>
+      <link>https://roidelapluie.be/blog/2014/09/25/bugs-bugs-bugs/</link>
+      <pubDate>Thu, 25 Sep 2014 21:28:21 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/25/bugs-bugs-bugs/</guid>
+      <description> Bash remote code execution vulnerability Heartbleed bug Getting mysql root acces 1&amp;frasl;256 times Bumblebee deleting /usr Use glibc to get root access  </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="nav-item nav-link " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2017/07/20/custom-sudo-command-with-ansible/" class="text-gray-dark">
+    Custom Sudo command with Ansible
+</a></h1>
+<div class="content text-justify">
+    <p>While introducing <a href="https://www.ansible.com/">Ansible</a> at customer, I noticed the
+following problem while using ansible <code>become</code> feature:</p>
+
+<pre><code>sudo: unable to create /var/log/sudo-io/170718-124212: File exists
+sudo: error initializing I/O plugin sudoers_io
+</code></pre>
+
+<p>That was because in the sudoers configuration, you have:</p>
+
+<pre><code>Defaults syslog=auth,log_input,log_output,iolog_file=%y%m%d-%H%M%S
+</code></pre>
+
+<p>Which means that sudo sessions will be logged, but there can only be one sudo
+session per second. While discussing with colleagues what would be the best way
+to address this &ndash; several options are possible: not logging, logging with seq
+(<code>Defaults:ansible iolog_file=ansible/%{seq}</code>), logging microseconds, &hellip; &ndash; I
+have implemented a workaround.</p>
+
+<p>What is interesting is that it uses an undocumented feature: <code>become_exe</code>.</p>
+
+<p>I dropped a file in the ansible repo with the following content:</p>
+
+<pre><code>[privilege_escalation]
+become_exe = /bin/sleep 1 &amp;&amp; /bin/sudo
+</code></pre>
+
+<p>And, magically, ansible now waits one second between sudo commands. Enough to
+let me continue working while looking for the best resolution.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2017/07/20/custom-sudo-command-with-ansible/">Permalink</a>. Category: automation. Tags: linux security ansible planet-inuits.<br/>
+        First published on Thu 20 July 2017.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2017/04/21/digitalocean-terraform-packer/" class="text-gray-dark">
+    A link between DigitalOcean, Packer and Terraform
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>In the coming months, I will run several workshops about Jenkins. Those
+workshops will be hands-on, so people will bring their own laptops to hack on
+Jenkins instances.</p>
+
+<p>For that, I expect lots of them will simply run Jenkins on their laptops, or use
+an external laptop. But, as a backup, or a primary solution, I plan to provision
+multiple instances of Jenkins, ready to be used, in the cloud.</p>
+
+<p>Amongst the cloud providers, <a href="https://www.digitalocean.com/">DigitalOcean</a> is
+great for this purpose: while it is feature limited, it is simple. Its pricing
+model is simple too.</p>
+
+<p>In the cloud, you run images. Like I will spin up a lot of them, I want to have
+those images ready, so I just need to boot them and configure them. The tool for
+that is <a href="https://packer.io">Packer</a>. Packer builds images. For DigitalOcean,
+Docker, AWS, Virtualbox.. It has a great list of providers.</p>
+
+<p>That part was easy. I&rsquo;ve got my snapshots built quickly.</p>
+
+<p>Then enters <a href="https://terraform.io">Terraform</a>. Terraform can deploy the
+snapshots built by Packer. Just like this:</p>
+
+<pre><code>resource &quot;digitalocean_droplet&quot; &quot;jenkins&quot; {
+  image = &quot;1028374&quot;
+  count  = &quot;${var.count}&quot;
+  name = &quot;${format(&quot;jenkins%02d&quot;, count.index + 1)}&quot;
+  ssh_keys = [ &quot;${var.do_ssh_key}&quot; ]
+  region = &quot;${var.do_datacenter}&quot;
+  private_networking = &quot;true&quot;,
+  size = &quot;512mb&quot;
+}
+</code></pre>
+
+<p>That configuration works but has a problem: the image parameter is an ID. For
+Snapshots, you can not use name, slugs, you have to use id numbers. This is very
+annoying, because I to not want the image 1028374, I want the image
+&ldquo;jenkins-1.0.0&rdquo;. Which is the name I defined in Packer.</p>
+
+<h2 id="the-workaround">The workaround</h2>
+
+<p>Like lots of problems with open-source software, there is a workaround.
+Terraform has an <a href="https://www.terraform.io/docs/providers/external/data_source.html">external
+datasource</a>
+plugin. It can run any script. Here is mine:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">#!/bin/bash -e</span>
+<span style="color: #008000">set</span> -o pipefail
+<span style="color: #19177C">snapshots</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #008000; font-weight: bold">$(</span><span style="color: #008000">eval</span> <span style="color: #008000; font-weight: bold">$(</span>jq -r <span style="color: #BA2121">&#39;@sh &quot;doctl -t=\(.api_token) compute snapshot list</span>
+<span style="color: #BA2121">\(.id) -o json&quot;&#39;</span><span style="color: #008000; font-weight: bold">))</span><span style="color: #BA2121">&quot;</span>
+<span style="color: #19177C">nr</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #008000; font-weight: bold">$(</span><span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$snapshots</span><span style="color: #BA2121">&quot;</span>|jq <span style="color: #BA2121">&#39;.|length&#39;</span><span style="color: #008000; font-weight: bold">)</span><span style="color: #BA2121">&quot;</span>
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">[[</span> <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$nr</span><span style="color: #BA2121">&quot;</span> -ne <span style="color: #666666">1</span> <span style="color: #666666">]]</span>
+<span style="color: #008000; font-weight: bold">then</span>
+    <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Expected 1 snapshot, found </span><span style="color: #19177C">$nr</span><span style="color: #BA2121">&quot;</span> &gt;&amp;<span style="color: #666666">2</span>
+    <span style="color: #008000">exit</span> <span style="color: #666666">1</span>
+<span style="color: #008000; font-weight: bold">fi</span>
+<span style="color: #19177C">id</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #008000; font-weight: bold">$(</span><span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$snapshots</span><span style="color: #BA2121">&quot;</span>|jq -r .<span style="color: #666666">[0]</span>.id<span style="color: #008000; font-weight: bold">)</span><span style="color: #BA2121">&quot;</span>
+jq -r -n --arg id <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$id</span><span style="color: #BA2121">&quot;</span> <span style="color: #BA2121">&#39;{&quot;id&quot;:$id}&#39;</span>
+</pre></div>
+
+<p>In Terraform:</p>
+
+<pre><code>data &quot;external&quot; &quot;jenkins_snapshot&quot; {
+  program = [&quot;./do_snapshot_id&quot;]
+  query {
+    id = &quot;jenkins-${var.do_jenkins_droplet_version}&quot;
+    api_token = &quot;${var.do_api_token}&quot;
+  }
+}
+
+resource &quot;digitalocean_droplet&quot; &quot;jenkins&quot; {
+  image = &quot;${data.external.jenkins_snapshot.result.id}&quot;
+  count  = &quot;${var.count}&quot;
+  name = &quot;${format(&quot;jenkins%02d&quot;, count.index + 1)}&quot;
+  ssh_keys = [ &quot;${var.do_ssh_key}&quot; ]
+  region = &quot;${var.do_datacenter}&quot;
+  private_networking = &quot;true&quot;,
+  size = &quot;512mb&quot;
+}
+</code></pre>
+
+<p>That is already better. I can now use the same name as the one I use in Packer.
+No more meaningless ID&rsquo;s.</p>
+
+<p>But this approach has multiple problems:</p>
+
+<ul>
+<li>Bash scripting is unreadable; it is just 10 lines but is a mess.</li>
+<li>It introduces jq and doctl as dependencies. So it will not work for everyone.</li>
+<li>It delegates the digitalocean credentials to multiple processes. I do not like
+that.</li>
+</ul>
+
+<h2 id="the-solution">The Solution</h2>
+
+<p>I ended up spending some time on an implementation in go. It is now <a href="https://github.com/hashicorp/terraform/commit/c2a1e688cb19aef1ac76d7f360876824ce4f8c46">merged</a> en
+Terraform, which means I had to write documentation and tests, so everyone can
+use it now. Here is the DigitalOcean image datasource:</p>
+
+<pre><code>data &quot;digitalocean_image&quot; &quot;jenkins&quot; {
+  name = &quot;jenkins-${var.do_jenkins_droplet_version}&quot;
+}
+
+resource &quot;digitalocean_droplet&quot; &quot;jenkins&quot; {
+  image  = &quot;${data.digitalocean_image.jenkins.image}&quot;
+  count  = &quot;${var.count}&quot;
+  name = &quot;${format(&quot;jenkins%02d&quot;, count.index + 1)}&quot;
+  ssh_keys = [ &quot;${var.do_ssh_key}&quot; ]
+  region = &quot;${var.do_datacenter}&quot;
+  private_networking = &quot;true&quot;,
+  size = &quot;512mb&quot;
+}
+</code></pre>
+
+<p>It is a lot better. No external dependencies, bash scripts, and it is available
+for everyone. And it is shorter and easier to understand.</p>
+
+<p>I hope you will enjoy it. It will be available in the next release of Terraform
+(0.9.4).</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2017/04/21/digitalocean-terraform-packer/">Permalink</a>. Category: cloud. Tags: linux hashicorp.<br/>
+        First published on Fri 21 April 2017.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2017/03/30/nightly-jobs-jenkins/" class="text-gray-dark">
+    Running Nightly jobs with Jenkins
+</a></h1>
+<div class="content text-justify">
+    <p>Jenkins can spread the load of Jobs by using H instead of * in the cron fields.
+It means that:</p>
+
+<pre><code>H 3 * * *
+</code></pre>
+
+<p>Means: Run between 3 and 4 am.</p>
+
+<p>The minute will be decided by Jenkins, by applying a hash function over the job
+name.</p>
+
+<p>What about this one:</p>
+
+<pre><code>H H * * *
+</code></pre>
+
+<p>Means: Run once a day. The moment will be calculated by a Jenkins based on the
+job name.</p>
+
+<p>But what if I have hundreds of jobs, I want to run them once a day, but during
+night? Something like:</p>
+
+<pre><code>H H(0-5) * * *
+</code></pre>
+
+<p>Means: Run the job once everyday between 12am and 6am.</p>
+
+<p>But when you scale up your Jenkins, you want the jobs to run between e.g. 7pm
+and 6am. Because you also want to use the hours before midnight.,</p>
+
+<p>There is a BAD WAY to do it:</p>
+
+<pre><code>H H(0-6),H(19-23) H/2 * *
+</code></pre>
+
+<p>That would run the jobs in the morning and the evening, every 2 days. It is
+complex and will not behave correctly at the end of months.</p>
+
+<p>The GOOD WAY to do it is to set the timezone in the cron expression, something
+which is <a href="https://github.com/jenkinsci/jenkins/pull/1720">not documented yet</a>.
+It is there since Jenkins 1.615 so you probably have it in your Jenkins:</p>
+
+<pre><code>TZ=GMT+7
+H H(0-10) * * *
+</code></pre>
+
+<p>What does this mean? In the timezone GMT+7, run the jobs once between 12am and
+11 am. Which means between 7pm and 6am in my timezone.</p>
+
+<pre><code>$ date -d '0:00 GMT+7'
+Wed Mar 29 19:00:00 CEST 2017
+$ date -d '11:00 GMT+7'
+Thu Mar 30 06:00:00 CEST 2017
+</code></pre>
+
+<p>It is a lot more simple syntax and is more reliable. Please note that the
+validation (preview) below the Cron settings is not using that TZ
+(I opened <a href="https://issues.jenkins-ci.org/browse/JENKINS-43228">JENKINS-43228</a>
+for this).</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2017/03/30/nightly-jobs-jenkins/">Permalink</a>. Category: Automation. Tags: Jenkins Testing Planet-inuits.<br/>
+        First published on Thu 30 March 2017.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2017/03/30/robot-firefox-socks/" class="text-gray-dark">
+    Setting a Socks Proxy in Firefox Webdriver with Robot Framework
+</a></h1>
+<div class="content text-justify">
+    <p>Here are the <a href="http://robotframework.org/">Robot Framework</a> keywords needed
+nowadays to setup a socks5 proxy (e.g <code>ssh -ND 9050 bastion.example.com</code>):</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>*** Settings ***
+Documentation     Open a Web Page using a socks 5 proxy (demo)
+Library           Selenium2Library
+
+*** Test Cases ***
+Create Webdriver and Open Page
+    ${profile}=   Evaluate   sys.modules[&#39;selenium.webdriver&#39;].FirefoxProfile()
+sys
+    Call Method   ${profile}   set_preference   network.proxy.socks   127.0.0.1
+    Call Method   ${profile}   set_preference   network.proxy.socks_port
+${9060}
+    Call Method   ${profile}   set_preference   network.proxy.socks_remote_dns
+${True}
+    Call Method   ${profile}   set_preference   network.proxy.type   ${1}
+    Create WebDriver   Firefox   firefox_profile=${profile}
+    Go To    http://internal.example.com
+</pre></div>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2017/03/30/robot-firefox-socks/">Permalink</a>. Category: Linux. Tags: Open-Source Testing Automation planet-inuits.<br/>
+        First published on Thu 30 March 2017.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2017/03/22/first-open-source-contribution/" class="text-gray-dark">
+    My first Open Source contribution
+</a></h1>
+<div class="content text-justify">
+    <p>The first Open-Source contribution I remember happened on December 2005.
+It happened on Gaim, which is now known as <a href="https://pidgin.im/">Pidgin</a>.</p>
+
+<p>It was not a big contribution: I did not like the arrows shown when moving
+discussion tabs. Those arrows where plain red. I <a href="https://bitbucket.org/pidgin/main/commits/9afbf5b7240da81a1a796a421c2000487805ad67">created new ones</a> (using The
+Gimp), with a gradient. It did not take a long time to make them, but it was
+definitively an improvement.</p>
+
+<p>Here it is: <img src="/images/tb_drag_arrow_up.png" alt="my first contribution" /></p>
+
+<p>It was quickly merged (&lt; 2 hours). And it was important for me, because at that
+moment I understood that I could improve the tools I was using, and that
+everyone would get those improvements. That was the beginning of 12 years
+of Open Source contributions.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2017/03/22/first-open-source-contribution/">Permalink</a>. Category: Open-Source. Tags: open-source gpl pidgin.<br/>
+        First published on Wed 22 March 2017.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li class="page-item  disabled">
+                <a class="page-link"  aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item  active"><a class="page-link" href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/2/">2</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li  class="page-item disabled"><a class="page-link">...</a></li>
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/14/">14</a></li>
+            
+            
+        <li class="page-item">
+            <a class="page-link" href="/blog/page/2/" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

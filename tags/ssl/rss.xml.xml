@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ssl on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/ssl/</link>
+    <description>Recent content in Ssl on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 28 Oct 2015 08:43:26 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/ssl/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>This blog runs a Let&#39;s Encrypt certificate</title>
+      <link>https://roidelapluie.be/blog/2015/10/28/letsencrypt/</link>
+      <pubDate>Wed, 28 Oct 2015 08:43:26 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/10/28/letsencrypt/</guid>
+      <description>I am part of the Let&amp;rsquo;s Encrypt beta test. As part of it, I generated a SSL certificate for my blog, and it is now live.
+In the past I used Startssl to get free certificates. Those certificates expired in September. At that time I switched to a Comodo certificate, because the validity was only 3 months and I hoped Let&amp;rsquo;s Encrypt to be there before the end of the year.</description>
+    </item>
+    
+  </channel>
+</rss>

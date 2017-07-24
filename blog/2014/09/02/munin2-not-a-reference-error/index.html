@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Munin 2 &#34;not a reference&#34; error - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link " href="/fr">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+<h1 class="title mt-3 mb-3"><a href="/blog/2014/09/02/munin2-not-a-reference-error/" class="text-gray-dark">
+    Munin 2 &#34;not a reference&#34; error
+</a></h1>
+<div class="content text-justify">
+    <p>This morning I worked with Munin, discovering that Munin 2 has made it to EPEL.</p>
+
+<p>Thus I started to look at puppet modules. I tried two of them (<a href="https://github.com/ssm/ssm-munin">ssm-munin</a> and <a href="https://github.com/duritong/puppet-munin">duritong-munin</a>), and no one seemed to be working.</p>
+
+<p>I was then digging deeper about what the problem could be, so I logged in to the machine with the munin user:</p>
+
+<pre><code>::text
+# su - munin --shell=/bin/bash
+</code></pre>
+
+<p>Then I ran the script by hand:</p>
+
+<pre><code>::
+$ test -x /usr/bin/munin-cron &amp;&amp; /usr/bin/munin-cron
+not a reference at /usr/share/perl5/vendor_perl/Munin/Master/Utils.pm line 866
+</code></pre>
+
+<p>Which leaded me to <a href="https://bugzilla.redhat.com/show_bug.cgi?id=955902">the RedHat bugzilla</a>. But the different answers did not make me happy, even if the bug is more than one year old. Proposed solutions were doing some NSS voodoo, rebooting, restarting the node&hellip;</p>
+
+<p>I then ran the script again with the &ndash;debug flag:</p>
+
+<pre><code>::
+$ test -x /usr/bin/munin-cron &amp;&amp; /usr/bin/munin-cron --debug
+</code></pre>
+
+<p>And the error message was more clear: munin did not get any data because it could not connect to the node, because of a firewall trouble. So the &ldquo;not a reference at&rdquo; error just means that munin does not get any data.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/09/02/munin2-not-a-reference-error/">Permalink</a>. Category: Monitoring. Tags: munin monitoring planet-inuits puppet.<br/>
+        First published on Tue 2 September 2014.
+    </div>
+</div>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

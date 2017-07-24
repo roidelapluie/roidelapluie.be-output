@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Burtning audio CD&#39;s - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link " href="/fr">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+<h1 class="title mt-3 mb-3">
+    Burtning audio CD&#39;s
+</h1>
+<div class="content">
+    <p>Here is the procedure to burn an audio cd under Linux.</p>
+
+<p>First step: install cdrtools and mpg123:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>cave resolve -x cdrtools mpg123
+</pre></div>
+
+<p>Go to a temp directory &amp;&amp; copy there music you want to burn:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">$(</span>mktemp -d<span style="color: #008000; font-weight: bold">)</span> <span style="color: #666666">&amp;&amp;</span> cp /home/foobar/music/cd05/*.mp3 .
+</pre></div>
+
+<p>Convert the files into WAV, using mpg123.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">for</span> i in *.mp3; <span style="color: #008000; font-weight: bold">do</span> mpg123 -w <span style="color: #BA2121">&quot;</span><span style="color: #008000; font-weight: bold">$(</span>basename <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$i</span><span style="color: #BA2121">&quot;</span> .mp3<span style="color: #008000; font-weight: bold">)</span><span style="color: #BA2121">.wav&quot;</span> <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$i</span><span style="color: #BA2121">&quot;</span>; <span style="color: #008000; font-weight: bold">done</span>
+</pre></div>
+
+<p>Find the right bus ID:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>cdrecord -scanbus
+</pre></div>
+
+<p>In my case, I get:</p>
+
+<pre><code>... snip ...
+scsibus3:
+3,0,0 300) 'HL-DT-ST' 'DVD+-RW GSA-T11N' 'A103' Removable CD-ROM
+... snip ...
+</code></pre>
+
+<p>Important part is 3,0,0. Be sure it is your CD/DVD burner.</p>
+
+<p>And, start burning (replace 3,0,0 by your bus id!!!):</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>cdrecord <span style="color: #19177C">dev</span><span style="color: #666666">=3</span>,0,0 -eject <span style="color: #19177C">speed</span><span style="color: #666666">=48</span> -pad -audio *.wav
+</pre></div>
+
+<p>Eventually, delete tmpdir:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #19177C">tmp_dir</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #19177C">$PWD</span><span style="color: #BA2121">&quot;</span>
+<span style="color: #008000">cd</span> .. <span style="color: #666666">&amp;&amp;</span> rm <span style="color: #19177C">$tmp_dir</span>/*.<span style="color: #666666">{</span>wav,mp3<span style="color: #666666">}</span> <span style="color: #666666">&amp;&amp;</span> rmdir <span style="color: #19177C">$tmp_dir</span>
+</pre></div>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/wiki/burncd/">Permalink</a>. First published on Wed 24 December 2014.
+    </div>
+</div>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

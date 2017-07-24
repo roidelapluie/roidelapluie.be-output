@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="nav-item nav-link " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/04/11/puppet-350-yumrepo/" class="text-gray-dark">
+    CentOS users should skip puppet release 3.5.0
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>Dear puppet users using a yum-based distribution, if you use the Yumrepo resource type,
+don&rsquo;t upgrade to <a href="http://docs.puppetlabs.com/puppet/3.5/reference/release_notes.html">puppet 3.5.0</a>. That resource
+type has been rewritten and the release has come with very annoying bugs.</p>
+
+<h3 id="bugs">Bugs</h3>
+
+<ul>
+<li><a href="https://tickets.puppetlabs.com/browse/PUP-2163">PUP-2163: yumrepo resource completely broken</a></li>
+<li><a href="https://tickets.puppetlabs.com/browse/PUP-2150">PUP-2150: yumrepo removable URL properties cannot be set to ‘absent’</a></li>
+<li><a href="https://tickets.puppetlabs.com/browse/PUP-2179">PUP-2179: Ensuring absent on a yumrepo removes all repos in the same file</a></li>
+<li><a href="https://tickets.puppetlabs.com/browse/PUP-2178">PUP-2178: yumrepo ‘descr’ property doesn’t map to the ‘name’ INI property</a></li>
+<li><a href="https://tickets.puppetlabs.com/browse/PUP-2181">PUP-2181: Setting yumrepo string properties to absent assigns the literal ‘absent’ string</a></li>
+</ul>
+
+<h3 id="fixes">Fixes</h3>
+
+<p>Fixes have been merged to master and will be released with Puppet 3.5.1. Considering
+the impact of the bugs, we can expect that to arrive very soon.</p>
+
+<hr />
+
+<p><strong>Update (19 May 2014)</strong>: <a href="http://docs.puppetlabs.com/puppet/3.5/reference/release_notes.html">Puppet 3.5.1</a> solved most of these problems, and <a href="http://docs.puppetlabs.com/puppet/3.6/reference/release_notes.html">puppet 3.6.0</a> fixed the
+remaining ones.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/04/11/puppet-350-yumrepo/">Permalink</a>. Category: Automation. Tags: centos automation planet-inuits puppet.<br/>
+        First published on Fri 11 April 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/04/08/vagrant-collectd/" class="text-gray-dark">
+    Collectd 5.4.1 RPM&#39;s
+</a></h1>
+<div class="content text-justify">
+    <p>In the list of the things I like, there are <a href="http://vagrantup.com">vagrant</a>, RPM&rsquo;s
+and being able to reproduce a build.</p>
+
+<p>As I did two years ago with <a href="https://github.com/roidelapluie/vagrant-build-mapnik">mapnik</a>, I have created
+a Vagrantfile with a script to build the latest version of <a href="https://github.com/roidelapluie/collectd-rpm">collectd</a>.
+Indeed, the version of collectd available in EPEL is quite outdated. That new version
+supports some very nice plugins natively, including <code>statsd</code> and <code>graphite</code> plugins.</p>
+
+<p>This Vagrantfile uses the spec files that are provided <a href="https://github.com/collectd/collectd/blob/master/contrib/redhat/collectd.spec">upstream</a>.</p>
+
+<p>After the build, a <code>RPMS</code> directory is created next to your Vagrantfile, containing
+all the packages.</p>
+
+<p>The project is of course <a href="https://github.com/roidelapluie/collectd-rpm">on github</a>.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/04/08/vagrant-collectd/">Permalink</a>. Category: Linux. Tags: vagrant monitoring collectd planet-inuits.<br/>
+        First published on Tue 8 April 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/03/14/lab0/" class="text-gray-dark">
+    lab0, a light frontend to foreman
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>I have written a small frontend to <a href="http://theforeman.org">Foreman</a> and its <a href="https://puppetlabs.com/puppet/puppet-open-source">Puppet</a> integration.</p>
+
+<p>The only goal is to provide our developers to change the puppet parameters of their
+hosts in an easy way, and to rebuild the nodes in a few clicks.</p>
+
+<p>The project consists is presented as a single web page, where you make changes. Angularjs makes that page reactive.</p>
+
+<p>It requires admin rights on foreman (it uses the API). When a user is connected, he
+can change the parameters that you have pre-defined in a configuration file.</p>
+
+<p>You can have explicit labels for your parameters, making it easy to understand what is going on.</p>
+
+<p>You can also change the host groups of the vms (once more, the list of available hostgroups is
+pre-defined).</p>
+
+<p>I hope you will enjoy it. You can find a screenshot on the github page. There is also a demo of the
+web frontend.</p>
+
+<h3 id="technologies">Technologies</h3>
+
+<h4 id="backend">Backend</h4>
+
+<ul>
+<li>Django</li>
+<li>Django-tastypie</li>
+<li>Python-requests</li>
+</ul>
+
+<h4 id="frontend">Frontend</h4>
+
+<ul>
+<li>AngularJS</li>
+<li>Bootstrap</li>
+</ul>
+
+<h3 id="links">Links</h3>
+
+<ul>
+<li><a href="https://github.com/roidelapluie/lab0">lab0 on github</a></li>
+<li><a href="http://lab0.roidelapluie.be">demo</a></li>
+</ul>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/03/14/lab0/">Permalink</a>. Category: Automation. Tags: foreman puppet automation planet-inuits.<br/>
+        First published on Fri 14 March 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/02/02/paludis/" class="text-gray-dark">
+    Paludis, a package manager
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>This weekend, the <a href="http://fosdem.org">Fosdem</a> was still full of geeks and a lot of
+discussions happened. <a href="http://www.slideshare.net/dberkholz/is-distributionlevel-package-management-obsolete">Package managers</a>
+were still in the discussions, while a lot of projects try to fix their problems:</p>
+
+<ul>
+<li><a href="https://github.com/jordansissel/fpm">FPM</a></li>
+<li><a href="https://github.com/dgoodwin/tito">tito</a></li>
+<li><a href="https://github.com/bower/bower">bower</a></li>
+<li><a href="https://github.com/opscode/omnibus-chef">omnibus</a></li>
+<li><a href="https://www.gnu.org/software/tar/">tar</a> :-)</li>
+</ul>
+
+<p>Let me explain you some stuff about the <a href="http://exherbo">Exherbo</a> package manager, <a href="http://paludis.exherbo.org/">Paludis</a>.</p>
+
+<p>It is a performant package manager, which build packages from source, and it does
+not solve all the traditional problems related to the package managers.</p>
+
+<p>But look at the following elements:</p>
+
+<h3 id="chose-your-build-options">Chose your build options</h3>
+
+<p>Like in Gentoo, packages can be built with different use cases, depending on
+the use you want. And you have that choice by default, in every package, meaning
+that rebuilding with different options is not complicated, it is just routine.</p>
+
+<h3 id="build-from-scm">Build from SCM</h3>
+
+<p>You can build your packages directly from the last (git|svn|hg|bazaar) release, and still having it
+tracked in your package manager. You also have the choice to rebuild each week from
+the latest scm revision. Installing from latest scm is as easy as any other version (if
+the scm information is packaged of course).</p>
+
+<h3 id="no-tarball-just-how-to-package">No tarball, just how to package</h3>
+
+<p>The format of the software packages in Exherbo is plaintext. It contains the
+links to download, the licencing information, the different steps to execute,
+and any other useful information.</p>
+
+<h3 id="use-upstreams-like-rubygem-github-pypi-easily">Use upstreams like rubygem, github, pypi easily</h3>
+
+<p>There are a lot of exlibs, some kind of libraries for packages. By using</p>
+
+<pre><code>require github
+</code></pre>
+
+<p>You will automatically fetch the right package on github, given the name of the
+package and the revision. You can pass parameters to that class like the suffix or,
+in the case of github, the user name.</p>
+
+<h3 id="decentralize">Decentralize</h3>
+
+<p>Using Exherbo often implies having a lot of repositories. A repository is a git repository.</p>
+
+<p>You have an ::unavailable repository that contains the packages listed in all the repositories.</p>
+
+<p>If you don&rsquo;t have the repositories to install the package you want, then this
+repository will tell you in which repository you can find it.</p>
+
+<p>A <a href="http://galileo.mailstation.de/gerrit">public gerrit</a> instance takes care of QA, together
+with jenkins.</p>
+
+<h3 id="multiple-slots">Multiple slots</h3>
+
+<p>Need python 2.7 and 3.3? Need php 5.3 and 5.4? Just install both, by specifying a
+slot: php:5.3 php:5.4 will be considered like different packages. Installing php will
+install only one slot.</p>
+
+<p>On libraries, like python libraries, you can chose for which version of python you want
+to that library, or you can select multiple. If you want PIL for python 2.7 and python 3
+it is perfectly possible.</p>
+
+<h3 id="keep-history-of-what-was-packaged-and-what-is-not">Keep history of what was packaged and what is not</h3>
+
+<p>Sometimes you want something to ba packaged or you do not want to maintain a package anymore.
+Two special repositories, ::graveyard and ::unwritten, contains a list of packages that
+have been deleted or that have not been written yet.</p>
+
+<h3 id="a-package-is-not-only-a-bunch-of-files">A package is not only a bunch of files</h3>
+
+<p>In Exherbo, users and group are also packaged. No need to create a user in a pre or post script.</p>
+
+<h3 id="package-your-make-install">Package your make install</h3>
+
+<p>If you really have no time to write a good package, you can import a package in the package manager.</p>
+
+<p>In that case, it will end in a ::unpackaged repository. You need to use</p>
+
+<pre><code>make DESTDIR=myimage install
+</code></pre>
+
+<p>And then you can import the install directory in the package manager, with a version, and
+of course with sanity checks. That way you can detect conflicts, uninstall easily, etc.</p>
+
+<h2 id="don-t-patch">Don&rsquo;t patch</h2>
+
+<p>Or only if the patch fixes compilation. It is best to send the patches upstream instead
+of just patching at the distribution level.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>There is a lot of great ideas there. A lot of them are existing in other
+distributions like Gentoo or Archlinux. But the slots, the options, easy working
+with upstreams like rubygems and other stuff are not going to reach easily the larger
+distributions soon.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/02/02/paludis/">Permalink</a>. Category: Linux. Tags: exherbo packaging planet-inuits.<br/>
+        First published on Sun 2 February 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/01/28/puppet-corosync-pcs/" class="text-gray-dark">
+    Puppet-corosync and pcs provider
+</a></h1>
+<div class="content text-justify">
+    <p>Since the release 6.4, el-based distributions are not shipped with the <code>crm</code> command
+by default. <a href="http://github.com/feist/pcs"><code>pcs</code></a> is the new <a href="http://blog.clusterlabs.org/blog/2013/pacemaker-on-rhel6-dot-4/">recommended way</a> to <a href="http://blog.clusterlabs.org/blog/2012/pacemaker-and-cluster-filesystems/">setup the clusters</a> on CentOS/RHEL &gt;= 6.4.</p>
+
+<p>A lot of the people using the <a href="http://github.com/puppetlabs/puppetlabs-corosync">puppetlabs-corosync</a> module
+have been surprised and they just installed a RPM found somewhere across the web.</p>
+
+<p>I adapted the puppetlabs-corosync to end that dependency. My puppetlabs-corosync
+module is <a href="http://github.com/roidelapluie/puppetlabs-corosync">available here</a>.</p>
+
+<p>It is not perfect, but I still plan on working on it in the following months (and
+I accept pull requests of course). Any feedback is welcome.</p>
+
+<p>I only use the providers of that module. Everything under the manifests directory
+is deprecated. Besides that, I use a <code>puppet-cman</code> and a <code>puppet-pacemaker</code> module,
+designed to be published soon, that manage the installation of the cluster
+service.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/01/28/puppet-corosync-pcs/">Permalink</a>. Category: Automation. Tags: high availability linux planet-inuits.<br/>
+        First published on Tue 28 January 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li class="page-item ">
+                <a class="page-link" href="/blog/page/11/" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li  class="page-item disabled"><a class="page-link">...</a></li>
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/11/">11</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item  active"><a class="page-link" href="/blog/page/12/">12</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/13/">13</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/14/">14</a></li>
+            
+            
+        <li class="page-item">
+            <a class="page-link" href="/blog/page/13/" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

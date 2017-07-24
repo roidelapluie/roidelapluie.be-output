@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Packaging on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/packaging/</link>
+    <description>Recent content in Packaging on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 04 Sep 2014 22:50:49 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/packaging/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>EPEL 7 released</title>
+      <link>https://roidelapluie.be/blog/2014/09/04/epel7/</link>
+      <pubDate>Thu, 04 Sep 2014 22:50:49 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/04/epel7/</guid>
+      <description>EPEL 7 has been released. It contains interesting packages:
+ ansible (orchestration) collectd (monitoring) mariadb-galera (database replication) mate (gnome 2 fork) mcollective (orchestration) munin (monitoring; version 2) puppet (configuration management, latest version) sl :) varnish (caching)  And obviously a lot of other stuff to discover.
+ EPEL wiki page List of packages Puppet module stahnma-epel  </description>
+    </item>
+    
+    <item>
+      <title>Paludis, a package manager</title>
+      <link>https://roidelapluie.be/blog/2014/02/02/paludis/</link>
+      <pubDate>Sun, 02 Feb 2014 21:24:44 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/02/02/paludis/</guid>
+      <description>This weekend, the Fosdem was still full of geeks and a lot of discussions happened. Package managers were still in the discussions, while a lot of projects try to fix their problems:
+ FPM tito bower omnibus tar :-)  Let me explain you some stuff about the Exherbo package manager, Paludis.
+It is a performant package manager, which build packages from source, and it does not solve all the traditional problems related to the package managers.</description>
+    </item>
+    
+  </channel>
+</rss>

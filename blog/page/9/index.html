@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="nav-item nav-link " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/11/29/devuan/" class="text-gray-dark">
+    About Devuan
+</a></h1>
+<div class="content text-justify">
+    <p>It looks like that a new Linux Distribution is born: <a href="https://devuan.org/">Devuan</a>. Yet another fork of <a href="https://debian.org">Debian</a>.</p>
+
+<p>Debian is a really good ground for forks, it seems: <a href="https://ubuntu.org">Ubuntu</a>, <a href="https://linuxmint.com">Linux Mint</a>, and a <a href="http://en.wikipedia.org/wiki/List_of_Linux_distributions">lot of others</a>. So, what does make this one different?</p>
+
+<p>This fork wants to remove systemd from Debian. It is really strange that so many people are reacting against systemd so late. Systemd has been around for many years. I do not want to enter the debate about systemd.</p>
+
+<p>I am really wondering if forking against one software is useful or not&hellip; But choices and forks are part of the Open Source world, and the Open Source world does not always take care about what the market needs and wants. Because it is a world made by humans, that are free to do what they want of their time.</p>
+
+<p>I wish good luck and good yack shaving to that new fork.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/11/29/devuan/">Permalink</a>. Category: Linux. Tags: systemd sysadmin.<br/>
+        First published on Sat 29 November 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/11/17/3-years-of-puppet/" class="text-gray-dark">
+    3 years of automation with Puppet
+</a></h1>
+<div class="content text-justify">
+    
+
+<p><em>This article has been triggered by <a href="http://ma.ttias.be/3-years-puppet-config-management-lessons-learned/">M@ttias.be&rsquo;s article</a>.</em></p>
+
+<p>I have been working for Inuits for 3 years, with Puppet 2.6. By that time
+Puppet 0.23 was still around in many places. Here are some lessons I&rsquo;ve learned during these years.</p>
+
+<h2 id="your-puppet-code-is-code">Your Puppet code is code</h2>
+
+<p>This is one of the first lessons I&rsquo;ve learned. In the many environments I&rsquo;ve seen, some of
+them use some git hooks/rsync/whatever to deploy the puppet code to the different
+platforms. This never works. There are always problems, because human beings make mistakes and CI testing matters.</p>
+
+<p>Working with multiple environment is important (dev, uat, prod&hellip;), and running tests on your puppet tree
+is also important.</p>
+
+<h2 id="puppet-is-even-more-important-if-you-do-not-touch-an-infrastructure-often">Puppet is even more important if you do not touch an infrastructure often</h2>
+
+<p>When you need to provide support for an infrastructure, when what you have to do is
+only unplanned intervention (aka firefighting), it is really important that anything that has changed
+in this infra is in the puppet tree.</p>
+
+<p>Having a good puppet tree in git shows you what has changed, when and why. Good commit
+messages also matter a lot.</p>
+
+<p>When I log in only once a month on a platform, I want to know what have the other people done.
+By doing that I don&rsquo;t get bad surprises and I can work more quickly and better.</p>
+
+<p>On the opposite, every time the gap between the puppet code and the reality is growing,
+my future work is slowed down.</p>
+
+<h2 id="you-should-never-disable-puppet-on-a-node">You should never disable puppet on a node</h2>
+
+<p>Disabling puppet on a node is just good to never get that node updated again.
+It is so easy when you have dozens of server to forgot about one server that will
+get out of sync quickly.</p>
+
+<p>What can you do then? You have several approaches. I generally prefer to set noop mode
+instead of completely disabling an agent. But another option is to prevent puppet
+to change the system, like doing a <code>chattr +i</code> on a file you do not want puppet to
+change.</p>
+
+<p>This will show you perpetual errors in your dashboard, reminding you what you have to fix. Because, you have a dashboard, haven&rsquo;t you?</p>
+
+<h2 id="you-need-a-puppet-dashboard">You need a puppet dashboard</h2>
+
+<p>Puppet apply is often a no-go because you will use it once and then forget. So you will get a puppetmaster and puppetdb. There are
+a few dashboards available, but my preferred one is The foreman.</p>
+
+<p>A dashboard gives you interesting metrics and a good overview of your infrastructure.
+If you don&rsquo;t have one you are just missing a lot of interesting data.</p>
+
+<h2 id="puppet-has-bugs-don-t-update-too-quickly">Puppet has bugs, don&rsquo;t update too quickly</h2>
+
+<p>Puppet has bugs. New releases also. So do not use Puppetlabs upstream. Test the
+new packages on some servers and see what needs to be changed.</p>
+
+<p>Sometimes Puppet introduces a lot of new warning messages, sometimes they rewrite
+a native provider&hellip; All these stuff can contain errors and be very annoying.</p>
+
+<h2 id="the-community-is-great">The community is great</h2>
+
+<p>Puppet has a large community. On freenode, twitter, github, there are a lot of people
+ready to discuss and to help. People are contributing back on the projects and the
+modules.</p>
+
+<p>People go to PuppetCamp, PuppetConf, and other configmgmt and open-source conferences.
+Just meet them, they have a lot of ideas. There are also a lot of beginners to help.
+Puppet is not an easy tool and it is getting more complex over time.</p>
+
+<h2 id="it-is-hard-to-fix-a-puppet-tree">It is hard to fix a puppet tree</h2>
+
+<p>Being early Puppet users has downsides. For example when you have your
+whole infrastructure with passwords in modules, and a lot of other things that are no longer
+best practices nowadays. But 3 years ago that was still acceptable.</p>
+
+<p>It is hard to see what would be the benefits of a rewrite of the code&hellip; Which
+brings us to the next lesson:</p>
+
+<h2 id="automation-you-re-doing-it-right">Automation != you&rsquo;re doing it right</h2>
+
+<p>Using Puppet does not mean your infrastructure is managed correctly. You need to
+ask yourself the right questions, because automation is not a goal. Automation brings
+you a lot of different tools, an overview of your infra, but it will not erase your
+technical debt. It can even be the opposite.</p>
+
+<p>You need to combine puppet with other tools, update your servers, your puppet setup,
+your puppet modules, to go ahead and be in a process of continuous improvement.
+That process is important if you want to always deliver a good quality infrastructure.</p>
+
+<h2 id="your-puppet-master-needs-to-be-highly-available">Your puppet master needs to be highly available</h2>
+
+<p>&hellip; or you need to be able to rebuild it quickly.</p>
+
+<p>Like the monitoring system, the automation system should be more available than the
+product. Because we have so complex infrastructure nowadays than you have to be able
+to deliver a new server and to modify that infrastructure at any moment. When PM
+is not available, you are blocking any improvement of your infrastructure.</p>
+
+<h2 id="i-don-t-need-puppet-because-i-only-have-one-server">I don&rsquo;t need Puppet because I only have one server</h2>
+
+<p>That is completely false. A lot of people think that puppet is for large scale.
+But if you only have one or 2 servers, you probably wish to be able to rebuild
+them quickly. And at that moment you&rsquo;ll be happy to have made the effort of puppetizing it.</p>
+
+<h2 id="puppet-is-difficult-more-than-other-tools">Puppet is difficult. More than other tools?</h2>
+
+<p>Managing an infrastructure is difficult. If you can not make the effort of learning
+a technology like Puppet, then are you really working in IT? Puppet/Chef and other
+tools bring a real added value and will really save you time and money. This
+is not an excuse to learn too much because of the following lesson:</p>
+
+<h2 id="if-it-is-too-complicated-it-is-a-design-problem">If it is too complicated, it is a design problem</h2>
+
+<p>If you need to write a lot of custom functions and facts then you are probably
+abusing Puppet. More than ever we need to keep the things as simple as possible.
+Think twice before writing a custom function. And if you really need one, write tests.</p>
+
+<p>If Puppet is so complex that you need to know everything about ruby then look at
+how other people are doing to keep nice and clean puppet trees.</p>
+
+<h2 id="the-unix-philosophy-applies-to-puppet-modules">The unix philosophy applies to puppet modules</h2>
+
+<p>Yes, you need to have modules that do one thing but that do it well. It is then easy
+to just update one component without affecting the others. Everything like sysctl config,
+vhosts, and other &ldquo;generic&rdquo; services should not be grouped together. One module for one
+service/tool.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>I have found out more other lessons during these 3 years, and the incoming changes in
+puppet will certainly show me more of them.</p>
+
+<p>Be sure to also look at this <a href="http://www.slideshare.net/KrisBuytaert/7-years-of-puppet-horror-stories">slidedeck from Kris Buytaert about 7 Puppet Horror Stories</a> and the lessons learned of <a href="http://ma.ttias.be/3-years-puppet-config-management-lessons-learned/">Mattias</a>.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/11/17/3-years-of-puppet/">Permalink</a>. Category: Automation. Tags: centos automation planet-inuits puppet.<br/>
+        First published on Mon 17 November 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/10/20/f-droid-welcomes-betrains/" class="text-gray-dark">
+    F-droid welcomes BeTrains
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>I have discovered that <a href="https://f-droid.org">F-Droid</a> contains <a href="https://f-droid.org/repository/browse/?fdid=tof.cv.mpp">BeTrains</a>, an open-source android tool to get data like timetables from the Belgian national railway company. Let&rsquo;s take some time to explain you that in details.</p>
+
+<h3 id="what-is-f-droid-https-f-droid-org">What is <a href="https://f-droid.org">F-droid</a>?</h3>
+
+<p>It is a repository for Android. It contains a lot of different application, that have one thing in common: they are all open-source.</p>
+
+<p>There is of course one client that you can install on your android device to browse the catalogue and download/update your applications.</p>
+
+<p>There is a bunch of good things with the repository and its application:</p>
+
+<ul>
+<li>It contains only open-source softwares</li>
+<li>There are almost no ads in the packages; so a lot of them does not require any permissions</li>
+<li>It warns you of an application uses or promotes closed-source services</li>
+<li>You have a clear view of the license and where you can find the source code</li>
+<li>You can download the <code>.apk</code> files on the website</li>
+<li>You get notifications when updates are available</li>
+</ul>
+
+<p>The first point makes that very cool, the other points are bonus ;-)</p>
+
+<h3 id="what-is-betrains-https-github-com-irail-betrains-for-android">What is <a href="https://github.com/iRail/BeTrains-for-Android">BeTrains</a>?</h3>
+
+<p>It is a modern, powerful application to get timetables, traffic issues and much more data about the trains in Belgium. It is a user-friendly alternative to the closed-source official client offered by the Belgian national railway company.</p>
+
+<p>It is built on top of the <a href="http://project.irail.be/wiki/API/APIv1">iRail API</a>, a project that offers a RESTful API around the train informations in Belgium. It is not built by NMBS/SNCB but by a bunch of people that like open data.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>There are a lot of useful softwares in F-Droid, but BeTrains is an important one because it offers access to data that really matters in everyday life. It is an open-source software that I have used in the past and I am very happy that it is now available on my favourite android repository.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/10/20/f-droid-welcomes-betrains/">Permalink</a>. Category: Android. Tags: public services belgium planet-inuits.<br/>
+        First published on Mon 20 October 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/10/08/pulp-horror-fest/" class="text-gray-dark">
+    A classical pulp upgrade ....
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>Yesterday I did upgrade a pulp instance from pulp 2.2 to pulp 2.4. Here is my story&hellip;</p>
+
+<p>Upgrading pulp seems very very simple. You update the RPMs then you run the migration script, <code>pulp-manage-db</code>. Well, at least that&rsquo;s the theory.</p>
+
+<h4 id="first-step-packages-changes">First step: packages changes</h4>
+
+<p>The <a href="http://pulp-user-guide.readthedocs.org/en/latest/release-notes/2.4.x.html">release note</a> tell us a couple of things: some packages to install, some configuration files to save&hellip;</p>
+
+<p>So here we go:</p>
+
+<ul>
+<li>Install some qpid packages</li>
+<li>Upgrade mongodb to 2.4</li>
+<li>Set <code>auth=no</code> is needed in <code>/etc/qpid/qpidd.conf</code></li>
+<li>Downgrade <code>m2crypto</code> to use distribution packages</li>
+</ul>
+
+<p>For the moment, everything is good.</p>
+
+<h4 id="second-step-run-the-migrations">Second step: Run the migrations</h4>
+
+<p>Here the troubles begin.</p>
+
+<p>There is a first fail in the migration, but hopefully the fix is documented, and in 2 minutes my search engine told me what to do:</p>
+
+<pre><code>find /var/lib/pulp/working/repos/ -path '*/yum_importer' -type d -exec rm -rf '{}' \;
+</code></pre>
+
+<p>Apparently it is because this pulp instance was migrated from a pulp 1 to a pulp 2 in the past.</p>
+
+<p>The migration fails a second time. And there is a <a href="https://bugzilla.redhat.com/show_bug.cgi?format=multiple&amp;id=1016612">ticket</a> for that.</p>
+
+<p>Here are the logs (these one come from the ticket but I got exactly the same behaviour):</p>
+
+<pre><code># pulp-manage-db 
+Beginning database migrations.
+Migration package pulp.server.db.migrations is up to date at version 4
+Migration package pulp_puppet.plugins.migrations is up to date at version 0
+Applying pulp_rpm.migrations version 8
+Migration to pulp_rpm.migrations version 8 complete.
+Applying pulp_rpm.migrations version 9
+Migration to pulp_rpm.migrations version 9 complete.
+Applying pulp_rpm.migrations version 10
+Migration to pulp_rpm.migrations version 10 complete.
+Applying pulp_rpm.migrations version 11
+Applying migration pulp_rpm.migrations.0011_new_importer failed.  See log for
+details.
+2013-10-08 11:52:52,924 db:CRITICAL: Applying migration
+pulp_rpm.migrations.0011_new_importer failed.
+2013-10-08 11:52:52,925 db:CRITICAL: 'NoneType' object has no attribute 'text'
+2013-10-08 11:52:52,998 db:CRITICAL: Traceback (most recent call last):
+  File &quot;/usr/lib/python2.6/site-packages/pulp/server/db/manage.py&quot;, line 79, in
+    migrate_database update_current_version=not options.test)
+  File &quot;/usr/lib/python2.6/site-packages/pulp/server/db/migrate/models.py&quot;,
+    line 161, in apply_migration migration.migrate()
+  File &quot;/usr/lib/python2.6/site-packages/pulp_rpm/migrations/0011_new_importer.py&quot;,
+    line 29, in migrate _migrate_collection(type_id)
+  File &quot;/usr/lib/python2.6/site-packages/pulp_rpm/migrations/0011_new_importer.py&quot;,
+    line 56, in _migrate_collection package['sourcerpm'] = format_element.find('sourcerpm').text
+AttributeError: 'NoneType' object has no attribute 'text'
+</code></pre>
+
+<p>The bug report was reported by one of my colleagues, and it is marked as CLOSED CURRENTRELEASE. Sorry but this is not fixed.</p>
+
+<p>Hopefully there is a workaround in the ticket: you need to do some changes in <code>0011_new_importer.py</code> and replace</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>package[<span style="color: #BA2121">&#39;sourcerpm&#39;</span>] <span style="color: #666666">=</span> format_element<span style="color: #666666">.</span>find(<span style="color: #BA2121">&#39;sourcerpm&#39;</span>)<span style="color: #666666">.</span>text
+</pre></div>
+
+<p>by</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">try</span>:
+    package[<span style="color: #BA2121">&#39;sourcerpm&#39;</span>] <span style="color: #666666">=</span> format_element<span style="color: #666666">.</span>find(<span style="color: #BA2121">&#39;sourcerpm&#39;</span>)<span style="color: #666666">.</span>text
+<span style="color: #008000; font-weight: bold">except</span> <span style="color: #D2413A; font-weight: bold">AttributeError</span>:
+    package[<span style="color: #BA2121">&#39;sourcerpm&#39;</span>] <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;&#39;</span>
+</pre></div>
+
+<p>At this point I start disliking pulp, but I was not at the end of my surprises.</p>
+
+<p>I re-run the migration scripts. That step goes well. But the it is another one that is failing:</p>
+
+<pre><code>Applying migration pulp_rpm.plugins.migrations.0016_new_yum_distributor failed.
+
+Halting migrations due to a migration failure.
+Error publishing repository centos-5-x86_64.  More than one distribution found.
+Traceback (most recent call last):
+  File &quot;/usr/lib/python2.6/site-packages/pulp/server/db/manage.py&quot;, line 111, in main
+    _auto_manage_db(options)
+  File &quot;/usr/lib/python2.6/site-packages/pulp/server/db/manage.py&quot;, line 157, in _auto_manage_db
+    migrate_database(options)
+  File &quot;/usr/lib/python2.6/site-packages/pulp/server/db/manage.py&quot;, line 86, in migrate_database
+    update_current_version=not options.test)
+  File &quot;/usr/lib/python2.6/site-packages/pulp/server/db/migrate/models.py&quot;, line 161, in apply_migration
+    migration.migrate()
+  File &quot;/usr/lib/python2.6/site-packages/pulp_rpm/plugins/migrations/0016_new_yum_distributor.py&quot;, line 59,
+
+    _re_publish_repository(repo, d)
+  File &quot;/usr/lib/python2.6/site-packages/pulp_rpm/plugins/migrations/0016_new_yum_distributor.py&quot;, line 165
+
+    publisher.publish()
+  File &quot;/usr/lib/python2.6/site-packages/pulp/plugins/util/publish_step.py&quot;, line 323, in publish
+    self.process_lifecycle()
+  File &quot;/usr/lib/python2.6/site-packages/pulp/plugins/util/publish_step.py&quot;, line 92, in process_lifecycle
+    step.process()
+  File &quot;/usr/lib/python2.6/site-packages/pulp/plugins/util/publish_step.py&quot;, line 148, in process
+    self.initialize()
+  File &quot;/usr/lib/python2.6/site-packages/pulp_rpm/plugins/distributors/yum/publish.py&quot;, line 666, in initia
+
+    raise Exception(msg)
+Exception: Error publishing repository centos-5-x86_64.  More than one distribution found.
+</code></pre>
+
+<p>More than one distribution found. And now? How do I delete the useless distributions?</p>
+
+<p>Indeed that repo has several distributions: 5.9, 5.10, 5.11&hellip; But at this time of the migration,
+the pulp server refuses to work because it is not migrated.</p>
+
+<p>So I can not delete the distributions. And I can&rsquo;t run the migration. So I can not use pulp. So I can not delete the distribution. Which means I can not do the migration. And I can not use pulp. So I can not delete the distributions. And I can not run the migration&hellip;</p>
+
+<p>Let&rsquo;s apply the previous workaround on that situation. In <code>0016_new_yum_distributor.py</code>, let&rsquo;s change:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>publisher<span style="color: #666666">.</span>publish()
+</pre></div>
+
+<p>by</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">try</span>:
+    publisher<span style="color: #666666">.</span>publish()
+<span style="color: #008000; font-weight: bold">except</span> <span style="color: #D2413A; font-weight: bold">Exception</span> <span style="color: #008000; font-weight: bold">as</span> e:
+    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&quot;Ignoring exception: </span><span style="color: #BB6688; font-weight: bold">%s</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">%</span> e
+</pre></div>
+
+<p>So the migration will be considered as done, but the repos won&rsquo;t be republished.</p>
+
+<p>And indeed it worked as expected. I could now try to find the double distributions:</p>
+
+<pre><code>pulp-admin rpm repo content distribution --repo-id centos-5-x86_64
+</code></pre>
+
+<p>And &hellip; a new surprise: pulp only returns ONE distribution. So you don&rsquo;t know how many of them are in the repository.</p>
+
+<p>So I needed to delete the distributions <em>one by one</em>, then re-publish the repository.</p>
+
+<p>Some more services were needed also: <code>pulp_celerybeat</code>  <code>pulp_resource_manager</code> and  <code>pulp_workers</code>.</p>
+
+<p>And, at the end, it worked.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/10/08/pulp-horror-fest/">Permalink</a>. Category: Linux. Tags: centos pulp planet-inuits mongodb.<br/>
+        First published on Wed 8 October 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/10/04/i-ve-backed-matchstick/" class="text-gray-dark">
+    I&#39;ve backed Matchstick
+</a></h1>
+<div class="content text-justify">
+    <p>I have backed <a href="http://matchstick.tv">Matchstick</a>, the HDMI stick based on <a href="https://www.mozilla.org/en/firefox/os/">Firefox OS</a>.
+It is the first crowdfunding project I participate. And I hope it won&rsquo;t be the last one.</p>
+
+<p>There are a few reasons why I have chosen to do so.</p>
+
+<p>The first reason is the open-source part of that project. An open-source software
+combined with open-source hardware, that is everything I like. Good philosophy is always a good point.</p>
+
+<p>Next that project is exciting. An easy to use HDMI stick for my TV is something really cool. I do
+not have a &ldquo;smart&rdquo; TV but still my TV has some HDMI input and USB plugs (to power the stick).</p>
+
+<p>Third part: it is cheap. It worth its 18 USD. I don&rsquo;t even look at opponents price there, because no
+opponent is as open-source as this. I even find that the announced market price (25 USD) is acceptable.</p>
+
+<p>Also I am really happy to see an new device that IS NOT run by Android. Android is
+too mainstream I think, and even if it is open-source, the Google-way of managing it
+is not something I like.</p>
+
+<p>Relatedly to the previous point, it is important that the project is not made by <a href="https://mozilla.org">Mozilla</a>.
+Open-Source and standards that are really good are forked and used by third-parties
+companies. That is kind of a quality proof.</p>
+
+<p>Now we will see what we will get at the end, if the promises will be fulfilled and how will the stick
+behave in real conditions. I also hope that a lot of the apps ecosystem will also be open-source.
+I am waiting February to see what&rsquo;s going on and to put some more feedback there.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/10/04/i-ve-backed-matchstick/">Permalink</a>. Category: Open-Source. Tags: firefox os crowdfunding open-source.<br/>
+        First published on Sat 4 October 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li class="page-item ">
+                <a class="page-link" href="/blog/page/8/" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li  class="page-item disabled"><a class="page-link">...</a></li>
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/8/">8</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item  active"><a class="page-link" href="/blog/page/9/">9</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/10/">10</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li  class="page-item disabled"><a class="page-link">...</a></li>
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/14/">14</a></li>
+            
+            
+        <li class="page-item">
+            <a class="page-link" href="/blog/page/10/" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

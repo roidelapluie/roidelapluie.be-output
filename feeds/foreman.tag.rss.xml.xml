@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Foreman on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/foreman/</link>
+    <description>Recent content in Foreman on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 03 Oct 2015 14:25:37 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/foreman/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Foreman could get Puppet 4 support sooner than expected</title>
+      <link>https://roidelapluie.be/blog/2015/10/03/foreman-puppet-4/</link>
+      <pubDate>Sat, 03 Oct 2015 14:25:37 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/10/03/foreman-puppet-4/</guid>
+      <description>Foreman is one of the key tools of many puppet-based infrastructures. It can interact with the Puppet stack in different ways, by acting as a reporting dashboard or a complete ENC.
+So far Foreman only supports up to Puppet 3. Puppet 4 brings in many changes, and that involves a lot of changes in the foreman side. Even the foreman-installer is based on Puppet.
+But slowly, Puppet 4 supports starts to come to reality.</description>
+    </item>
+    
+    <item>
+      <title>lab0, a light frontend to foreman</title>
+      <link>https://roidelapluie.be/blog/2014/03/14/lab0/</link>
+      <pubDate>Fri, 14 Mar 2014 08:50:37 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/03/14/lab0/</guid>
+      <description>I have written a small frontend to Foreman and its Puppet integration.
+The only goal is to provide our developers to change the puppet parameters of their hosts in an easy way, and to rebuild the nodes in a few clicks.
+The project consists is presented as a single web page, where you make changes. Angularjs makes that page reactive.
+It requires admin rights on foreman (it uses the API).</description>
+    </item>
+    
+  </channel>
+</rss>

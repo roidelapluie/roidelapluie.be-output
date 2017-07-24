@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jenkins on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/jenkins/</link>
+    <description>Recent content in Jenkins on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 30 Mar 2017 21:33:11 +0200</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/jenkins/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Running Nightly jobs with Jenkins</title>
+      <link>https://roidelapluie.be/blog/2017/03/30/nightly-jobs-jenkins/</link>
+      <pubDate>Thu, 30 Mar 2017 21:33:11 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/03/30/nightly-jobs-jenkins/</guid>
+      <description>Jenkins can spread the load of Jobs by using H instead of * in the cron fields. It means that:
+H 3 * * *  Means: Run between 3 and 4 am.
+The minute will be decided by Jenkins, by applying a hash function over the job name.
+What about this one:
+H H * * *  Means: Run once a day. The moment will be calculated by a Jenkins based on the job name.</description>
+    </item>
+    
+    <item>
+      <title>Gitslave for Jenkins Pipelines</title>
+      <link>https://roidelapluie.be/blog/2016/11/18/gitslave-jenkins/</link>
+      <pubDate>Fri, 18 Nov 2016 10:38:11 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2016/11/18/gitslave-jenkins/</guid>
+      <description>At customer, we are using GitSlave, as a way to build and release multiple releases at the same time. Gitslave is like git submodules, except that you always get the latest version of the submodules (no commits needed in the super repository).
+For CI, we are using Jenkins. A Jenkins plugin was developed for it. Unfortunately, it was written in a way that would make the work of opensourcing that module too big (IP was all over the place in the testsuite).</description>
+    </item>
+    
+  </channel>
+</rss>

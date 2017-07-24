@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Puppet 4 create_resource killer - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link " href="/fr">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+<h1 class="title mt-3 mb-3"><a href="/blog/2015/09/15/puppet-4-create-resources/" class="text-gray-dark">
+    Puppet 4 create_resource killer
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>Puppet 4 brings very nice features that will definitely kill the <code>create_resources</code>
+function.</p>
+
+<h3 id="parameters-as-a-hash">Parameters as a hash</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #19177C">$parameters</span> <span style="color: #666666">=</span> {
+  <span style="color: #7D9029">mode</span>    <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;0755&#39;</span>,
+  <span style="color: #7D9029">content</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;foo&#39;</span>,
+}
+
+<span style="color: #008000; font-weight: bold">file</span> {
+  <span style="color: #BA2121">&#39;/tmp/myfile&#39;</span>:
+    <span style="color: #666666">*</span> <span style="color: #666666">=&gt;</span> <span style="color: #19177C">$parameters</span>
+}
+</pre></div>
+
+<p>It is the same as:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">file</span> {
+  <span style="color: #BA2121">&#39;/tmp/myfile&#39;</span>:
+    <span style="color: #7D9029">mode</span>    <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;0755&#39;</span>,
+    <span style="color: #7D9029">content</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;foo&#39;</span>,
+}
+</pre></div>
+
+<h3 id="resource-defaults">Resource defaults</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">file</span> {
+  <span style="color: #008000; font-weight: bold">default</span>:
+    <span style="color: #7D9029">mode</span>    <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;0755&#39;</span>,
+    <span style="color: #7D9029">content</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;foo&#39;</span>;
+  <span style="color: #BA2121">&#39;/tmp/my_file1&#39;</span>:;
+  <span style="color: #BA2121">&#39;/tmp/my_file2&#39;</span>:
+    <span style="color: #7D9029">mode</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;0644&#39;</span>,
+}
+</pre></div>
+
+<p>Is the same as:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">file</span> {
+  <span style="color: #BA2121">&#39;/tmp/my_file1&#39;</span>:
+    <span style="color: #7D9029">mode</span>    <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;0755&#39;</span>,
+    <span style="color: #7D9029">content</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;foo&#39;</span>;
+  <span style="color: #BA2121">&#39;/tmp/my_file2&#39;</span>:
+    <span style="color: #7D9029">mode</span>    <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;0644&#39;</span>,
+    <span style="color: #7D9029">content</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;foo&#39;</span>;
+}
+</pre></div>
+
+<p>Or (but the scope is different):</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">File</span> {
+  <span style="color: #7D9029">mode</span>    <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;0755&#39;</span>,
+  <span style="color: #7D9029">content</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;foo&#39;</span>;
+}
+<span style="color: #008000; font-weight: bold">file</span> {
+  <span style="color: #BA2121">&#39;/tmp/my_file1&#39;</span>:;
+  <span style="color: #BA2121">&#39;/tmp/my_file2&#39;</span>:
+    <span style="color: #7D9029">mode</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;0644&#39;</span>,
+}
+</pre></div>
+
+<h3 id="combining-both-of-them">Combining both of them</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #19177C">$parameters</span> <span style="color: #666666">=</span> {
+  <span style="color: #7D9029">content</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;foo&#39;</span>,
+  <span style="color: #7D9029">ensure</span>  <span style="color: #666666">=&gt;</span> <span style="color: #008000; font-weight: bold">present</span>,
+}
+
+<span style="color: #19177C">$default</span> <span style="color: #666666">=</span> {
+  <span style="color: #008000; font-weight: bold">noop</span> <span style="color: #666666">=&gt;</span> <span style="color: #008000; font-weight: bold">true</span>,
+  <span style="color: #7D9029">mode</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;0644&#39;</span>,
+}
+
+<span style="color: #008000; font-weight: bold">file</span> {
+  <span style="color: #008000; font-weight: bold">default</span>:
+    <span style="color: #666666">*</span> <span style="color: #666666">=&gt;</span> <span style="color: #19177C">$default;</span>
+  <span style="color: #BA2121">&#39;/tmp/my_file1&#39;</span>:
+    <span style="color: #666666">*</span> <span style="color: #666666">=&gt;</span> <span style="color: #19177C">$parameters;</span>
+  <span style="color: #BA2121">&#39;/tmp/my_file2&#39;</span>:
+    <span style="color: #666666">*</span>    <span style="color: #666666">=&gt;</span> <span style="color: #19177C">$parameters;</span>
+    <span style="color: #7D9029">mode</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;0755&#39;</span>;
+}
+</pre></div>
+
+<p>In a loop:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #19177C">$parameters</span> <span style="color: #666666">=</span> {
+  <span style="color: #7D9029">content</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;foo&#39;</span>,
+  <span style="color: #7D9029">ensure</span>  <span style="color: #666666">=&gt;</span> <span style="color: #008000; font-weight: bold">present</span>,
+}
+
+<span style="color: #19177C">$default</span> <span style="color: #666666">=</span> {
+  <span style="color: #008000; font-weight: bold">noop</span> <span style="color: #666666">=&gt;</span> <span style="color: #008000; font-weight: bold">true</span>,
+  <span style="color: #7D9029">mode</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;0644&#39;</span>,
+}
+
+<span style="color: #19177C">$files</span> <span style="color: #666666">=</span> [<span style="color: #BA2121">&#39;/tmp/my_file1&#39;</span>, <span style="color: #BA2121">&#39;/tmp/my_file2&#39;</span>]
+
+<span style="color: #19177C">$files.each</span> <span style="color: #666666">|</span> <span style="color: #7D9029">String</span> <span style="color: #19177C">$file_path</span> <span style="color: #666666">|</span> {
+  <span style="color: #008000; font-weight: bold">file</span> {
+    <span style="color: #008000; font-weight: bold">default</span>:
+      <span style="color: #666666">*</span> <span style="color: #666666">=&gt;</span> <span style="color: #19177C">$default;</span>
+    <span style="color: #19177C">$file_path:</span>
+      <span style="color: #666666">*</span> <span style="color: #666666">=&gt;</span> <span style="color: #19177C">$parameters</span>
+  }
+}
+</pre></div>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2015/09/15/puppet-4-create-resources/">Permalink</a>. Category: Automation. Tags: automation planet-inuits puppet.<br/>
+        First published on Tue 15 September 2015.
+    </div>
+</div>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

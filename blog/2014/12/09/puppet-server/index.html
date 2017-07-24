@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Puppet Server - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="nav-item nav-link " href="/fr">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+<h1 class="title mt-3 mb-3"><a href="/blog/2014/12/09/puppet-server/" class="text-gray-dark">
+    Puppet Server
+</a></h1>
+<div class="content text-justify">
+    <p>I have tested <a href="https://github.com/puppetlabs/puppet-server">Puppet Server</a>, the
+new puppet master implementation in Clojure. And I am quite happy.</p>
+
+<p><strong>It just works</strong></p>
+
+<p>The first amazing thing was that it did just work the same way as Puppetmaster.</p>
+
+<p>I did not need to change any configuration file. Every custom function and module just worked like before.</p>
+
+<p>I am using the <a href="https://github.com/theforeman/puppet-puppet">puppet-puppet</a> from <a href="https://theforeman.org">the Foreman</a>, which already have a <code>server_implementation</code> parameter. Switching it to <code>puppetserver</code> just did the trick.</p>
+
+<p>I also needed to pass the <code>puppet_service_name</code> parameter to <code>puppetdb::master::config</code>:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">class</span> {
+  <span style="color: #BA2121">&#39;::puppet&#39;</span>:
+    <span style="color: #7D9029">server</span>                <span style="color: #666666">=&gt;</span> <span style="color: #008000; font-weight: bold">true</span>,
+    <span style="color: #7D9029">server_implementation</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;puppetserver&#39;</span>,
+}
+
+<span style="color: #008000; font-weight: bold">class</span> {
+  <span style="color: #BA2121">&#39;::puppetdb::master::config&#39;</span>:
+    <span style="color: #7D9029">puppet_service_name</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;puppetserver&#39;</span>,
+}
+</pre></div>
+
+<p><strong>What&rsquo;s around also works</strong></p>
+
+<p>Hiera was working out of the box, just like PuppetDB. Great efforts have been taken to ensure an easy transition.</p>
+
+<p>There is no configuration changed needed at that level also.</p>
+
+<p><strong>As expected, it is slow, then fast</strong></p>
+
+<p>The startup time is really really bigger than the old <code>passenger+httpd</code> stack. It take a very long time to start.</p>
+
+<p>But that was expected and once it is started it is really more efficient and catalogs get compiled in no time.</p>
+
+<p>I did not experience any troubles concerning on-disk file changes. Changes to the <code>.pp</code> files were automatically picked up by the server.</p>
+
+<p><strong>Batteries not included</strong></p>
+
+<p>What makes me a bit sad is the fact that <a href="https://docs.puppetlabs.com/pe/latest/puppet_server_metrics.html">Puppet Server Metrics</a> are completely closed source. Yes you can get a lot of these metrics by using tools like <a href="https://collectd.org/wiki/index.php/Plugin:puppet_reports">collectd</a>, but having the server sending them directly to a graphite server would have been very nice.</p>
+
+<p>That would also have helped the community to join the Puppet Server boat. But they took their decision and there is no sign that it will change in the short time.</p>
+
+<p><strong>I still like it</strong></p>
+
+<p>Even if I am disappointed as a Puppet contributor to see that Puppetlabs is not open-sourcing the metrics part of Puppet Server, I still like the idea of having a good replacement for <code>httpd+passenger</code>. Playing with passenger RPM&rsquo;s used to be a pain in the past, and having an apache server is not ideal. With Puppet Server we have a robust daemon that is efficient.</p>
+
+<p>I hope that the community will jump in to chase the bugs and write a new chapter in the Puppet story.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/12/09/puppet-server/">Permalink</a>. Category: Automation. Tags: centos automation planet-inuits puppet.<br/>
+        First published on Tue 9 December 2014.
+    </div>
+</div>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

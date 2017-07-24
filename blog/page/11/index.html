@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.25.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <div class="bg-primary"><nav class="navbar navbar-toggleable-md navbar-inverse bg-primary container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand mb-0">roidelapluie</div>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav mr-auto">
+                
+                
+                <a class="nav-item nav-link " href="/">
+                        About me
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link  active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/logbook/">
+                        Logbooks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/skill/">
+                        Skills
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+                
+                <a class="nav-item nav-link " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+            </div>
+            <div class="navbar-nav">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="nav-item nav-link  active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="nav-item nav-link " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+            </div>
+        </div>
+</nav>
+</div>
+
+        <div style="background-color:white">
+        <div class="container pt-3 pb-3">
+
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/08/28/rss-feed-update/" class="text-gray-dark">
+    RSS/Atom feeds update
+</a></h1>
+<div class="content text-justify">
+    <p>Dear reader,</p>
+
+<p>If you are following this blog via RSS/Atom feeds, you have probably noticed that
+all the articles of this one have been marked as unread in your RSS reader. This is
+due to an small technical change in the URL&rsquo;s of the articles.</p>
+
+<p>Please also note that I have added <a href="http://roidelapluie.be/feeds/">several feeds</a> for tags and categories.</p>
+
+<p>An interesting feed is probably the <a href="http://roidelapluie.be/feeds/planet-inuits.tag.atom.xml">planet-inuits</a> feed, which contains the articles I publish on the <a href="https://inuits.eu/blog/">inuits planet</a>.</p>
+
+<p>My apologies for that.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/08/28/rss-feed-update/">Permalink</a>. Category: Blog. Tags: pelican rss.<br/>
+        First published on Thu 28 August 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/08/15/caldav-android/" class="text-gray-dark">
+    CalDAV, Open-Source and Android
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>At <a href="https://www.inuits.eu">Inuits</a>, we are using <a href="https://www.zimbra.com/community/">Zimbra</a> as mail and calendaring solution.</p>
+
+<p>In the past, it used to be very difficult to synchronize the calendar with android phones.
+The calendar supports ics and CalDAV exports, but none of these solutions was working on android.</p>
+
+<h2 id="ics">ICS</h2>
+
+<p>Synchronizing the calendar with ICS had several downsides:</p>
+
+<ul>
+<li>You need to create a share of the calendar</li>
+<li>It is read-only</li>
+</ul>
+
+<p>So I quickly gave up that possibility.</p>
+
+<h2 id="caldav">CalDAV</h2>
+
+<p><a href="http://caldav.calconnect.org/">CalDAV</a> is the protocol I preferred, because
+it was native on Zimbra, and I could add/modify appointments directly on the phone.</p>
+
+<h3 id="caldav-sync">CalDAV-Sync</h3>
+
+<p>The first solution available is dmfs&rsquo; <a href="http://dmfs.org/caldav/">CalDAV-Sync</a>. But
+the application is closed source. The developer has been promising to open source if for years,
+but nothing has changed yet about that part.</p>
+
+<h3 id="acal">aCal</h3>
+
+<p><a href="https://f-droid.org/repository/browse/?fdfilter=caldav&amp;fdid=com.morphoss.acal">aCal</a>
+was also a solution, but it was not integrated with the android calendaring system and the interface
+was not really usable. Native integration with the android calendaring stack was
+something I really wanted.</p>
+
+<h3 id="caldav-sync-adapter">CalDAV Sync Adapter</h3>
+
+<p>The next candidate that arrived on the market was <a href="https://f-droid.org/repository/browse/?fdid=org.gege.caldavsyncadapter">CalDAV Sync Adapter</a>.
+It worked pretty well but it has some gotcha&rsquo;s that prevented me to see all my calendar.</p>
+
+<p>By the time, it was also only read-only (this could have changed now).</p>
+
+<h3 id="davdroid">DavDroid</h3>
+
+<p>And then came the ultimate solution: <a href="http://davdroid.bitfire.at/what-is-davdroid">DavDroid</a>. Open-Source and available on <a href="https://f-droid.org/repository/browse/?fdfilter=davdroid&amp;fdid=at.bitfire.davdroid">f-droid</a>, it worked OOTB with our setup. It supports two-way sync and is fully integrated with the calendaring stack of my android.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>There are may apps here, because CalDAV is not supported by android by default. I&rsquo;ve chosen DavDroid because it was fitting my needs:</p>
+
+<ul>
+<li>integration with android calendaring</li>
+<li>open-source</li>
+<li>working correctly.</li>
+</ul>
+
+<p>The 3 other options did only pick two of these criteria&rsquo;s.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/08/15/caldav-android/">Permalink</a>. Category: Android. Tags: CalDAV zimbra calendar planet-inuits.<br/>
+        First published on Fri 15 August 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/07/02/puppetlabs-corosync-pcs/" class="text-gray-dark">
+    Pcs support merged into puppetlabs-corosync
+</a></h1>
+<div class="content text-justify">
+    <p>Great news for people using an el-based distribution and the <a href="https://github.com/puppetlabs/puppetlabs-corosync">puppetlabs-corosync</a>
+puppet module: <a href="https://github.com/puppetlabs/puppetlabs-corosync/pull/64">pcs support has been merged into master</a>.</p>
+
+<p>This change is important because it means that all the RPM required for these providers are in the main repositories, which ensure they are tested and supported.</p>
+
+<p>Starting from CentOS 6.4, the <code>crm</code> shell was not provided by Red Hat anymore, but the puppet module was using that package in its only provider for custom types. Downloading a RPM from a Suse developer&rsquo;s personal web space was needed.</p>
+
+<p>My work is based on previous work done by <a href="https://github.com/jhoblitt">Joshua Hoblitt</a>. It keeps <code>crmsh</code> compatibility, useful for CentOS &lt; 6.4 users, which means there is now two providers in the module.</p>
+
+<p>Please test &amp; send feedback about that merge.</p>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/07/02/puppetlabs-corosync-pcs/">Permalink</a>. Category: Automation. Tags: centos automation HA planet-inuits puppet.<br/>
+        First published on Wed 2 July 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/05/26/puppet-361-depreciation/" class="text-gray-dark">
+    Puppet 3.6.1 depreciation warning
+</a></h1>
+<div class="content text-justify">
+    <p>Dear puppet users using a yum-based distribution<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>, once you will upgrade to <a href="http://docs.puppetlabs.com/puppet/3.6/reference/release_notes.html">puppet 3.6.1</a>,
+you will notice the following warning message each time you use a package type:</p>
+
+<pre><code>Warning: The package type's allow_virtual parameter will be changing its
+default value from false to true in a future release. If you do not want to
+allow virtual packages, please explicitly set allow_virtual to false.
+(at /usr/lib/ruby/site_ruby/1.8/puppet/type.rb:816:in `set_default')
+</code></pre>
+
+<p>There is nothing you can do with that except setting a global parameter in your puppet tree,
+as stated in the <a href="http://docs.puppetlabs.com/puppet/3.6/reference/release_notes.html#changes-to-rpm-behavior-with-virtual-packages">release notes</a>:</p>
+
+<pre><code>Package {
+  allow_virtual =&gt; true,
+}
+</code></pre>
+
+<p>I don&rsquo;t see any reason to have such a warning if enough information is given in the
+<a href="http://docs.puppetlabs.com/puppet/3.6/reference/release_notes.html#changes-to-rpm-behavior-with-virtual-packages">release notes</a>. This disturbing behaviour is discussed in <a href="https://tickets.puppetlabs.com/browse/PUP-2650">issue PUP-2650</a> and in the <a href="https://groups.google.com/d/msg/puppet-users/QadW3Px9GEU/tmNNgBG1uPQJ">mailing list</a>.</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">This is not the first time I start an article with this sentence ;-)
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/05/26/puppet-361-depreciation/">Permalink</a>. Category: Automation. Tags: centos automation planet-inuits puppet.<br/>
+        First published on Mon 26 May 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title mt-3 mb-3"><a href="/blog/2014/05/19/pt-heartbeat-array-error/" class="text-gray-dark">
+    Pt-heartbeat can&#39;t use an undefined value as an ARRAY reference
+</a></h1>
+<div class="content text-justify">
+    <p>Today I got a strange issue with <a href="http://www.percona.com/doc/percona-toolkit/2.2/pt-heartbeat.html"><code>pt-heartbeat</code></a>.</p>
+
+<p>When I launched <code>pt-heartbeat</code>:</p>
+
+<pre><code>pt-heartbeat --pid /var/opt/inu/pt-heartbeat.pid --update --database \
+  pth --create-table --socket /var/opt/inu/mysql/mysql.sock --user=pth \
+  --password=str0ng
+</code></pre>
+
+<p>I got the following error message:</p>
+
+<pre><code>Can't use an undefined value as an ARRAY reference at
+  /usr/bin/pt-heartbeat line 4297.
+</code></pre>
+
+<p>It was because I did not have access to the <code>/tmp/percona-version-check</code> file.
+The file was created under an other user and the current user could not access
+it. I have found it out by using <code>strace -e trace=file</code>.</p>
+
+<p>Just removing the file solved the problem (of course the first <code>pt-heartbeat</code>
+daemon was not running anymore).</p>
+
+<pre><code>rm /tmp/percona-version-check
+</code></pre>
+
+</div>
+<div class="message mb-3">
+    <div class="bg-faded p-3 text-center">
+        <a href="/blog/2014/05/19/pt-heartbeat-array-error/">Permalink</a>. Category: Linux. Tags: mysql HA planet-inuits.<br/>
+        First published on Mon 19 May 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li class="page-item ">
+                <a class="page-link" href="/blog/page/10/" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li  class="page-item disabled"><a class="page-link">...</a></li>
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/10/">10</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item  active"><a class="page-link" href="/blog/page/11/">11</a></li>
+            
+            
+            
+            
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/12/">12</a></li>
+            
+            
+            
+            
+            
+            
+            
+            <li  class="page-item disabled"><a class="page-link">...</a></li>
+            
+            
+            <li  class="page-item "><a class="page-link" href="/blog/page/14/">14</a></li>
+            
+            
+        <li class="page-item">
+            <a class="page-link" href="/blog/page/12/" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+        </div>
+        </div>
+        <footer class="pt-2">
+            <div class="text-center p-5">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.25.1</a>, using <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2017-07-24.
+</p>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Julien Pivotto</title>
+    <link>https://roidelapluie.be/categories/blog/</link>
+    <description>Recent content in Blog on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 28 Oct 2015 08:43:26 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/categories/blog/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>This blog runs a Let&#39;s Encrypt certificate</title>
+      <link>https://roidelapluie.be/blog/2015/10/28/letsencrypt/</link>
+      <pubDate>Wed, 28 Oct 2015 08:43:26 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/10/28/letsencrypt/</guid>
+      <description>I am part of the Let&amp;rsquo;s Encrypt beta test. As part of it, I generated a SSL certificate for my blog, and it is now live.
+In the past I used Startssl to get free certificates. Those certificates expired in September. At that time I switched to a Comodo certificate, because the validity was only 3 months and I hoped Let&amp;rsquo;s Encrypt to be there before the end of the year.</description>
+    </item>
+    
+    <item>
+      <title>CSS update</title>
+      <link>https://roidelapluie.be/blog/2015/03/26/css-update/</link>
+      <pubDate>Thu, 26 Mar 2015 17:39:22 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/03/26/css-update/</guid>
+      <description>As the YAML CSS project looks like dead, I have changed the design of my blog to Primer, the CSS Framework made by GitHub.
+I hope that you will enjoy it, it should be more readable and easy to navigate. Everything should have been ported to that new design. I have removed openpgp.js because it was not used.
+As a reminder I have a RSS feed that contains only my technical articles: the planet-inuits tag feed.</description>
+    </item>
+    
+    <item>
+      <title>RSS/Atom feeds update</title>
+      <link>https://roidelapluie.be/blog/2014/08/28/rss-feed-update/</link>
+      <pubDate>Thu, 28 Aug 2014 07:08:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/08/28/rss-feed-update/</guid>
+      <description>Dear reader,
+If you are following this blog via RSS/Atom feeds, you have probably noticed that all the articles of this one have been marked as unread in your RSS reader. This is due to an small technical change in the URL&amp;rsquo;s of the articles.
+Please also note that I have added several feeds for tags and categories.
+An interesting feed is probably the planet-inuits feed, which contains the articles I publish on the inuits planet.</description>
+    </item>
+    
+  </channel>
+</rss>
