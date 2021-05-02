@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>firefox on Julien Pivotto</title>
+    <link>https://roidelapluie.be/categories/firefox/</link>
+    <description>Recent content in firefox on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 06 Sep 2017 11:59:11 +0200</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/categories/firefox/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Foxyproxy 5.0 is BAD</title>
+      <link>https://roidelapluie.be/blog/2017/09/06/foxyproxy/</link>
+      <pubDate>Wed, 06 Sep 2017 11:59:11 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/09/06/foxyproxy/</guid>
+      <description>FoxyProxy devs have deployed a new major release of their addon. It ignores your current config, you need to create a new one. There is no migration path.
+Hopefully the new config is still on disk. Simply disable the addon autoupdate and get the 4.6.5 release to get back to work.
+I really don&amp;rsquo;t get why the devs have broken that so useful extension&amp;hellip;</description>
+    </item>
+    
+  </channel>
+</rss>

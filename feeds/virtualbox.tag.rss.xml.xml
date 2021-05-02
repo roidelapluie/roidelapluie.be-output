@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>virtualbox on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/virtualbox/</link>
+    <description>Recent content in virtualbox on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 05 Jun 2015 08:40:59 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/virtualbox/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Vagrant will support VirtualBox linked clones</title>
+      <link>https://roidelapluie.be/blog/2015/06/05/vagrant-will-support-vbox-clones/</link>
+      <pubDate>Fri, 05 Jun 2015 08:40:59 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/06/05/vagrant-will-support-vbox-clones/</guid>
+      <description>Here is a good news for the vagrant users that still use VirtualBox. While vagrant has support for many other providers, I guess that VirtualBox is probably still in the top 3.
+A September 2014 Pull Request by mpoeter has been updated some days ago. That pull request is about the support of a long-existing VirtualBox feature, linked clones. And it will more than probably be integrated in the next release.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Percona XtraBackup 2.2.10 is incompatible with MariaDB 10.0 - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="navbar-item " href="/fr">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+<h1 class="title"><a href="/blog/2015/04/15/xtrabackup-and-mariadb/" class="text-gray-dark">
+    Percona XtraBackup 2.2.10 is incompatible with MariaDB 10.0
+</a></h1>
+<div class="content text-justify">
+    
+
+<p><a href="http://www.percona.com/doc/percona-xtrabackup/2.2/">Percona XtraBackup</a> is
+probably the most relevant open-source backup solution for both
+<a href="http://www.mysql.com/">MySQL</a> and <a href="https://mariadb.org/">MariaDB</a>. It has all
+the required features that you need to backup your database, especially if you use innodb (or xtradb).</p>
+
+<p>One of the features are Incremental backups. It is an easy way to get
+a consistent backup of your databases in a short amount of time.</p>
+
+<p>But the latest version of XtraBackup
+(<a href="http://www.percona.com/doc/percona-xtrabackup/2.2/release-notes/2.2/2.2.10.html">2.2.10</a>)
+breaks that feature with MariaDB 10.0. And it is not a bug, it is a feature.
+Let me explain: it is due to an old feature that was not enabled.</p>
+
+<p>Two years ago (exactly), XtraBackup got a feature called <a href="https://github.com/percona/percona-xtrabackup/commit/a37c7cbca557e94bb5f5ffe4ae02378dcf98daf7">bitmap-based incremental backups</a>. But that feature was (at least partly) not working, as that feature was always disabled. It was fixed <a href="https://github.com/percona/percona-xtrabackup/commit/a39237dd1a4de653e205e63b81ae5c4c5659116d">recently</a>.</p>
+
+<p>The fix enables that feature in MariaDB 10.0. When an incremental backup is done,
+XtraBackup issues the following command:</p>
+
+<pre><code>::mysql
+FLUSH NO_WRITE_TO_BINLOG CHANGED_PAGE_BITMAPS
+</code></pre>
+
+<p>Which does not exist in MariaDB:</p>
+
+<pre><code>You have an error in your SQL syntax; check the manual that corresponds to
+your MariaDB server version for the right syntax to use near
+CHANGED_PAGE_BITMAPS.
+</code></pre>
+
+<p>There are two upstream bugs for this: <a href="https://bugs.launchpad.net/percona-xtrabackup/+bug/1444541">one for XtraBackup</a>
+and <a href="https://mariadb.atlassian.net/browse/MDEV-7472">another one for MariaDB</a>.
+It will probably not be fixed in MariaDB (at least not in a close future), but
+we can reasonably expect that XtraBackup 2.2.11 will contain a fix for this.</p>
+
+<h3 id="command-line-workaround">Command-line workaround</h3>
+
+<p>The recommended workaround for MariaDB is to use the <code>--incremental-force-scan</code> option
+as <a href="https://bugs.launchpad.net/percona-xtrabackup/+bug/1444541/comments/5">pointed out by Sergei Glushchenko</a>.</p>
+
+<h3 id="patch-for-backward-compatibility">Patch for backward compatibility</h3>
+
+<p>The following patch allows you to break the feature detection to have backward
+command-line compatibility:</p>
+
+<pre><code> ::diff
+ --- a/bin/innobackupex  2015-04-15 18:07:06.472692735 +0200
+ +++ b/bin/innobackupex  2015-04-15 18:07:52.092927798 +0200
+ @@ -4981,10 +4981,7 @@
+      my $con = shift;
+
+      if ($option_incremental) {
+ -        $have_changed_page_bitmaps =
+ -            mysql_get_one_value($con, &quot;SELECT COUNT(*) FROM &quot; .
+ -                        &quot;INFORMATION_SCHEMA.PLUGINS &quot; .
+ -                        &quot;WHERE PLUGIN_NAME LIKE 'INNODB_CHANGED_PAGES'&quot;);
+ +        $have_changed_page_bitmaps = 0;
+      }
+
+      if (!defined($con-&gt;{vars})) {
+</code></pre>
+
+<p>Please note that this patch is for the pre-compiled version of XtraBackup. In
+the source tree, the file to patch is <code>storage/innobase/xtrabackup/innobackupex.pl</code>.</p>
+
+<p>You should now be able to enjoy all the new changes of the latest version of
+XtraBackup with MariaDB 10.0!</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/04/15/xtrabackup-and-mariadb/">Permalink</a>. Category: Linux. Tags: mysql planet-inuits.<br/>
+        First published on Wed 15 April 2015.
+    </div>
+</div>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

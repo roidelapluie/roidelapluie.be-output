@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Prometheus Google Compute Engine discovery example - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="navbar-item " href="/fr">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+<h1 class="title"><a href="/blog/2019/03/09/prometheus-gce/" class="text-gray-dark">
+    Prometheus Google Compute Engine discovery example
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>Here is a small example on how to use <a href="https://prometheus.io">Prometheus</a> to
+scrape your GCE instance.</p>
+
+<p>I recommend you to look at <a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/#gce_sd_config">prometheus documentation</a>
+to see how you can pass the crendentials to your prometheus instance.</p>
+
+<pre><code>scrape_configs:
+  - job_name: node_gce
+    gce_sd_configs:
+      - zone: europe-west1-b
+        project: myproject
+      - zone: europe-west1-d
+        project: myproject
+      - zone: europe-west1-c
+        project: myproject
+    relabel_configs:
+      - source_labels: [__meta_gce_public_ip]
+        target_label: __address__
+        replacement: &quot;${1}:9090&quot;
+      - source_labels: [__meta_gce_zone]
+        regex: &quot;.+/([^/]+)&quot;
+        target_label: zone
+      - source_labels: [__meta_gce_project]
+        target_label: project
+      - source_labels: [__meta_gce_instance_name]
+        target_label: instance
+      - regex: &quot;__meta_gce_metadata_(.+)&quot;
+        action: labelmap
+</code></pre>
+
+<p>Let&rsquo;s analyze it.</p>
+
+<h3 id="zones-and-projects">Zones and projects</h3>
+
+<pre><code>    gce_sd_configs:
+      - zone: europe-west1-b
+        project: project1
+      - zone: europe-west1-d
+        project: project1
+      - zone: europe-west1-c
+        project: project2
+</code></pre>
+
+<p>We have a job named node_gce, which has 3 <code>gce_sd_config</code> objects. One object is
+attached to one zone and one project.</p>
+
+<h3 id="relabeling">Relabeling</h3>
+
+<h4 id="setting-the-address">Setting the address</h4>
+
+<p>This example will substitute the private ip by the public ip of your node, and
+use the port 9090. <code>__address__</code> is a hidden used by prometheus to get the
+address to scrape.</p>
+
+<pre><code>      - source_labels: [__meta_gce_public_ip]
+        target_label: __address__
+        replacement: &quot;${1}:9090&quot;
+</code></pre>
+
+<h4 id="zones-and-project">Zones and project</h4>
+
+<p>Now, let&rsquo;s get automatically a zone label, which will match the gce zone:</p>
+
+<pre><code>      - source_labels: [__meta_gce_zone]
+        regex: &quot;.+/([^/]+)&quot;
+        target_label: zone
+</code></pre>
+
+<p>Let&rsquo;s get a project label, too:</p>
+
+<pre><code>      - source_labels: [__meta_gce_project]
+        target_label: project
+</code></pre>
+
+<h4 id="instance-name">Instance name</h4>
+
+<p>And a human readable instance name, that will match gce instance name:</p>
+
+<pre><code>      - source_labels: [__meta_gce_instance_name]
+        target_label: instance
+</code></pre>
+
+<h4 id="metadata">Metadata</h4>
+
+<p>The last part of the config will make every metadata of the instance a label in
+prometheus:</p>
+
+<pre><code>      - regex: &quot;__meta_gce_metadata_(.+)&quot;
+        action: labelmap
+</code></pre>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2019/03/09/prometheus-gce/">Permalink</a>. Category: monitoring. Tags: prometheus.<br/>
+        First published on Sat 9 March 2019.
+    </div>
+</div>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

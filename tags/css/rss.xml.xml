@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>css on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/css/</link>
+    <description>Recent content in css on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 26 Mar 2015 17:39:22 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/css/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CSS update</title>
+      <link>https://roidelapluie.be/blog/2015/03/26/css-update/</link>
+      <pubDate>Thu, 26 Mar 2015 17:39:22 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/03/26/css-update/</guid>
+      <description>As the YAML CSS project looks like dead, I have changed the design of my blog to Primer, the CSS Framework made by GitHub.
+I hope that you will enjoy it, it should be more readable and easy to navigate. Everything should have been ported to that new design. I have removed openpgp.js because it was not used.
+As a reminder I have a RSS feed that contains only my technical articles: the planet-inuits tag feed.</description>
+    </item>
+    
+  </channel>
+</rss>

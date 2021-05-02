@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Julien Pivotto</title>
+    <link>https://roidelapluie.be/categories/</link>
+    <description>Recent content in Categories on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 27 Nov 2019 10:00:00 +0100</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/categories/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>prometheus</title>
+      <link>https://roidelapluie.be/categories/prometheus/</link>
+      <pubDate>Wed, 27 Nov 2019 10:00:00 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/categories/prometheus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cloud</title>
+      <link>https://roidelapluie.be/categories/cloud/</link>
+      <pubDate>Mon, 22 Apr 2019 23:32:47 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/categories/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Monitoring</title>
+      <link>https://roidelapluie.be/categories/monitoring/</link>
+      <pubDate>Sat, 09 Mar 2019 11:44:58 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/categories/monitoring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>firefox</title>
+      <link>https://roidelapluie.be/categories/firefox/</link>
+      <pubDate>Wed, 06 Sep 2017 11:59:11 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/categories/firefox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>automation</title>
+      <link>https://roidelapluie.be/categories/automation/</link>
+      <pubDate>Thu, 20 Jul 2017 09:29:55 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/categories/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://roidelapluie.be/categories/linux/</link>
+      <pubDate>Thu, 30 Mar 2017 21:19:55 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Open-Source</title>
+      <link>https://roidelapluie.be/categories/open-source/</link>
+      <pubDate>Wed, 22 Mar 2017 21:32:57 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/categories/open-source/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Blog</title>
+      <link>https://roidelapluie.be/categories/blog/</link>
+      <pubDate>Wed, 28 Oct 2015 08:43:26 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/categories/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Android</title>
+      <link>https://roidelapluie.be/categories/android/</link>
+      <pubDate>Sun, 10 May 2015 17:22:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/categories/android/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

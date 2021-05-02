@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Running Nightly jobs with Jenkins - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="navbar-item " href="/fr">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+<h1 class="title"><a href="/blog/2017/03/30/nightly-jobs-jenkins/" class="text-gray-dark">
+    Running Nightly jobs with Jenkins
+</a></h1>
+<div class="content text-justify">
+    <p>Jenkins can spread the load of Jobs by using H instead of * in the cron fields.
+It means that:</p>
+
+<pre><code>H 3 * * *
+</code></pre>
+
+<p>Means: Run between 3 and 4 am.</p>
+
+<p>The minute will be decided by Jenkins, by applying a hash function over the job
+name.</p>
+
+<p>What about this one:</p>
+
+<pre><code>H H * * *
+</code></pre>
+
+<p>Means: Run once a day. The moment will be calculated by a Jenkins based on the
+job name.</p>
+
+<p>But what if I have hundreds of jobs, I want to run them once a day, but during
+night? Something like:</p>
+
+<pre><code>H H(0-5) * * *
+</code></pre>
+
+<p>Means: Run the job once everyday between 12am and 6am.</p>
+
+<p>But when you scale up your Jenkins, you want the jobs to run between e.g. 7pm
+and 6am. Because you also want to use the hours before midnight.,</p>
+
+<p>There is a BAD WAY to do it:</p>
+
+<pre><code>H H(0-6),H(19-23) H/2 * *
+</code></pre>
+
+<p>That would run the jobs in the morning and the evening, every 2 days. It is
+complex and will not behave correctly at the end of months.</p>
+
+<p>The GOOD WAY to do it is to set the timezone in the cron expression, something
+which is <a href="https://github.com/jenkinsci/jenkins/pull/1720">not documented yet</a>.
+It is there since Jenkins 1.615 so you probably have it in your Jenkins:</p>
+
+<pre><code>TZ=GMT+7
+H H(0-10) * * *
+</code></pre>
+
+<p>What does this mean? In the timezone GMT+7, run the jobs once between 12am and
+11 am. Which means between 7pm and 6am in my timezone.</p>
+
+<pre><code>$ date -d '0:00 GMT+7'
+Wed Mar 29 19:00:00 CEST 2017
+$ date -d '11:00 GMT+7'
+Thu Mar 30 06:00:00 CEST 2017
+</code></pre>
+
+<p>It is a lot more simple syntax and is more reliable. Please note that the
+validation (preview) below the Cron settings is not using that TZ
+(I opened <a href="https://issues.jenkins-ci.org/browse/JENKINS-43228">JENKINS-43228</a>
+for this).</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2017/03/30/nightly-jobs-jenkins/">Permalink</a>. Category: Automation. Tags: Jenkins Testing Planet-inuits.<br/>
+        First published on Thu 30 March 2017.
+    </div>
+</div>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

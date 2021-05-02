@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>open-source on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/open-source/</link>
+    <description>Recent content in open-source on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 30 Mar 2017 21:19:55 +0200</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/open-source/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Setting a Socks Proxy in Firefox Webdriver with Robot Framework</title>
+      <link>https://roidelapluie.be/blog/2017/03/30/robot-firefox-socks/</link>
+      <pubDate>Thu, 30 Mar 2017 21:19:55 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/03/30/robot-firefox-socks/</guid>
+      <description>Here are the Robot Framework keywords needed nowadays to setup a socks5 proxy (e.g ssh -ND 9050 bastion.example.com):
+*** Settings *** Documentation Open a Web Page using a socks 5 proxy (demo) Library Selenium2Library *** Test Cases *** Create Webdriver and Open Page ${profile}= Evaluate sys.modules[&amp;#39;selenium.webdriver&amp;#39;].FirefoxProfile() sys Call Method ${profile} set_preference network.proxy.socks 127.0.0.1 Call Method ${profile} set_preference network.proxy.socks_port ${9060} Call Method ${profile} set_preference network.proxy.socks_remote_dns ${True} Call Method ${profile} set_preference network.proxy.type ${1} Create WebDriver Firefox firefox_profile=${profile} Go To http://internal.</description>
+    </item>
+    
+    <item>
+      <title>My first Open Source contribution</title>
+      <link>https://roidelapluie.be/blog/2017/03/22/first-open-source-contribution/</link>
+      <pubDate>Wed, 22 Mar 2017 21:32:57 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/03/22/first-open-source-contribution/</guid>
+      <description>The first Open-Source contribution I remember happened on December 2005. It happened on Gaim, which is now known as Pidgin.
+It was not a big contribution: I did not like the arrows shown when moving discussion tabs. Those arrows where plain red. I created new ones (using The Gimp), with a gradient. It did not take a long time to make them, but it was definitively an improvement.
+Here it is: It was quickly merged (&amp;lt; 2 hours).</description>
+    </item>
+    
+    <item>
+      <title>mgmt</title>
+      <link>https://roidelapluie.be/blog/2017/02/09/mgmt/</link>
+      <pubDate>Thu, 09 Feb 2017 11:33:25 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/02/09/mgmt/</guid>
+      <description>At Config Management Camp, James was once again presenting mgmt. He presented the project one year ago, on his blog. There are multiple ideas behind mgmt (as you can read on his blog):
+ Parallel execution Event driven Distributed topology  And all of that makes a lot of sense. I really like it. I do really think that this might become a huge deal in the future. But there are a couple of concerns I would like to raise.</description>
+    </item>
+    
+    <item>
+      <title>I&#39;ve backed Matchstick</title>
+      <link>https://roidelapluie.be/blog/2014/10/04/i-ve-backed-matchstick/</link>
+      <pubDate>Sat, 04 Oct 2014 12:31:48 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/10/04/i-ve-backed-matchstick/</guid>
+      <description>I have backed Matchstick, the HDMI stick based on Firefox OS. It is the first crowdfunding project I participate. And I hope it won&amp;rsquo;t be the last one.
+There are a few reasons why I have chosen to do so.
+The first reason is the open-source part of that project. An open-source software combined with open-source hardware, that is everything I like. Good philosophy is always a good point.
+Next that project is exciting.</description>
+    </item>
+    
+  </channel>
+</rss>

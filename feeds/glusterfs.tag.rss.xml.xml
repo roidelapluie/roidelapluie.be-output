@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GlusterFS on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/glusterfs/</link>
+    <description>Recent content in GlusterFS on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 18 Jul 2013 15:27:11 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/glusterfs/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GlusterFS quorums</title>
+      <link>https://roidelapluie.be/blog/2013/07/18/glusterfs-quorum/</link>
+      <pubDate>Thu, 18 Jul 2013 15:27:11 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/07/18/glusterfs-quorum/</guid>
+      <description>GlusterFS quorums should prevent brain-split by deactivating the nodes when less that 50% of the servers are connected (you can change that number).
+To enable the feature, it is simple:
+srv01$ sudo gluster volume set gv0 cluster.server-quorum-type server volume set: success  Then I isolated one VM on the network. I could not access the files on that node:
+srv03$ ls /mnt ls: cannot access /mnt: No such file or directory  But it worked on the other nodes:</description>
+    </item>
+    
+    <item>
+      <title>Peering a server to a GlusterFS cluster</title>
+      <link>https://roidelapluie.be/blog/2013/07/18/peering-a-server-to-a-glusterfs-cluster/</link>
+      <pubDate>Thu, 18 Jul 2013 13:46:57 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/07/18/peering-a-server-to-a-glusterfs-cluster/</guid>
+      <description>Some notes about how to add server to a GlusterFS cluster and to replicata data to it.
+::bash srv03$ sudo gluster peer probe 192.168.1.10 peer probe: failed: 192.168.1.10 is already part of another cluster  It is logical that anyone may not add a server to a gluster cluster.
+::bash srv01$ sudo gluster peer probe 192.168.1.12 peer probe: success  It is successful.
+::bash srv01$ sudo gluster peer status Number of Peers: 2 Hostname: 192.</description>
+    </item>
+    
+    <item>
+      <title>Fixing a GlusterFS split-brain</title>
+      <link>https://roidelapluie.be/blog/2013/07/17/glusterfs-split-brain/</link>
+      <pubDate>Wed, 17 Jul 2013 16:27:17 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/07/17/glusterfs-split-brain/</guid>
+      <description>I have found some time to test GlusterFS, in order to use it to replicate data between several servers.
+I have created two vagrant boxes to set up a basic cluster.
+And, during my tests, I have shut down the network interfaces and started writing different things on the same file, to create a split-brain.
+srv01$ echo good &amp;gt; /mnt/test srv02$ echo bad &amp;gt; /mnt/test  When the interfaces were up again, the split-brain was obviously present:</description>
+    </item>
+    
+  </channel>
+</rss>

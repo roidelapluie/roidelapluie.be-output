@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monitoring on Julien Pivotto</title>
+    <link>https://roidelapluie.be/categories/monitoring/</link>
+    <description>Recent content in Monitoring on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 09 Mar 2019 11:44:58 +0100</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/categories/monitoring/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Prometheus Google Compute Engine discovery example</title>
+      <link>https://roidelapluie.be/blog/2019/03/09/prometheus-gce/</link>
+      <pubDate>Sat, 09 Mar 2019 11:44:58 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2019/03/09/prometheus-gce/</guid>
+      <description>Here is a small example on how to use Prometheus to scrape your GCE instance.
+I recommend you to look at prometheus documentation to see how you can pass the crendentials to your prometheus instance.
+scrape_configs: - job_name: node_gce gce_sd_configs: - zone: europe-west1-b project: myproject - zone: europe-west1-d project: myproject - zone: europe-west1-c project: myproject relabel_configs: - source_labels: [__meta_gce_public_ip] target_label: __address__ replacement: &amp;quot;${1}:9090&amp;quot; - source_labels: [__meta_gce_zone] regex: &amp;quot;.+/([^/]+)&amp;quot; target_label: zone - source_labels: [__meta_gce_project] target_label: project - source_labels: [__meta_gce_instance_name] target_label: instance - regex: &amp;quot;__meta_gce_metadata_(.</description>
+    </item>
+    
+    <item>
+      <title>Dealing with flapping metrics in prometheus</title>
+      <link>https://roidelapluie.be/blog/2019/02/21/prometheus-last/</link>
+      <pubDate>Thu, 21 Feb 2019 10:56:16 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2019/02/21/prometheus-last/</guid>
+      <description>Prometheus allows you to get metrics from a lot of systems.
+We are integrated with third party suppliers that expose us a balance, an amount of resources we can use.
+That is exposed as the following metric:
+ available_sms{route=&amp;quot;1&amp;quot;,env=&amp;quot;prod&amp;quot;} 1000 
+This is a gauge, therefore we can write an alerting rule like this:
+- alert: No more SMS expr: | available_sms &amp;lt; 1000  That works well.. when the provider API is available.</description>
+    </item>
+    
+    <item>
+      <title>Prometheus and DST</title>
+      <link>https://roidelapluie.be/blog/2017/11/09/prometheus-dst/</link>
+      <pubDate>Thu, 09 Nov 2017 22:17:47 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/11/09/prometheus-dst/</guid>
+      <description>Prometheus only deals with GMT. It does not even try to do something else. But, when you want to compare your business metrics with your usual traffic, you need to take DST into account.
+Here is my take on the problem. Note that I am in TZ=Europe/Brussels. We had DST on October 29.
+Let&amp;rsquo;s say that I want to compare one metric with the same metric 2 weeks ago. In this example, the metric would be rate(app_requests_count{env=&amp;quot;prod&amp;quot;}[5m]).</description>
+    </item>
+    
+    <item>
+      <title>R and Graphite</title>
+      <link>https://roidelapluie.be/blog/2015/05/13/r-and-graphite/</link>
+      <pubDate>Wed, 13 May 2015 01:45:07 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/05/13/r-and-graphite/</guid>
+      <description>R is a famous language in the statistical world. It has a large ecosystem and today I wanted to try to do some predictions with R and Graphite.
+library(&amp;quot;rjson&amp;quot;) library(&amp;quot;RCurl&amp;quot;) library(&amp;quot;forecast&amp;quot;) library(&amp;quot;xts&amp;quot;) metric &amp;lt;- &amp;quot;myhost.load.load.longterm&amp;quot; time &amp;lt;- &amp;quot;3days&amp;quot; host &amp;lt;- &amp;quot;graphite.example.com&amp;quot; url &amp;lt;- paste(&amp;quot;https://&amp;quot;, host, &amp;quot;/render/?target=&amp;quot;, metric, &amp;quot;&amp;amp;format=json&amp;amp;from=-&amp;quot;, time, sep=&amp;quot;&amp;quot;)[1] json_content &amp;lt;- getURL(url, userpwd=&amp;quot;myuser:mypass&amp;quot;, httpauth = 1L) json_data &amp;lt;- fromJSON(json_content) values &amp;lt;- c() datapoints &amp;lt;- json_data[[1]]$datapoints target &amp;lt;- json_data[[1]]$target for(d in datapoints){ value &amp;lt;- (d[[1]]) values &amp;lt;- c(values, value) } values &amp;lt;- ts(values, frequency=30) fit &amp;lt;- Arima(values, order=c(1,0,30)) fcast &amp;lt;- forecast(fit) plot(fcast, main=target)  Result:</description>
+    </item>
+    
+    <item>
+      <title>Munin 2 &#34;not a reference&#34; error</title>
+      <link>https://roidelapluie.be/blog/2014/09/02/munin2-not-a-reference-error/</link>
+      <pubDate>Tue, 02 Sep 2014 08:49:58 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/02/munin2-not-a-reference-error/</guid>
+      <description>This morning I worked with Munin, discovering that Munin 2 has made it to EPEL.
+Thus I started to look at puppet modules. I tried two of them (ssm-munin and duritong-munin), and no one seemed to be working.
+I was then digging deeper about what the problem could be, so I logged in to the machine with the munin user:
+::text # su - munin --shell=/bin/bash  Then I ran the script by hand:</description>
+    </item>
+    
+    <item>
+      <title>Grok and httpd</title>
+      <link>https://roidelapluie.be/blog/2013/06/17/grok-httpd/</link>
+      <pubDate>Mon, 17 Jun 2013 12:13:20 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/06/17/grok-httpd/</guid>
+      <description>When you use the LogFormat parameter in you apache configuration, you may want to use the same logformat in logstash.
+I made a small table that will enable you to &amp;ldquo;translate&amp;rdquo; your custom log format into a grok pattern.
+   httpd grok     %T %{NUMBER:duration_seconds}   %D %{NUMBER:duration_microseconds}   %h %{IPORHOST:client}   %l %{USERNAME:remotelogname}   %u %{USERNAME:username}   %t \[%{HTTPDATE:timestamp}\]   %r %{USERNAME:method} %{URIPATHPARAM:request} HTTP/%{NUMBER:httpversion}   %s %{NUMBER:response}   %B %{NUMBER:bytes}   %b (?</description>
+    </item>
+    
+  </channel>
+</rss>

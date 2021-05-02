@@ -1,0 +1,15 @@
+img.emoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+}
+
+.bm--card-equal-height {
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+}
+.bm--card-equal-height .card-footer {
+    margin-top: auto;
+}

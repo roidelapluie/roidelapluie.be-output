@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>imho on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/imho/</link>
+    <description>Recent content in imho on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 13 Sep 2014 21:24:25 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/imho/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>It&#39;s not time to split Linux distros in two</title>
+      <link>https://roidelapluie.be/blog/2014/09/13/dont-split-linux-in-two/</link>
+      <pubDate>Sat, 13 Sep 2014 21:24:25 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/13/dont-split-linux-in-two/</guid>
+      <description>This article is a reaction to the following article: It&amp;rsquo;s time to split Linux distros in two written by @pvenezia.
+There are a lot of changes nowadays in the way GNU/Linux evolves: systemd, steamOS, android, and a bunch of other stuff in several domains.
+So I read Paul&amp;rsquo;s article with attention because it&amp;rsquo;s seems that GNU/Linux will evolve a lot in the following years. He is right when he points out that on one side we want stability and scalability and on the other side we want performances and wide hardware support.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>haproxy on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/haproxy/</link>
+    <description>Recent content in haproxy on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 27 Nov 2019 10:00:00 +0100</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/haproxy/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A look at HAProxy native Prometheus metrics</title>
+      <link>https://roidelapluie.be/blog/2019/11/27/haproxy-prometheus/</link>
+      <pubDate>Wed, 27 Nov 2019 10:00:00 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2019/11/27/haproxy-prometheus/</guid>
+      <description>HAProxy 2.0 contains, among other improvements, the ability to expose Prometheus metrics natively.
+As I am building HAProxy 2.0 and 2.1 rpm&amp;rsquo;s, I wanted to try it out and move away from the haproxy_exporter.
+While the haproxy_exporter is developed by the Prometheus team, and therefore a high quality exporter, there is good reasons to move to the HAProxy native Prometheus exporter:
+ Performance New metrics Operations (no need to manage an exporter + the up metric represents haproxy) Security (no need to expose the stats csv)  Metrics Gone but can be calculated better with queries:</description>
+    </item>
+    
+  </channel>
+</rss>

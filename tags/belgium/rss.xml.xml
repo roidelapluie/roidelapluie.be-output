@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>belgium on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/belgium/</link>
+    <description>Recent content in belgium on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 20 Oct 2014 21:26:11 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/belgium/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>F-droid welcomes BeTrains</title>
+      <link>https://roidelapluie.be/blog/2014/10/20/f-droid-welcomes-betrains/</link>
+      <pubDate>Mon, 20 Oct 2014 21:26:11 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/10/20/f-droid-welcomes-betrains/</guid>
+      <description>I have discovered that F-Droid contains BeTrains, an open-source android tool to get data like timetables from the Belgian national railway company. Let&amp;rsquo;s take some time to explain you that in details.
+What is F-droid? It is a repository for Android. It contains a lot of different application, that have one thing in common: they are all open-source.
+There is of course one client that you can install on your android device to browse the catalogue and download/update your applications.</description>
+    </item>
+    
+    <item>
+      <title>Fill your Belgian tax form with Linux</title>
+      <link>https://roidelapluie.be/blog/2013/07/15/tax-on-web/</link>
+      <pubDate>Mon, 15 Jul 2013 21:52:50 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/07/15/tax-on-web/</guid>
+      <description>Tax-on-web is the online service that enable you to fill in your Belgian tax form.
+In order to be able to read you beid card, and so to connect to the online website, follow the following instructions.
+First, get a card reader, and install the relevant driver. The following will often be enough (if you are using debian/ubuntu):
+$ sudo apt-get install libacr38u pcscd  Then, do not install the software provided by the government.</description>
+    </item>
+    
+  </channel>
+</rss>

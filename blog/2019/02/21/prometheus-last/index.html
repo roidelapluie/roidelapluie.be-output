@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Dealing with flapping metrics in prometheus - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="navbar-item " href="/fr">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+<h1 class="title"><a href="/blog/2019/02/21/prometheus-last/" class="text-gray-dark">
+    Dealing with flapping metrics in prometheus
+</a></h1>
+<div class="content text-justify">
+    <p><a href="https://prometheus.io">Prometheus</a> allows you to get metrics from a lot of
+systems.</p>
+
+<p>We are integrated with third party suppliers that expose us a balance, an amount
+of resources we can use.</p>
+
+<p>That is exposed as the following metric:</p>
+
+<p><code>
+available_sms{route=&quot;1&quot;,env=&quot;prod&quot;} 1000
+</code></p>
+
+<p>This is a gauge, therefore we can write an alerting rule like this:</p>
+
+<pre><code>- alert: No more SMS
+  expr: |
+    available_sms &lt; 1000
+</code></pre>
+
+<p>That works well.. when the provider API is available. In our use case,
+sometimes, the api is refusing access for 10 minutes. Which means that if our
+balance is below 1000 we will get two tickets as the alert will start twice.</p>
+
+<p>An alternative would be to do:</p>
+
+<pre><code>- alert: No more SMS
+  expr: |
+    max_over_time(available_sms[1h]) &lt; 1000
+</code></pre>
+
+<p>Picking <code>min_over_time</code> means that the alert will be resolved only one hour
+after the original result.
+<code>max_over_time</code> means that the alert will be triggered one hour too late.</p>
+
+<p>We use an alternative approach, which is to record the last known value:</p>
+
+<pre><code>- record: available_sms_last
+  expr: available_sms or available_sms_last
+- alert: No more SMS
+  expr: |
+    available_sms_last &lt; 1000
+- alert: No more SMS balance
+  expr: |
+    absent(available_sms)
+  for: 1h
+</code></pre>
+
+<p>That rule will ensure that in case the api is not available, the
+<code>available_sms_last</code> metric will contain the last known value. We can therefore alert on
+that, without alerting too soon or too late! This is using <a href="https://prometheus.io/docs/prometheus/latest/querying/operators/#vector-matching">prometheus 1-to-1
+vector matching</a>.</p>
+
+<p>Another alert, on <code>absent(available_sms)</code> enables us to know when the api is
+down for a long time.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2019/02/21/prometheus-last/">Permalink</a>. Category: monitoring. Tags: prometheus.<br/>
+        First published on Thu 21 February 2019.
+    </div>
+</div>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

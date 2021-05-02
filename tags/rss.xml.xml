@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/</link>
+    <description>Recent content in Tags on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 27 Nov 2019 10:00:00 +0100</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>haproxy</title>
+      <link>https://roidelapluie.be/tags/haproxy/</link>
+      <pubDate>Wed, 27 Nov 2019 10:00:00 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/haproxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://roidelapluie.be/tags/docker/</link>
+      <pubDate>Mon, 22 Apr 2019 23:32:47 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gcp</title>
+      <link>https://roidelapluie.be/tags/gcp/</link>
+      <pubDate>Mon, 22 Apr 2019 23:32:47 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/gcp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>prometheus</title>
+      <link>https://roidelapluie.be/tags/prometheus/</link>
+      <pubDate>Sat, 09 Mar 2019 11:44:58 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/prometheus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>internet</title>
+      <link>https://roidelapluie.be/tags/internet/</link>
+      <pubDate>Wed, 06 Sep 2017 11:59:11 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/internet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ansible</title>
+      <link>https://roidelapluie.be/tags/ansible/</link>
+      <pubDate>Thu, 20 Jul 2017 09:29:55 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/ansible/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://roidelapluie.be/tags/linux/</link>
+      <pubDate>Thu, 20 Jul 2017 09:29:55 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>planet-inuits</title>
+      <link>https://roidelapluie.be/tags/planet-inuits/</link>
+      <pubDate>Thu, 20 Jul 2017 09:29:55 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/planet-inuits/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>security</title>
+      <link>https://roidelapluie.be/tags/security/</link>
+      <pubDate>Thu, 20 Jul 2017 09:29:55 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hashicorp</title>
+      <link>https://roidelapluie.be/tags/hashicorp/</link>
+      <pubDate>Fri, 21 Apr 2017 20:12:29 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/hashicorp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jenkins</title>
+      <link>https://roidelapluie.be/tags/jenkins/</link>
+      <pubDate>Thu, 30 Mar 2017 21:33:11 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
+      <link>https://roidelapluie.be/tags/testing/</link>
+      <pubDate>Thu, 30 Mar 2017 21:33:11 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>automation</title>
+      <link>https://roidelapluie.be/tags/automation/</link>
+      <pubDate>Thu, 30 Mar 2017 21:19:55 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>open-source</title>
+      <link>https://roidelapluie.be/tags/open-source/</link>
+      <pubDate>Thu, 30 Mar 2017 21:19:55 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/open-source/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gpl</title>
+      <link>https://roidelapluie.be/tags/gpl/</link>
+      <pubDate>Wed, 22 Mar 2017 21:32:57 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/gpl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pidgin</title>
+      <link>https://roidelapluie.be/tags/pidgin/</link>
+      <pubDate>Wed, 22 Mar 2017 21:32:57 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/pidgin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cfgmgmt</title>
+      <link>https://roidelapluie.be/tags/cfgmgmt/</link>
+      <pubDate>Thu, 09 Feb 2017 11:33:25 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/cfgmgmt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>puppet</title>
+      <link>https://roidelapluie.be/tags/puppet/</link>
+      <pubDate>Wed, 02 Nov 2016 08:44:30 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/puppet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>network</title>
+      <link>https://roidelapluie.be/tags/network/</link>
+      <pubDate>Sun, 27 Dec 2015 20:07:53 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssl</title>
+      <link>https://roidelapluie.be/tags/ssl/</link>
+      <pubDate>Wed, 28 Oct 2015 08:43:26 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/ssl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>foreman</title>
+      <link>https://roidelapluie.be/tags/foreman/</link>
+      <pubDate>Sat, 03 Oct 2015 14:25:37 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/foreman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>licenses</title>
+      <link>https://roidelapluie.be/tags/licenses/</link>
+      <pubDate>Wed, 23 Sep 2015 21:04:31 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/licenses/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>philosophy</title>
+      <link>https://roidelapluie.be/tags/philosophy/</link>
+      <pubDate>Wed, 23 Sep 2015 21:04:31 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/philosophy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>centos</title>
+      <link>https://roidelapluie.be/tags/centos/</link>
+      <pubDate>Thu, 17 Sep 2015 13:31:42 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/centos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HA</title>
+      <link>https://roidelapluie.be/tags/ha/</link>
+      <pubDate>Thu, 17 Sep 2015 13:31:42 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/ha/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vagrant</title>
+      <link>https://roidelapluie.be/tags/vagrant/</link>
+      <pubDate>Wed, 12 Aug 2015 09:10:52 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/vagrant/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>augeas</title>
+      <link>https://roidelapluie.be/tags/augeas/</link>
+      <pubDate>Fri, 31 Jul 2015 21:45:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/augeas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>systemd</title>
+      <link>https://roidelapluie.be/tags/systemd/</link>
+      <pubDate>Fri, 31 Jul 2015 21:45:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/systemd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sysadmin</title>
+      <link>https://roidelapluie.be/tags/sysadmin/</link>
+      <pubDate>Sat, 04 Jul 2015 12:04:14 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/sysadmin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>virtualbox</title>
+      <link>https://roidelapluie.be/tags/virtualbox/</link>
+      <pubDate>Fri, 05 Jun 2015 08:40:59 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/virtualbox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>graphite</title>
+      <link>https://roidelapluie.be/tags/graphite/</link>
+      <pubDate>Wed, 13 May 2015 01:45:07 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/graphite/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>statistics</title>
+      <link>https://roidelapluie.be/tags/statistics/</link>
+      <pubDate>Wed, 13 May 2015 01:45:07 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/statistics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>firefox</title>
+      <link>https://roidelapluie.be/tags/firefox/</link>
+      <pubDate>Sun, 10 May 2015 17:22:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/firefox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mozilla</title>
+      <link>https://roidelapluie.be/tags/mozilla/</link>
+      <pubDate>Sun, 10 May 2015 17:22:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/mozilla/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mail</title>
+      <link>https://roidelapluie.be/tags/mail/</link>
+      <pubDate>Sat, 09 May 2015 21:29:49 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/mail/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mutt</title>
+      <link>https://roidelapluie.be/tags/mutt/</link>
+      <pubDate>Sat, 09 May 2015 21:29:49 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/mutt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kvm</title>
+      <link>https://roidelapluie.be/tags/kvm/</link>
+      <pubDate>Tue, 28 Apr 2015 09:08:34 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/kvm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>qemu</title>
+      <link>https://roidelapluie.be/tags/qemu/</link>
+      <pubDate>Tue, 28 Apr 2015 09:08:34 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/qemu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>virtualization</title>
+      <link>https://roidelapluie.be/tags/virtualization/</link>
+      <pubDate>Tue, 28 Apr 2015 09:08:34 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/virtualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>https://roidelapluie.be/tags/git/</link>
+      <pubDate>Wed, 22 Apr 2015 13:40:03 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>libreoffice</title>
+      <link>https://roidelapluie.be/tags/libreoffice/</link>
+      <pubDate>Mon, 20 Apr 2015 21:51:52 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/libreoffice/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>office</title>
+      <link>https://roidelapluie.be/tags/office/</link>
+      <pubDate>Mon, 20 Apr 2015 21:51:52 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/office/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mysql</title>
+      <link>https://roidelapluie.be/tags/mysql/</link>
+      <pubDate>Wed, 15 Apr 2015 21:31:19 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>css</title>
+      <link>https://roidelapluie.be/tags/css/</link>
+      <pubDate>Thu, 26 Mar 2015 17:39:22 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/css/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pelican</title>
+      <link>https://roidelapluie.be/tags/pelican/</link>
+      <pubDate>Thu, 26 Mar 2015 17:39:22 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/pelican/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>code</title>
+      <link>https://roidelapluie.be/tags/code/</link>
+      <pubDate>Thu, 12 Mar 2015 21:45:31 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ldap</title>
+      <link>https://roidelapluie.be/tags/ldap/</link>
+      <pubDate>Fri, 05 Dec 2014 23:42:17 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/ldap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>belgium</title>
+      <link>https://roidelapluie.be/tags/belgium/</link>
+      <pubDate>Mon, 20 Oct 2014 21:26:11 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/belgium/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>public services</title>
+      <link>https://roidelapluie.be/tags/public-services/</link>
+      <pubDate>Mon, 20 Oct 2014 21:26:11 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/public-services/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mongodb</title>
+      <link>https://roidelapluie.be/tags/mongodb/</link>
+      <pubDate>Wed, 08 Oct 2014 09:27:12 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/mongodb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pulp</title>
+      <link>https://roidelapluie.be/tags/pulp/</link>
+      <pubDate>Wed, 08 Oct 2014 09:27:12 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/pulp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>crowdfunding</title>
+      <link>https://roidelapluie.be/tags/crowdfunding/</link>
+      <pubDate>Sat, 04 Oct 2014 12:31:48 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/crowdfunding/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>firefox os</title>
+      <link>https://roidelapluie.be/tags/firefox-os/</link>
+      <pubDate>Sat, 04 Oct 2014 12:31:48 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/firefox-os/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>imho</title>
+      <link>https://roidelapluie.be/tags/imho/</link>
+      <pubDate>Sat, 13 Sep 2014 21:24:25 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/imho/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>packaging</title>
+      <link>https://roidelapluie.be/tags/packaging/</link>
+      <pubDate>Thu, 04 Sep 2014 22:50:49 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/packaging/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>monitoring</title>
+      <link>https://roidelapluie.be/tags/monitoring/</link>
+      <pubDate>Tue, 02 Sep 2014 08:49:58 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/monitoring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>munin</title>
+      <link>https://roidelapluie.be/tags/munin/</link>
+      <pubDate>Tue, 02 Sep 2014 08:49:58 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/munin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rss</title>
+      <link>https://roidelapluie.be/tags/rss/</link>
+      <pubDate>Thu, 28 Aug 2014 07:08:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/rss/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CalDAV</title>
+      <link>https://roidelapluie.be/tags/caldav/</link>
+      <pubDate>Fri, 15 Aug 2014 07:38:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/caldav/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>calendar</title>
+      <link>https://roidelapluie.be/tags/calendar/</link>
+      <pubDate>Fri, 15 Aug 2014 07:38:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/calendar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>zimbra</title>
+      <link>https://roidelapluie.be/tags/zimbra/</link>
+      <pubDate>Fri, 15 Aug 2014 07:38:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/zimbra/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>collectd</title>
+      <link>https://roidelapluie.be/tags/collectd/</link>
+      <pubDate>Tue, 08 Apr 2014 13:01:44 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/collectd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>exherbo</title>
+      <link>https://roidelapluie.be/tags/exherbo/</link>
+      <pubDate>Sun, 02 Feb 2014 21:24:44 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/exherbo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>high availability</title>
+      <link>https://roidelapluie.be/tags/high-availability/</link>
+      <pubDate>Tue, 28 Jan 2014 20:40:19 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/high-availability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hardware</title>
+      <link>https://roidelapluie.be/tags/hardware/</link>
+      <pubDate>Wed, 22 Jan 2014 07:38:18 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/hardware/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>drupal</title>
+      <link>https://roidelapluie.be/tags/drupal/</link>
+      <pubDate>Tue, 23 Jul 2013 13:09:07 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/drupal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GlusterFS</title>
+      <link>https://roidelapluie.be/tags/glusterfs/</link>
+      <pubDate>Thu, 18 Jul 2013 15:27:11 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/glusterfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>screen</title>
+      <link>https://roidelapluie.be/tags/screen/</link>
+      <pubDate>Tue, 25 Jun 2013 22:15:13 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/screen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>grok</title>
+      <link>https://roidelapluie.be/tags/grok/</link>
+      <pubDate>Mon, 17 Jun 2013 12:13:20 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/grok/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>logstash</title>
+      <link>https://roidelapluie.be/tags/logstash/</link>
+      <pubDate>Mon, 17 Jun 2013 12:13:20 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/tags/logstash/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

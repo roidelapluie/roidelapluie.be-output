@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="navbar-item " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+<div class="container">
+    
+        <h1 class="title"><a href="/blog/2015/09/15/puppet-4-types/" class="text-gray-dark">
+    Puppet 4 types and best practices
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>I have given a talk last week for the Belgian Puppet User Group about Puppet 4
+and I would like to post here some practices I want to share with you, in
+order to have the cleanest Puppet code.</p>
+
+<p>This can apply to all your local modules (not with the one you share with
+Puppet 3 users).</p>
+
+<h3 id="type-all-the-parameters">Type all the parameters</h3>
+
+<p>Each parameter should have a type. You can use the <code>Optional</code> type but you
+should try to avoid some types as much as possible:</p>
+
+<ul>
+<li><code>Variant</code>: because then you have to recheck the type after in your manifest.</li>
+<li><code>Data</code> <code>Scalar</code>: it is way to generic and makes it hard to know what is behind.</li>
+</ul>
+
+<p>Bad:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet"><span style="color:#fff;font-weight:bold">class</span> <span style="color:#007f7f">demo</span>::<span style="color:#007f7f">server</span> (<span style="color:#f00">
+</span><span style="color:#f00"></span>  $ensure,<span style="color:#f00">
+</span><span style="color:#f00"></span>  $manage_service,<span style="color:#f00">
+</span><span style="color:#f00"></span>  $password,<span style="color:#f00">
+</span><span style="color:#f00"></span>){}</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet"><span style="color:#fff;font-weight:bold">class</span> <span style="color:#007f7f">demo</span>::<span style="color:#007f7f">server</span> (<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">Enum</span>[<span style="color:#0ff;font-weight:bold">&#39;running&#39;</span>, <span style="color:#0ff;font-weight:bold">&#39;stopped&#39;</span>] $ensure,<span style="color:#f00">
+</span><span style="color:#f00"></span>  $manage_service,<span style="color:#f00">
+</span><span style="color:#f00"></span>  $password,<span style="color:#f00">
+</span><span style="color:#f00"></span>){}</code></pre></div>
+<p>Good:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet"><span style="color:#fff;font-weight:bold">class</span> <span style="color:#007f7f">demo</span>::<span style="color:#007f7f">server</span> (<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">Enum</span>[<span style="color:#0ff;font-weight:bold">&#39;running&#39;</span>, <span style="color:#0ff;font-weight:bold">&#39;stopped&#39;</span>] $ensure,<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">Boolean</span> $manage_service,<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">String</span>[<span style="color:#ff0;font-weight:bold">8</span>] $password,<span style="color:#f00">
+</span><span style="color:#f00"></span>){}</code></pre></div>
+<h3 id="use-complete-types-as-much-as-possible">Use complete types as much as possible</h3>
+
+<p>Avoid <code>Hash</code>, <code>Array</code>, <code>NotUndef</code>, <code>Optional</code> without parameters.</p>
+
+<p>Try to always define the content of a <code>Hash</code> or an <code>Array</code>. <code>Struct</code> and <code>Tuple</code>
+can help you with that.</p>
+
+<p>Bad:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet"><span style="color:#fff;font-weight:bold">class</span> <span style="color:#007f7f">demo</span>::<span style="color:#007f7f">server</span> (<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">Hash</span> $extra_parameters,<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">Array</span> $databases,<span style="color:#f00">
+</span><span style="color:#f00"></span>){}</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet"><span style="color:#fff;font-weight:bold">class</span> <span style="color:#007f7f">demo</span>::<span style="color:#007f7f">server</span> (<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">Hash</span>[<span style="color:#007f7f">String</span>, <span style="color:#007f7f">Hash</span>] $extra_parameters,<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">Array</span> $databases,<span style="color:#f00">
+</span><span style="color:#f00"></span>){}</code></pre></div>
+<p>Good:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet"><span style="color:#fff;font-weight:bold">class</span> <span style="color:#007f7f">demo</span>::<span style="color:#007f7f">server</span> (<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">Hash</span>[<span style="color:#007f7f">String</span>[<span style="color:#ff0;font-weight:bold">1</span>], <span style="color:#007f7f">Hash</span>[<span style="color:#007f7f">String</span>[<span style="color:#ff0;font-weight:bold">1</span>], <span style="color:#007f7f">String</span>[<span style="color:#ff0;font-weight:bold">1</span>]]] $extra_parameters,<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">Array</span>[<span style="color:#007f7f">String</span>[<span style="color:#ff0;font-weight:bold">1</span>]] $databases,<span style="color:#f00">
+</span><span style="color:#f00"></span>){}</code></pre></div>
+<h3 id="define-basic-parameters-like-length-and-minimum-value">Define basic parameters like length and minimum value</h3>
+
+<p>In most of the cases, you do not want empty <code>String</code>. You should in most of the
+cases use <code>String[1]</code>. The same applies for <code>Integer</code>: most of the case you want
+integers being greater than 0. Use <code>Integer[0]</code> to do so.</p>
+
+<p>Bad:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet"><span style="color:#fff;font-weight:bold">class</span> <span style="color:#007f7f">demo</span>::<span style="color:#007f7f">server</span>(<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">String</span> $username,<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">Array</span>[<span style="color:#007f7f">String</span>] $packages,<span style="color:#f00">
+</span><span style="color:#f00"></span>){}</code></pre></div>
+<p>Good:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet"><span style="color:#fff;font-weight:bold">class</span> <span style="color:#007f7f">demo</span>::<span style="color:#007f7f">server</span>(<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">String</span>[<span style="color:#ff0;font-weight:bold">4</span>] $username,<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">Array</span>[<span style="color:#007f7f">String</span>[<span style="color:#ff0;font-weight:bold">1</span>], <span style="color:#ff0;font-weight:bold">1</span>] $packages,<span style="color:#f00">
+</span><span style="color:#f00"></span>){}</code></pre></div>
+<h3 id="use-the-right-type">Use the right type</h3>
+
+<ul>
+<li>Never use <code>Variant[Type, Undef]</code>, use <code>Optional</code> directly.</li>
+<li>If you have a limited number of choices, use an <code>Enum</code>. Unless the number of
+choices it too important and reduce visibility. In that case think about <code>Pattern</code>
+if possible.</li>
+
+<li><p>Do not check the type again in the manifest itself.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet"><span style="color:#fff;font-weight:bold">class</span> <span style="color:#007f7f">demo</span>::<span style="color:#007f7f">server</span>(<span style="color:#f00">
+</span><span style="color:#f00"></span><span style="color:#007f7f">Variant</span>[<span style="color:#007f7f">String</span>, <span style="color:#fff;font-weight:bold">Undef</span>] $remote_host,<span style="color:#f00">
+</span><span style="color:#f00"></span><span style="color:#007f7f">Enum</span>[<span style="color:#0ff;font-weight:bold">&#39;httpd&#39;</span>, <span style="color:#0ff;font-weight:bold">&#39;mysql&#39;</span>, <span style="color:#0ff;font-weight:bold">&#39;ntp&#39;</span>, <span style="color:#0ff;font-weight:bold">&#39;mariadb&#39;</span>, <span style="color:#0ff;font-weight:bold">&#39;dhcpd&#39;</span>] $packages,<span style="color:#f00">
+</span><span style="color:#f00"></span>){}</code></pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet"><span style="color:#fff;font-weight:bold">class</span> <span style="color:#007f7f">demo</span>::<span style="color:#007f7f">server</span>(<span style="color:#f00">
+</span><span style="color:#f00"></span><span style="color:#007f7f">Optional</span>[<span style="color:#007f7f">String</span>[<span style="color:#ff0;font-weight:bold">1</span>]] $remote_host,<span style="color:#f00">
+</span><span style="color:#f00"></span><span style="color:#007f7f">String</span>[<span style="color:#ff0;font-weight:bold">3</span>] $packages,<span style="color:#f00">
+</span><span style="color:#f00"></span>){}</code></pre></div></li>
+</ul>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/09/15/puppet-4-types/">Permalink</a>. Category: Automation. Tags: automation planet-inuits puppet.<br/>
+        First published on Tue 15 September 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2015/08/19/speed-up-puppet-augeas/" class="text-gray-dark">
+    Speed up Puppet and Augeas
+</a></h1>
+<div class="content text-justify">
+    <p>Here is a tip for those using the Puppet &lsquo;augeas&rsquo; native resource: always use the &lsquo;incl&rsquo; and the &lsquo;lens&rsquo; parameters.</p>
+
+<p>Without that, Augeas will autoload all of the files defined in its lenses. On an empty VM that can take up to 1 second.</p>
+
+<p>Here is my base test file:</p>
+
+<pre><code>$logrotate_file = '/etc/logrotate.d/httpd'
+augeas {
+ 'logrotate-httpd':
+    context =&gt; &quot;/files${logrotate_file}/rule/&quot;,
+    changes =&gt; [
+      'set schedule daily',
+      'set rotate 6',
+      'set compress compress',
+    ],
+}
+</code></pre>
+
+<p>It takes 0.91 seconds:</p>
+
+<pre><code># puppet apply test.pp
+Notice: Compiled catalog for localhost in environment production in 0.14 seconds
+Notice: Finished catalog run in 0.91 seconds
+</code></pre>
+
+<p>If I specify the file and the lens:</p>
+
+<pre><code>$logrotate_file = '/etc/logrotate.d/httpd'
+augeas {
+ 'logrotate-httpd':
+    context =&gt; &quot;/files${logrotate_file}/rule/&quot;,
+    incl    =&gt; $logrotate_file,
+    lens    =&gt; 'Logrotate.lns',
+    changes =&gt; [
+      'set schedule daily',
+      'set rotate 6',
+      'set compress compress',
+    ],
+}
+</code></pre>
+
+<p>It takes 0.08 seconds:</p>
+
+<pre><code># puppet apply test.pp
+Notice: Compiled catalog for localhost in environment production in 0.13 seconds
+Notice: Finished catalog run in 0.08 seconds
+</code></pre>
+
+<p>Note that this is linear. Augeas will load all its know files for each of the resources,
+so you will lose one second for each resource without these arguments.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/08/19/speed-up-puppet-augeas/">Permalink</a>. Category: Automation. Tags: automation planet-inuits puppet.<br/>
+        First published on Wed 19 August 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2015/08/14/acl-el7/" class="text-gray-dark">
+    Access Control Lists: the hidden feature of EL7
+</a></h1>
+<div class="content text-justify">
+    <p><a href="http://centos.org">CentOS</a> 7 and its upstream, <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/">RHEL7</a>, come by default with the XFS filesystem.</p>
+
+<p>As it looks like it will not change a lot in our everyday sysadmin lifes, this is
+not strictly true. There is a big side effect of this change: by default, ACL are enabled
+in that filesystem.</p>
+
+<p>It means that without changing the fstab, you can now give additional rights to
+files and directories. You can find a lot of <a href="http://linux-training.be/storage/ch03.html">guides</a> about how
+to use them everywhere on the internet.</p>
+
+<p>It would also allow an attacker to discretely open more rights to a directory; it
+can bring a lot of unneeded complexity if used by unskilled sysadmins.</p>
+
+<p>In EL6 you can already do this but by default you need to add the <code>acl</code>
+option to the fstab because the default filesystem is EXT4.</p>
+
+<p>Of course, if you do not want them, you can chose to add <code>noacl</code> to the fstab options and
+remount the filesystems (<code>mount -o remount,noacl /</code>). I would recommend this if you
+do not need them.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/08/14/acl-el7/">Permalink</a>. Category: Linux. Tags: centos planet-inuits.<br/>
+        First published on Fri 14 August 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2015/08/12/vagrant-centos/" class="text-gray-dark">
+    Official CentOS boxes for CentOS
+</a></h1>
+<div class="content text-justify">
+    <p><a href="http://centos.org">CentOS</a> has published <a href="http://lists.centos.org/pipermail/centos-announce/2015-June/021162.html">in June</a> <a href="https://www.vagrantup.com/">Vagrant</a> <a href="https://atlas.hashicorp.com/centos/">Boxes</a> for both Libvirt and VirtualBox provider.
+I will focus on the VirtualBox one.</p>
+
+<p>Those images are great for many reasons:</p>
+
+<ul>
+<li>They come directly from the CentOS project, so it is reasonable to trust them</li>
+<li>They do not come with any 3rd party repositories (and so, without Puppet/Chef&hellip;)</li>
+<li>They are minimal images</li>
+<li>They support multiple providers</li>
+</ul>
+
+<p>They contain what is needed for basic tasks, like the vagrant user so vagrant works.</p>
+
+<p>The part I appreciate the most is that they come from the project and they are very minimal. It
+means that I can then install any Puppet version I want and the right VboxAdditions.</p>
+
+<p>VboxAdditions are needed for vbox synced folders and internal network features.
+Getting them is important to do a great job. Hopefully, vagrant is modular and
+there is a plugin to install the right VboxAdditions: <a href="https://github.com/dotless-de/vagrant-vbguest">vagrant-vbguest</a>. At the startup
+of the VM, it will install the additions for you. To get it working, I needed to
+add two patches to the plugin: <a href="https://github.com/dotless-de/vagrant-vbguest/pull/162/commits">1</a> and <a href="https://github.com/dotless-de/vagrant-vbguest/pull/155/commits">2</a>. They will probably be integrated
+in further releases.</p>
+
+<p>The other trick is with Puppet. I simply use the shell provider to get
+Puppet 4 installed, as shown <a href="https://github.com/roidelapluie/vagrant-phabricator/blob/master/Vagrantfile#L7-L14">here</a>.</p>
+
+<p>Previously there were <a href="https://atlas.hashicorp.com/boxes/search?utf8=%E2%9C%93&amp;sort=&amp;provider=&amp;q=centos">a lot of boxes</a> available for CentOS. This is confusing,
+and when people were making pull requests about boxes <a href="https://github.com/roidelapluie/vagrant-gerrit/pull/1/files">I did not know about</a>,
+my reaction was to <a href="https://github.com/roidelapluie/vagrant-gerrit/commit/09e1772c902681edb13a1fd87ec2e6111ac60003">use a box I know</a> from <a href="https://atlas.hashicorp.com/vStone">a colleague I trust</a>.
+But the fact that I trust him doesn&rsquo;t mean that you will. In that case an upstream
+neutral box is useful.</p>
+
+<p>For the moment it is only for CentOS 7. As <a href="http://lists.centos.org/pipermail/centos-announce/2015-August/021307.html">CentOS 7.1507 has been released</a>, we can expect
+those boxes to be updated soon.</p>
+
+<pre><code>vagrant init centos/7
+vagrant up
+</code></pre>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/08/12/vagrant-centos/">Permalink</a>. Category: Linux. Tags: centos planet-inuits vagrant.<br/>
+        First published on Wed 12 August 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2015/08/10/niches/" class="text-gray-dark">
+    Niches
+</a></h1>
+<div class="content text-justify">
+    <p>I love Open-Source, and the principles attached to it. One of these principle is
+the principle of choice:</p>
+
+<ul>
+<li>The choice of the technology stack</li>
+<li>The choice of the software you use</li>
+<li>The choice of the decisions you take</li>
+<li>The choice of the license you use</li>
+<li>The choice of how you spend your time</li>
+</ul>
+
+<p>Today I would like to focus on the last part. There are so many open source
+software around, because every project is organic. Projects come to live, they
+have their life and then they die. That typically happens in the IT industry.</p>
+
+<p>Except the last part. Once you deploy a software, you never know who will use it
+and until when. It would not be surprise that there would still be a lot of things
+running a 2.4 Linux kernel around. Think about all the machines that still run
+Windows XP. And all the disconnected machines that still run it.</p>
+
+<p>The main difference in this area between closed source and open source is that as
+long as one people will work on it, a project might be forked, get new releases,
+and then be used. Even if the project is deprecated, obsolete, or has lost its
+user base.</p>
+
+<p>I call that phenomenon a niche. You can live in a niche, spend all your time
+on a project. This is your freedom as an open source software user but more
+generally your freedom as a human being.</p>
+
+<p>There are a lot of projects that now live in niches:</p>
+
+<ul>
+<li><a href="https://www.openoffice.org/">Apache Open-Office</a></li>
+<li><a href="http://www.gnu.org/software/social/">Gnu Social</a> (Merged with StatusNet)</li>
+<li><a href="https://subversion.apache.org/">Subversion</a></li>
+<li><a href="http://cobbler.github.io/">Cobbler</a></li>
+</ul>
+
+<p>All of those projects are still alive and they should remind us that we are free.
+Free to do what we want in our free time if we believe it is the right thing to do.</p>
+
+<p>An open-source project just needs one person to live.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/08/10/niches/">Permalink</a>. Category: Open-Source. Tags: philosophy.<br/>
+        First published on Mon 10 August 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    
+
+
+
+
+
+
+
+
+
+<nav class="pagination is-centered">
+                <a class="pagination-previous" href="/blog/page/5/" >Previous</a>
+                <a class="pagination-next" href="/blog/page/7/" >Next</a>
+
+    <ul class="pagination-list">
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"   href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/5/">5</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"  disabled  href="/blog/page/6/">6</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/7/">7</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/16/">16</a></li>
+            
+            
+    </ul>
+</nav>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

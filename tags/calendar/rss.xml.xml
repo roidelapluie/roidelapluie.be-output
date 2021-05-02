@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>calendar on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/calendar/</link>
+    <description>Recent content in calendar on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 15 Aug 2014 07:38:54 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/calendar/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CalDAV, Open-Source and Android</title>
+      <link>https://roidelapluie.be/blog/2014/08/15/caldav-android/</link>
+      <pubDate>Fri, 15 Aug 2014 07:38:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/08/15/caldav-android/</guid>
+      <description>At Inuits, we are using Zimbra as mail and calendaring solution.
+In the past, it used to be very difficult to synchronize the calendar with android phones. The calendar supports ics and CalDAV exports, but none of these solutions was working on android.
+ICS Synchronizing the calendar with ICS had several downsides:
+ You need to create a share of the calendar It is read-only  So I quickly gave up that possibility.</description>
+    </item>
+    
+  </channel>
+</rss>

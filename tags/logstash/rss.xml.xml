@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>logstash on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/logstash/</link>
+    <description>Recent content in logstash on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 17 Jun 2013 12:13:20 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/logstash/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Grok and httpd</title>
+      <link>https://roidelapluie.be/blog/2013/06/17/grok-httpd/</link>
+      <pubDate>Mon, 17 Jun 2013 12:13:20 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/06/17/grok-httpd/</guid>
+      <description>When you use the LogFormat parameter in you apache configuration, you may want to use the same logformat in logstash.
+I made a small table that will enable you to &amp;ldquo;translate&amp;rdquo; your custom log format into a grok pattern.
+   httpd grok     %T %{NUMBER:duration_seconds}   %D %{NUMBER:duration_microseconds}   %h %{IPORHOST:client}   %l %{USERNAME:remotelogname}   %u %{USERNAME:username}   %t \[%{HTTPDATE:timestamp}\]   %r %{USERNAME:method} %{URIPATHPARAM:request} HTTP/%{NUMBER:httpversion}   %s %{NUMBER:response}   %B %{NUMBER:bytes}   %b (?</description>
+    </item>
+    
+  </channel>
+</rss>

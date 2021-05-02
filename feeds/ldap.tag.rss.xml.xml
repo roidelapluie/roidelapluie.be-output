@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ldap on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/ldap/</link>
+    <description>Recent content in ldap on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 05 Dec 2014 23:42:17 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/ldap/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Importing a CA into OpenLDAP</title>
+      <link>https://roidelapluie.be/blog/2014/12/05/openldap-ca/</link>
+      <pubDate>Fri, 05 Dec 2014 23:42:17 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/12/05/openldap-ca/</guid>
+      <description>Here is a quick how to about OpenLDAP under CentOS 6 and a custom Certificate Authority..
+OpenLDAP in CentOS 6 is built with NSS to deal with ssl/tls.
+When you try to securely connect to a LDAP host that, you will get the following errors:
+$ ldapsearch -H ldaps://172.28.5.5 -d -1 [...snip...] TLS: certificate [CN=ldap.inuits.eu,OU=Infra,O=Inuits,ST=Antwerp,C=BE] is not valid - error -8179:Peer&#39;s Certificate issuer is not recognized.. tls_write: want=7, written=7 0000: 15 03 01 00 02 TLS: error: connect - force handshake failure: errno 0 - moznss error -8179 TLS: can&#39;t connect: TLS error -8179:Peer&#39;s Certificate issuer is not recognized.</description>
+    </item>
+    
+  </channel>
+</rss>

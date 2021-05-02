@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wikis on Julien Pivotto</title>
+    <link>https://roidelapluie.be/wiki/</link>
+    <description>Recent content in Wikis on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 24 Feb 2016 11:48:27 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/wiki/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Switching between Puppet modules in bash</title>
+      <link>https://roidelapluie.be/wiki/bash-puppet/</link>
+      <pubDate>Wed, 24 Feb 2016 11:48:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/bash-puppet/</guid>
+      <description>mod(){ cd &amp;#34;${PWD//modules*}modules/$1&amp;#34; } _mod(){ local cur prev opts COMPREPLY=() cur=&amp;#34;${COMP_WORDS[COMP_CWORD]}&amp;#34; prev=&amp;#34;${COMP_WORDS[COMP_CWORD-1]}&amp;#34; opts=&amp;#34;$(ls &amp;#34;${PWD//modules*}modules&amp;#34;)&amp;#34; if [ $prev == &amp;#34;mod&amp;#34; ] then COMPREPLY=( $(compgen -W &amp;#34;${opts}&amp;#34; -- ${cur}) ) return 0 fi } complete -F _mod mod Usage:
+$ cd /home/foo/puppet/modules/puppet $ pwd /home/foo/puppet/modules/puppet $ mod corosync $ pwd /home/foo/puppet/modules/corosync $ cd manifests $ pwd /home/foo/puppet/modules/corosync/manifests $ mod puppetdb $ pwd /home/foo/puppet/modules/puppetdb  </description>
+    </item>
+    
+    <item>
+      <title>Verify the integrity of a yum repo</title>
+      <link>https://roidelapluie.be/wiki/verifytree/</link>
+      <pubDate>Thu, 22 Oct 2015 11:44:12 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/verifytree/</guid>
+      <description>verifytree /srv/www/yum/puppetlabs-x86_64-PC1-el7/ --nocomps --nogroups -a  </description>
+    </item>
+    
+    <item>
+      <title>Software preferences</title>
+      <link>https://roidelapluie.be/wiki/deprecated/</link>
+      <pubDate>Sat, 03 Oct 2015 11:09:00 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/deprecated/</guid>
+      <description> I prefer mpv over mplayer. I prefer mpv over mplayer2. I prefer LibreOffice over OpenOffice. I prefer uBlock over Adblock. I prefer uBlock over Adblock Plus. I prefer uBlock over Adblock Plus Edge. I prefer cclive over youtube-dl. I prefer firefox over chromium. I prefer Disconnect over Ghostery  </description>
+    </item>
+    
+    <item>
+      <title>md5sum on Solaris</title>
+      <link>https://roidelapluie.be/wiki/solaris-md5/</link>
+      <pubDate>Thu, 16 Jul 2015 11:09:58 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/solaris-md5/</guid>
+      <description>digest -a md5 /path/to/file  </description>
+    </item>
+    
+    <item>
+      <title>Node JS repo</title>
+      <link>https://roidelapluie.be/wiki/node/</link>
+      <pubDate>Wed, 15 Jul 2015 17:06:03 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/node/</guid>
+      <description>[nodesource] name=Node.js Packages for Enterprise Linux 7 - $basearch baseurl=https://rpm.nodesource.com/pub/el/7/$basearch failovermethod=priority enabled=1 gpgcheck=1 gpgkey=file:///etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL [nodesource-source] name=Node.js for Enterprise Linux 7 - $basearch - Source baseurl=https://rpm.nodesource.com/pub/el/7/SRPMS failovermethod=priority enabled=0 gpgkey=file:///etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL gpgcheck=1</description>
+    </item>
+    
+    <item>
+      <title>ffmpeg tips and tricks</title>
+      <link>https://roidelapluie.be/wiki/ffmpeg/</link>
+      <pubDate>Sun, 05 Jul 2015 17:00:20 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/ffmpeg/</guid>
+      <description>Getting info of a video
+ffprobe video.avi  Audio: from 5.1 to stereo
+ffmpeg -i video.avi -ac 2 out.avi  Video: xvid
+ffmpeg -i video.avi -c:v libxvid output.avi  Quality
+ffmpeg -i video.avi -q:vscale 7 -q:ascale 7 output.avi  </description>
+    </item>
+    
+    <item>
+      <title>Geek Code</title>
+      <link>https://roidelapluie.be/wiki/geekcode/</link>
+      <pubDate>Sat, 25 Apr 2015 21:19:44 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/geekcode/</guid>
+      <description>-----BEGIN GEEK CODE BLOCK----- Version 3.12 GCS/O d-- s+&amp;gt;:+ a-- C++$ U++++L$ P- L++++$ !E--- W+++$ !N o? K? !w? !O-- M-- !V? PS? PE? Y? PGP+++ t+ !5- !X R+ tv? b+ DI G e h-- r++ y ------END GEEK CODE BLOCK------  </description>
+    </item>
+    
+    <item>
+      <title>Perl in the XXI Century</title>
+      <link>https://roidelapluie.be/wiki/perl/</link>
+      <pubDate>Fri, 27 Feb 2015 16:26:18 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/perl/</guid>
+      <description>+ perl Build.PL *** WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING *** If you&amp;#39;re seeing this warning, your toolchain is really, really old* and you&amp;#39;ll almost certainly have problems installing CPAN modules from this century. But never fear, dear user, for we have the technology to fix this! I totally agree.</description>
+    </item>
+    
+    <item>
+      <title>Yum could&#39;n connect to host</title>
+      <link>https://roidelapluie.be/wiki/yumpycurlerror/</link>
+      <pubDate>Fri, 16 Jan 2015 10:50:50 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/yumpycurlerror/</guid>
+      <description>The following error is not always what it looks like:
+::text $ yum search glib Plugin &amp;quot;product-id&amp;quot; can&#39;t be imported Plugin &amp;quot;subscription-manager&amp;quot; can&#39;t be imported Loaded plugins: refresh-packagekit, security http://repo.inuits.eu/myrepo/repodata/repomd.xml: [Errno 14] PYCURL ERROR 7 - &amp;quot;couldn&#39;t connect to host&amp;quot; Trying other mirror. Error: Cannot retrieve repository metadata (repomd.xml) for repository: repo. Please verify its path and try again  In this case I was running yum without being root.</description>
+    </item>
+    
+    <item>
+      <title>Burtning audio CD&#39;s</title>
+      <link>https://roidelapluie.be/wiki/burncd/</link>
+      <pubDate>Wed, 24 Dec 2014 16:27:14 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/burncd/</guid>
+      <description>Here is the procedure to burn an audio cd under Linux.
+First step: install cdrtools and mpg123:
+cave resolve -x cdrtools mpg123 Go to a temp directory &amp;amp;&amp;amp; copy there music you want to burn:
+cd $(mktemp -d) &amp;amp;&amp;amp; cp /home/foobar/music/cd05/*.mp3 . Convert the files into WAV, using mpg123.
+for i in *.mp3; do mpg123 -w &amp;#34;$(basename &amp;#34;$i&amp;#34; .mp3).wav&amp;#34; &amp;#34;$i&amp;#34;; done Find the right bus ID:
+cdrecord -scanbus In my case, I get:</description>
+    </item>
+    
+    <item>
+      <title>Python dict() copy</title>
+      <link>https://roidelapluie.be/wiki/pythoncopy/</link>
+      <pubDate>Wed, 24 Dec 2014 16:27:14 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/pythoncopy/</guid>
+      <description>$ python Python 2.7.8 (default, Oct 14 2014, 11:42:50) [GCC 4.8.2] on linux2 Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information. &amp;gt;&amp;gt;&amp;gt; a={&#39;a&#39;:{&#39;b&#39;:&#39;c&#39;},&#39;d&#39;:0} &amp;gt;&amp;gt;&amp;gt; a {&#39;a&#39;: {&#39;b&#39;: &#39;c&#39;}, &#39;d&#39;: 0} &amp;gt;&amp;gt;&amp;gt; b=a &amp;gt;&amp;gt;&amp;gt; c=dict(a) &amp;gt;&amp;gt;&amp;gt; b {&#39;a&#39;: {&#39;b&#39;: &#39;c&#39;}, &#39;d&#39;: 0} &amp;gt;&amp;gt;&amp;gt; c {&#39;a&#39;: {&#39;b&#39;: &#39;c&#39;}, &#39;d&#39;: 0} &amp;gt;&amp;gt;&amp;gt; c[&#39;d&#39;]=1 &amp;gt;&amp;gt;&amp;gt; c {&#39;a&#39;: {&#39;b&#39;: &#39;c&#39;}, &#39;d&#39;: 1} &amp;gt;&amp;gt;&amp;gt; a {&#39;a&#39;: {&#39;b&#39;: &#39;c&#39;}, &#39;d&#39;: 0} &amp;gt;&amp;gt;&amp;gt; c[&#39;a&#39;][&#39;b&#39;]=&#39;f&#39; &amp;gt;&amp;gt;&amp;gt; c {&#39;a&#39;: {&#39;b&#39;: &#39;f&#39;}, &#39;d&#39;: 1} &amp;gt;&amp;gt;&amp;gt; a {&#39;a&#39;: {&#39;b&#39;: &#39;f&#39;}, &#39;d&#39;: 0} &amp;gt;&amp;gt;&amp;gt; import copy &amp;gt;&amp;gt;&amp;gt; c=copy.</description>
+    </item>
+    
+    <item>
+      <title>Waiting for Christmas .... Advent blogs</title>
+      <link>https://roidelapluie.be/wiki/advent/</link>
+      <pubDate>Tue, 02 Dec 2014 23:41:40 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/advent/</guid>
+      <description> sysadvent 24 jours de webdev (French) 24 ways domaine public (French) qemu perl perfplanet  </description>
+    </item>
+    
+    <item>
+      <title>X on solaris</title>
+      <link>https://roidelapluie.be/wiki/xsolaris/</link>
+      <pubDate>Tue, 14 Oct 2014 15:31:03 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/xsolaris/</guid>
+      <description>Short notes about X on solaris (5.10):
+ X service: name dtlogin Disable at boot: /usr/dt/bin/dtconfig -d  </description>
+    </item>
+    
+    <item>
+      <title>Puppet: no such file to load -- json (LoadError)</title>
+      <link>https://roidelapluie.be/wiki/puppet-json/</link>
+      <pubDate>Tue, 07 Oct 2014 08:27:11 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/puppet-json/</guid>
+      <description>A Ruby &amp;amp; Json error
+[root@localhost ~]# puppet agent --test /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require&amp;#39;: no such file to load -- json (LoadError) from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&amp;#39; from /usr/lib/ruby/site_ruby/1.8/puppet/module.rb:3 from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require&amp;#39; from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&amp;#39; from /usr/lib/ruby/site_ruby/1.8/puppet/parser/files.rb:1 from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require&amp;#39; from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&amp;#39; from /usr/lib/ruby/site_ruby/1.8/puppet/parser/templatewrapper.rb:1 from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require&amp;#39; from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&amp;#39; from /usr/lib/ruby/site_ruby/1.8/puppet/parser/scope.rb:6 from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require&amp;#39; from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&amp;#39; from /usr/lib/ruby/site_ruby/1.8/puppet/parser/methods.rb:2 from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require&amp;#39; from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&amp;#39; from /usr/lib/ruby/site_ruby/1.8/puppet/parser/ast/method_call.rb:2 from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require&amp;#39; from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require&amp;#39; from /usr/lib/ruby/site_ruby/1.</description>
+    </item>
+    
+    <item>
+      <title>Blogroll</title>
+      <link>https://roidelapluie.be/wiki/blogroll/</link>
+      <pubDate>Sat, 20 Sep 2014 00:13:46 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/blogroll/</guid>
+      <description> Chris Flink Christophe Vanlancker Daniel &amp;ldquo;koolfy&amp;rdquo; Faucon Jan &amp;ldquo;vStone&amp;rdquo; Vansteenkiste Jan &amp;ldquo;visibilityspots&amp;rdquo; Collijs Jeroen &amp;ldquo;teranex&amp;rdquo; Budts Johan &amp;ldquo;raskas&amp;rdquo; Huysmans Kalman Olah Kenny Rasschaert Kevin Van Wilder Kris Buytaert Laurent &amp;ldquo;bigon&amp;rdquo; Bigonville Thibault &amp;ldquo;tycale&amp;rdquo; Gerondal Tito Tom &amp;ldquo;arioch&amp;rdquo; De Vylder  </description>
+    </item>
+    
+    <item>
+      <title>Couldn&#39;t recognize the image file format for file &#39;foo.png&#39;</title>
+      <link>https://roidelapluie.be/wiki/gdkpixbuf/</link>
+      <pubDate>Mon, 07 Jul 2014 09:07:28 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/gdkpixbuf/</guid>
+      <description> Solution 1 gdk-pixbuf-query-loaders &amp;gt; /usr/lib64/gdk-pixbuf-2.0/2.10.0/loaders.cache  Solution 2 update-mime-database /usr/share/mime  </description>
+    </item>
+    
+    <item>
+      <title>Sysdig</title>
+      <link>https://roidelapluie.be/wiki/sysdig/</link>
+      <pubDate>Mon, 26 May 2014 20:59:03 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/sysdig/</guid>
+      <description>Sysdig is an open-source app that &amp;ldquo;straces&amp;rdquo; all the system.
+can be downloaded here http://pkgs.org/download/sysdig
+does not need epel
+usage:
+listing helpers script
+sysdig -cl  writing to a file
+sysdig -w sysdig.tr # writing to a file  filtring by pid
+sysdig -r sysdig.tr pid = 5000  filtering my filename
+sysdig fd.dilename=puppet.conf  Extra Mattias has written a blog post with more examples (october 2014).</description>
+    </item>
+    
+    <item>
+      <title>Removing the last commit in git</title>
+      <link>https://roidelapluie.be/wiki/git-last-commit/</link>
+      <pubDate>Fri, 28 Mar 2014 09:23:28 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/git-last-commit/</guid>
+      <description>A one shot command to remove the last commit in git.. useful when you want to re-apply a patch.
+EDITOR=&amp;quot;echo noop &amp;gt;&amp;quot; git rebase -i HEAD~1  or:
+git reset --hard HEAD~1  </description>
+    </item>
+    
+    <item>
+      <title>Ipv6 and linux</title>
+      <link>https://roidelapluie.be/wiki/ipv6/</link>
+      <pubDate>Mon, 10 Feb 2014 22:02:31 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/ipv6/</guid>
+      <description>disable ipv6  echo 1 &amp;gt; /proc/sys/net/ipv6/conf/all/disable_ipv6  dns in ipv6 the rdnssd daemon will find ipv6 dns servers for you</description>
+    </item>
+    
+    <item>
+      <title>Foreman</title>
+      <link>https://roidelapluie.be/wiki/foreman/</link>
+      <pubDate>Wed, 18 Dec 2013 10:53:40 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/foreman/</guid>
+      <description>Enable foreman novnc on firefox:
+if you get timeouts in foreman when trying to use novnc, and you use forman in https:
+in about: config, set the following to true:
+network.websocket.allowInsecureFromHTTPS  </description>
+    </item>
+    
+    <item>
+      <title>Pacemaker and corosync</title>
+      <link>https://roidelapluie.be/wiki/crm-config/</link>
+      <pubDate>Wed, 18 Dec 2013 10:19:20 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/crm-config/</guid>
+      <description>If you get the following:
+[root@devvm ~]# crm configure load update crm-resource.txt error: unpack_resources: Resource start-up disabled since no STONITH resources have been defined error: unpack_resources: Either configure some or disable STONITH with the stonith-enabled option error: unpack_resources: NOTE: Clusters with shared data need STONITH to ensure data integrity Errors found during check: config not valid Do you still want to commit?  you can fix it like this:
+pcs property set stonith-enabled=false  it is okay to develop a cluster</description>
+    </item>
+    
+    <item>
+      <title>Math in bash</title>
+      <link>https://roidelapluie.be/wiki/calculation/</link>
+      <pubDate>Tue, 17 Dec 2013 18:23:33 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/calculation/</guid>
+      <description>the simple way
+echo $((2+2))  the complex way
+echo 2+2|bc -lq  get a random number
+echo $(($RANDOM%10))  </description>
+    </item>
+    
+    <item>
+      <title>My android phone</title>
+      <link>https://roidelapluie.be/wiki/android/</link>
+      <pubDate>Tue, 17 Dec 2013 18:23:33 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/android/</guid>
+      <description>What I use android for:
+ call sms calendar  I remove the google apps and put cyanogemod on the phone.</description>
+    </item>
+    
+    <item>
+      <title>Playing with cyrus-imapd replication</title>
+      <link>https://roidelapluie.be/wiki/cyrus/</link>
+      <pubDate>Tue, 17 Dec 2013 18:23:33 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/cyrus/</guid>
+      <description>  Run everything as the Cyrus user sync_client must run on the master sync_server must run on the slave  Synchronize a user (mail + metadata) /usr/lib/cyrus-imapd/sync_client -u username  </description>
+    </item>
+    
+    <item>
+      <title>Archlinux on a Raspberry pi</title>
+      <link>https://roidelapluie.be/wiki/archlinux/</link>
+      <pubDate>Mon, 16 Dec 2013 08:57:43 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/archlinux/</guid>
+      <description>install a package
+pacman -S screen  remove a package
+pacman -R screen  default shell is bash
+shipped with vi (not vim)
+pacman -S vim  root ssh login is enabled; change password, add new user, create his home
+virtualenv
+pacman -S python2{,-virtualenv}  </description>
+    </item>
+    
+    <item>
+      <title>Caldav sync for android</title>
+      <link>https://roidelapluie.be/wiki/caldav/</link>
+      <pubDate>Mon, 16 Dec 2013 08:57:43 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/caldav/</guid>
+      <description>This article is outdated. Please read the blog post on that topic. choice #1 Davdroid
+choice #2 CalDAV Sync Adapter
+both require android &amp;gt; 4.0</description>
+    </item>
+    
+    <item>
+      <title>Cloning jenkins pipelines</title>
+      <link>https://roidelapluie.be/wiki/pipeline/</link>
+      <pubDate>Mon, 16 Dec 2013 08:57:43 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/pipeline/</guid>
+      <description>The content of this page is deprecated. Please see my talk about building pipelines at scale for more up-to-date information, together with the build flow plugin and the job DSL plugin. This script allows you to clone an entire pipeline. It clones every job in the pipeline, changes the name of the triggered jobs
+Usage ./clone-pipeline.sh START-JOB PATTERN-TO-FIND-JOBS-TO-CLONE SED-TO-BE-DONE-ON-JOB-NAME  if you have a pipeline like that:
+ customer1-fetcher customer1-tests customer1-package customer1-deploy send-metric  you can clone it like that</description>
+    </item>
+    
+    <item>
+      <title>Finding the filesystem of a partition</title>
+      <link>https://roidelapluie.be/wiki/fs/</link>
+      <pubDate>Mon, 16 Dec 2013 08:57:43 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/fs/</guid>
+      <description>file -sL /dev/sda3 fsck -N /dev/sda3  </description>
+    </item>
+    
+    <item>
+      <title>Lightweight open source tools for everyday use</title>
+      <link>https://roidelapluie.be/wiki/little-software/</link>
+      <pubDate>Mon, 16 Dec 2013 08:57:43 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/little-software/</guid>
+      <description>image viewer: feh editor: vim mail: mutt, fetchmail, dovecot pdf reading: mupdf imaging: gimp, imagemagick, inkscape calculator: bc calendar: cal  more to come</description>
+    </item>
+    
+    <item>
+      <title>Redshift</title>
+      <link>https://roidelapluie.be/wiki/redshift/</link>
+      <pubDate>Mon, 16 Dec 2013 08:57:43 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/redshift/</guid>
+      <description> equivalent to f.lux it changes the color temperature of the screen according to the time of the day
+ github
+ website
+  </description>
+    </item>
+    
+    <item>
+      <title>Usefull strace commands</title>
+      <link>https://roidelapluie.be/wiki/strace/</link>
+      <pubDate>Mon, 16 Dec 2013 08:57:43 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/wiki/strace/</guid>
+      <description>open-close Strace only open and close file of a launched process (useful to check if a rsync is doing something for example)
+strace -p 26428 -e trace=open,close  where 26428 is the PID</description>
+    </item>
+    
+  </channel>
+</rss>

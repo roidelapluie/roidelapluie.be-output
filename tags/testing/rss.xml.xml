@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Testing on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/testing/</link>
+    <description>Recent content in Testing on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 30 Mar 2017 21:33:11 +0200</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/testing/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Running Nightly jobs with Jenkins</title>
+      <link>https://roidelapluie.be/blog/2017/03/30/nightly-jobs-jenkins/</link>
+      <pubDate>Thu, 30 Mar 2017 21:33:11 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/03/30/nightly-jobs-jenkins/</guid>
+      <description>Jenkins can spread the load of Jobs by using H instead of * in the cron fields. It means that:
+H 3 * * *  Means: Run between 3 and 4 am.
+The minute will be decided by Jenkins, by applying a hash function over the job name.
+What about this one:
+H H * * *  Means: Run once a day. The moment will be calculated by a Jenkins based on the job name.</description>
+    </item>
+    
+    <item>
+      <title>Setting a Socks Proxy in Firefox Webdriver with Robot Framework</title>
+      <link>https://roidelapluie.be/blog/2017/03/30/robot-firefox-socks/</link>
+      <pubDate>Thu, 30 Mar 2017 21:19:55 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/03/30/robot-firefox-socks/</guid>
+      <description>Here are the Robot Framework keywords needed nowadays to setup a socks5 proxy (e.g ssh -ND 9050 bastion.example.com):
+*** Settings *** Documentation Open a Web Page using a socks 5 proxy (demo) Library Selenium2Library *** Test Cases *** Create Webdriver and Open Page ${profile}= Evaluate sys.modules[&amp;#39;selenium.webdriver&amp;#39;].FirefoxProfile() sys Call Method ${profile} set_preference network.proxy.socks 127.0.0.1 Call Method ${profile} set_preference network.proxy.socks_port ${9060} Call Method ${profile} set_preference network.proxy.socks_remote_dns ${True} Call Method ${profile} set_preference network.proxy.type ${1} Create WebDriver Firefox firefox_profile=${profile} Go To http://internal.</description>
+    </item>
+    
+  </channel>
+</rss>

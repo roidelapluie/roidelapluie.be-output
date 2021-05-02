@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Script, a must-know command for sysadmins - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="navbar-item " href="/fr">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+<h1 class="title"><a href="/blog/2015/07/04/script/" class="text-gray-dark">
+    Script, a must-know command for sysadmins
+</a></h1>
+<div class="content text-justify">
+    
+
+<p><code>script</code> is a famous command in the unix world. Part of the <a href="https://www.kernel.org/pub/linux/utils/util-linux/">util-linux</a>
+package of Linux distros, and so available almost everywhere, it has some very interesting features.</p>
+
+<h2 id="recording-a-shell-session">Recording a shell session</h2>
+
+<p>This is the primary usage. Just type:</p>
+
+<pre><code>script output.txt
+</code></pre>
+
+<p>A new shell will open, and you can just do whatever you want.</p>
+
+<pre><code>$ script output.txt
+Script started, file is output.txt
+$ echo hello world
+hello world
+$ exit
+Script done, file is output.txt
+</code></pre>
+
+<p>Once you have
+finished, you close the shell (<code>exit</code> or <code>^D</code>) and then you can replay your session
+with <code>cat</code>:</p>
+
+<pre><code>$ cat output.txt
+Script started on Sat 04 Jul 2015 11:15:15 AM CEST
+$ echo hello world
+hello world
+$ exit
+
+Script done on Sat 04 Jul 2015 11:15:21 AM CEST
+</code></pre>
+
+<p>It also records what you type, your bash PS1 etc&hellip;</p>
+
+<p>But that would replay everything at once. You can improve that by recording with
+timing (<code>-t</code>). Timing information is sent do stderr.</p>
+
+<pre><code>script -t output.txt 2&gt;output.txt.timing
+</code></pre>
+
+<p>You can then replay easily with:</p>
+
+<pre><code>scriptreplay output.txt.timing output.txt
+</code></pre>
+
+<p><code>scriptreplay</code> has a lot of interesting options, like <code>--divisor</code> and
+<code>--maxdelay</code>.</p>
+
+<h2 id="real-time-terminal-sharing">Real-time terminal sharing</h2>
+
+<p>It is also possible to stream what you are doing. To do so, you can use a named pipe.</p>
+
+<pre><code>mkfifo /tmp/mystream
+script -f /tmp/mystream
+</code></pre>
+
+<p>The <code>-f</code> option means &lsquo;flush at every write&rsquo;.</p>
+
+<p>On the other hand, the person that wants to see what you are doing just has to run:</p>
+
+<pre><code>cat /tmp/mystream
+</code></pre>
+
+<p>Now you will see the same things.</p>
+
+<p>You can do the same with <code>screen</code>, except that <code>screen</code> is not installed everywhere
+and you can not have a <code>screen</code> read-only.</p>
+
+<h2 id="own-your-tty">Own your tty</h2>
+
+<p>This is the last use case I have with <code>script</code> and it useful as well. In some situations,
+you have to &lsquo;own&rsquo; your own tty.</p>
+
+<p>Examples of such situations include <code>screen</code> and <code>sudo</code> commands.</p>
+
+<pre><code># su - roidelapluie
+$ screen
+Cannot open your terminal '/dev/pts/38' - please check.
+</code></pre>
+
+<p>In that case, script can help you:</p>
+
+<pre><code># su - roidelapluie
+$ script /dev/null
+Script started, file is /dev/null
+$ screen
+</code></pre>
+
+<p>It also works to run <code>sudo</code> when you forget to use <code>ssh -t</code>.</p>
+
+<p>You can also run a command directly with <code>-c</code>. In that case do not forget to add
+<code>-e</code> if you are interested by the exit code of the command you launch.</p>
+
+<pre><code>script -c mycommand -e
+</code></pre>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p><code>script</code> is a nice command that can be useful in several situations, and it has
+the advantage to be present almost everywhere.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/07/04/script/">Permalink</a>. Category: Linux. Tags: sysadmin planet-inuits.<br/>
+        First published on Sat 4 July 2015.
+    </div>
+</div>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

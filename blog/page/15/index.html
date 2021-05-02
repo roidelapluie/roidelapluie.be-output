@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="navbar-item " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+<div class="container">
+    
+        <h1 class="title"><a href="/blog/2013/07/18/glusterfs-quorum/" class="text-gray-dark">
+    GlusterFS quorums
+</a></h1>
+<div class="content text-justify">
+    
+
+<p><a href="http://gluster.org">GlusterFS</a> quorums should prevent brain-split by deactivating the nodes when less that 50% of the servers are connected (you can change that number).</p>
+
+<p>To enable the feature, it is simple:</p>
+
+<pre><code>srv01$ sudo gluster volume set gv0 cluster.server-quorum-type server
+volume set: success
+</code></pre>
+
+<p>Then I isolated one VM on the network. I could not access the files on that node:</p>
+
+<pre><code>srv03$ ls /mnt
+ls: cannot access /mnt: No such file or directory
+</code></pre>
+
+<p>But it worked on the other nodes:</p>
+
+<pre><code>srv02$ ls /mnt|wc -l
+41
+
+srv01$ ls /mnt|wc -l
+41
+</code></pre>
+
+<p>So I got the expected results.</p>
+
+<p>Then I created a file on one of the connected servers.</p>
+
+<pre><code>srv02$ echo test &gt; /mnt/test2
+</code></pre>
+
+<p>I re-enabled the network on the third server and the node went back online and the replica was done.</p>
+
+<pre><code>srv03$ ls /mnt/|wc -l
+42
+srv03$ ls /export/brick1/sdb1/|wc -l
+42
+</code></pre>
+
+<h3 id="links">Links</h3>
+
+<ul>
+<li><a href="http://gluster.org">GlusterFS</a></li>
+<li><a href="http://www.gluster.org/community/documentation/index.php/Features/Server-quorum">GlusterFS quorums</a> documentation</li>
+</ul>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2013/07/18/glusterfs-quorum/">Permalink</a>. Category: Linux. Tags: GlusterFS planet-inuits.<br/>
+        First published on Thu 18 July 2013.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2013/07/18/peering-a-server-to-a-glusterfs-cluster/" class="text-gray-dark">
+    Peering a server to a GlusterFS cluster
+</a></h1>
+<div class="content text-justify">
+    <p>Some notes about how to add server to a <a href="http://gluster.org">GlusterFS</a> cluster and to replicata data to it.</p>
+
+<pre><code>::bash
+srv03$ sudo gluster peer probe 192.168.1.10
+peer probe: failed: 192.168.1.10 is already part of another cluster
+</code></pre>
+
+<p>It is logical that anyone may not add a server to a gluster cluster.</p>
+
+<pre><code>::bash
+srv01$ sudo gluster peer probe 192.168.1.12
+peer probe: success
+</code></pre>
+
+<p>It is successful.</p>
+
+<pre><code>::bash
+srv01$ sudo gluster peer status
+Number of Peers: 2
+
+Hostname: 192.168.1.10
+Uuid: 99f74112-cca9-439e-802e-a7822da446c9
+State: Peer in Cluster (Connected)
+
+Hostname: 192.168.1.12
+Port: 24007
+Uuid: 9099c59c-a667-4bb4-b5ea-fb6bc08e1e9a
+State: Peer in Cluster (Connected)
+</code></pre>
+
+<p>And, first try to add the new node to the cluster will be a failure:</p>
+
+<pre><code>srv02$ sudo gluster volume add-brick gv0 192.168.1.12:/export/brick1/sdb1
+volume add-brick: failed: Incorrect number of bricks supplied 1 with count 2
+</code></pre>
+
+<p>When I created the volume, I set the replica value to 2, so I guess Gluster wants me to add &ldquo;bricks&rdquo; two by two. Instead, I am going to update the replica value.</p>
+
+<pre><code>srv02$ sudo gluster volume add-brick gv0 replica 3 192.168.1.12:/export/brick1/sdb1
+volume add-brick: success
+</code></pre>
+
+<p>Are the file replicated on the third node? Not yet.</p>
+
+<pre><code>srv03$ ls /export/brick1/sdb1/ | wc -l
+0
+</code></pre>
+
+<p>But, the first time I list the files in the <strong>mounted</strong> volume, the files are replicated:</p>
+
+<pre><code>srv01$ ls /mnt|wc -l
+125
+
+srv03$ ls /export/brick1/sdb1/ | wc -l
+125
+</code></pre>
+
+<p>And I am done.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2013/07/18/peering-a-server-to-a-glusterfs-cluster/">Permalink</a>. Category: Linux. Tags: GlusterFS planet-inuits.<br/>
+        First published on Thu 18 July 2013.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2013/07/17/glusterfs-split-brain/" class="text-gray-dark">
+    Fixing a GlusterFS split-brain
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>I have found some time to test <a href="http://gluster.org">GlusterFS</a>, in order to use it to replicate data between several servers.</p>
+
+<p>I have created two <a href="http://vagrantup.com">vagrant</a> boxes to set up a basic cluster.</p>
+
+<p>And, during my tests, I have shut down the network interfaces and started writing different things on the same file, to create a <a href="http://en.wikipedia.org/wiki/Split-brain_%28computing%29">split-brain</a>.</p>
+
+<pre><code>srv01$ echo good &gt; /mnt/test
+srv02$ echo bad &gt; /mnt/test
+</code></pre>
+
+<p>When the interfaces were up again, the split-brain was obviously present:</p>
+
+<pre><code>srv02$ cat /mnt/test
+cat: /mnt/test: Input/output error
+</code></pre>
+
+<p>In the logs, I have found the following sentence:</p>
+
+<pre><code>[2013-07-17 13:57:54.156318] E [afr-self-heal-common.c:197:afr_sh_print_split_brain_log]
+0-gv0-replicate-0: Unable to self-heal contents of '&lt;gfid:470a742c-b0d6-4846-9ab3-2483c3a0c8da&gt;'
+(possible split-brain). Please delete the file from all but the preferred subvolume.-
+Pending matrix:  [ [ 0 1 ] [ 1 0 ] ]
+</code></pre>
+
+<p>So I tried to delete the file in the node that was &ldquo;wrong&rdquo; to me:</p>
+
+<pre><code>srv02$ cat /export/brick1/sdb1/test
+srv02$ sudo rm /export/brick1/sdb1/test
+</code></pre>
+
+<p>But it was obviously not working:</p>
+
+<pre><code>srv02$ cat /mnt/test
+cat: /mnt/test: Input/output error
+</code></pre>
+
+<p>Even more, the file <code>/export/brick1/sdb1/test</code> was recreated by Gluster!</p>
+
+<pre><code>srv02$ cat /export/brick1/sdb1/test
+wrong
+</code></pre>
+
+<p>The solution was the following: Gluster is creating hard links in a .gluster directory, and you have to delete all the hard links to the file to get rid of it.
+Please note that I am working on the &lsquo;brick&rsquo;.</p>
+
+<pre><code>srv02$ sudo find /export/brick1/sdb1/ -samefile /export/brick1/sdb1/test -print -delete
+/export/brick1/sdb1/.glusterfs/47/0a/470a742c-b0d6-4846-9ab3-2483c3a0c8da
+/export/brick1/sdb1/test
+</code></pre>
+
+<p>And it worked!</p>
+
+<pre><code>srv02$ cat /mnt/test
+good
+srv02$ cat /export/brick1/sdb1/test
+good
+</code></pre>
+
+<h3 id="additional-notes">Additional notes</h3>
+
+<p>Only the files that were &ldquo;brain-splitted&rdquo; were unreadable.</p>
+
+<p>You can have the list of these files by running the following command:</p>
+
+<pre><code>$ gluster volume heal gv0 info
+Brick 192.168.1.10:/export/brick1/sdb1
+Number of entries: 1
+/test
+
+Brick 192.168.1.11:/export/brick1/sdb1
+Number of entries: 1
+/test
+</code></pre>
+
+<p>To avoid split-brains, you can enable <a href="http://www.gluster.org/community/documentation/index.php/Features/Server-quorum">quorums</a>.</p>
+
+<h3 id="links">Links</h3>
+
+<ul>
+<li><a href="http://gluster.org">GlusterFS</a></li>
+<li>The <a href="http://www.gluster.org/community/documentation/index.php/QuickStart">quickstart</a> that I have used.</li>
+<li>Explanation of GlusterFS-related <a href="http://www.gluster.org/community/documentation/index.php/GlusterFS_Concepts">terms</a></li>
+</ul>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2013/07/17/glusterfs-split-brain/">Permalink</a>. Category: Linux. Tags: GlusterFS planet-inuits.<br/>
+        First published on Wed 17 July 2013.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2013/07/15/tax-on-web/" class="text-gray-dark">
+    Fill your Belgian tax form with Linux
+</a></h1>
+<div class="content text-justify">
+    <p>Tax-on-web is the online service that enable you to fill in your Belgian tax form.</p>
+
+<p>In order to be able to read you beid card, and so to connect to the online website, follow the following instructions.</p>
+
+<p>First, get a card reader, and install the relevant driver. The following will often be enough (if you are using debian/ubuntu):</p>
+
+<pre><code>$ sudo apt-get install libacr38u pcscd
+</code></pre>
+
+<p>Then, <em>do not</em> install the <a href="http://code.google.com/p/eid-mw/">software provided by the government</a>.</p>
+
+<p>Instead, install opensc.</p>
+
+<pre><code>$ sudo apt-get install opensc
+</code></pre>
+
+<p>Open Firefox, and go to <code>Edit</code> &gt; <code>Preferences</code> &gt; <code>Certificates</code> &gt; <code>Security devices</code>.</p>
+
+<p>Click on <code>Load</code> then enter &ldquo;Beid&rdquo; as module name (it does not matter), and put <code>/usr/lib/opensc-pkcs11.so</code> as second field. You might need to select it with the <code>Browse button</code>. If the file does not exist, try <code>/usr/lib64/opensc-pkcs11.so</code>.</p>
+
+<p>You might need to start openscd:</p>
+
+<pre><code>$ sudo service openscd start
+</code></pre>
+
+<p>Restart Firefox, and go to <a href="http://taxonweb.be">tax-on-web</a>.</p>
+
+<p>You are done.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2013/07/15/tax-on-web/">Permalink</a>. Category: Linux. Tags: belgium planet-inuits.<br/>
+        First published on Mon 15 July 2013.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2013/06/25/reptyr/" class="text-gray-dark">
+    Rattaching a running process to a screen
+</a></h1>
+<div class="content text-justify">
+    <p><a href="https://github.com/nelhage/reptyr">Reptyr</a> is a small project written in C that enable you to &ldquo;re-pty&rdquo; your process. It means you can, for example, attach a running process inside a screen.</p>
+
+<p>For example, you launched irssi outside your screen, and you do not want to relaunch it.</p>
+
+<p>Install reptyr, then, in a screen, run the following commands:</p>
+
+<pre><code>$ pidof irssi
+27518
+$ reptyr 27518
+</code></pre>
+
+<p>That&rsquo;s it. The process will be rattached to Init but you will be able to use it directly from your screen, without notifying the difference.</p>
+
+<p>Tested and approved to rattach a 6-hour process launched outside a screen.</p>
+
+<ul>
+<li><a href="https://github.com/nelhage/reptyr">Reptyr</a>: Tested and approved</li>
+<li><a href="http://pasky.or.cz//dev/retty/">Retty</a>: Alternative, more limitations and only for x86</li>
+</ul>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2013/06/25/reptyr/">Permalink</a>. Category: Linux. Tags: sysadmin screen planet-inuits.<br/>
+        First published on Tue 25 June 2013.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    
+
+
+
+
+
+
+
+
+
+<nav class="pagination is-centered">
+                <a class="pagination-previous" href="/blog/page/14/" >Previous</a>
+                <a class="pagination-next" href="/blog/page/16/" >Next</a>
+
+    <ul class="pagination-list">
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"   href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/14/">14</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"  disabled  href="/blog/page/15/">15</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/16/">16</a></li>
+            
+            
+    </ul>
+</nav>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="navbar-item " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+<div class="container">
+    
+        <h1 class="title"><a href="/blog/2015/10/03/foreman-puppet-4/" class="text-gray-dark">
+    Foreman could get Puppet 4 support sooner than expected
+</a></h1>
+<div class="content text-justify">
+    <p><a href="http://theforeman.org">Foreman</a> is one of the key tools of many <a href="https://github.com/puppetlabs/puppet">puppet</a>-based infrastructures.
+It can interact with the Puppet stack in different ways, by acting as a reporting
+dashboard or a complete ENC.</p>
+
+<p>So far Foreman only supports up to Puppet 3. Puppet 4 brings in many changes, and
+that involves <a href="http://projects.theforeman.org/issues/8447">a lot of changes</a> in the foreman side. Even the foreman-installer is <a href="https://github.com/theforeman/kafo">based on Puppet</a>.</p>
+
+<p>But slowly, Puppet 4 supports starts to come to reality. The <a href="https://github.com/theforeman/puppet-puppet">puppet module</a> to
+install and manage Puppet now supports Puppet 4.</p>
+
+<p>But another great achievement is that the next major version of <a href="https://github.com/theforeman/smart-proxy">foreman smart-proxy</a>
+will contain Puppet 4 support, thanks to 2 <a href="https://github.com/theforeman/smart-proxy/pull/313">pull</a> <a href="https://github.com/theforeman/smart-proxy/pull/317">request</a> (special thanks
+<a href="https://github.com/damoxc">Damien Churchill</a> and <a href="https://github.com/witlessbird">Dmitri Dolguikh</a>).</p>
+
+<p>It means that it could be able to test a Puppet 4 smart proxy for the foreman
+in the next release. It will probably get then one extra major release to get something
+more production-ready (understand: that will have been more tested). And there
+are still other <a href="http://projects.theforeman.org/issues/11992">problems</a> related to the new Puppet AIO package to fix first.</p>
+
+<p>Puppet 4 is slowly coming to the community and Foreman,
+which is great. We need Open-Source applications like the Foreman more than ever
+because Puppetlabs is pushing more and more closed-source puppet dashboards
+and &lsquo;applications&rsquo;.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/10/03/foreman-puppet-4/">Permalink</a>. Category: Automation. Tags: foreman puppet automation planet-inuits.<br/>
+        First published on Sat 3 October 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2015/09/23/open-source-myth/" class="text-gray-dark">
+    The &#34;It will be Open-Source&#34; myth
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>If you are involved in IT and have some interests in Open-Source software, you
+probably have met some projects that claim that they will be Open-Source &ldquo;one
+day&rdquo;.</p>
+
+<p>And guess what? It rarely happens. I would like to clarify some stuff about that
+kind of sentences.</p>
+
+<h3 id="you-do-not-owe-us-anything">You do not owe us anything</h3>
+
+<p>If you build software and you do not want to open-source it, it&rsquo;s fine. I will
+not use it, but you are free to do whatever you want to do. I will not contribute
+in any way in proprietary software anyway.</p>
+
+<p>Just don&rsquo;t tell you will open source it if you will never.</p>
+
+<h3 id="you-have-to-respect-the-licence">You have to respect the licence</h3>
+
+<p>If your software is based on copyleft (GPL) work then you have to open source it, and as
+soon as you distribute it. That&rsquo;s not your choice then.</p>
+
+<h3 id="who-would-install-crappy-software">Who would install crappy software?</h3>
+
+<p>Reason #1 invoked to not open source software &lsquo;yet&rsquo;: the code is not in a published
+state, not good-looking, not finished or whatever. Who would then install a software
+that the maintainer publicly explain that it is not well coded? And more than that
+hides the source code&hellip;</p>
+
+<p>The only sensitive thing to do if you really plan to open source your project is
+to well.. open source it. Open Sourcing should be more than creating a tarball or
+a git repository without development history.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/09/23/open-source-myth/">Permalink</a>. Category: Open-Source. Tags: licenses philosophy.<br/>
+        First published on Wed 23 September 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2015/09/17/pcsd/" class="text-gray-dark">
+    pcsd limitations in EL7
+</a></h1>
+<div class="content text-justify">
+    <p>The High Availability stack shipped with CentOS/RHEL 7.1 comes with a daemon
+called <code>pcsd</code> that provides a web UI to manage a clusters. You can reach
+it at <code>https://hostname:2224/</code>.</p>
+
+<p>I gave it a try and here is the list of limitations I have found so far:</p>
+
+<ul>
+<li>It does not show colocation sets at all.</li>
+<li>It does not show the &ldquo;kind&rdquo; of resource ordering preferences (optional, mandatory, serialize).</li>
+<li>It does not show failcounts.</li>
+<li>It does not show orphaned resources.</li>
+<li>It refreshes every 20 seconds but you do not see the timestamp of the last refresh. It would be great to have a refresh button as well.</li>
+<li>It does not support pending operations (starting is displayed as started).</li>
+<li>In the resource list, failed, inactive and disabled are displayed in red (I would prefer to see red, orange and grey).</li>
+<li>You can not manage/unmanage resources easily (you can do it by adding a meta attribute).</li>
+</ul>
+
+<p>For now I will stick with the <code>pcs</code> command and <code>crm_*</code> commands that work very well.</p>
+
+<p>That said, the pacemaker stack got a lot of love in EL7 (thanks OpenStack I guess), and remains a key tool to
+provide High Availability in Linux.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/09/17/pcsd/">Permalink</a>. Category: Linux. Tags: centos automation HA planet-inuits.<br/>
+        First published on Thu 17 September 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2015/09/16/pcs-resource-debug/" class="text-gray-dark">
+    Debugging resource failures with pcs
+</a></h1>
+<div class="content text-justify">
+    <p>Here is a small script to debug pacemaker resource failures in EL7.</p>
+
+<p>It is more helpful than <code>pcs resource debug-start</code> and is based on
+<a href="http://clusterlabs.org/wiki/Debugging_Resource_Failures">the clusterlabs wiki</a>.</p>
+
+<p>All you need is to adapt <code>resource=</code> and <code>operation=</code>. You can also make an
+executable script that will take them as first and second parameter, as below:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0f0;font-weight:bold">#!/bin/bash
+</span><span style="color:#0f0;font-weight:bold"></span>resource=$1
+operation=$2
+
+<span style="color:#007f7f"># Unmanage the resource</span>
+pcs resource unmanage $resource
+
+<span style="color:#007f7f"># OCF_ROOT is needed and might be OS dependent</span>
+<span style="color:#fff;font-weight:bold">export</span> OCF_ROOT=/usr/lib/ocf
+
+<span style="color:#007f7f"># Setting variables for the parameters</span>
+<span style="color:#fff;font-weight:bold">eval</span> <span style="color:#fff;font-weight:bold">$(</span>pcs resource show $resource|
+grep Attributes:|
+awk <span style="color:#0ff;font-weight:bold">&#39;{$1=&#34;&#34;; print}&#39;</span>|
+tr <span style="color:#0ff;font-weight:bold">&#34; &#34;</span> <span style="color:#0ff;font-weight:bold">&#34;\n&#34;</span>|
+grep .|
+xargs -I X <span style="color:#fff;font-weight:bold">echo</span> <span style="color:#fff;font-weight:bold">export</span> OCF_RESKEY_X|
+sed <span style="color:#0ff;font-weight:bold">&#39;s/=\(.*\)/=&#34;\1&#34;/&#39;</span><span style="color:#fff;font-weight:bold">)</span>
+
+<span style="color:#007f7f"># Run the RA now that we have the right environment</span>
+bash -x /usr/lib/ocf/resource.d/<span style="color:#fff;font-weight:bold">$(</span>pcs resource show $resource|
+sed -n 1p|
+sed <span style="color:#0ff;font-weight:bold">&#39;s@.*provider=\(.*\) type=\(.*\))@\1/\2@&#39;</span><span style="color:#fff;font-weight:bold">)</span> $operation</code></pre></div>
+<p>Once done do not forget to do <code>pcs resource manage $resource</code></p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/09/16/pcs-resource-debug/">Permalink</a>. Category: Linux. Tags: centos automation HA planet-inuits.<br/>
+        First published on Wed 16 September 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2015/09/15/puppet-4-create-resources/" class="text-gray-dark">
+    Puppet 4 create_resource killer
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>Puppet 4 brings very nice features that will definitely kill the <code>create_resources</code>
+function.</p>
+
+<h3 id="parameters-as-a-hash">Parameters as a hash</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet">$parameters = {<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">mode</span>    =&gt; <span style="color:#0ff;font-weight:bold">&#39;0755&#39;</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">content</span> =&gt; <span style="color:#0ff;font-weight:bold">&#39;foo&#39;</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>}<span style="color:#f00">
+</span><span style="color:#f00">
+</span><span style="color:#f00"></span><span style="color:#fff;font-weight:bold">file</span> {<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#0ff;font-weight:bold">&#39;/tmp/myfile&#39;</span>:<span style="color:#f00">
+</span><span style="color:#f00"></span>    * =&gt; $parameters<span style="color:#f00">
+</span><span style="color:#f00"></span>}</code></pre></div>
+<p>It is the same as:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet"><span style="color:#fff;font-weight:bold">file</span> {<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#0ff;font-weight:bold">&#39;/tmp/myfile&#39;</span>:<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">mode</span>    =&gt; <span style="color:#0ff;font-weight:bold">&#39;0755&#39;</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">content</span> =&gt; <span style="color:#0ff;font-weight:bold">&#39;foo&#39;</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>}</code></pre></div>
+<h3 id="resource-defaults">Resource defaults</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet"><span style="color:#fff;font-weight:bold">file</span> {<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#fff;font-weight:bold">default</span>:<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">mode</span>    =&gt; <span style="color:#0ff;font-weight:bold">&#39;0755&#39;</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">content</span> =&gt; <span style="color:#0ff;font-weight:bold">&#39;foo&#39;</span>;<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#0ff;font-weight:bold">&#39;/tmp/my_file1&#39;</span>:;<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#0ff;font-weight:bold">&#39;/tmp/my_file2&#39;</span>:<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">mode</span> =&gt; <span style="color:#0ff;font-weight:bold">&#39;0644&#39;</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>}</code></pre></div>
+<p>Is the same as:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet"><span style="color:#fff;font-weight:bold">file</span> {<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#0ff;font-weight:bold">&#39;/tmp/my_file1&#39;</span>:<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">mode</span>    =&gt; <span style="color:#0ff;font-weight:bold">&#39;0755&#39;</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">content</span> =&gt; <span style="color:#0ff;font-weight:bold">&#39;foo&#39;</span>;<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#0ff;font-weight:bold">&#39;/tmp/my_file2&#39;</span>:<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">mode</span>    =&gt; <span style="color:#0ff;font-weight:bold">&#39;0644&#39;</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">content</span> =&gt; <span style="color:#0ff;font-weight:bold">&#39;foo&#39;</span>;<span style="color:#f00">
+</span><span style="color:#f00"></span>}</code></pre></div>
+<p>Or (but the scope is different):</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet"><span style="color:#fff;font-weight:bold">File</span> {<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">mode</span>    =&gt; <span style="color:#0ff;font-weight:bold">&#39;0755&#39;</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">content</span> =&gt; <span style="color:#0ff;font-weight:bold">&#39;foo&#39;</span>;<span style="color:#f00">
+</span><span style="color:#f00"></span>}<span style="color:#f00">
+</span><span style="color:#f00"></span><span style="color:#fff;font-weight:bold">file</span> {<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#0ff;font-weight:bold">&#39;/tmp/my_file1&#39;</span>:;<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#0ff;font-weight:bold">&#39;/tmp/my_file2&#39;</span>:<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">mode</span> =&gt; <span style="color:#0ff;font-weight:bold">&#39;0644&#39;</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>}</code></pre></div>
+<h3 id="combining-both-of-them">Combining both of them</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet">$parameters = {<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">content</span> =&gt; <span style="color:#0ff;font-weight:bold">&#39;foo&#39;</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">ensure</span>  =&gt; <span style="color:#fff;font-weight:bold">present</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>}<span style="color:#f00">
+</span><span style="color:#f00">
+</span><span style="color:#f00"></span>$default = {<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#fff;font-weight:bold">noop</span> =&gt; <span style="color:#fff;font-weight:bold">true</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">mode</span> =&gt; <span style="color:#0ff;font-weight:bold">&#39;0644&#39;</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>}<span style="color:#f00">
+</span><span style="color:#f00">
+</span><span style="color:#f00"></span><span style="color:#fff;font-weight:bold">file</span> {<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#fff;font-weight:bold">default</span>:<span style="color:#f00">
+</span><span style="color:#f00"></span>    * =&gt; $default;<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#0ff;font-weight:bold">&#39;/tmp/my_file1&#39;</span>:<span style="color:#f00">
+</span><span style="color:#f00"></span>    * =&gt; $parameters;<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#0ff;font-weight:bold">&#39;/tmp/my_file2&#39;</span>:<span style="color:#f00">
+</span><span style="color:#f00"></span>    *    =&gt; $parameters;<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#007f7f">mode</span> =&gt; <span style="color:#0ff;font-weight:bold">&#39;0755&#39;</span>;<span style="color:#f00">
+</span><span style="color:#f00"></span>}</code></pre></div>
+<p>In a loop:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Puppet" data-lang="Puppet">$parameters = {<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">content</span> =&gt; <span style="color:#0ff;font-weight:bold">&#39;foo&#39;</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">ensure</span>  =&gt; <span style="color:#fff;font-weight:bold">present</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>}<span style="color:#f00">
+</span><span style="color:#f00">
+</span><span style="color:#f00"></span>$default = {<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#fff;font-weight:bold">noop</span> =&gt; <span style="color:#fff;font-weight:bold">true</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">mode</span> =&gt; <span style="color:#0ff;font-weight:bold">&#39;0644&#39;</span>,<span style="color:#f00">
+</span><span style="color:#f00"></span>}<span style="color:#f00">
+</span><span style="color:#f00">
+</span><span style="color:#f00"></span>$files = [<span style="color:#0ff;font-weight:bold">&#39;/tmp/my_file1&#39;</span>, <span style="color:#0ff;font-weight:bold">&#39;/tmp/my_file2&#39;</span>]<span style="color:#f00">
+</span><span style="color:#f00">
+</span><span style="color:#f00"></span>$files.each | <span style="color:#007f7f">String</span> $file_path | {<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#fff;font-weight:bold">file</span> {<span style="color:#f00">
+</span><span style="color:#f00"></span>    <span style="color:#fff;font-weight:bold">default</span>:<span style="color:#f00">
+</span><span style="color:#f00"></span>      * =&gt; $default;<span style="color:#f00">
+</span><span style="color:#f00"></span>    $file_path:<span style="color:#f00">
+</span><span style="color:#f00"></span>      * =&gt; $parameters<span style="color:#f00">
+</span><span style="color:#f00"></span>  }<span style="color:#f00">
+</span><span style="color:#f00"></span>}</code></pre></div>
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/09/15/puppet-4-create-resources/">Permalink</a>. Category: Automation. Tags: automation planet-inuits puppet.<br/>
+        First published on Tue 15 September 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    
+
+
+
+
+
+
+
+
+
+<nav class="pagination is-centered">
+                <a class="pagination-previous" href="/blog/page/4/" >Previous</a>
+                <a class="pagination-next" href="/blog/page/6/" >Next</a>
+
+    <ul class="pagination-list">
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"   href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/4/">4</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"  disabled  href="/blog/page/5/">5</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/6/">6</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/16/">16</a></li>
+            
+            
+    </ul>
+</nav>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vagrant on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/vagrant/</link>
+    <description>Recent content in vagrant on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 12 Aug 2015 09:10:52 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/vagrant/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Official CentOS boxes for CentOS</title>
+      <link>https://roidelapluie.be/blog/2015/08/12/vagrant-centos/</link>
+      <pubDate>Wed, 12 Aug 2015 09:10:52 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/08/12/vagrant-centos/</guid>
+      <description>CentOS has published in June Vagrant Boxes for both Libvirt and VirtualBox provider. I will focus on the VirtualBox one.
+Those images are great for many reasons:
+ They come directly from the CentOS project, so it is reasonable to trust them They do not come with any 3rd party repositories (and so, without Puppet/Chef&amp;hellip;) They are minimal images They support multiple providers  They contain what is needed for basic tasks, like the vagrant user so vagrant works.</description>
+    </item>
+    
+    <item>
+      <title>Vagrant will support VirtualBox linked clones</title>
+      <link>https://roidelapluie.be/blog/2015/06/05/vagrant-will-support-vbox-clones/</link>
+      <pubDate>Fri, 05 Jun 2015 08:40:59 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/06/05/vagrant-will-support-vbox-clones/</guid>
+      <description>Here is a good news for the vagrant users that still use VirtualBox. While vagrant has support for many other providers, I guess that VirtualBox is probably still in the top 3.
+A September 2014 Pull Request by mpoeter has been updated some days ago. That pull request is about the support of a long-existing VirtualBox feature, linked clones. And it will more than probably be integrated in the next release.</description>
+    </item>
+    
+    <item>
+      <title>Vagrant puppet_server tip</title>
+      <link>https://roidelapluie.be/blog/2014/09/17/vagrant-puppet-agent/</link>
+      <pubDate>Wed, 17 Sep 2014 10:08:31 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/17/vagrant-puppet-agent/</guid>
+      <description>This is a small tip for everyone using the vagrant puppet_server provisioner, which allows you to run a puppet agent inside your vagrant box:
+Vagrant.configure(&amp;quot;2&amp;quot;) do |config| config.vm.box = &amp;quot;vStone/centos-6.x-puppet.3.x&amp;quot; config.vm.hostname = &amp;quot;puppet.vagrant.inuits.eu&amp;quot; config.vm.box_check_update = false config.vm.network &amp;quot;private_network&amp;quot;, ip: &amp;quot;192.168.33.2&amp;quot; config.vm.provision &amp;quot;puppet_server&amp;quot; do |puppet| puppet.puppet_server = &amp;quot;puppetmaster.vagrant.inuits.eu&amp;quot; puppet.options = [&amp;quot;--environment&amp;quot;, &amp;quot;devel&amp;quot;, &amp;quot;--test&amp;quot;] end end  The tip is to add puppet.options = [&amp;quot;--test&amp;quot;] so you have the debug information, the diff of the files, &amp;hellip; If you want more you can also add --debug.</description>
+    </item>
+    
+    <item>
+      <title>Collectd 5.4.1 RPM&#39;s</title>
+      <link>https://roidelapluie.be/blog/2014/04/08/vagrant-collectd/</link>
+      <pubDate>Tue, 08 Apr 2014 13:01:44 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/04/08/vagrant-collectd/</guid>
+      <description>In the list of the things I like, there are vagrant, RPM&amp;rsquo;s and being able to reproduce a build.
+As I did two years ago with mapnik, I have created a Vagrantfile with a script to build the latest version of collectd. Indeed, the version of collectd available in EPEL is quite outdated. That new version supports some very nice plugins natively, including statsd and graphite plugins.
+This Vagrantfile uses the spec files that are provided upstream.</description>
+    </item>
+    
+  </channel>
+</rss>

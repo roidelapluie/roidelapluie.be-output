@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mongodb on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/mongodb/</link>
+    <description>Recent content in mongodb on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 08 Oct 2014 09:27:12 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/mongodb/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A classical pulp upgrade ....</title>
+      <link>https://roidelapluie.be/blog/2014/10/08/pulp-horror-fest/</link>
+      <pubDate>Wed, 08 Oct 2014 09:27:12 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/10/08/pulp-horror-fest/</guid>
+      <description>Yesterday I did upgrade a pulp instance from pulp 2.2 to pulp 2.4. Here is my story&amp;hellip;
+Upgrading pulp seems very very simple. You update the RPMs then you run the migration script, pulp-manage-db. Well, at least that&amp;rsquo;s the theory.
+First step: packages changes The release note tell us a couple of things: some packages to install, some configuration files to save&amp;hellip;
+So here we go:
+ Install some qpid packages Upgrade mongodb to 2.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Burtning audio CD&#39;s - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="navbar-item " href="/fr">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Wiki
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <h1 class="title">Burtning audio CD&#39;s</h1>
+    <p>Here is the procedure to burn an audio cd under Linux.</p>
+
+<p>First step: install cdrtools and mpg123:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cave resolve -x cdrtools mpg123</code></pre></div>
+<p>Go to a temp directory &amp;&amp; copy there music you want to burn:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#fff;font-weight:bold">cd</span> <span style="color:#fff;font-weight:bold">$(</span>mktemp -d<span style="color:#fff;font-weight:bold">)</span> &amp;&amp; cp /home/foobar/music/cd05/*.mp3 .</code></pre></div>
+<p>Convert the files into WAV, using mpg123.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#fff;font-weight:bold">for</span> i in *.mp3; <span style="color:#fff;font-weight:bold">do</span> mpg123 -w <span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#fff;font-weight:bold">$(</span>basename <span style="color:#0ff;font-weight:bold">&#34;</span>$i<span style="color:#0ff;font-weight:bold">&#34;</span> .mp3<span style="color:#fff;font-weight:bold">)</span><span style="color:#0ff;font-weight:bold">.wav&#34;</span> <span style="color:#0ff;font-weight:bold">&#34;</span>$i<span style="color:#0ff;font-weight:bold">&#34;</span>; <span style="color:#fff;font-weight:bold">done</span></code></pre></div>
+<p>Find the right bus ID:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cdrecord -scanbus</code></pre></div>
+<p>In my case, I get:</p>
+
+<pre><code>... snip ...
+scsibus3:
+3,0,0 300) 'HL-DT-ST' 'DVD+-RW GSA-T11N' 'A103' Removable CD-ROM
+... snip ...
+</code></pre>
+
+<p>Important part is 3,0,0. Be sure it is your CD/DVD burner.</p>
+
+<p>And, start burning (replace 3,0,0 by your bus id!!!):</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cdrecord dev=<span style="color:#ff0;font-weight:bold">3</span>,0,0 -eject speed=<span style="color:#ff0;font-weight:bold">48</span> -pad -audio *.wav</code></pre></div>
+<p>Eventually, delete tmpdir:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tmp_dir=<span style="color:#0ff;font-weight:bold">&#34;</span>$PWD<span style="color:#0ff;font-weight:bold">&#34;</span>
+<span style="color:#fff;font-weight:bold">cd</span> .. &amp;&amp; rm $tmp_dir/*.{wav,mp3} &amp;&amp; rmdir $tmp_dir</code></pre></div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/wiki/burncd/">Permalink</a>. First published on Wed 24 December 2014.
+    </div>
+</div>
+    </div>
+</section>
+
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

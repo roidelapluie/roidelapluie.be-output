@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>This blog runs a Let&#39;s Encrypt certificate - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="navbar-item " href="/fr">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+<h1 class="title"><a href="/blog/2015/10/28/letsencrypt/" class="text-gray-dark">
+    This blog runs a Let&#39;s Encrypt certificate
+</a></h1>
+<div class="content text-justify">
+    <p>I am part of the <a href="https://letsencrypt.org">Let&rsquo;s Encrypt</a> beta test. As part of it,
+I generated a SSL certificate for my blog, and it is now live.</p>
+
+<p>In the past I used <a href="https://cert.startcom.org/">Startssl</a> to get free certificates.
+Those certificates expired in September. At that time I switched to a <a href="https://comodo.com">Comodo</a>
+certificate, because the validity was only 3 months and I hoped Let&rsquo;s Encrypt to
+be there before the end of the year.</p>
+
+<p>And it came. Here is how it works: you have <a href="https://github.com/letsencrypt/letsencrypt">a tool</a>
+to get your certificates. You run the tool, you agree the TOS and then you give
+your email address and the domains that will be covered by the certificate.</p>
+
+<p>After that, you need to put a file in <a href="http://example.com/.well-known/acme-challenge/">http://example.com/.well-known/acme-challenge/</a>
+to check that you are the owner of the domain. This is a poor verification proof
+but this is the only way you can do that fast and automatically.</p>
+
+<p>You need to serve a JSON file with a specific Content-Type header. I added the following
+snippet to my apache vhost configuration:</p>
+
+<pre><code>&lt;LocationMatch &quot;/.well-known/acme-challenge/*&quot;&gt;
+  Header set Content-Type &quot;application/jose+json&quot;
+&lt;/LocationMatch&gt;
+</code></pre>
+
+<p>And then I got the certificates. As I expected, it only contains the domain names.
+No email, name or anything else. The certificates are valid for 3 months, so if
+some SSL protocols become deprecated they will be able to switch all the certificates
+in 3 months. That is probably the price to get a fully automated procedure.</p>
+
+<p>Conclusion: it just works and I like it. It will not be a danger for the other CA
+because most of the companies will want to have more fields in their certificates,
+like Company name, and a longer validity.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/10/28/letsencrypt/">Permalink</a>. Category: Blog. Tags: ssl security.<br/>
+        First published on Wed 28 October 2015.
+    </div>
+</div>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

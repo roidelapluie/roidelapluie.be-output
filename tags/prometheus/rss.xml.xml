@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>prometheus on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/prometheus/</link>
+    <description>Recent content in prometheus on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 09 Mar 2019 11:44:58 +0100</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/prometheus/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Prometheus Google Compute Engine discovery example</title>
+      <link>https://roidelapluie.be/blog/2019/03/09/prometheus-gce/</link>
+      <pubDate>Sat, 09 Mar 2019 11:44:58 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2019/03/09/prometheus-gce/</guid>
+      <description>Here is a small example on how to use Prometheus to scrape your GCE instance.
+I recommend you to look at prometheus documentation to see how you can pass the crendentials to your prometheus instance.
+scrape_configs: - job_name: node_gce gce_sd_configs: - zone: europe-west1-b project: myproject - zone: europe-west1-d project: myproject - zone: europe-west1-c project: myproject relabel_configs: - source_labels: [__meta_gce_public_ip] target_label: __address__ replacement: &amp;quot;${1}:9090&amp;quot; - source_labels: [__meta_gce_zone] regex: &amp;quot;.+/([^/]+)&amp;quot; target_label: zone - source_labels: [__meta_gce_project] target_label: project - source_labels: [__meta_gce_instance_name] target_label: instance - regex: &amp;quot;__meta_gce_metadata_(.</description>
+    </item>
+    
+    <item>
+      <title>Dealing with flapping metrics in prometheus</title>
+      <link>https://roidelapluie.be/blog/2019/02/21/prometheus-last/</link>
+      <pubDate>Thu, 21 Feb 2019 10:56:16 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2019/02/21/prometheus-last/</guid>
+      <description>Prometheus allows you to get metrics from a lot of systems.
+We are integrated with third party suppliers that expose us a balance, an amount of resources we can use.
+That is exposed as the following metric:
+ available_sms{route=&amp;quot;1&amp;quot;,env=&amp;quot;prod&amp;quot;} 1000 
+This is a gauge, therefore we can write an alerting rule like this:
+- alert: No more SMS expr: | available_sms &amp;lt; 1000  That works well.. when the provider API is available.</description>
+    </item>
+    
+    <item>
+      <title>Prometheus and DST</title>
+      <link>https://roidelapluie.be/blog/2017/11/09/prometheus-dst/</link>
+      <pubDate>Thu, 09 Nov 2017 22:17:47 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/11/09/prometheus-dst/</guid>
+      <description>Prometheus only deals with GMT. It does not even try to do something else. But, when you want to compare your business metrics with your usual traffic, you need to take DST into account.
+Here is my take on the problem. Note that I am in TZ=Europe/Brussels. We had DST on October 29.
+Let&amp;rsquo;s say that I want to compare one metric with the same metric 2 weeks ago. In this example, the metric would be rate(app_requests_count{env=&amp;quot;prod&amp;quot;}[5m]).</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="navbar-item " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+<div class="container">
+    
+        <h1 class="title"><a href="/blog/2019/11/27/haproxy-prometheus/" class="text-gray-dark">
+    A look at HAProxy native Prometheus metrics
+</a></h1>
+<div class="content text-justify">
+    
+
+<p><a href="https://www.haproxy.org">HAProxy 2.0</a> contains, among other improvements, the
+ability to expose Prometheus metrics natively.</p>
+
+<p>As I am building <a href="https://copr.fedorainfracloud.org/coprs/roidelapluie/haproxy/builds/">HAProxy 2.0 and 2.1
+rpm&rsquo;s</a>, I
+wanted to try it out and move away from the <a href="https://github.com/prometheus/haproxy_exporter/">haproxy_exporter</a>.</p>
+
+<p>While the haproxy_exporter is developed by the Prometheus team, and therefore a
+high quality exporter, there is good reasons to move to the HAProxy native
+Prometheus exporter:</p>
+
+<ul>
+<li>Performance</li>
+<li>New metrics</li>
+<li>Operations (no need to manage an exporter + the <code>up</code> metric represents
+haproxy)</li>
+<li>Security (no need to expose the stats csv)</li>
+</ul>
+
+<h2 id="metrics">Metrics</h2>
+
+<p>Gone but can be calculated better with queries:</p>
+
+<ul>
+<li>haproxy_backend_current_server</li>
+<li>haproxy_backend_current_session_rate</li>
+<li>haproxy_backend_http_connect_time_average_seconds</li>
+<li>haproxy_backend_http_queue_time_average_seconds</li>
+<li>haproxy_backend_http_response_time_average_seconds</li>
+<li>haproxy_backend_http_total_time_average_seconds</li>
+<li>haproxy_frontend_current_session_rate</li>
+<li>haproxy_server_current_session_rate</li>
+</ul>
+
+<p>Replaced by better metrics:</p>
+
+<ul>
+<li>haproxy_backend_up: replaced by haproxy_backend_status</li>
+<li>haproxy_server_up: replaced by haproxy_frontend_status with more values (0=STOP, 1=UP, 2=FULL, 2=MAINT, 3=DRAIN, 4=NOLB)</li>
+</ul>
+
+<p>Gone because they were linked to the exporter itself:</p>
+
+<ul>
+<li>haproxy_exporter_build_info</li>
+<li>haproxy_exporter_csv_parse_failures</li>
+<li>haproxy_exporter_total_scrapes</li>
+<li>go metrics</li>
+</ul>
+
+<p>New metrics:</p>
+
+<ul>
+<li>haproxy_backend_active_servers</li>
+<li>haproxy_backend_backup_servers</li>
+<li>haproxy_backend_check_last_change_seconds</li>
+<li>haproxy_backend_check_up_down_total</li>
+<li>haproxy_backend_client_aborts_total</li>
+<li>haproxy_backend_connect_time_average_seconds</li>
+<li>haproxy_backend_connection_attempts_total</li>
+<li>haproxy_backend_connection_reuses_total</li>
+<li>haproxy_backend_downtime_seconds_total</li>
+<li>haproxy_backend_failed_header_rewriting_total</li>
+<li>haproxy_backend_http_cache_hits_total</li>
+<li>haproxy_backend_http_cache_lookups_total</li>
+<li>haproxy_backend_http_comp_bytes_bypassed_total</li>
+<li>haproxy_backend_http_comp_bytes_in_total</li>
+<li>haproxy_backend_http_comp_bytes_out_total</li>
+<li>haproxy_backend_http_comp_responses_total</li>
+<li>haproxy_backend_http_requests_total</li>
+<li>haproxy_backend_last_session_seconds</li>
+<li>haproxy_backend_loadbalanced_total</li>
+<li>haproxy_backend_max_connect_time_seconds</li>
+<li>haproxy_backend_max_queue_time_seconds</li>
+<li>haproxy_backend_max_response_time_seconds</li>
+<li>haproxy_backend_max_total_time_seconds</li>
+<li>haproxy_backend_queue_time_average_seconds</li>
+<li>haproxy_backend_requests_denied_total</li>
+<li>haproxy_backend_response_time_average_seconds</li>
+<li>haproxy_backend_responses_denied_total</li>
+<li>haproxy_backend_server_aborts_total</li>
+<li>haproxy_backend_total_time_average_seconds</li>
+<li>haproxy_frontend_connections_rate_max</li>
+<li>haproxy_frontend_denied_connections_total</li>
+<li>haproxy_frontend_denied_sessions_total</li>
+<li>haproxy_frontend_failed_header_rewriting_total</li>
+<li>haproxy_frontend_http_cache_hits_total</li>
+<li>haproxy_frontend_http_cache_lookups_total</li>
+<li>haproxy_frontend_http_comp_bytes_bypassed_total</li>
+<li>haproxy_frontend_http_comp_bytes_in_total</li>
+<li>haproxy_frontend_http_comp_bytes_out_total</li>
+<li>haproxy_frontend_http_comp_responses_total</li>
+<li>haproxy_frontend_http_requests_rate_max</li>
+<li>haproxy_frontend_intercepted_requests_total</li>
+<li>haproxy_frontend_responses_denied_total</li>
+<li>haproxy_process_active_peers</li>
+<li>haproxy_process_busy_polling_enabled</li>
+<li>haproxy_process_connected_peers</li>
+<li>haproxy_process_connections_total</li>
+<li>haproxy_process_current_backend_ssl_key_rate</li>
+<li>haproxy_process_current_connection_rate</li>
+<li>haproxy_process_current_connections</li>
+<li>haproxy_process_current_frontend_ssl_key_rate</li>
+<li>haproxy_process_current_run_queue</li>
+<li>haproxy_process_current_session_rate</li>
+<li>haproxy_process_current_ssl_connections</li>
+<li>haproxy_process_current_ssl_rate</li>
+<li>haproxy_process_current_tasks</li>
+<li>haproxy_process_current_zlib_memory</li>
+<li>haproxy_process_dropped_logs_total</li>
+<li>haproxy_process_frontent_ssl_reuse</li>
+<li>haproxy_process_hard_max_connections</li>
+<li>haproxy_process_http_comp_bytes_in_total</li>
+<li>haproxy_process_http_comp_bytes_out_total</li>
+<li>haproxy_process_idle_time_percent</li>
+<li>haproxy_process_jobs</li>
+<li>haproxy_process_limit_connection_rate</li>
+<li>haproxy_process_limit_http_comp</li>
+<li>haproxy_process_limit_session_rate</li>
+<li>haproxy_process_limit_ssl_rate</li>
+<li>haproxy_process_listeners</li>
+<li>haproxy_process_max_backend_ssl_key_rate</li>
+<li>haproxy_process_max_connection_rate</li>
+<li>haproxy_process_max_connections</li>
+<li>haproxy_process_max_fds</li>
+<li>haproxy_process_max_frontend_ssl_key_rate</li>
+<li>haproxy_process_max_memory_bytes</li>
+<li>haproxy_process_max_pipes</li>
+<li>haproxy_process_max_session_rate</li>
+<li>haproxy_process_max_sockets</li>
+<li>haproxy_process_max_ssl_connections</li>
+<li>haproxy_process_max_ssl_rate</li>
+<li>haproxy_process_max_zlib_memory</li>
+<li>haproxy_process_nbproc</li>
+<li>haproxy_process_nbthread</li>
+<li>haproxy_process_pipes_free_total</li>
+<li>haproxy_process_pipes_used_total</li>
+<li>haproxy_process_pool_allocated_bytes</li>
+<li>haproxy_process_pool_failures_total</li>
+<li>haproxy_process_pool_used_bytes</li>
+<li>haproxy_process_relative_process_id</li>
+<li>haproxy_process_requests_total</li>
+<li>haproxy_process_ssl_cache_lookups_total</li>
+<li>haproxy_process_ssl_cache_misses_total</li>
+<li>haproxy_process_ssl_connections_total</li>
+<li>haproxy_process_start_time_seconds</li>
+<li>haproxy_process_stopping</li>
+<li>haproxy_process_unstoppable_jobs</li>
+<li>haproxy_server_check_failures_total</li>
+<li>haproxy_server_check_last_change_seconds</li>
+<li>haproxy_server_check_up_down_total</li>
+<li>haproxy_server_client_aborts_total</li>
+<li>haproxy_server_connect_time_average_seconds</li>
+<li>haproxy_server_connection_attempts_total</li>
+<li>haproxy_server_connection_reuses_total</li>
+<li>haproxy_server_current_throttle</li>
+<li>haproxy_server_downtime_seconds_total</li>
+<li>haproxy_server_failed_header_rewriting_total</li>
+<li>haproxy_server_last_session_seconds</li>
+<li>haproxy_server_loadbalanced_total</li>
+<li>haproxy_server_max_connect_time_seconds</li>
+<li>haproxy_server_max_queue_time_seconds</li>
+<li>haproxy_server_max_response_time_seconds</li>
+<li>haproxy_server_max_total_time_seconds</li>
+<li>haproxy_server_queue_limit</li>
+<li>haproxy_server_queue_time_average_seconds</li>
+<li>haproxy_server_response_time_average_seconds</li>
+<li>haproxy_server_responses_denied_total</li>
+<li>haproxy_server_server_aborts_total</li>
+<li>haproxy_server_server_idle_connections_current</li>
+<li>haproxy_server_server_idle_connections_limit</li>
+<li>haproxy_server_total_time_average_seconds</li>
+</ul>
+
+<h2 id="enabling-prometheus-support">Enabling Prometheus support</h2>
+
+<p>HAProxy must be compiled with Prometheus support:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ make TARGET=linux-glibc EXTRA_OBJS=<span style="color:#0ff;font-weight:bold">&#34;contrib/prometheus-exporter/service-prometheus.o&#34;</span></code></pre></div>
+<p>To enable those new metrics on a HAProxy 2.x (I reuse 9101, the port of the
+exporter):</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haproxy" data-lang="haproxy">frontend prometheus
+    bind 127.0.0.1:9101
+    http-request use-service prometheus-exporter if { path /metrics }</code></pre></div>
+<p>You can set just the last line of course.</p>
+
+<h2 id="compatibility-with-the-exporter">Compatibility with the exporter</h2>
+
+<p>If you want to keep your old dashboards, here is what you need to know:</p>
+
+<p>The haproxy_exporter used backend or frontend as labels, where HAProxy uses the
+proxy label. You can retain the old behaviour using Prometheus metrics relabelling:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">scrape_configs:
+- job_name: haproxy
+  static_configs:
+    - targets: [<span style="color:#ff0;font-weight:bold">127.0.0.1</span>:<span style="color:#ff0;font-weight:bold">9101</span>]
+  metric_relabel_configs:
+  - source_labels: [__name__, proxy]
+    regex: <span style="color:#0ff;font-weight:bold">&#34;haproxy_frontend.+;(.+)&#34;</span>
+    target_label: frontend
+    replacement: <span style="color:#0ff;font-weight:bold">&#34;$1&#34;</span>
+  - source_labels: [__name__, proxy]
+    regex: <span style="color:#0ff;font-weight:bold">&#34;haproxy_server.+;(.+)&#34;</span>
+    target_label: backend
+    replacement: <span style="color:#0ff;font-weight:bold">&#34;$1&#34;</span>
+  - source_labels: [__name__, proxy]
+    regex: <span style="color:#0ff;font-weight:bold">&#34;haproxy_backend.+;(.+)&#34;</span>
+    target_label: backend
+    replacement: <span style="color:#0ff;font-weight:bold">&#34;$1&#34;</span>
+  - regex: proxy
+    action: labeldrop</code></pre></div>
+<p>With that configuration you will have a painless migration to the native HAProxy
+metrics!</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>I was positively surprised to see that most of the metrics were still there, and
+that we have access to a lot of new metrics! This is really a big step for
+HAProxy monitoring.</p>
+
+<p>Goodbye haproxy_exporter and thanks for all the fish!</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2019/11/27/haproxy-prometheus/">Permalink</a>. Category: prometheus. Tags: haproxy.<br/>
+        First published on Wed 27 November 2019.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2019/04/22/docker-gcp-terraform/" class="text-gray-dark">
+    GCP container registry and terraform provider docker
+</a></h1>
+<div class="content text-justify">
+    <p>Here are some snippets you can use to get the terraform docker provider to work
+with the google container registry gcr.io:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hcl" data-lang="hcl"><span style="color:#007f7f"># Your config
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">provider</span> <span style="color:#0ff;font-weight:bold">&#34;google&#34;</span> {}
+
+<span style="color:#fff;font-weight:bold">data</span> <span style="color:#0ff;font-weight:bold">&#34;google_client_config&#34; &#34;default&#34;</span> {}
+
+<span style="color:#fff;font-weight:bold">provider</span> <span style="color:#0ff;font-weight:bold">&#34;docker&#34;</span> {
+  <span style="color:#fff;font-weight:bold">registry_auth</span> {
+    address  = <span style="color:#0ff;font-weight:bold">&#34;gcr.io&#34;</span>
+    username = <span style="color:#0ff;font-weight:bold">&#34;oauth2accesstoken&#34;</span>
+    password = <span style="color:#0ff;font-weight:bold">&#34;${data.google_client_config.default.access_token}&#34;</span>
+  }
+}
+
+<span style="color:#fff;font-weight:bold">data</span> <span style="color:#0ff;font-weight:bold">&#34;google_container_registry_image&#34; &#34;myapp_tagged&#34;</span> {
+  name = <span style="color:#0ff;font-weight:bold">&#34;${var.docker_image_myapp}&#34;</span>
+  tag  = <span style="color:#0ff;font-weight:bold">&#34;${var.docker_image_tag_myapp}&#34;</span>
+}
+
+<span style="color:#fff;font-weight:bold">data</span> <span style="color:#0ff;font-weight:bold">&#34;docker_registry_image&#34; &#34;myapp&#34;</span> {
+  name = <span style="color:#0ff;font-weight:bold">&#34;${data.google_container_registry_image.myapp_tagged.image_url}&#34;</span>
+}
+
+<span style="color:#fff;font-weight:bold">data</span> <span style="color:#0ff;font-weight:bold">&#34;google_container_registry_image&#34; &#34;myapp&#34;</span> {
+  name   = <span style="color:#0ff;font-weight:bold">&#34;${var.docker_image_myapp}&#34;</span>
+  digest = <span style="color:#0ff;font-weight:bold">&#34;${data.docker_registry_image.myapp.sha256_digest}&#34;</span>
+}</code></pre></div>
+<p>Now you can use: <code>${data.google_container_registry_image.myapp.image_url}</code> in
+as image to get your tagged image in your pods, and get predictable container
+image update! That URL will be scope as needed (gcr.io/projectname/imagename&hellip;)
+and is ready to use in your pods definition.</p>
+
+<p>Your service account must have storage read access.</p>
+
+<p>The round-trip between <code>google_container_registry_image</code> and
+<code>docker_registry_image</code> enables the fetch of the exact checksum of the tagged
+version.</p>
+
+<p>Note: this example is not complete (I did not include vars and google provider
+auth).</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2019/04/22/docker-gcp-terraform/">Permalink</a>. Category: cloud. Tags: gcp docker.<br/>
+        First published on Mon 22 April 2019.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2019/03/09/prometheus-gce/" class="text-gray-dark">
+    Prometheus Google Compute Engine discovery example
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>Here is a small example on how to use <a href="https://prometheus.io">Prometheus</a> to
+scrape your GCE instance.</p>
+
+<p>I recommend you to look at <a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/#gce_sd_config">prometheus documentation</a>
+to see how you can pass the crendentials to your prometheus instance.</p>
+
+<pre><code>scrape_configs:
+  - job_name: node_gce
+    gce_sd_configs:
+      - zone: europe-west1-b
+        project: myproject
+      - zone: europe-west1-d
+        project: myproject
+      - zone: europe-west1-c
+        project: myproject
+    relabel_configs:
+      - source_labels: [__meta_gce_public_ip]
+        target_label: __address__
+        replacement: &quot;${1}:9090&quot;
+      - source_labels: [__meta_gce_zone]
+        regex: &quot;.+/([^/]+)&quot;
+        target_label: zone
+      - source_labels: [__meta_gce_project]
+        target_label: project
+      - source_labels: [__meta_gce_instance_name]
+        target_label: instance
+      - regex: &quot;__meta_gce_metadata_(.+)&quot;
+        action: labelmap
+</code></pre>
+
+<p>Let&rsquo;s analyze it.</p>
+
+<h3 id="zones-and-projects">Zones and projects</h3>
+
+<pre><code>    gce_sd_configs:
+      - zone: europe-west1-b
+        project: project1
+      - zone: europe-west1-d
+        project: project1
+      - zone: europe-west1-c
+        project: project2
+</code></pre>
+
+<p>We have a job named node_gce, which has 3 <code>gce_sd_config</code> objects. One object is
+attached to one zone and one project.</p>
+
+<h3 id="relabeling">Relabeling</h3>
+
+<h4 id="setting-the-address">Setting the address</h4>
+
+<p>This example will substitute the private ip by the public ip of your node, and
+use the port 9090. <code>__address__</code> is a hidden used by prometheus to get the
+address to scrape.</p>
+
+<pre><code>      - source_labels: [__meta_gce_public_ip]
+        target_label: __address__
+        replacement: &quot;${1}:9090&quot;
+</code></pre>
+
+<h4 id="zones-and-project">Zones and project</h4>
+
+<p>Now, let&rsquo;s get automatically a zone label, which will match the gce zone:</p>
+
+<pre><code>      - source_labels: [__meta_gce_zone]
+        regex: &quot;.+/([^/]+)&quot;
+        target_label: zone
+</code></pre>
+
+<p>Let&rsquo;s get a project label, too:</p>
+
+<pre><code>      - source_labels: [__meta_gce_project]
+        target_label: project
+</code></pre>
+
+<h4 id="instance-name">Instance name</h4>
+
+<p>And a human readable instance name, that will match gce instance name:</p>
+
+<pre><code>      - source_labels: [__meta_gce_instance_name]
+        target_label: instance
+</code></pre>
+
+<h4 id="metadata">Metadata</h4>
+
+<p>The last part of the config will make every metadata of the instance a label in
+prometheus:</p>
+
+<pre><code>      - regex: &quot;__meta_gce_metadata_(.+)&quot;
+        action: labelmap
+</code></pre>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2019/03/09/prometheus-gce/">Permalink</a>. Category: monitoring. Tags: prometheus.<br/>
+        First published on Sat 9 March 2019.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2019/02/21/prometheus-last/" class="text-gray-dark">
+    Dealing with flapping metrics in prometheus
+</a></h1>
+<div class="content text-justify">
+    <p><a href="https://prometheus.io">Prometheus</a> allows you to get metrics from a lot of
+systems.</p>
+
+<p>We are integrated with third party suppliers that expose us a balance, an amount
+of resources we can use.</p>
+
+<p>That is exposed as the following metric:</p>
+
+<p><code>
+available_sms{route=&quot;1&quot;,env=&quot;prod&quot;} 1000
+</code></p>
+
+<p>This is a gauge, therefore we can write an alerting rule like this:</p>
+
+<pre><code>- alert: No more SMS
+  expr: |
+    available_sms &lt; 1000
+</code></pre>
+
+<p>That works well.. when the provider API is available. In our use case,
+sometimes, the api is refusing access for 10 minutes. Which means that if our
+balance is below 1000 we will get two tickets as the alert will start twice.</p>
+
+<p>An alternative would be to do:</p>
+
+<pre><code>- alert: No more SMS
+  expr: |
+    max_over_time(available_sms[1h]) &lt; 1000
+</code></pre>
+
+<p>Picking <code>min_over_time</code> means that the alert will be resolved only one hour
+after the original result.
+<code>max_over_time</code> means that the alert will be triggered one hour too late.</p>
+
+<p>We use an alternative approach, which is to record the last known value:</p>
+
+<pre><code>- record: available_sms_last
+  expr: available_sms or available_sms_last
+- alert: No more SMS
+  expr: |
+    available_sms_last &lt; 1000
+- alert: No more SMS balance
+  expr: |
+    absent(available_sms)
+  for: 1h
+</code></pre>
+
+<p>That rule will ensure that in case the api is not available, the
+<code>available_sms_last</code> metric will contain the last known value. We can therefore alert on
+that, without alerting too soon or too late! This is using <a href="https://prometheus.io/docs/prometheus/latest/querying/operators/#vector-matching">prometheus 1-to-1
+vector matching</a>.</p>
+
+<p>Another alert, on <code>absent(available_sms)</code> enables us to know when the api is
+down for a long time.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2019/02/21/prometheus-last/">Permalink</a>. Category: monitoring. Tags: prometheus.<br/>
+        First published on Thu 21 February 2019.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2017/11/09/prometheus-dst/" class="text-gray-dark">
+    Prometheus and DST
+</a></h1>
+<div class="content text-justify">
+    <p><a href="https://prometheus.io">Prometheus</a> only deals with GMT. It does not even try to
+do something else. But, when you want to compare your business metrics with your
+usual traffic, you need to take DST into account.</p>
+
+<p>Here is my take on the problem. Note that I am in TZ=Europe/Brussels. We had DST
+on October 29.</p>
+
+<p>Let&rsquo;s say that I want to compare one metric with the same metric 2 weeks ago. In
+this example, the metric would be <code>rate(app_requests_count{env=&quot;prod&quot;}[5m])</code>.
+If we are the 1st of December, we need to look back 14 days. But, if we are the
+1st of November, we need to look back 14 days + 1 hour. DST happened on October
+29.</p>
+
+<p>To achieve that, we will take advantage of Prometheus <a href="https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/">recording
+rules</a>
+and <a href="https://prometheus.io/docs/prometheus/latest/querying/functions/">functions</a>.
+This example is based on Prometheus 2.0.</p>
+
+<p>First, I setup a record rule that tells me when I need to add an extra hour:</p>
+
+<pre><code>- record: dst
+  expr: |
+    0*(month() &lt; 12) + 0*(day_of_month() &lt; 13) + 0*(year() == 2017)
+  labels:
+    when: 14d
+</code></pre>
+
+<p>That metric <code>dst{when=&quot;14d&quot;}</code> will be 0 until the 13th of November, and will have no value
+otherwise. If you really care, you can play with the <code>hour()</code> function as well.</p>
+
+<p>Then, I create a second rule with two different <code>offset</code> and a <code>or</code>. Note that
+in a recording group, prometheus computes the rules sequentially.</p>
+
+<pre><code>- record: app_request_rate
+  expr: |
+    (
+      sum(dst{when=&quot;14d&quot;})
+      + (
+         sum(
+          rate(
+           app_requests_count{env=&quot;prod&quot;}[5m]
+           offset 337h
+          )
+         )
+         or vector(0)
+        )
+    )
+    or
+    (
+     sum(
+      rate(
+       app_requests_count{env=&quot;prod&quot;}[5m]
+       offset 14d)
+      )
+      or vector(0)
+    )
+  labels:
+    when: 14d
+</code></pre>
+
+<p>Let&rsquo;s analyze this.</p>
+
+<p>The recording rule is split in two parts by a <code>or</code>:</p>
+
+<pre><code>    (
+      sum(dst{when=&quot;14d&quot;})
+      + (
+         sum(
+          rate(
+           app_requests_count{env=&quot;prod&quot;}[5m]
+           offset 337h
+          )
+         )
+         or vector(0)
+        )
+    )
+</code></pre>
+
+<pre><code>    (
+     sum(
+      rate(
+       app_requests_count{env=&quot;prod&quot;}[5m]
+       offset 14d)
+      )
+      or vector(0)
+    )
+</code></pre>
+
+<p>If the first part does not return any value, then we get the second part.</p>
+
+<p>The second part is easy, so let&rsquo;s start with it:</p>
+
+<ul>
+<li>We sum the 5min rates of app_requests_count, env=prod, 14 days ago.</li>
+<li>If we get no metrics (e.g. Prometheus was down) we get 0.</li>
+</ul>
+
+<p>The first part is however a bit more complex. Part of it is like the second part,
+but with an offset of 14d+1h (337h).</p>
+
+<p>Now, to detect if we need the first of the second offset, we add <code>sum(dst{when=&quot;14d&quot;})</code>
+to  the first part. When we need to add an extra hour, then the value of <code>sum(dst{when=&quot;14d&quot;})</code> is 0.
+Otherwise, there is no value and prometheus falls back to the second part of the rule.</p>
+
+<p>Note: in this rule, the <code>sum</code> in <code>sum(dst{when=&quot;14d&quot;})</code> is
+here to remove the labels, and allow the <code>+</code> operation.</p>
+
+<p>It is a bit tricky ; but it should do the job. I think I will also in the future
+create recording rules for <code>day_of_month()</code>, <code>month()</code> and <code>year()</code>, so I can
+apply an offset to their values.</p>
+
+<p>I will probably revisit this in March 2018&hellip;</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2017/11/09/prometheus-dst/">Permalink</a>. Category: monitoring. Tags: prometheus.<br/>
+        First published on Thu 9 November 2017.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    
+
+
+
+
+
+
+
+
+
+<nav class="pagination is-centered">
+                <a class="pagination-previous"   disabled>Previous</a>
+                <a class="pagination-next" href="/blog/page/2/" >Next</a>
+
+    <ul class="pagination-list">
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"  disabled  href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/2/">2</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/16/">16</a></li>
+            
+            
+    </ul>
+</nav>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

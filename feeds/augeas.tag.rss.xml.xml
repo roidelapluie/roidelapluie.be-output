@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>augeas on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/augeas/</link>
+    <description>Recent content in augeas on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 31 Jul 2015 21:45:27 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/augeas/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>An Augeas lens for tmpfiles.d</title>
+      <link>https://roidelapluie.be/blog/2015/07/31/augeas-tmpfiles/</link>
+      <pubDate>Fri, 31 Jul 2015 21:45:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/07/31/augeas-tmpfiles/</guid>
+      <description>I have sent recently a Pull Request to the Augeas project. That PR is about a new lens, a tmpfiles.d lens.
+If you want some background, check my slides (or the video) for the talk about Augeas I have given last november at Puppetcamp London.
+When systemd is in charge of the temporary directories of a server, some directories (/tmp, /run, /var/tmp) are mounted in a tmpfs and are just empty at boot time.</description>
+    </item>
+    
+  </channel>
+</rss>

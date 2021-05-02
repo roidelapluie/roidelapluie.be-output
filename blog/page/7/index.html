@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="navbar-item " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+<div class="container">
+    
+        <h1 class="title"><a href="/blog/2015/07/31/augeas-tmpfiles/" class="text-gray-dark">
+    An Augeas lens for tmpfiles.d
+</a></h1>
+<div class="content text-justify">
+    <p>I have sent recently a <a href="https://github.com/hercules-team/augeas/pull/269">Pull Request</a> to the <a href="http://augeas.net/">Augeas</a> project. That PR
+is about a new lens, a <a href="http://www.freedesktop.org/software/systemd/man/tmpfiles.d.html">tmpfiles.d</a> lens.</p>
+
+<p>If you want some background, check my <a href="http://www.slideshare.net/roidelapluie/augeas-swiss-knife-resources-for-your-puppet-tree">slides</a> (or the <a href="https://www.youtube.com/watch?v=Gghl1t1okW4">video</a>) for the
+talk about <a href="http://augeas.net/">Augeas</a> I have given last november at Puppetcamp London.</p>
+
+<p>When systemd is in charge of the temporary directories of a server, some directories
+(<code>/tmp</code>, <code>/run</code>, <code>/var/tmp</code>) are mounted in a tmpfs and are just empty at boot time.</p>
+
+<p>What happens for a service, like MariaDB, which has to create the file <code>/run/maria/maria.pid</code>
+(fictional example) if <code>/run/maria</code> does not exist and <code>/run</code> it not writable by its user?
+How does systemd handle that?</p>
+
+<p>The answer is <a href="http://www.freedesktop.org/software/systemd/man/tmpfiles.d.html">tmpfiles.d</a>. It consists of a bunch of config files, each line
+describing a directory, a link, a value that has to be written to a file&hellip; I let
+you parse the manpage for more details.</p>
+
+<p>I wanted to get an augeas lense that can parse those files, so I can manage each line
+of those files il a more clever way than just templating the whole file.</p>
+
+<p>Here is how to create a directory in /run in CentOS 6:</p>
+
+<pre><code>file {
+  '/run/maria':
+    ensure =&gt; directory,
+}
+</code></pre>
+
+<p>And in CentOS 7 + my augeas lens:</p>
+
+<pre><code>augeas {
+  &quot;tmpfiles.d-new-${path}&quot;:
+    changes =&gt; [
+      &quot;set /files/etc/tmpfiles.d/my.conf/01/type 'd'&quot;,
+      &quot;set /files/etc/tmpfiles.d/my.conf/01/path '${path}'&quot;,
+      &quot;set /files/etc/tmpfiles.d/my.conf/01/mode '${mode}'&quot;,
+      &quot;set /files/etc/tmpfiles.d/my.conf/01/uid '${owner}'&quot;,
+      &quot;set /files/etc/tmpfiles.d/my.conf/01/gid '${group}'&quot;,
+    ],
+    onlyif =&gt; &quot;match /files/etc/tmpfiles.d/my.conf/*[path = '${path}']/path size &lt; 1&quot;,
+    tag    =&gt; ['tmpfiles.d-augeas'],
+}
+augeas {
+  &quot;tmpfiles.d-${path}&quot;:
+    context =&gt; &quot;/files/etc/tmpfiles.d/my.conf/*[path = '${path}']&quot;,
+    changes =&gt; [
+      &quot;set type 'd'&quot;,
+      &quot;set gid '${group}'&quot;,
+      &quot;set uid '${owner}'&quot;,
+      &quot;set mode '${mode}'&quot;,
+    ],
+    tag =&gt; ['tmpfiles.d-augeas'],
+}
+exec {&quot;systemd-tmpfiles-${path}&quot;:
+  command  =&gt; '/usr/bin/systemd-tmpfiles --create',
+  creates  =&gt; $path,
+  tag      =&gt; 'na-systemd-tmpfiles',
+}
+file {
+  $path:
+    ensure    =&gt; directory,
+    owner     =&gt; $owner,
+    group     =&gt; $group,
+    mode      =&gt; $mode,
+    noop      =&gt; true,
+}
+Augeas&lt;|tag == 'tmpfiles.d-augeas'|&gt; -&gt; Exec[&quot;systemd-tmpfiles-${path}&quot;]
+Exec&lt;|tag == 'na-systemd-tmpfiles'|&gt; -&gt; File[$path]
+</code></pre>
+
+<p>A bunch of stuff to notice here:</p>
+
+<ul>
+<li>You have to run a command (<code>/usr/bin/systemd-tmpfiles --create</code>) after changing the files</li>
+<li>I have put the actual file location in &lsquo;noop&rsquo; mode, just for backward compatibility</li>
+<li>The <code>&lt;||&gt;</code> is not for collected resources but for local resources (collected are <code>&lt;&lt;||&gt;&gt;</code>)</li>
+</ul>
+
+<p>You can download the lens (<code>.aug</code> file) from my pull request and put it into
+the <code>lib/augeas/lenses</code> directory of the module to get it to work.</p>
+
+<p>In the future this will probably be a lot more simple because I might write an
+<a href="http://augeasproviders.com/">augeasprovider</a> for that.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/07/31/augeas-tmpfiles/">Permalink</a>. Category: Automation. Tags: augeas systemd puppet.<br/>
+        First published on Fri 31 July 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2015/07/26/puppet-puppet-4/" class="text-gray-dark">
+    A Puppet module for Puppet 4
+</a></h1>
+<div class="content text-justify">
+    <p>I have been working today on a <a href="https://github.com/theforeman/puppet-puppet/pull/290">pull request</a> for the <a href="https://github.com/theforeman/puppet-puppet/">puppet-puppet</a>
+module. That module, part of the foreman puppet modules suite, is probably the
+most used in its category.</p>
+
+<p>The pull request I&rsquo;ve been working on is about support of the new <a href="https://puppetlabs.com/blog/say-hello-open-source-puppet-4">&lsquo;All In One&rsquo;</a>
+package and Puppet 4. It will probably be merged very soon.</p>
+
+<p>An important part of the work was done by <a href="https://github.com/mcanevet">Mickaël Canévet</a>, from <a href="http://camptocamp.com">camptocamp</a>.
+I did polish it a bit, rebase it and make the tests pass.</p>
+
+<p>With our combined work, you can now use the great puppet-puppet module to deploy
+a puppet stack with AIO packages, and start testing the new Puppet 4 features right now!</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/07/26/puppet-puppet-4/">Permalink</a>. Category: Automation. Tags: automation planet-inuits puppet.<br/>
+        First published on Sun 26 July 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2015/07/04/script/" class="text-gray-dark">
+    Script, a must-know command for sysadmins
+</a></h1>
+<div class="content text-justify">
+    
+
+<p><code>script</code> is a famous command in the unix world. Part of the <a href="https://www.kernel.org/pub/linux/utils/util-linux/">util-linux</a>
+package of Linux distros, and so available almost everywhere, it has some very interesting features.</p>
+
+<h2 id="recording-a-shell-session">Recording a shell session</h2>
+
+<p>This is the primary usage. Just type:</p>
+
+<pre><code>script output.txt
+</code></pre>
+
+<p>A new shell will open, and you can just do whatever you want.</p>
+
+<pre><code>$ script output.txt
+Script started, file is output.txt
+$ echo hello world
+hello world
+$ exit
+Script done, file is output.txt
+</code></pre>
+
+<p>Once you have
+finished, you close the shell (<code>exit</code> or <code>^D</code>) and then you can replay your session
+with <code>cat</code>:</p>
+
+<pre><code>$ cat output.txt
+Script started on Sat 04 Jul 2015 11:15:15 AM CEST
+$ echo hello world
+hello world
+$ exit
+
+Script done on Sat 04 Jul 2015 11:15:21 AM CEST
+</code></pre>
+
+<p>It also records what you type, your bash PS1 etc&hellip;</p>
+
+<p>But that would replay everything at once. You can improve that by recording with
+timing (<code>-t</code>). Timing information is sent do stderr.</p>
+
+<pre><code>script -t output.txt 2&gt;output.txt.timing
+</code></pre>
+
+<p>You can then replay easily with:</p>
+
+<pre><code>scriptreplay output.txt.timing output.txt
+</code></pre>
+
+<p><code>scriptreplay</code> has a lot of interesting options, like <code>--divisor</code> and
+<code>--maxdelay</code>.</p>
+
+<h2 id="real-time-terminal-sharing">Real-time terminal sharing</h2>
+
+<p>It is also possible to stream what you are doing. To do so, you can use a named pipe.</p>
+
+<pre><code>mkfifo /tmp/mystream
+script -f /tmp/mystream
+</code></pre>
+
+<p>The <code>-f</code> option means &lsquo;flush at every write&rsquo;.</p>
+
+<p>On the other hand, the person that wants to see what you are doing just has to run:</p>
+
+<pre><code>cat /tmp/mystream
+</code></pre>
+
+<p>Now you will see the same things.</p>
+
+<p>You can do the same with <code>screen</code>, except that <code>screen</code> is not installed everywhere
+and you can not have a <code>screen</code> read-only.</p>
+
+<h2 id="own-your-tty">Own your tty</h2>
+
+<p>This is the last use case I have with <code>script</code> and it useful as well. In some situations,
+you have to &lsquo;own&rsquo; your own tty.</p>
+
+<p>Examples of such situations include <code>screen</code> and <code>sudo</code> commands.</p>
+
+<pre><code># su - roidelapluie
+$ screen
+Cannot open your terminal '/dev/pts/38' - please check.
+</code></pre>
+
+<p>In that case, script can help you:</p>
+
+<pre><code># su - roidelapluie
+$ script /dev/null
+Script started, file is /dev/null
+$ screen
+</code></pre>
+
+<p>It also works to run <code>sudo</code> when you forget to use <code>ssh -t</code>.</p>
+
+<p>You can also run a command directly with <code>-c</code>. In that case do not forget to add
+<code>-e</code> if you are interested by the exit code of the command you launch.</p>
+
+<pre><code>script -c mycommand -e
+</code></pre>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p><code>script</code> is a nice command that can be useful in several situations, and it has
+the advantage to be present almost everywhere.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/07/04/script/">Permalink</a>. Category: Linux. Tags: sysadmin planet-inuits.<br/>
+        First published on Sat 4 July 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2015/06/05/vagrant-will-support-vbox-clones/" class="text-gray-dark">
+    Vagrant will support VirtualBox linked clones
+</a></h1>
+<div class="content text-justify">
+    <p>Here is a good news for the <a href="http://vagrantup.com">vagrant</a> users that still use VirtualBox.
+While vagrant has support for many other providers, I guess that VirtualBox is probably still
+in the top 3.</p>
+
+<p>A September 2014 <a href="https://github.com/mitchellh/vagrant/pull/4484">Pull Request</a> by <a href="https://github.com/mpoeter">mpoeter</a> has been updated some days ago. That
+pull request is about the support of a long-existing VirtualBox feature, linked clones.
+And it will more than probably be integrated in the next release.</p>
+
+<p>Linked clones are just like Clones, except that the disks are linked to the &ldquo;master&rdquo;
+disks, and the data are written incrementally on another disk. It means that the initial import
+of the Vagrant boxes will be instant, even if your laptop has non-ssd disks.</p>
+
+<p>The initial import of the VirtualBox boxes was one of the bottlenecks of this plugin,
+and a disadvantage compared to those based on LXC, KVM or docker.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/06/05/vagrant-will-support-vbox-clones/">Permalink</a>. Category: Linux. Tags: vagrant virtualbox planet-inuits.<br/>
+        First published on Fri 5 June 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2015/05/22/gitlab-ee/" class="text-gray-dark">
+    Gitlab makes the Entreprise edition code public
+</a></h1>
+<div class="content text-justify">
+    <p>It is a very sad day for Open-Source. Gitlab has opened its repository for the
+Entreprise Edition (I am not going to put a link to it).</p>
+
+<p>It is a very sad day because even if the code is available, it is still proprietary.
+If you are interested in implementing features of the EE into the CE edition,
+you have to make sure that you never look at the proprietary code. Otherwise your
+changes will be illegal if they are too close to the proprietary ones.</p>
+
+<p>We have the same kind of problems with other projects. The MariaDB Java connector is
+LGPL and the Mysql Java Connector is under GPL. It means that it is legal to put any
+great feature of the MariaDB Connector into the MySQL Connector but not the opposite.</p>
+
+<p>GitLab EE would not be possible with its old competitor, now dead, Gitorious, because
+it was under the GPL. I hope that some people will continue to develop Gitorious to
+make it as best as Gitlab.</p>
+
+<p>Opening the code without releasing it under an open source licence is not nice
+for the community, not nice for the contributors and will not help that much the project:
+will you review/contribute to a repository you can not use?</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/05/22/gitlab-ee/">Permalink</a>. Category: Open-Source. Tags: licenses philosophy.<br/>
+        First published on Fri 22 May 2015.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    
+
+
+
+
+
+
+
+
+
+<nav class="pagination is-centered">
+                <a class="pagination-previous" href="/blog/page/6/" >Previous</a>
+                <a class="pagination-next" href="/blog/page/8/" >Next</a>
+
+    <ul class="pagination-list">
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"   href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/6/">6</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"  disabled  href="/blog/page/7/">7</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/8/">8</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/16/">16</a></li>
+            
+            
+    </ul>
+</nav>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

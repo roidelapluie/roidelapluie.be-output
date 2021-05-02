@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gcp on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/gcp/</link>
+    <description>Recent content in gcp on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 22 Apr 2019 23:32:47 +0200</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/gcp/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GCP container registry and terraform provider docker</title>
+      <link>https://roidelapluie.be/blog/2019/04/22/docker-gcp-terraform/</link>
+      <pubDate>Mon, 22 Apr 2019 23:32:47 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2019/04/22/docker-gcp-terraform/</guid>
+      <description>Here are some snippets you can use to get the terraform docker provider to work with the google container registry gcr.io:
+# Your config provider &amp;#34;google&amp;#34; {} data &amp;#34;google_client_config&amp;#34; &amp;#34;default&amp;#34; {} provider &amp;#34;docker&amp;#34; { registry_auth { address = &amp;#34;gcr.io&amp;#34; username = &amp;#34;oauth2accesstoken&amp;#34; password = &amp;#34;${data.google_client_config.default.access_token}&amp;#34; } } data &amp;#34;google_container_registry_image&amp;#34; &amp;#34;myapp_tagged&amp;#34; { name = &amp;#34;${var.docker_image_myapp}&amp;#34; tag = &amp;#34;${var.docker_image_tag_myapp}&amp;#34; } data &amp;#34;docker_registry_image&amp;#34; &amp;#34;myapp&amp;#34; { name = &amp;#34;${data.google_container_registry_image.myapp_tagged.image_url}&amp;#34; } data &amp;#34;google_container_registry_image&amp;#34; &amp;#34;myapp&amp;#34; { name = &amp;#34;${var.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>About Puppet 4.8 - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="navbar-item " href="/fr">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+<h1 class="title"><a href="/blog/2016/11/02/about-puppet-4.8/" class="text-gray-dark">
+    About Puppet 4.8
+</a></h1>
+<div class="content text-justify">
+    <p>Puppet, in its new parser (long known as «future parser»), allows you to do
+things like loops, lambda functions, &hellip; And that was great. It was great
+because those were things we needed. We needed that so much that the community
+just went for its own variant, in ruby (<code>create_resources</code>). Being able to
+remove <code>create_resources</code> is great.</p>
+
+<p>However, as <a href="https://daenney.github.io/2016/10/17/goodbye-puppet.html">Daniele stated</a>,
+Puppet has quite reached Feature Complete. That means that we made Puppet work
+for all our needs. Even Puppet 3.x was feature complete. You can/could build
+anything with Puppet.</p>
+
+<p>Puppet, Inc. is running in all kind of directions now and they start
+implementing new features everywhere. Instead of allowing us to do more and more
+crazy things with the Puppet DSL, they should start wondering the question: what
+is the real value for the users? It looks like the game now is to throw away as
+most features as possible &ndash; but hey, that is not what we expect from Puppet.</p>
+
+<p>Puppet gets to a point when we can actually stop learning it, and focus on all
+the other tasks. The job is not to automate everything nowadays &ndash; because
+everything is already automated. We want a Puppet that is transparent, fast,
+silent. We want a Puppet that just works.</p>
+
+<p>There are lots of bad moves in the last years. One of the latest example is the
+closed source app orchestration, which breaks the spirit of Puppet to design the
+final state. Strangely enough, I never needed such a thing. Instead of adapting
+tools to everyone, maybe some time should be spent to explain people HOW to
+design infrastructures. The fact that you need the app orchestrator maybe
+means that you do something wrong.</p>
+
+<p>One other bad move is the <a href="https://docs.puppet.com/pe/latest/puppet_server_metrics.html">Puppet server metrics</a>. That was such a great
+idea to expose metrics with the graphite API. Obviously, in the monitoring
+world, everyone speaks graphite. The bad move was to decide that the open source
+users don&rsquo;t deserve it. Yes, the same users that write and contribute to the
+real value of Puppet, the open source modules on github and the forge.</p>
+
+<p>What actually triggered that article is a <a href="https://docs.puppet.com/puppet/4.8/reference/release_notes.html">new puppet function</a>, called <code>return</code>.
+Let&rsquo;s go over a quick example:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-puppet" data-lang="puppet"><span style="color:#fff;font-weight:bold">class</span> <span style="color:#007f7f">bar</span> {<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#fff;font-weight:bold">notify</span> {<span style="color:#0ff;font-weight:bold">&#39;foo&#39;</span>:}<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">return</span>()<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#fff;font-weight:bold">notify</span> {<span style="color:#0ff;font-weight:bold">&#39;bar&#39;</span>:}<span style="color:#f00">
+</span><span style="color:#f00"></span>}<span style="color:#f00">
+</span><span style="color:#f00"></span><span style="color:#fff;font-weight:bold">include</span> <span style="color:#007f7f">bar</span></code></pre></div>
+<p>And here is the result:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Notice: Compiled catalog for localhost in environment production in 0.08 seconds
+Notice: foo
+Notice: /Stage[main]/Bar/Notify[foo]/message: defined &#39;message&#39; as &#39;foo&#39;
+Notice: Applied catalog in 0.03 seconds</code></pre></div>
+<p>Great!</p>
+
+<p>This is the kind of features that adds complexity for nothing. All it does is
+adding complexity and making it hard to debug manifests. It is really hard to
+find usecases for that <code>return</code> function. And in you have one &ndash; you might as
+well think twice.</p>
+
+<p>Puppet lost is soul. When previously reading Puppet manifests was easy and
+really intuitive, now you need to deal with complex functions and you barely
+now what will end in the catalog at first sight.</p>
+
+<p>I kinda miss my past parser.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2016/11/02/about-puppet-4.8/">Permalink</a>. Category: Automation. Tags: automation planet-inuits puppet.<br/>
+        First published on Wed 2 November 2016.
+    </div>
+</div>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

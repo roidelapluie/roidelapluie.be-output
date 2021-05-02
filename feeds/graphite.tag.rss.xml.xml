@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>graphite on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/graphite/</link>
+    <description>Recent content in graphite on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 13 May 2015 01:45:07 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/graphite/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>R and Graphite</title>
+      <link>https://roidelapluie.be/blog/2015/05/13/r-and-graphite/</link>
+      <pubDate>Wed, 13 May 2015 01:45:07 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/05/13/r-and-graphite/</guid>
+      <description>R is a famous language in the statistical world. It has a large ecosystem and today I wanted to try to do some predictions with R and Graphite.
+library(&amp;quot;rjson&amp;quot;) library(&amp;quot;RCurl&amp;quot;) library(&amp;quot;forecast&amp;quot;) library(&amp;quot;xts&amp;quot;) metric &amp;lt;- &amp;quot;myhost.load.load.longterm&amp;quot; time &amp;lt;- &amp;quot;3days&amp;quot; host &amp;lt;- &amp;quot;graphite.example.com&amp;quot; url &amp;lt;- paste(&amp;quot;https://&amp;quot;, host, &amp;quot;/render/?target=&amp;quot;, metric, &amp;quot;&amp;amp;format=json&amp;amp;from=-&amp;quot;, time, sep=&amp;quot;&amp;quot;)[1] json_content &amp;lt;- getURL(url, userpwd=&amp;quot;myuser:mypass&amp;quot;, httpauth = 1L) json_data &amp;lt;- fromJSON(json_content) values &amp;lt;- c() datapoints &amp;lt;- json_data[[1]]$datapoints target &amp;lt;- json_data[[1]]$target for(d in datapoints){ value &amp;lt;- (d[[1]]) values &amp;lt;- c(values, value) } values &amp;lt;- ts(values, frequency=30) fit &amp;lt;- Arima(values, order=c(1,0,30)) fcast &amp;lt;- forecast(fit) plot(fcast, main=target)  Result:</description>
+    </item>
+    
+  </channel>
+</rss>

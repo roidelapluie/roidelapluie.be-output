@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>office on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/office/</link>
+    <description>Recent content in office on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 20 Apr 2015 21:51:52 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/office/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The LibreOffice Calc 1024 columns bug</title>
+      <link>https://roidelapluie.be/blog/2015/04/20/libreoffice-calc-1024-columns/</link>
+      <pubDate>Mon, 20 Apr 2015 21:51:52 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/04/20/libreoffice-calc-1024-columns/</guid>
+      <description>Sometimes it is sad to see some quite important bugs that last in time.
+One of the last one I hit is a limitation in LibreOffice Calc. It does not support calc spreadsheet with more that 1024 columns.
+That bug was already opened in 2008 in OpenOffice.
+It is really a blocker bug for people that receive spreadsheets that have a lof of columns. For example I have seen a spreadsheet with one column per day.</description>
+    </item>
+    
+  </channel>
+</rss>

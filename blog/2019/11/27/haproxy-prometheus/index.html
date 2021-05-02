@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>A look at HAProxy native Prometheus metrics - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="navbar-item " href="/fr">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+<h1 class="title"><a href="/blog/2019/11/27/haproxy-prometheus/" class="text-gray-dark">
+    A look at HAProxy native Prometheus metrics
+</a></h1>
+<div class="content text-justify">
+    
+
+<p><a href="https://www.haproxy.org">HAProxy 2.0</a> contains, among other improvements, the
+ability to expose Prometheus metrics natively.</p>
+
+<p>As I am building <a href="https://copr.fedorainfracloud.org/coprs/roidelapluie/haproxy/builds/">HAProxy 2.0 and 2.1
+rpm&rsquo;s</a>, I
+wanted to try it out and move away from the <a href="https://github.com/prometheus/haproxy_exporter/">haproxy_exporter</a>.</p>
+
+<p>While the haproxy_exporter is developed by the Prometheus team, and therefore a
+high quality exporter, there is good reasons to move to the HAProxy native
+Prometheus exporter:</p>
+
+<ul>
+<li>Performance</li>
+<li>New metrics</li>
+<li>Operations (no need to manage an exporter + the <code>up</code> metric represents
+haproxy)</li>
+<li>Security (no need to expose the stats csv)</li>
+</ul>
+
+<h2 id="metrics">Metrics</h2>
+
+<p>Gone but can be calculated better with queries:</p>
+
+<ul>
+<li>haproxy_backend_current_server</li>
+<li>haproxy_backend_current_session_rate</li>
+<li>haproxy_backend_http_connect_time_average_seconds</li>
+<li>haproxy_backend_http_queue_time_average_seconds</li>
+<li>haproxy_backend_http_response_time_average_seconds</li>
+<li>haproxy_backend_http_total_time_average_seconds</li>
+<li>haproxy_frontend_current_session_rate</li>
+<li>haproxy_server_current_session_rate</li>
+</ul>
+
+<p>Replaced by better metrics:</p>
+
+<ul>
+<li>haproxy_backend_up: replaced by haproxy_backend_status</li>
+<li>haproxy_server_up: replaced by haproxy_frontend_status with more values (0=STOP, 1=UP, 2=FULL, 2=MAINT, 3=DRAIN, 4=NOLB)</li>
+</ul>
+
+<p>Gone because they were linked to the exporter itself:</p>
+
+<ul>
+<li>haproxy_exporter_build_info</li>
+<li>haproxy_exporter_csv_parse_failures</li>
+<li>haproxy_exporter_total_scrapes</li>
+<li>go metrics</li>
+</ul>
+
+<p>New metrics:</p>
+
+<ul>
+<li>haproxy_backend_active_servers</li>
+<li>haproxy_backend_backup_servers</li>
+<li>haproxy_backend_check_last_change_seconds</li>
+<li>haproxy_backend_check_up_down_total</li>
+<li>haproxy_backend_client_aborts_total</li>
+<li>haproxy_backend_connect_time_average_seconds</li>
+<li>haproxy_backend_connection_attempts_total</li>
+<li>haproxy_backend_connection_reuses_total</li>
+<li>haproxy_backend_downtime_seconds_total</li>
+<li>haproxy_backend_failed_header_rewriting_total</li>
+<li>haproxy_backend_http_cache_hits_total</li>
+<li>haproxy_backend_http_cache_lookups_total</li>
+<li>haproxy_backend_http_comp_bytes_bypassed_total</li>
+<li>haproxy_backend_http_comp_bytes_in_total</li>
+<li>haproxy_backend_http_comp_bytes_out_total</li>
+<li>haproxy_backend_http_comp_responses_total</li>
+<li>haproxy_backend_http_requests_total</li>
+<li>haproxy_backend_last_session_seconds</li>
+<li>haproxy_backend_loadbalanced_total</li>
+<li>haproxy_backend_max_connect_time_seconds</li>
+<li>haproxy_backend_max_queue_time_seconds</li>
+<li>haproxy_backend_max_response_time_seconds</li>
+<li>haproxy_backend_max_total_time_seconds</li>
+<li>haproxy_backend_queue_time_average_seconds</li>
+<li>haproxy_backend_requests_denied_total</li>
+<li>haproxy_backend_response_time_average_seconds</li>
+<li>haproxy_backend_responses_denied_total</li>
+<li>haproxy_backend_server_aborts_total</li>
+<li>haproxy_backend_total_time_average_seconds</li>
+<li>haproxy_frontend_connections_rate_max</li>
+<li>haproxy_frontend_denied_connections_total</li>
+<li>haproxy_frontend_denied_sessions_total</li>
+<li>haproxy_frontend_failed_header_rewriting_total</li>
+<li>haproxy_frontend_http_cache_hits_total</li>
+<li>haproxy_frontend_http_cache_lookups_total</li>
+<li>haproxy_frontend_http_comp_bytes_bypassed_total</li>
+<li>haproxy_frontend_http_comp_bytes_in_total</li>
+<li>haproxy_frontend_http_comp_bytes_out_total</li>
+<li>haproxy_frontend_http_comp_responses_total</li>
+<li>haproxy_frontend_http_requests_rate_max</li>
+<li>haproxy_frontend_intercepted_requests_total</li>
+<li>haproxy_frontend_responses_denied_total</li>
+<li>haproxy_process_active_peers</li>
+<li>haproxy_process_busy_polling_enabled</li>
+<li>haproxy_process_connected_peers</li>
+<li>haproxy_process_connections_total</li>
+<li>haproxy_process_current_backend_ssl_key_rate</li>
+<li>haproxy_process_current_connection_rate</li>
+<li>haproxy_process_current_connections</li>
+<li>haproxy_process_current_frontend_ssl_key_rate</li>
+<li>haproxy_process_current_run_queue</li>
+<li>haproxy_process_current_session_rate</li>
+<li>haproxy_process_current_ssl_connections</li>
+<li>haproxy_process_current_ssl_rate</li>
+<li>haproxy_process_current_tasks</li>
+<li>haproxy_process_current_zlib_memory</li>
+<li>haproxy_process_dropped_logs_total</li>
+<li>haproxy_process_frontent_ssl_reuse</li>
+<li>haproxy_process_hard_max_connections</li>
+<li>haproxy_process_http_comp_bytes_in_total</li>
+<li>haproxy_process_http_comp_bytes_out_total</li>
+<li>haproxy_process_idle_time_percent</li>
+<li>haproxy_process_jobs</li>
+<li>haproxy_process_limit_connection_rate</li>
+<li>haproxy_process_limit_http_comp</li>
+<li>haproxy_process_limit_session_rate</li>
+<li>haproxy_process_limit_ssl_rate</li>
+<li>haproxy_process_listeners</li>
+<li>haproxy_process_max_backend_ssl_key_rate</li>
+<li>haproxy_process_max_connection_rate</li>
+<li>haproxy_process_max_connections</li>
+<li>haproxy_process_max_fds</li>
+<li>haproxy_process_max_frontend_ssl_key_rate</li>
+<li>haproxy_process_max_memory_bytes</li>
+<li>haproxy_process_max_pipes</li>
+<li>haproxy_process_max_session_rate</li>
+<li>haproxy_process_max_sockets</li>
+<li>haproxy_process_max_ssl_connections</li>
+<li>haproxy_process_max_ssl_rate</li>
+<li>haproxy_process_max_zlib_memory</li>
+<li>haproxy_process_nbproc</li>
+<li>haproxy_process_nbthread</li>
+<li>haproxy_process_pipes_free_total</li>
+<li>haproxy_process_pipes_used_total</li>
+<li>haproxy_process_pool_allocated_bytes</li>
+<li>haproxy_process_pool_failures_total</li>
+<li>haproxy_process_pool_used_bytes</li>
+<li>haproxy_process_relative_process_id</li>
+<li>haproxy_process_requests_total</li>
+<li>haproxy_process_ssl_cache_lookups_total</li>
+<li>haproxy_process_ssl_cache_misses_total</li>
+<li>haproxy_process_ssl_connections_total</li>
+<li>haproxy_process_start_time_seconds</li>
+<li>haproxy_process_stopping</li>
+<li>haproxy_process_unstoppable_jobs</li>
+<li>haproxy_server_check_failures_total</li>
+<li>haproxy_server_check_last_change_seconds</li>
+<li>haproxy_server_check_up_down_total</li>
+<li>haproxy_server_client_aborts_total</li>
+<li>haproxy_server_connect_time_average_seconds</li>
+<li>haproxy_server_connection_attempts_total</li>
+<li>haproxy_server_connection_reuses_total</li>
+<li>haproxy_server_current_throttle</li>
+<li>haproxy_server_downtime_seconds_total</li>
+<li>haproxy_server_failed_header_rewriting_total</li>
+<li>haproxy_server_last_session_seconds</li>
+<li>haproxy_server_loadbalanced_total</li>
+<li>haproxy_server_max_connect_time_seconds</li>
+<li>haproxy_server_max_queue_time_seconds</li>
+<li>haproxy_server_max_response_time_seconds</li>
+<li>haproxy_server_max_total_time_seconds</li>
+<li>haproxy_server_queue_limit</li>
+<li>haproxy_server_queue_time_average_seconds</li>
+<li>haproxy_server_response_time_average_seconds</li>
+<li>haproxy_server_responses_denied_total</li>
+<li>haproxy_server_server_aborts_total</li>
+<li>haproxy_server_server_idle_connections_current</li>
+<li>haproxy_server_server_idle_connections_limit</li>
+<li>haproxy_server_total_time_average_seconds</li>
+</ul>
+
+<h2 id="enabling-prometheus-support">Enabling Prometheus support</h2>
+
+<p>HAProxy must be compiled with Prometheus support:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ make TARGET=linux-glibc EXTRA_OBJS=<span style="color:#0ff;font-weight:bold">&#34;contrib/prometheus-exporter/service-prometheus.o&#34;</span></code></pre></div>
+<p>To enable those new metrics on a HAProxy 2.x (I reuse 9101, the port of the
+exporter):</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haproxy" data-lang="haproxy">frontend prometheus
+    bind 127.0.0.1:9101
+    http-request use-service prometheus-exporter if { path /metrics }</code></pre></div>
+<p>You can set just the last line of course.</p>
+
+<h2 id="compatibility-with-the-exporter">Compatibility with the exporter</h2>
+
+<p>If you want to keep your old dashboards, here is what you need to know:</p>
+
+<p>The haproxy_exporter used backend or frontend as labels, where HAProxy uses the
+proxy label. You can retain the old behaviour using Prometheus metrics relabelling:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">scrape_configs:
+- job_name: haproxy
+  static_configs:
+    - targets: [<span style="color:#ff0;font-weight:bold">127.0.0.1</span>:<span style="color:#ff0;font-weight:bold">9101</span>]
+  metric_relabel_configs:
+  - source_labels: [__name__, proxy]
+    regex: <span style="color:#0ff;font-weight:bold">&#34;haproxy_frontend.+;(.+)&#34;</span>
+    target_label: frontend
+    replacement: <span style="color:#0ff;font-weight:bold">&#34;$1&#34;</span>
+  - source_labels: [__name__, proxy]
+    regex: <span style="color:#0ff;font-weight:bold">&#34;haproxy_server.+;(.+)&#34;</span>
+    target_label: backend
+    replacement: <span style="color:#0ff;font-weight:bold">&#34;$1&#34;</span>
+  - source_labels: [__name__, proxy]
+    regex: <span style="color:#0ff;font-weight:bold">&#34;haproxy_backend.+;(.+)&#34;</span>
+    target_label: backend
+    replacement: <span style="color:#0ff;font-weight:bold">&#34;$1&#34;</span>
+  - regex: proxy
+    action: labeldrop</code></pre></div>
+<p>With that configuration you will have a painless migration to the native HAProxy
+metrics!</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>I was positively surprised to see that most of the metrics were still there, and
+that we have access to a lot of new metrics! This is really a big step for
+HAProxy monitoring.</p>
+
+<p>Goodbye haproxy_exporter and thanks for all the fish!</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2019/11/27/haproxy-prometheus/">Permalink</a>. Category: prometheus. Tags: haproxy.<br/>
+        First published on Wed 27 November 2019.
+    </div>
+</div>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

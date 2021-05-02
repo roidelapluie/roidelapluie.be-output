@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Prometheus and DST - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="navbar-item " href="/fr">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+<h1 class="title"><a href="/blog/2017/11/09/prometheus-dst/" class="text-gray-dark">
+    Prometheus and DST
+</a></h1>
+<div class="content text-justify">
+    <p><a href="https://prometheus.io">Prometheus</a> only deals with GMT. It does not even try to
+do something else. But, when you want to compare your business metrics with your
+usual traffic, you need to take DST into account.</p>
+
+<p>Here is my take on the problem. Note that I am in TZ=Europe/Brussels. We had DST
+on October 29.</p>
+
+<p>Let&rsquo;s say that I want to compare one metric with the same metric 2 weeks ago. In
+this example, the metric would be <code>rate(app_requests_count{env=&quot;prod&quot;}[5m])</code>.
+If we are the 1st of December, we need to look back 14 days. But, if we are the
+1st of November, we need to look back 14 days + 1 hour. DST happened on October
+29.</p>
+
+<p>To achieve that, we will take advantage of Prometheus <a href="https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/">recording
+rules</a>
+and <a href="https://prometheus.io/docs/prometheus/latest/querying/functions/">functions</a>.
+This example is based on Prometheus 2.0.</p>
+
+<p>First, I setup a record rule that tells me when I need to add an extra hour:</p>
+
+<pre><code>- record: dst
+  expr: |
+    0*(month() &lt; 12) + 0*(day_of_month() &lt; 13) + 0*(year() == 2017)
+  labels:
+    when: 14d
+</code></pre>
+
+<p>That metric <code>dst{when=&quot;14d&quot;}</code> will be 0 until the 13th of November, and will have no value
+otherwise. If you really care, you can play with the <code>hour()</code> function as well.</p>
+
+<p>Then, I create a second rule with two different <code>offset</code> and a <code>or</code>. Note that
+in a recording group, prometheus computes the rules sequentially.</p>
+
+<pre><code>- record: app_request_rate
+  expr: |
+    (
+      sum(dst{when=&quot;14d&quot;})
+      + (
+         sum(
+          rate(
+           app_requests_count{env=&quot;prod&quot;}[5m]
+           offset 337h
+          )
+         )
+         or vector(0)
+        )
+    )
+    or
+    (
+     sum(
+      rate(
+       app_requests_count{env=&quot;prod&quot;}[5m]
+       offset 14d)
+      )
+      or vector(0)
+    )
+  labels:
+    when: 14d
+</code></pre>
+
+<p>Let&rsquo;s analyze this.</p>
+
+<p>The recording rule is split in two parts by a <code>or</code>:</p>
+
+<pre><code>    (
+      sum(dst{when=&quot;14d&quot;})
+      + (
+         sum(
+          rate(
+           app_requests_count{env=&quot;prod&quot;}[5m]
+           offset 337h
+          )
+         )
+         or vector(0)
+        )
+    )
+</code></pre>
+
+<pre><code>    (
+     sum(
+      rate(
+       app_requests_count{env=&quot;prod&quot;}[5m]
+       offset 14d)
+      )
+      or vector(0)
+    )
+</code></pre>
+
+<p>If the first part does not return any value, then we get the second part.</p>
+
+<p>The second part is easy, so let&rsquo;s start with it:</p>
+
+<ul>
+<li>We sum the 5min rates of app_requests_count, env=prod, 14 days ago.</li>
+<li>If we get no metrics (e.g. Prometheus was down) we get 0.</li>
+</ul>
+
+<p>The first part is however a bit more complex. Part of it is like the second part,
+but with an offset of 14d+1h (337h).</p>
+
+<p>Now, to detect if we need the first of the second offset, we add <code>sum(dst{when=&quot;14d&quot;})</code>
+to  the first part. When we need to add an extra hour, then the value of <code>sum(dst{when=&quot;14d&quot;})</code> is 0.
+Otherwise, there is no value and prometheus falls back to the second part of the rule.</p>
+
+<p>Note: in this rule, the <code>sum</code> in <code>sum(dst{when=&quot;14d&quot;})</code> is
+here to remove the labels, and allow the <code>+</code> operation.</p>
+
+<p>It is a bit tricky ; but it should do the job. I think I will also in the future
+create recording rules for <code>day_of_month()</code>, <code>month()</code> and <code>year()</code>, so I can
+apply an offset to their values.</p>
+
+<p>I will probably revisit this in March 2018&hellip;</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2017/11/09/prometheus-dst/">Permalink</a>. Category: monitoring. Tags: prometheus.<br/>
+        First published on Thu 9 November 2017.
+    </div>
+</div>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

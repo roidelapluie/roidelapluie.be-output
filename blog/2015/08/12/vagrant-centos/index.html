@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Official CentOS boxes for CentOS - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="navbar-item " href="/fr">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+<h1 class="title"><a href="/blog/2015/08/12/vagrant-centos/" class="text-gray-dark">
+    Official CentOS boxes for CentOS
+</a></h1>
+<div class="content text-justify">
+    <p><a href="http://centos.org">CentOS</a> has published <a href="http://lists.centos.org/pipermail/centos-announce/2015-June/021162.html">in June</a> <a href="https://www.vagrantup.com/">Vagrant</a> <a href="https://atlas.hashicorp.com/centos/">Boxes</a> for both Libvirt and VirtualBox provider.
+I will focus on the VirtualBox one.</p>
+
+<p>Those images are great for many reasons:</p>
+
+<ul>
+<li>They come directly from the CentOS project, so it is reasonable to trust them</li>
+<li>They do not come with any 3rd party repositories (and so, without Puppet/Chef&hellip;)</li>
+<li>They are minimal images</li>
+<li>They support multiple providers</li>
+</ul>
+
+<p>They contain what is needed for basic tasks, like the vagrant user so vagrant works.</p>
+
+<p>The part I appreciate the most is that they come from the project and they are very minimal. It
+means that I can then install any Puppet version I want and the right VboxAdditions.</p>
+
+<p>VboxAdditions are needed for vbox synced folders and internal network features.
+Getting them is important to do a great job. Hopefully, vagrant is modular and
+there is a plugin to install the right VboxAdditions: <a href="https://github.com/dotless-de/vagrant-vbguest">vagrant-vbguest</a>. At the startup
+of the VM, it will install the additions for you. To get it working, I needed to
+add two patches to the plugin: <a href="https://github.com/dotless-de/vagrant-vbguest/pull/162/commits">1</a> and <a href="https://github.com/dotless-de/vagrant-vbguest/pull/155/commits">2</a>. They will probably be integrated
+in further releases.</p>
+
+<p>The other trick is with Puppet. I simply use the shell provider to get
+Puppet 4 installed, as shown <a href="https://github.com/roidelapluie/vagrant-phabricator/blob/master/Vagrantfile#L7-L14">here</a>.</p>
+
+<p>Previously there were <a href="https://atlas.hashicorp.com/boxes/search?utf8=%E2%9C%93&amp;sort=&amp;provider=&amp;q=centos">a lot of boxes</a> available for CentOS. This is confusing,
+and when people were making pull requests about boxes <a href="https://github.com/roidelapluie/vagrant-gerrit/pull/1/files">I did not know about</a>,
+my reaction was to <a href="https://github.com/roidelapluie/vagrant-gerrit/commit/09e1772c902681edb13a1fd87ec2e6111ac60003">use a box I know</a> from <a href="https://atlas.hashicorp.com/vStone">a colleague I trust</a>.
+But the fact that I trust him doesn&rsquo;t mean that you will. In that case an upstream
+neutral box is useful.</p>
+
+<p>For the moment it is only for CentOS 7. As <a href="http://lists.centos.org/pipermail/centos-announce/2015-August/021307.html">CentOS 7.1507 has been released</a>, we can expect
+those boxes to be updated soon.</p>
+
+<pre><code>vagrant init centos/7
+vagrant up
+</code></pre>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/08/12/vagrant-centos/">Permalink</a>. Category: Linux. Tags: centos planet-inuits vagrant.<br/>
+        First published on Wed 12 August 2015.
+    </div>
+</div>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

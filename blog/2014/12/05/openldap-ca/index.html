@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Importing a CA into OpenLDAP - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="navbar-item " href="/fr">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+<h1 class="title"><a href="/blog/2014/12/05/openldap-ca/" class="text-gray-dark">
+    Importing a CA into OpenLDAP
+</a></h1>
+<div class="content text-justify">
+    <p>Here is a quick how to about OpenLDAP under CentOS 6 and a custom Certificate Authority..</p>
+
+<p>OpenLDAP in CentOS 6 is built with NSS to deal with ssl/tls.</p>
+
+<p>When you try to securely connect to a LDAP host that, you will get the following errors:</p>
+
+<pre><code>$ ldapsearch -H ldaps://172.28.5.5 -d -1
+[...snip...]
+TLS: certificate [CN=ldap.inuits.eu,OU=Infra,O=Inuits,ST=Antwerp,C=BE] is
+not valid - error -8179:Peer's Certificate issuer is not recognized..
+tls_write: want=7, written=7
+  0000:  15 03 01 00 02
+TLS: error: connect - force handshake failure: errno 0 -
+moznss error -8179
+TLS: can't connect: TLS error -8179:Peer's Certificate issuer is not
+recognized..
+ldap_msgfree
+ldap_err2string
+ldap_sasl_interactive_bind_s: Can't contact LDAP server (-1)
+        additional info: TLS error -8179:Peer's Certificate issuer
+        is not recognized.
+</code></pre>
+
+<p>The first step is to get you CA certificates. For this post, let&rsquo;s assume that the CA file is called <code>rootCA.crt</code>. In real life, you will get several certificates like that.</p>
+
+<p>If the certificate is in DES we will first need to convert it into PEM. This is optional if the certificate is already in a PEM format.</p>
+
+<pre><code>openssl x509 -text -in rootCA.crt -inform des -outform pem &gt; rootCA.pem
+</code></pre>
+
+<p>Once you have the certificat in PEM, you will need to compute the hash:</p>
+
+<pre><code>::text
+$ openssl x509 -in rootCA.pem -noout -hash
+e6adf2fd
+</code></pre>
+
+<p>You will get a hash, e.g <code>e6adf2fd</code>.</p>
+
+<p>Move the certificate to the right directory, with the name <code>${hash}.0</code>:</p>
+
+<pre><code>mv rootCA.prm /etc/openldap/cacerts/e6adf2fd.0
+</code></pre>
+
+<p>When you will to your LDAP search again with -1, you should see that the certificate is shown:</p>
+
+<pre><code>$ ldapsearch -H ldaps://172.28.5.5 -d -1
+[...snip...]
+TLS: loaded CA certificate file /etc/openldap/cacerts/e6adf2fd.0
+from CA certificate directory /etc/openldap/cacerts.
+[...snip...]
+</code></pre>
+
+<p>You can now safely use LDAPs with your own CA.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2014/12/05/openldap-ca/">Permalink</a>. Category: Linux. Tags: centos planet-inuits ldap.<br/>
+        First published on Fri 5 December 2014.
+    </div>
+</div>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

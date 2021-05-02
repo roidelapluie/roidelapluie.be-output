@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>code on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/code/</link>
+    <description>Recent content in code on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 12 Mar 2015 21:45:31 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/code/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Google to shut down Google Code</title>
+      <link>https://roidelapluie.be/blog/2015/03/12/google-to-shut-down-google-code/</link>
+      <pubDate>Thu, 12 Mar 2015 21:45:31 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/03/12/google-to-shut-down-google-code/</guid>
+      <description>Google is shutting down Google Code. It was quite expected that it would join the Google graveyard. It was a cool service but the UI never got a lot of attention. Parsing a source tree or looking at issues was like traveling back in 2006.
+This should however be a reminder that all of these platforms (Google Code, Github, Bitbucket) are centralized and closed-source. Even if Github loves Open-Source, and is loved by the Open-Source community, it is a totally closed platform.</description>
+    </item>
+    
+  </channel>
+</rss>

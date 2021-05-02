@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>high availability on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/high-availability/</link>
+    <description>Recent content in high availability on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 28 Jan 2014 20:40:19 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/high-availability/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Puppet-corosync and pcs provider</title>
+      <link>https://roidelapluie.be/blog/2014/01/28/puppet-corosync-pcs/</link>
+      <pubDate>Tue, 28 Jan 2014 20:40:19 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/01/28/puppet-corosync-pcs/</guid>
+      <description>Since the release 6.4, el-based distributions are not shipped with the crm command by default. pcs is the new recommended way to setup the clusters on CentOS/RHEL &amp;gt;= 6.4.
+A lot of the people using the puppetlabs-corosync module have been surprised and they just installed a RPM found somewhere across the web.
+I adapted the puppetlabs-corosync to end that dependency. My puppetlabs-corosync module is available here.
+It is not perfect, but I still plan on working on it in the following months (and I accept pull requests of course).</description>
+    </item>
+    
+  </channel>
+</rss>

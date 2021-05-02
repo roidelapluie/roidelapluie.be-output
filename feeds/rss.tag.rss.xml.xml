@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rss on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/rss/</link>
+    <description>Recent content in rss on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 28 Aug 2014 07:08:54 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/rss/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>RSS/Atom feeds update</title>
+      <link>https://roidelapluie.be/blog/2014/08/28/rss-feed-update/</link>
+      <pubDate>Thu, 28 Aug 2014 07:08:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/08/28/rss-feed-update/</guid>
+      <description>Dear reader,
+If you are following this blog via RSS/Atom feeds, you have probably noticed that all the articles of this one have been marked as unread in your RSS reader. This is due to an small technical change in the URL&amp;rsquo;s of the articles.
+Please also note that I have added several feeds for tags and categories.
+An interesting feed is probably the planet-inuits feed, which contains the articles I publish on the inuits planet.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mysql on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/mysql/</link>
+    <description>Recent content in mysql on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 15 Apr 2015 21:31:19 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/mysql/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Percona XtraBackup 2.2.10 is incompatible with MariaDB 10.0</title>
+      <link>https://roidelapluie.be/blog/2015/04/15/xtrabackup-and-mariadb/</link>
+      <pubDate>Wed, 15 Apr 2015 21:31:19 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/04/15/xtrabackup-and-mariadb/</guid>
+      <description>Percona XtraBackup is probably the most relevant open-source backup solution for both MySQL and MariaDB. It has all the required features that you need to backup your database, especially if you use innodb (or xtradb).
+One of the features are Incremental backups. It is an easy way to get a consistent backup of your databases in a short amount of time.
+But the latest version of XtraBackup (2.2.10) breaks that feature with MariaDB 10.</description>
+    </item>
+    
+    <item>
+      <title>Pt-heartbeat can&#39;t use an undefined value as an ARRAY reference</title>
+      <link>https://roidelapluie.be/blog/2014/05/19/pt-heartbeat-array-error/</link>
+      <pubDate>Mon, 19 May 2014 22:54:08 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/05/19/pt-heartbeat-array-error/</guid>
+      <description>Today I got a strange issue with pt-heartbeat.
+When I launched pt-heartbeat:
+pt-heartbeat --pid /var/opt/inu/pt-heartbeat.pid --update --database \ pth --create-table --socket /var/opt/inu/mysql/mysql.sock --user=pth \ --password=str0ng  I got the following error message:
+Can&#39;t use an undefined value as an ARRAY reference at /usr/bin/pt-heartbeat line 4297.  It was because I did not have access to the /tmp/percona-version-check file. The file was created under an other user and the current user could not access it.</description>
+    </item>
+    
+  </channel>
+</rss>

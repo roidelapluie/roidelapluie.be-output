@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Fixing a GlusterFS split-brain - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="navbar-item " href="/fr">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+<h1 class="title"><a href="/blog/2013/07/17/glusterfs-split-brain/" class="text-gray-dark">
+    Fixing a GlusterFS split-brain
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>I have found some time to test <a href="http://gluster.org">GlusterFS</a>, in order to use it to replicate data between several servers.</p>
+
+<p>I have created two <a href="http://vagrantup.com">vagrant</a> boxes to set up a basic cluster.</p>
+
+<p>And, during my tests, I have shut down the network interfaces and started writing different things on the same file, to create a <a href="http://en.wikipedia.org/wiki/Split-brain_%28computing%29">split-brain</a>.</p>
+
+<pre><code>srv01$ echo good &gt; /mnt/test
+srv02$ echo bad &gt; /mnt/test
+</code></pre>
+
+<p>When the interfaces were up again, the split-brain was obviously present:</p>
+
+<pre><code>srv02$ cat /mnt/test
+cat: /mnt/test: Input/output error
+</code></pre>
+
+<p>In the logs, I have found the following sentence:</p>
+
+<pre><code>[2013-07-17 13:57:54.156318] E [afr-self-heal-common.c:197:afr_sh_print_split_brain_log]
+0-gv0-replicate-0: Unable to self-heal contents of '&lt;gfid:470a742c-b0d6-4846-9ab3-2483c3a0c8da&gt;'
+(possible split-brain). Please delete the file from all but the preferred subvolume.-
+Pending matrix:  [ [ 0 1 ] [ 1 0 ] ]
+</code></pre>
+
+<p>So I tried to delete the file in the node that was &ldquo;wrong&rdquo; to me:</p>
+
+<pre><code>srv02$ cat /export/brick1/sdb1/test
+srv02$ sudo rm /export/brick1/sdb1/test
+</code></pre>
+
+<p>But it was obviously not working:</p>
+
+<pre><code>srv02$ cat /mnt/test
+cat: /mnt/test: Input/output error
+</code></pre>
+
+<p>Even more, the file <code>/export/brick1/sdb1/test</code> was recreated by Gluster!</p>
+
+<pre><code>srv02$ cat /export/brick1/sdb1/test
+wrong
+</code></pre>
+
+<p>The solution was the following: Gluster is creating hard links in a .gluster directory, and you have to delete all the hard links to the file to get rid of it.
+Please note that I am working on the &lsquo;brick&rsquo;.</p>
+
+<pre><code>srv02$ sudo find /export/brick1/sdb1/ -samefile /export/brick1/sdb1/test -print -delete
+/export/brick1/sdb1/.glusterfs/47/0a/470a742c-b0d6-4846-9ab3-2483c3a0c8da
+/export/brick1/sdb1/test
+</code></pre>
+
+<p>And it worked!</p>
+
+<pre><code>srv02$ cat /mnt/test
+good
+srv02$ cat /export/brick1/sdb1/test
+good
+</code></pre>
+
+<h3 id="additional-notes">Additional notes</h3>
+
+<p>Only the files that were &ldquo;brain-splitted&rdquo; were unreadable.</p>
+
+<p>You can have the list of these files by running the following command:</p>
+
+<pre><code>$ gluster volume heal gv0 info
+Brick 192.168.1.10:/export/brick1/sdb1
+Number of entries: 1
+/test
+
+Brick 192.168.1.11:/export/brick1/sdb1
+Number of entries: 1
+/test
+</code></pre>
+
+<p>To avoid split-brains, you can enable <a href="http://www.gluster.org/community/documentation/index.php/Features/Server-quorum">quorums</a>.</p>
+
+<h3 id="links">Links</h3>
+
+<ul>
+<li><a href="http://gluster.org">GlusterFS</a></li>
+<li>The <a href="http://www.gluster.org/community/documentation/index.php/QuickStart">quickstart</a> that I have used.</li>
+<li>Explanation of GlusterFS-related <a href="http://www.gluster.org/community/documentation/index.php/GlusterFS_Concepts">terms</a></li>
+</ul>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2013/07/17/glusterfs-split-brain/">Permalink</a>. Category: Linux. Tags: GlusterFS planet-inuits.<br/>
+        First published on Wed 17 July 2013.
+    </div>
+</div>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

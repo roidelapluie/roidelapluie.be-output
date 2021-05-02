@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hashicorp on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/hashicorp/</link>
+    <description>Recent content in hashicorp on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 21 Apr 2017 20:12:29 +0200</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/hashicorp/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A link between DigitalOcean, Packer and Terraform</title>
+      <link>https://roidelapluie.be/blog/2017/04/21/digitalocean-terraform-packer/</link>
+      <pubDate>Fri, 21 Apr 2017 20:12:29 +0200</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/04/21/digitalocean-terraform-packer/</guid>
+      <description>In the coming months, I will run several workshops about Jenkins. Those workshops will be hands-on, so people will bring their own laptops to hack on Jenkins instances.
+For that, I expect lots of them will simply run Jenkins on their laptops, or use an external laptop. But, as a backup, or a primary solution, I plan to provision multiple instances of Jenkins, ready to be used, in the cloud.</description>
+    </item>
+    
+  </channel>
+</rss>

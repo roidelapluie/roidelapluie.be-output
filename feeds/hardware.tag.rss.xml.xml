@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hardware on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/hardware/</link>
+    <description>Recent content in hardware on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 22 Jan 2014 07:38:18 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/hardware/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Soft-fixing Lenovo touchpad</title>
+      <link>https://roidelapluie.be/blog/2014/01/22/lenovo-touchpad/</link>
+      <pubDate>Wed, 22 Jan 2014 07:38:18 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/01/22/lenovo-touchpad/</guid>
+      <description>I have a new lenovo laptop but it has no physical button (the whole touchpad is a button). It is almost impossible to right click and impossible to middle-click, which is critical for me.
+I solved this with the following synclient options:
+synclient TapButton1=1 synclient TapButton2=2 synclient TapButton3=3  When I click the touch pad with one finger, it will left-click, two will middle-click and three will left-click.</description>
+    </item>
+    
+  </channel>
+</rss>

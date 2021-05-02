@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>The LibreOffice Calc 1024 columns bug - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                    <a class="navbar-item " href="/fr">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+<h1 class="title"><a href="/blog/2015/04/20/libreoffice-calc-1024-columns/" class="text-gray-dark">
+    The LibreOffice Calc 1024 columns bug
+</a></h1>
+<div class="content text-justify">
+    <p>Sometimes it is sad to see some quite important bugs that last in time.</p>
+
+<p>One of the last one I hit is a limitation in LibreOffice Calc. It does not support
+<a href="https://bugs.documentfoundation.org/show_bug.cgi?id=50916">calc spreadsheet with more that 1024 columns</a>.</p>
+
+<p>That bug was already <a href="https://bz.apache.org/ooo/show_bug.cgi?id=86049">opened in 2008</a> in OpenOffice.</p>
+
+<p>It is really a blocker bug for people that receive spreadsheets that have a lof of columns. For example I have
+seen a spreadsheet with one column per day. After 3 years it could not be opened by libreoffice (&gt;1024 columns).</p>
+
+<p>A short fix is to change the maximum number of columns but this would increase memory consumption for every opened spreadsheet. And it is not trivial for everyone to <a href="https://wiki.documentfoundation.org/Development/BuildingOnLinux">recompile libreoffice</a>. Here is how you update to 2048:</p>
+
+<pre><code>::patch
+diff --git a/sc/inc/address.hxx b/sc/inc/address.hxx
+index f6650d4..f1699af 100644
+--- a/sc/inc/address.hxx
++++ b/sc/inc/address.hxx
+@@ -58,7 +58,7 @@ const SCSIZE   SCSIZE_MAX   = ::std::numeric_limits&lt;SCSIZE&gt;::max();
+ // The maximum values. Defines are needed for preprocessor checks, for example
+ // in bcaslot.cxx, otherwise type safe constants are preferred.
+ #define MAXROWCOUNT_DEFINE 1048576
+-#define MAXCOLCOUNT_DEFINE 1024
++#define MAXCOLCOUNT_DEFINE 2048
+
+ // Count values
+ const SCROW       MAXROWCOUNT    = MAXROWCOUNT_DEFINE;
+</code></pre>
+
+<p>Of course there are also alternatives like <a href="http://www.gnumeric.org/">gnumeric</a> or <a href="https://userbase.kde.org/KCells">kcells</a> that supports large spreadsheets, if they are simple enough.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2015/04/20/libreoffice-calc-1024-columns/">Permalink</a>. Category: Open-Source. Tags: libreoffice office planet-inuits.<br/>
+        First published on Mon 20 April 2015.
+    </div>
+</div>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

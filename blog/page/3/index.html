@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="navbar-item " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+<div class="container">
+    
+        <h1 class="title"><a href="/blog/2017/03/22/first-open-source-contribution/" class="text-gray-dark">
+    My first Open Source contribution
+</a></h1>
+<div class="content text-justify">
+    <p>The first Open-Source contribution I remember happened on December 2005.
+It happened on Gaim, which is now known as <a href="https://pidgin.im/">Pidgin</a>.</p>
+
+<p>It was not a big contribution: I did not like the arrows shown when moving
+discussion tabs. Those arrows where plain red. I <a href="https://bitbucket.org/pidgin/main/commits/9afbf5b7240da81a1a796a421c2000487805ad67">created new ones</a> (using The
+Gimp), with a gradient. It did not take a long time to make them, but it was
+definitively an improvement.</p>
+
+<p>Here it is: <img src="/images/tb_drag_arrow_up.png" alt="my first contribution" /></p>
+
+<p>It was quickly merged (&lt; 2 hours). And it was important for me, because at that
+moment I understood that I could improve the tools I was using, and that
+everyone would get those improvements. That was the beginning of 12 years
+of Open Source contributions.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2017/03/22/first-open-source-contribution/">Permalink</a>. Category: Open-Source. Tags: open-source gpl pidgin.<br/>
+        First published on Wed 22 March 2017.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2017/02/14/mgmt-augeas/" class="text-gray-dark">
+    Augeas resource for mgmt
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>Last week, I joined the <a href="https://github.com/purpleidea/mgmt">mgmt</a> hackathon,
+just after Config Management Camp Ghent. It helped me understanding how mgmt
+actually works and that helped me to introduce two improvements in the codebase:
+prometheus support, and an augeas resource.</p>
+
+<p>I will blog later about the prometheus support, today I will focus about the
+Augeas resource.</p>
+
+<h2 id="defining-a-resource">Defining a resource</h2>
+
+<p>Currently, mgmt does not have a DSL, it only uses plain yaml.</p>
+
+<p>Here is how you define an Augeas resource:</p>
+
+<pre><code>---
+graph: mygraph
+resources:
+  augeas:
+  - name: sshd_config
+    lens: Sshd.lns
+    file: &quot;/etc/ssh/sshd_config&quot;
+    sets:
+      - path: X11Forwarding
+        value: no
+edges:
+</code></pre>
+
+<p>As you can see, the augeas resource takes several parameters:</p>
+
+<ul>
+<li>lens: the lens file to load</li>
+<li>file: the path to the file that we want to change</li>
+<li>sets: the paths/values that we want to change</li>
+</ul>
+
+<p>Setting file will create a Watcher, which means that each time you change that
+file, mgmt will check if it is still aligned with what you want.</p>
+
+<h2 id="code">Code</h2>
+
+<p>The code can be found there: <a href="https://github.com/purpleidea/mgmt/pull/128/files">https://github.com/purpleidea/mgmt/pull/128/files</a></p>
+
+<p>We are using go bindings for Augeas: <a href="https://github.com/dominikh/go-augeas/">https://github.com/dominikh/go-augeas/</a>
+Unfortunately, those bindings only support a recent version of Augeas. It was
+needed to vendor it to make it build on travis.</p>
+
+<h2 id="future-plans">Future plans</h2>
+
+<p>Future plans regarding this resource is to add some parameters, probably a
+parameter to use as Puppet &ldquo;onlyif&rdquo; parameter, and a &ldquo;rm&rdquo; parameter.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2017/02/14/mgmt-augeas/">Permalink</a>. Category: Linux. Tags: automation planet-inuits.<br/>
+        First published on Tue 14 February 2017.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2017/02/09/mgmt/" class="text-gray-dark">
+    mgmt
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>At <a href="http://cfgmgmtcamp.eu/">Config Management Camp</a>, <a href="https://ttboj.wordpress.com/">James</a> was once again presenting <a href="https://github.com/purpleidea/mgmt">mgmt</a>.
+He presented the project one year ago, on his <a href="https://ttboj.wordpress.com/2016/01/18/next-generation-configuration-mgmt/">blog</a>. There are multiple
+ideas behind mgmt (as you can read on his blog):</p>
+
+<ul>
+<li>Parallel execution</li>
+<li>Event driven</li>
+<li>Distributed topology</li>
+</ul>
+
+<p>And all of that makes a lot of sense. I really like it. I do really think that
+this might become a huge deal in the future. But there are a couple of concerns
+I would like to raise.</p>
+
+<h3 id="it-is-james-project">It is James&rsquo; project</h3>
+
+<p>James has been developing it since 2013. His ideas are great, however the
+project is still at its very beginning, not usable yet, even for the more brave
+out there. The fact that it is so early and that even early adopters have a lot
+to do, makes it difficult to contribute. Even if there are 20 code contributors
+to the project, James is the one that does most of the job.</p>
+
+<p>I do like the fact that James knows Puppet very well. It means we speak the same
+languages, he knows the problem Puppet users face, and is one of the best people
+to challenge the config management community.</p>
+
+<p><em>How to improve that</em>: get involved, code, try&hellip; We need to bring this to a
+more stable and usable shape before we can drag more and more contributors.</p>
+
+<h3 id="it-is-scary-because-it-is-fast">It is scary because it is fast</h3>
+
+<p>With traditional configuration management, when you screw up some thing, you
+still have the time to fix your configuration before it is applied everywhere.
+Puppet running every 30 minutes is a good example. You have a chance to fix some
+things in emergency before everyone gets them.</p>
+
+<p>Even ansible is an order of magnitude slower than mgmt. And that makes it scary.</p>
+
+<p><em>How to improve that</em>: we might be able to tell mgmt to do canary releases. That
+would be awesome, something really great for the future of mgmt. It is quite
+hard to do so with traditional config management, but it might become native in
+the future with mgmt. That would be awesome.</p>
+
+<h3 id="it-is-hard-to-understand">It is hard to understand</h3>
+
+<p>mgmt internals are not as easy to understand as other tools. You can be scary at
+first sight. It is using directed acyclic graphes, which enables it do do things
+in parallel. Even if other config management use something close to that, in
+mgmt you need to have a deep understanding of them, especially when you want to
+contribute (which is the only thing you can do now). It is not hard, it is just
+a price we do not have to pay with the other tools.</p>
+
+<p><em>How to improve that</em>: continue improving mgmt, remove bugs in that graph so we
+are not badly affected by bugs in that graph, and we do not need to understand
+everything to contribute (e.g to write new resource types or fix bugs in
+resources). You can deal with Puppet, and know nothing about its internals.</p>
+
+<h3 id="golang-is-challenging">Golang is challenging</h3>
+
+<p>mgmt is written in go. Whether it is a great language or not is not what matters
+here. What matters is that in the Ops world, go is not so popular. I am afraid
+that go is not as extensible as Ruby, and the fact that you need to recompile it
+to extend it is also a pain.</p>
+
+<p><em>How to improve that</em>: nothing mgmt can do. The core open-source infrastructure
+tools nowadays are mainly written in go. Sysadmins need to evolve here.</p>
+
+<h3 id="the-agpl-license">The AGPL license</h3>
+
+<p>I love copyleft. However, most of the world does not. This part of mgmt will be
+one of the things that will slow down its adoption. Ansible is GPL-Licensed, but
+the difference with Ansible and mgmt is that the last one is written in go, as a
+library. You could use mgmt just as a lib, backed into other softwares. But the
+licencing makes it too hard.</p>
+
+<p>For a lot of other projects, the license will be the first thing they will see.
+They will not ever look deeper to see if mgmt firs their needs or not.</p>
+
+<p>For now I am afraid mgmt would just become a thing in the Red Hat world, where
+by default lots of things are copyleft, so there would be no problem with
+including mgmt.</p>
+
+<p><em>How to improve that</em>: we need to speak with the community, and decide if we
+want to speed up the adoption, or to try to get more people to contribute.</p>
+
+<h3 id="the-name">The name</h3>
+
+<p>Naming things is hard. But mgmt is probably not the best name. It does not sell
+a dream, it does not stand out. It is impossible to do some internet searches
+about it.</p>
+
+<p><em>How to improve that</em>: we need to start thinking about a better name, that would
+reflect the community.</p>
+
+<h3 id="containers">containers</h3>
+
+<p>I am not sure about what will be the future of mgmt in a container world. Not
+everything is moving to that world nowadays, but a lot of things actually is. I
+just don&rsquo;t know. Need to think further about it.</p>
+
+<h2 id="but-is-there-anything-positive">But, is there anything positive?</h2>
+
+<p>You can read the list above as bad things. But I see that list a my initial
+ideas about how we can bring the project to the next level, how we can making it
+more appealing for external contributors.</p>
+
+<p>mgmt is one of the projects that I would qualify as unique and really creative.
+Creativity is a gift nowadays. It is just awesome, just give it a bit more time.</p>
+
+<p>We look forward to see it more stable, and to see a language that will take
+advantage of it, and enable us to easily write mgmt catalogs (currently it is
+all yaml). Stay tuned!</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2017/02/09/mgmt/">Permalink</a>. Category: Linux. Tags: cfgmgmt open-source planet-inuits.<br/>
+        First published on Thu 9 February 2017.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2016/11/18/gitslave-jenkins/" class="text-gray-dark">
+    Gitslave for Jenkins Pipelines
+</a></h1>
+<div class="content text-justify">
+    <p>At customer, we are using <a href="http://gitslave.sourceforge.net/">GitSlave</a>, as a way
+to build and release multiple releases at the same time. Gitslave is like git
+submodules, except that you always get the latest version of the submodules (no
+commits needed in the super repository).</p>
+
+<p>For CI, we are using <a href="https://jenkins.io">Jenkins</a>. A Jenkins plugin was developed for it.
+Unfortunately, it was written in a way that would make the work of opensourcing
+that module too big (IP was all over the place in the testsuite). In addition to
+that, the integration with Jenkins was not as best as with the Git plugin.</p>
+
+<p>The multi scm plugin is not an option as the list of repos to clone is in a
+file; and that it sometimes changes.</p>
+
+<p>Fortunately, we will eventually drop that proprietary module, switching to the
+new <a href="https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Plugin">Pipeline plugin</a>.
+I would then like to share a Jenkinsfile script that takes the <code>.gitslave</code>
+configuration file and clones every repository. Please note that it takes some
+parameters: <code>gitBaseUrl</code>, and <code>superRepo</code>. It will clone the repositories in
+multiple threads.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">lock(<span style="color:#0ff;font-weight:bold">&#39;checkout&#39;</span>) {
+    <span style="color:#fff;font-weight:bold">def</span> checkouts = [:]
+    <span style="color:#fff;font-weight:bold">def</span> threads = <span style="color:#ff0;font-weight:bold">8</span>
+
+    stage(<span style="color:#0ff;font-weight:bold">&#39;Super Repo&#39;</span>) {
+        checkout([$class: <span style="color:#0ff;font-weight:bold">&#39;GitSCM&#39;</span>,
+                branches: [[name: branch]],
+                doGenerateSubmoduleConfigurations: <span style="color:#fff;font-weight:bold">false</span>,
+                extensions: [[$class: <span style="color:#0ff;font-weight:bold">&#39;CleanCheckout&#39;</span>], [$class: <span style="color:#0ff;font-weight:bold">&#39;ScmName&#39;</span>, name: <span style="color:#0ff;font-weight:bold">&#39;super&#39;</span>]],
+                submoduleCfg: [],
+                userRemoteConfigs: [[url: <span style="color:#0ff;font-weight:bold">&#34;${gitBaseUrl}/${superRepo}&#34;</span>]]])
+
+        <span style="color:#fff;font-weight:bold">def</span> repos = readFile(<span style="color:#0ff;font-weight:bold">&#39;.gitslave&#39;</span>)
+        <span style="color:#fff;font-weight:bold">def</span> reposLines = repos.<span style="color:#007f7f">readLines</span>()
+        <span style="color:#fff;font-weight:bold">for</span> (i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; threads; i++){
+            checkouts[<span style="color:#0ff;font-weight:bold">&#34;Thread ${i}&#34;</span>] = []
+        }
+        <span style="color:#fff;font-weight:bold">def</span> idx = <span style="color:#ff0;font-weight:bold">0</span>
+        <span style="color:#fff;font-weight:bold">for</span> (line <span style="color:#fff;font-weight:bold">in</span> reposLines) {
+            <span style="color:#fff;font-weight:bold">def</span> repoInfo = line.<span style="color:#007f7f">split</span>(<span style="color:#0ff;font-weight:bold">&#39; &#39;</span>)
+            <span style="color:#fff;font-weight:bold">def</span> repoUrl = repoInfo[<span style="color:#ff0;font-weight:bold">0</span>]
+            <span style="color:#fff;font-weight:bold">def</span> repoPath = repoInfo[<span style="color:#ff0;font-weight:bold">1</span>]
+            <span style="color:#fff;font-weight:bold">def</span> curatedRepoUrl = repoUrl.<span style="color:#007f7f">substring</span>(<span style="color:#ff0;font-weight:bold">4</span>, repoUrl.<span style="color:#007f7f">length</span>()-<span style="color:#ff0;font-weight:bold">1</span>)
+            <span style="color:#fff;font-weight:bold">def</span> curatedRepoPath = repoPath.<span style="color:#007f7f">substring</span>(<span style="color:#ff0;font-weight:bold">1</span>, repoPath.<span style="color:#007f7f">length</span>()-<span style="color:#ff0;font-weight:bold">1</span>)
+            echo(<span style="color:#0ff;font-weight:bold">&#34;Thread ${idx%threads}&#34;</span>)
+            checkouts[<span style="color:#0ff;font-weight:bold">&#34;Thread ${idx%threads}&#34;</span>] &lt;&lt; [path: curatedRepoPath, url: <span style="color:#0ff;font-weight:bold">&#34;${gitBaseUrl}/${curatedRepoUrl}&#34;</span>]
+            idx++
+        }
+    }
+    stage(<span style="color:#0ff;font-weight:bold">&#39;GitSlave Repos&#39;</span>) {
+        <span style="color:#fff;font-weight:bold">def</span> doCheckouts = [:]
+        <span style="color:#fff;font-weight:bold">for</span> (i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; threads; i++){
+            <span style="color:#fff;font-weight:bold">def</span> j = i
+            doCheckouts[<span style="color:#0ff;font-weight:bold">&#34;Thread ${j}&#34;</span>] = {
+                <span style="color:#fff;font-weight:bold">for</span> (co <span style="color:#fff;font-weight:bold">in</span> checkouts[<span style="color:#0ff;font-weight:bold">&#34;Thread ${j}&#34;</span>]) {
+                    retry(<span style="color:#ff0;font-weight:bold">3</span>) {
+                        checkout([$class: <span style="color:#0ff;font-weight:bold">&#39;GitSCM&#39;</span>,
+                                branches: [[name: branch]],
+                                doGenerateSubmoduleConfigurations: <span style="color:#fff;font-weight:bold">false</span>,
+                                extensions: [[$class: <span style="color:#0ff;font-weight:bold">&#39;RelativeTargetDirectory&#39;</span>, relativeTargetDir: co.<span style="color:#007f7f">path</span>], [$class: <span style="color:#0ff;font-weight:bold">&#39;CleanCheckout&#39;</span>], [$class: <span style="color:#0ff;font-weight:bold">&#39;ScmName&#39;</span>, name: co.<span style="color:#007f7f">path</span>]],
+                                submoduleCfg: [],
+                                userRemoteConfigs: [[url: co.<span style="color:#007f7f">url</span>]]])
+                    }
+                }
+            }
+        }
+        parallel doCheckouts
+    }
+}</code></pre></div>
+<p>That script is under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>.</p>
+
+<p>Why do we run in threads and not everything in parallel? First, <a href="https://jenkins.io/projects/blueocean/">Blue Ocean</a>
+<a href="https://issues.jenkins-ci.org/browse/JENKINS-39770">can only display 100 threads</a>. Running several operations in all the repos
+would end up with more that 100 threads. Plus it is probably not clever to
+run such a big amount of parallelism.</p>
+
+<p>What is still to be done? We do not delete repositories that disappear from the
+<code>.gitslave</code> file.</p>
+
+<p>Here is the result:</p>
+
+<img src="/images/jenkins-bo-gitslave.png" class="img-fluid" alt="GitSlave in Jenkins Pipeline"/>
+
+
+<p>PS: GitSlave is named GitSlave. I do not like the name &ndash; and kudos to the
+Jenkins team to drop the Master/Slave terminology as part of the Jenkins 2.0
+release.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2016/11/18/gitslave-jenkins/">Permalink</a>. Category: Linux. Tags: jenkins planet-inuits.<br/>
+        First published on Fri 18 November 2016.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2016/11/02/about-puppet-4.8/" class="text-gray-dark">
+    About Puppet 4.8
+</a></h1>
+<div class="content text-justify">
+    <p>Puppet, in its new parser (long known as «future parser»), allows you to do
+things like loops, lambda functions, &hellip; And that was great. It was great
+because those were things we needed. We needed that so much that the community
+just went for its own variant, in ruby (<code>create_resources</code>). Being able to
+remove <code>create_resources</code> is great.</p>
+
+<p>However, as <a href="https://daenney.github.io/2016/10/17/goodbye-puppet.html">Daniele stated</a>,
+Puppet has quite reached Feature Complete. That means that we made Puppet work
+for all our needs. Even Puppet 3.x was feature complete. You can/could build
+anything with Puppet.</p>
+
+<p>Puppet, Inc. is running in all kind of directions now and they start
+implementing new features everywhere. Instead of allowing us to do more and more
+crazy things with the Puppet DSL, they should start wondering the question: what
+is the real value for the users? It looks like the game now is to throw away as
+most features as possible &ndash; but hey, that is not what we expect from Puppet.</p>
+
+<p>Puppet gets to a point when we can actually stop learning it, and focus on all
+the other tasks. The job is not to automate everything nowadays &ndash; because
+everything is already automated. We want a Puppet that is transparent, fast,
+silent. We want a Puppet that just works.</p>
+
+<p>There are lots of bad moves in the last years. One of the latest example is the
+closed source app orchestration, which breaks the spirit of Puppet to design the
+final state. Strangely enough, I never needed such a thing. Instead of adapting
+tools to everyone, maybe some time should be spent to explain people HOW to
+design infrastructures. The fact that you need the app orchestrator maybe
+means that you do something wrong.</p>
+
+<p>One other bad move is the <a href="https://docs.puppet.com/pe/latest/puppet_server_metrics.html">Puppet server metrics</a>. That was such a great
+idea to expose metrics with the graphite API. Obviously, in the monitoring
+world, everyone speaks graphite. The bad move was to decide that the open source
+users don&rsquo;t deserve it. Yes, the same users that write and contribute to the
+real value of Puppet, the open source modules on github and the forge.</p>
+
+<p>What actually triggered that article is a <a href="https://docs.puppet.com/puppet/4.8/reference/release_notes.html">new puppet function</a>, called <code>return</code>.
+Let&rsquo;s go over a quick example:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-puppet" data-lang="puppet"><span style="color:#fff;font-weight:bold">class</span> <span style="color:#007f7f">bar</span> {<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#fff;font-weight:bold">notify</span> {<span style="color:#0ff;font-weight:bold">&#39;foo&#39;</span>:}<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#007f7f">return</span>()<span style="color:#f00">
+</span><span style="color:#f00"></span>  <span style="color:#fff;font-weight:bold">notify</span> {<span style="color:#0ff;font-weight:bold">&#39;bar&#39;</span>:}<span style="color:#f00">
+</span><span style="color:#f00"></span>}<span style="color:#f00">
+</span><span style="color:#f00"></span><span style="color:#fff;font-weight:bold">include</span> <span style="color:#007f7f">bar</span></code></pre></div>
+<p>And here is the result:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Notice: Compiled catalog for localhost in environment production in 0.08 seconds
+Notice: foo
+Notice: /Stage[main]/Bar/Notify[foo]/message: defined &#39;message&#39; as &#39;foo&#39;
+Notice: Applied catalog in 0.03 seconds</code></pre></div>
+<p>Great!</p>
+
+<p>This is the kind of features that adds complexity for nothing. All it does is
+adding complexity and making it hard to debug manifests. It is really hard to
+find usecases for that <code>return</code> function. And in you have one &ndash; you might as
+well think twice.</p>
+
+<p>Puppet lost is soul. When previously reading Puppet manifests was easy and
+really intuitive, now you need to deal with complex functions and you barely
+now what will end in the catalog at first sight.</p>
+
+<p>I kinda miss my past parser.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2016/11/02/about-puppet-4.8/">Permalink</a>. Category: Automation. Tags: automation planet-inuits puppet.<br/>
+        First published on Wed 2 November 2016.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    
+
+
+
+
+
+
+
+
+
+<nav class="pagination is-centered">
+                <a class="pagination-previous" href="/blog/page/2/" >Previous</a>
+                <a class="pagination-next" href="/blog/page/4/" >Next</a>
+
+    <ul class="pagination-list">
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"   href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/2/">2</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"  disabled  href="/blog/page/3/">3</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/4/">4</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/16/">16</a></li>
+            
+            
+    </ul>
+</nav>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

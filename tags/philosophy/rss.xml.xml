@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>philosophy on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/philosophy/</link>
+    <description>Recent content in philosophy on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 23 Sep 2015 21:04:31 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/philosophy/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The &#34;It will be Open-Source&#34; myth</title>
+      <link>https://roidelapluie.be/blog/2015/09/23/open-source-myth/</link>
+      <pubDate>Wed, 23 Sep 2015 21:04:31 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/09/23/open-source-myth/</guid>
+      <description>If you are involved in IT and have some interests in Open-Source software, you probably have met some projects that claim that they will be Open-Source &amp;ldquo;one day&amp;rdquo;.
+And guess what? It rarely happens. I would like to clarify some stuff about that kind of sentences.
+You do not owe us anything If you build software and you do not want to open-source it, it&amp;rsquo;s fine. I will not use it, but you are free to do whatever you want to do.</description>
+    </item>
+    
+    <item>
+      <title>Niches</title>
+      <link>https://roidelapluie.be/blog/2015/08/10/niches/</link>
+      <pubDate>Mon, 10 Aug 2015 18:45:15 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/08/10/niches/</guid>
+      <description>I love Open-Source, and the principles attached to it. One of these principle is the principle of choice:
+ The choice of the technology stack The choice of the software you use The choice of the decisions you take The choice of the license you use The choice of how you spend your time  Today I would like to focus on the last part. There are so many open source software around, because every project is organic.</description>
+    </item>
+    
+    <item>
+      <title>Gitlab makes the Entreprise edition code public</title>
+      <link>https://roidelapluie.be/blog/2015/05/22/gitlab-ee/</link>
+      <pubDate>Fri, 22 May 2015 22:15:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/05/22/gitlab-ee/</guid>
+      <description>It is a very sad day for Open-Source. Gitlab has opened its repository for the Entreprise Edition (I am not going to put a link to it).
+It is a very sad day because even if the code is available, it is still proprietary. If you are interested in implementing features of the EE into the CE edition, you have to make sure that you never look at the proprietary code.</description>
+    </item>
+    
+    <item>
+      <title>Open Source Matters</title>
+      <link>https://roidelapluie.be/blog/2013/10/28/open-source-matters/</link>
+      <pubDate>Mon, 28 Oct 2013 21:59:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/10/28/open-source-matters/</guid>
+      <description>I see a lot of people working in the Open-Source world, defending the Open-Source and besides that, using a lot of closed source applications.
+Each time you run a closed source application, you open a browser with proprietary plugins, you communicate with a closed protocol, it is a defeat for the Open-Source world.
+First, what is Open-Source (and for me it is the same as Free Software) about?
+It is about freedoms.</description>
+    </item>
+    
+  </channel>
+</rss>

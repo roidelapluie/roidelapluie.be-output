@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="Hugo 0.59.1" />
+
+        <title>Blogs - Julien Pivotto</title>
+    </head>
+    <body class="bg-faded">
+        <nav class="navbar is-info">
+    <div class="container">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            roidelapluie
+        </a>
+        <div class="navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-menu" id="navMenu">
+        
+        <div class="navbar-start">
+            
+            
+            <a class="navbar-item " href="/">
+                        About me
+                    </a>
+                
+                
+            
+            <a class="navbar-item  is-active" href="/blog/">
+                        Blogs
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/exherbo/">
+                        Exherbo
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/talk/">
+                        Talks
+                    </a>
+                
+                
+            
+            <a class="navbar-item " href="/wiki/">
+                        Wikis
+                    </a>
+                
+                
+        </div>
+        <div class="navbar-end">
+                
+                
+                    
+                    
+                        
+                            
+                        
+                    
+                    <a class="navbar-item  is-active" href="/en">
+                        en
+                    </a>
+                
+                
+                    
+                    
+                        
+                            
+                                
+                            
+                        
+                    
+                    <a class="navbar-item " href="https://roidelapluie.be/fr/blog/">
+                        fr
+                    </a>
+                
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Blog
+            </h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+<div class="container">
+    
+        <h1 class="title"><a href="/blog/2014/01/28/puppet-corosync-pcs/" class="text-gray-dark">
+    Puppet-corosync and pcs provider
+</a></h1>
+<div class="content text-justify">
+    <p>Since the release 6.4, el-based distributions are not shipped with the <code>crm</code> command
+by default. <a href="http://github.com/feist/pcs"><code>pcs</code></a> is the new <a href="http://blog.clusterlabs.org/blog/2013/pacemaker-on-rhel6-dot-4/">recommended way</a> to <a href="http://blog.clusterlabs.org/blog/2012/pacemaker-and-cluster-filesystems/">setup the clusters</a> on CentOS/RHEL &gt;= 6.4.</p>
+
+<p>A lot of the people using the <a href="http://github.com/puppetlabs/puppetlabs-corosync">puppetlabs-corosync</a> module
+have been surprised and they just installed a RPM found somewhere across the web.</p>
+
+<p>I adapted the puppetlabs-corosync to end that dependency. My puppetlabs-corosync
+module is <a href="http://github.com/roidelapluie/puppetlabs-corosync">available here</a>.</p>
+
+<p>It is not perfect, but I still plan on working on it in the following months (and
+I accept pull requests of course). Any feedback is welcome.</p>
+
+<p>I only use the providers of that module. Everything under the manifests directory
+is deprecated. Besides that, I use a <code>puppet-cman</code> and a <code>puppet-pacemaker</code> module,
+designed to be published soon, that manage the installation of the cluster
+service.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2014/01/28/puppet-corosync-pcs/">Permalink</a>. Category: Automation. Tags: high availability linux planet-inuits.<br/>
+        First published on Tue 28 January 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2014/01/22/lenovo-touchpad/" class="text-gray-dark">
+    Soft-fixing Lenovo touchpad
+</a></h1>
+<div class="content text-justify">
+    <p>I have a new lenovo laptop but it has no physical button (the whole touchpad is
+a button). It is almost impossible to right click and impossible to
+middle-click, which is critical for me.</p>
+
+<p>I solved this with the following <code>synclient</code> options:</p>
+
+<pre><code>synclient TapButton1=1
+synclient TapButton2=2
+synclient TapButton3=3
+</code></pre>
+
+<p>When I click the touch pad with one finger, it will left-click, two will
+middle-click and three will left-click.</p>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2014/01/22/lenovo-touchpad/">Permalink</a>. Category: Linux. Tags: hardware planet-inuits.<br/>
+        First published on Wed 22 January 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2014/01/20/make-in-a-loop/" class="text-gray-dark">
+    Make stuck in a loop
+</a></h1>
+<div class="content text-justify">
+    <p>I got an unexpected result when I was trying to compile a small lib: it seems to never finished (I stopped it after 3 hours).</p>
+
+<p>The problem was that I had in <code>/usr/lib64</code> files timestamped in the future.</p>
+
+<p>The following command fixed it and I have eventually compiled my library in 30 seconds.</p>
+
+<pre><code>touch now
+find /usr/lib64 -newer now -exec touch ´{}´ ´;´
+</code></pre>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2014/01/20/make-in-a-loop/">Permalink</a>. Category: Linux. Tags: exherbo planet-inuits.<br/>
+        First published on Mon 20 January 2014.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2013/10/28/open-source-matters/" class="text-gray-dark">
+    Open Source Matters
+</a></h1>
+<div class="content text-justify">
+    <p>I see a lot of people working in the Open-Source world, defending the Open-Source and besides that, using a lot of closed source applications.</p>
+
+<p>Each time you run a closed source application, you open a browser with proprietary plugins, you communicate with a closed protocol, it is a defeat for the Open-Source world.</p>
+
+<p>First, what is Open-Source (and for me it is the same as Free Software) about?</p>
+
+<p>It is about <em>freedoms</em>.</p>
+
+<ul>
+<li>Freedom to use</li>
+<li>Freedom to study</li>
+<li>Freedom to modify</li>
+<li>Freedom to share</li>
+</ul>
+
+<p>And guess what? This is the definition of Free Software.</p>
+
+<p>Each proprietary software is taking you one of these freedoms. And it is the same with the closed protocols and formats, of course.</p>
+
+<p>So what are we ready to pay to use a service, to communicate?</p>
+
+<p>Why am I using Open-Source softwares?</p>
+
+<ul>
+<li>We are part of one big team</li>
+<li>You find help easily</li>
+<li>There is a lot of documentation</li>
+<li>People share about their experience</li>
+<li>You can learn at will</li>
+<li>You are never completely blocked</li>
+<li>New softwares arrive every day</li>
+<li>Code is poetry</li>
+</ul>
+
+<p>Why do I reject closed-source softwares?</p>
+
+<ul>
+<li>I take care of my freedoms</li>
+<li>I do not like big companies that tell me which software/protocol to use</li>
+<li>I like making choices</li>
+<li>I love applications made by those who use them</li>
+</ul>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2013/10/28/open-source-matters/">Permalink</a>. Category: Open-Source. Tags: licenses philosophy planet-inuits.<br/>
+        First published on Mon 28 October 2013.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+        <h1 class="title"><a href="/blog/2013/07/23/drush-mcollective/" class="text-gray-dark">
+    Mcollective agent to use drush
+</a></h1>
+<div class="content text-justify">
+    
+
+<p>I have written a <a href="https://puppetlabs.com/mcollective/">mcollective</a> agent to run <a href="http://drush.ws">drush</a> commands. It will help you to automate the deployments of your drupal websites.</p>
+
+<p>I have implemented two drush commands so far:</p>
+
+<ul>
+<li><code>cache-clear</code></li>
+<li><code>updatedb</code></li>
+</ul>
+
+<p>The full configuration is available on the <a href="https://github.com/roidelapluie/mcollective-drush">github project</a>.</p>
+
+<h3 id="examples">Examples</h3>
+
+<h4 id="updatedb">Updatedb</h4>
+
+<pre><code>::text
+mco rpc drush updatedb root=/var/vhost/frontend-demo yes=true
+</code></pre>
+
+<h4 id="cache-clear">Cache-clear</h4>
+
+<pre><code>::text
+mco rpc drush cache-clear root=/var/vhost/frontend-demo uri=http://demo.example.net type=all
+</code></pre>
+
+<h3 id="links">Links</h3>
+
+<ul>
+<li><a href="https://puppetlabs.com/mcollective/">mcollective</a></li>
+<li><a href="http://drush.ws">drush</a></li>
+<li><a href="https://github.com/roidelapluie/mcollective-drush">the agent on github</a></li>
+</ul>
+
+</div>
+<div class="message">
+    <div class="message-body has-text-centered">
+        <a href="/blog/2013/07/23/drush-mcollective/">Permalink</a>. Category: Linux. Tags: sysadmin drupal planet-inuits.<br/>
+        First published on Tue 23 July 2013.
+    </div>
+</div>
+
+        <hr class="mb-4 mt-4"/>
+    
+    
+
+
+
+
+
+
+
+
+
+<nav class="pagination is-centered">
+                <a class="pagination-previous" href="/blog/page/13/" >Previous</a>
+                <a class="pagination-next" href="/blog/page/15/" >Next</a>
+
+    <ul class="pagination-list">
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"   href="/blog/">1</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/13/">13</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"  disabled  href="/blog/page/14/">14</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/15/">15</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a class="pagination-link"   href="/blog/page/16/">16</a></li>
+            
+            
+    </ul>
+</nav>
+
+    </div>
+</section>
+        <footer class="footer">
+            <div class="container">
+            <div class="content has-text-centered">
+                <p>Content written by Julien Pivotto, licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>. Conference logos are property of their owners are used here as fair use.
+</p>
+                <p>Proudly generated by <a href="http://gohugo.io/">Hugo 0.59.1</a>, using <a href="http://bulma.io/">Bulma</a>, <a href="https://github.com/twitter/twemoji">Twemoji</a> (licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>) and <a href="http://pygments.org/">Pygments</a>.
+</p>
+                <p>This page has been generated on 2021-05-02.
+</p>
+            </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/twemoji.css">
+        <script type="text/javascript" src="/js/bulma.js"></script>
+        <script type="text/javascript" src="/js/twemoji.min.js"></script>
+        <script type="text/javascript">
+twemoji.parse(document.body);
+        </script>
+    </body>
+</html>
+

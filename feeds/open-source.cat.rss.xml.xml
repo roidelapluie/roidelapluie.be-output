@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Open-Source on Julien Pivotto</title>
+    <link>https://roidelapluie.be/categories/open-source/</link>
+    <description>Recent content in Open-Source on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 22 Mar 2017 21:32:57 +0100</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/categories/open-source/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>My first Open Source contribution</title>
+      <link>https://roidelapluie.be/blog/2017/03/22/first-open-source-contribution/</link>
+      <pubDate>Wed, 22 Mar 2017 21:32:57 +0100</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2017/03/22/first-open-source-contribution/</guid>
+      <description>The first Open-Source contribution I remember happened on December 2005. It happened on Gaim, which is now known as Pidgin.
+It was not a big contribution: I did not like the arrows shown when moving discussion tabs. Those arrows where plain red. I created new ones (using The Gimp), with a gradient. It did not take a long time to make them, but it was definitively an improvement.
+Here it is: It was quickly merged (&amp;lt; 2 hours).</description>
+    </item>
+    
+    <item>
+      <title>The &#34;It will be Open-Source&#34; myth</title>
+      <link>https://roidelapluie.be/blog/2015/09/23/open-source-myth/</link>
+      <pubDate>Wed, 23 Sep 2015 21:04:31 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/09/23/open-source-myth/</guid>
+      <description>If you are involved in IT and have some interests in Open-Source software, you probably have met some projects that claim that they will be Open-Source &amp;ldquo;one day&amp;rdquo;.
+And guess what? It rarely happens. I would like to clarify some stuff about that kind of sentences.
+You do not owe us anything If you build software and you do not want to open-source it, it&amp;rsquo;s fine. I will not use it, but you are free to do whatever you want to do.</description>
+    </item>
+    
+    <item>
+      <title>Niches</title>
+      <link>https://roidelapluie.be/blog/2015/08/10/niches/</link>
+      <pubDate>Mon, 10 Aug 2015 18:45:15 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/08/10/niches/</guid>
+      <description>I love Open-Source, and the principles attached to it. One of these principle is the principle of choice:
+ The choice of the technology stack The choice of the software you use The choice of the decisions you take The choice of the license you use The choice of how you spend your time  Today I would like to focus on the last part. There are so many open source software around, because every project is organic.</description>
+    </item>
+    
+    <item>
+      <title>Gitlab makes the Entreprise edition code public</title>
+      <link>https://roidelapluie.be/blog/2015/05/22/gitlab-ee/</link>
+      <pubDate>Fri, 22 May 2015 22:15:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/05/22/gitlab-ee/</guid>
+      <description>It is a very sad day for Open-Source. Gitlab has opened its repository for the Entreprise Edition (I am not going to put a link to it).
+It is a very sad day because even if the code is available, it is still proprietary. If you are interested in implementing features of the EE into the CE edition, you have to make sure that you never look at the proprietary code.</description>
+    </item>
+    
+    <item>
+      <title>The LibreOffice Calc 1024 columns bug</title>
+      <link>https://roidelapluie.be/blog/2015/04/20/libreoffice-calc-1024-columns/</link>
+      <pubDate>Mon, 20 Apr 2015 21:51:52 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/04/20/libreoffice-calc-1024-columns/</guid>
+      <description>Sometimes it is sad to see some quite important bugs that last in time.
+One of the last one I hit is a limitation in LibreOffice Calc. It does not support calc spreadsheet with more that 1024 columns.
+That bug was already opened in 2008 in OpenOffice.
+It is really a blocker bug for people that receive spreadsheets that have a lof of columns. For example I have seen a spreadsheet with one column per day.</description>
+    </item>
+    
+    <item>
+      <title>Google to shut down Google Code</title>
+      <link>https://roidelapluie.be/blog/2015/03/12/google-to-shut-down-google-code/</link>
+      <pubDate>Thu, 12 Mar 2015 21:45:31 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/03/12/google-to-shut-down-google-code/</guid>
+      <description>Google is shutting down Google Code. It was quite expected that it would join the Google graveyard. It was a cool service but the UI never got a lot of attention. Parsing a source tree or looking at issues was like traveling back in 2006.
+This should however be a reminder that all of these platforms (Google Code, Github, Bitbucket) are centralized and closed-source. Even if Github loves Open-Source, and is loved by the Open-Source community, it is a totally closed platform.</description>
+    </item>
+    
+    <item>
+      <title>I&#39;ve backed Matchstick</title>
+      <link>https://roidelapluie.be/blog/2014/10/04/i-ve-backed-matchstick/</link>
+      <pubDate>Sat, 04 Oct 2014 12:31:48 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/10/04/i-ve-backed-matchstick/</guid>
+      <description>I have backed Matchstick, the HDMI stick based on Firefox OS. It is the first crowdfunding project I participate. And I hope it won&amp;rsquo;t be the last one.
+There are a few reasons why I have chosen to do so.
+The first reason is the open-source part of that project. An open-source software combined with open-source hardware, that is everything I like. Good philosophy is always a good point.
+Next that project is exciting.</description>
+    </item>
+    
+    <item>
+      <title>Open Source Matters</title>
+      <link>https://roidelapluie.be/blog/2013/10/28/open-source-matters/</link>
+      <pubDate>Mon, 28 Oct 2013 21:59:54 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2013/10/28/open-source-matters/</guid>
+      <description>I see a lot of people working in the Open-Source world, defending the Open-Source and besides that, using a lot of closed source applications.
+Each time you run a closed source application, you open a browser with proprietary plugins, you communicate with a closed protocol, it is a defeat for the Open-Source world.
+First, what is Open-Source (and for me it is the same as Free Software) about?
+It is about freedoms.</description>
+    </item>
+    
+  </channel>
+</rss>

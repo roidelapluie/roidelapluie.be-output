@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>puppet on Julien Pivotto</title>
+    <link>https://roidelapluie.be/tags/puppet/</link>
+    <description>Recent content in puppet on Julien Pivotto</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 02 Nov 2016 08:44:30 +0000</lastBuildDate>
+    
+	<atom:link href="https://roidelapluie.be/tags/puppet/rss.xml.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About Puppet 4.8</title>
+      <link>https://roidelapluie.be/blog/2016/11/02/about-puppet-4.8/</link>
+      <pubDate>Wed, 02 Nov 2016 08:44:30 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2016/11/02/about-puppet-4.8/</guid>
+      <description>Puppet, in its new parser (long known as «future parser»), allows you to do things like loops, lambda functions, &amp;hellip; And that was great. It was great because those were things we needed. We needed that so much that the community just went for its own variant, in ruby (create_resources). Being able to remove create_resources is great.
+However, as Daniele stated, Puppet has quite reached Feature Complete. That means that we made Puppet work for all our needs.</description>
+    </item>
+    
+    <item>
+      <title>puppetlabs-concat 2.0</title>
+      <link>https://roidelapluie.be/blog/2016/02/05/puppetlabs-concat/</link>
+      <pubDate>Fri, 05 Feb 2016 16:50:22 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2016/02/05/puppetlabs-concat/</guid>
+      <description>If you are a Puppet user, you know that you have multiple choices regarding the way you manage your files. You might decide to manage the whole file or parts of it. I presented that as part of my augeas talk at PuppetCamp London in 2014.
+One of the solutions out there is concat. Concats allows you to define parts of a file as different resources, then glue them together to create a single file.</description>
+    </item>
+    
+    <item>
+      <title>A fix for the Puppet Agent not exiting with SIGINT</title>
+      <link>https://roidelapluie.be/blog/2015/10/29/puppet-sigint/</link>
+      <pubDate>Thu, 29 Oct 2015 07:56:38 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/10/29/puppet-sigint/</guid>
+      <description>Since Puppet 3.7.5 and 4.0.0, the Puppet Agent does not exit when it receives a SIGINT signal (^C). That is very annoying when developing Puppet modules.
+A fix has been pushed yesterday by Josh Cooper for the next 3.x and 4.x releases. There is only one file changed, so if it&amp;rsquo;s really a problem for you, patching is trivial. Unfortunately it is not yet possible to easily rebuild the puppet-agent RPM, but that will come very soon.</description>
+    </item>
+    
+    <item>
+      <title>Foreman could get Puppet 4 support sooner than expected</title>
+      <link>https://roidelapluie.be/blog/2015/10/03/foreman-puppet-4/</link>
+      <pubDate>Sat, 03 Oct 2015 14:25:37 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/10/03/foreman-puppet-4/</guid>
+      <description>Foreman is one of the key tools of many puppet-based infrastructures. It can interact with the Puppet stack in different ways, by acting as a reporting dashboard or a complete ENC.
+So far Foreman only supports up to Puppet 3. Puppet 4 brings in many changes, and that involves a lot of changes in the foreman side. Even the foreman-installer is based on Puppet.
+But slowly, Puppet 4 supports starts to come to reality.</description>
+    </item>
+    
+    <item>
+      <title>Puppet 4 create_resource killer</title>
+      <link>https://roidelapluie.be/blog/2015/09/15/puppet-4-create-resources/</link>
+      <pubDate>Tue, 15 Sep 2015 23:22:42 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/09/15/puppet-4-create-resources/</guid>
+      <description>Puppet 4 brings very nice features that will definitely kill the create_resources function.
+Parameters as a hash $parameters = { mode =&amp;gt; &amp;#39;0755&amp;#39;, content =&amp;gt; &amp;#39;foo&amp;#39;,}file { &amp;#39;/tmp/myfile&amp;#39;: * =&amp;gt; $parameters} It is the same as:
+file { &amp;#39;/tmp/myfile&amp;#39;: mode =&amp;gt; &amp;#39;0755&amp;#39;, content =&amp;gt; &amp;#39;foo&amp;#39;,} Resource defaults file { default: mode =&amp;gt; &amp;#39;0755&amp;#39;, content =&amp;gt; &amp;#39;foo&amp;#39;; &amp;#39;/tmp/my_file1&amp;#39;:; &amp;#39;/tmp/my_file2&amp;#39;: mode =&amp;gt; &amp;#39;0644&amp;#39;,} Is the same as:
+file { &amp;#39;/tmp/my_file1&amp;#39;: mode =&amp;gt; &amp;#39;0755&amp;#39;, content =&amp;gt; &amp;#39;foo&amp;#39;; &amp;#39;/tmp/my_file2&amp;#39;: mode =&amp;gt; &amp;#39;0644&amp;#39;, content =&amp;gt; &amp;#39;foo&amp;#39;;} Or (but the scope is different):</description>
+    </item>
+    
+    <item>
+      <title>Puppet 4 types and best practices</title>
+      <link>https://roidelapluie.be/blog/2015/09/15/puppet-4-types/</link>
+      <pubDate>Tue, 15 Sep 2015 00:04:38 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/09/15/puppet-4-types/</guid>
+      <description>I have given a talk last week for the Belgian Puppet User Group about Puppet 4 and I would like to post here some practices I want to share with you, in order to have the cleanest Puppet code.
+This can apply to all your local modules (not with the one you share with Puppet 3 users).
+Type all the parameters Each parameter should have a type. You can use the Optional type but you should try to avoid some types as much as possible:</description>
+    </item>
+    
+    <item>
+      <title>Speed up Puppet and Augeas</title>
+      <link>https://roidelapluie.be/blog/2015/08/19/speed-up-puppet-augeas/</link>
+      <pubDate>Wed, 19 Aug 2015 12:06:35 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/08/19/speed-up-puppet-augeas/</guid>
+      <description>Here is a tip for those using the Puppet &amp;lsquo;augeas&amp;rsquo; native resource: always use the &amp;lsquo;incl&amp;rsquo; and the &amp;lsquo;lens&amp;rsquo; parameters.
+Without that, Augeas will autoload all of the files defined in its lenses. On an empty VM that can take up to 1 second.
+Here is my base test file:
+$logrotate_file = &#39;/etc/logrotate.d/httpd&#39; augeas { &#39;logrotate-httpd&#39;: context =&amp;gt; &amp;quot;/files${logrotate_file}/rule/&amp;quot;, changes =&amp;gt; [ &#39;set schedule daily&#39;, &#39;set rotate 6&#39;, &#39;set compress compress&#39;, ], }  It takes 0.</description>
+    </item>
+    
+    <item>
+      <title>An Augeas lens for tmpfiles.d</title>
+      <link>https://roidelapluie.be/blog/2015/07/31/augeas-tmpfiles/</link>
+      <pubDate>Fri, 31 Jul 2015 21:45:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/07/31/augeas-tmpfiles/</guid>
+      <description>I have sent recently a Pull Request to the Augeas project. That PR is about a new lens, a tmpfiles.d lens.
+If you want some background, check my slides (or the video) for the talk about Augeas I have given last november at Puppetcamp London.
+When systemd is in charge of the temporary directories of a server, some directories (/tmp, /run, /var/tmp) are mounted in a tmpfs and are just empty at boot time.</description>
+    </item>
+    
+    <item>
+      <title>A Puppet module for Puppet 4</title>
+      <link>https://roidelapluie.be/blog/2015/07/26/puppet-puppet-4/</link>
+      <pubDate>Sun, 26 Jul 2015 22:05:50 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2015/07/26/puppet-puppet-4/</guid>
+      <description>I have been working today on a pull request for the puppet-puppet module. That module, part of the foreman puppet modules suite, is probably the most used in its category.
+The pull request I&amp;rsquo;ve been working on is about support of the new &amp;lsquo;All In One&amp;rsquo; package and Puppet 4. It will probably be merged very soon.
+An important part of the work was done by Mickaël Canévet, from camptocamp. I did polish it a bit, rebase it and make the tests pass.</description>
+    </item>
+    
+    <item>
+      <title>Puppet Server</title>
+      <link>https://roidelapluie.be/blog/2014/12/09/puppet-server/</link>
+      <pubDate>Tue, 09 Dec 2014 21:27:27 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/12/09/puppet-server/</guid>
+      <description>I have tested Puppet Server, the new puppet master implementation in Clojure. And I am quite happy.
+It just works
+The first amazing thing was that it did just work the same way as Puppetmaster.
+I did not need to change any configuration file. Every custom function and module just worked like before.
+I am using the puppet-puppet from the Foreman, which already have a server_implementation parameter. Switching it to puppetserver just did the trick.</description>
+    </item>
+    
+    <item>
+      <title>3 years of automation with Puppet</title>
+      <link>https://roidelapluie.be/blog/2014/11/17/3-years-of-puppet/</link>
+      <pubDate>Mon, 17 Nov 2014 22:24:13 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/11/17/3-years-of-puppet/</guid>
+      <description>This article has been triggered by M@ttias.be&amp;rsquo;s article.
+I have been working for Inuits for 3 years, with Puppet 2.6. By that time Puppet 0.23 was still around in many places. Here are some lessons I&amp;rsquo;ve learned during these years.
+Your Puppet code is code This is one of the first lessons I&amp;rsquo;ve learned. In the many environments I&amp;rsquo;ve seen, some of them use some git hooks/rsync/whatever to deploy the puppet code to the different platforms.</description>
+    </item>
+    
+    <item>
+      <title>Vagrant puppet_server tip</title>
+      <link>https://roidelapluie.be/blog/2014/09/17/vagrant-puppet-agent/</link>
+      <pubDate>Wed, 17 Sep 2014 10:08:31 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/17/vagrant-puppet-agent/</guid>
+      <description>This is a small tip for everyone using the vagrant puppet_server provisioner, which allows you to run a puppet agent inside your vagrant box:
+Vagrant.configure(&amp;quot;2&amp;quot;) do |config| config.vm.box = &amp;quot;vStone/centos-6.x-puppet.3.x&amp;quot; config.vm.hostname = &amp;quot;puppet.vagrant.inuits.eu&amp;quot; config.vm.box_check_update = false config.vm.network &amp;quot;private_network&amp;quot;, ip: &amp;quot;192.168.33.2&amp;quot; config.vm.provision &amp;quot;puppet_server&amp;quot; do |puppet| puppet.puppet_server = &amp;quot;puppetmaster.vagrant.inuits.eu&amp;quot; puppet.options = [&amp;quot;--environment&amp;quot;, &amp;quot;devel&amp;quot;, &amp;quot;--test&amp;quot;] end end  The tip is to add puppet.options = [&amp;quot;--test&amp;quot;] so you have the debug information, the diff of the files, &amp;hellip; If you want more you can also add --debug.</description>
+    </item>
+    
+    <item>
+      <title>Munin 2 &#34;not a reference&#34; error</title>
+      <link>https://roidelapluie.be/blog/2014/09/02/munin2-not-a-reference-error/</link>
+      <pubDate>Tue, 02 Sep 2014 08:49:58 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/09/02/munin2-not-a-reference-error/</guid>
+      <description>This morning I worked with Munin, discovering that Munin 2 has made it to EPEL.
+Thus I started to look at puppet modules. I tried two of them (ssm-munin and duritong-munin), and no one seemed to be working.
+I was then digging deeper about what the problem could be, so I logged in to the machine with the munin user:
+::text # su - munin --shell=/bin/bash  Then I ran the script by hand:</description>
+    </item>
+    
+    <item>
+      <title>Pcs support merged into puppetlabs-corosync</title>
+      <link>https://roidelapluie.be/blog/2014/07/02/puppetlabs-corosync-pcs/</link>
+      <pubDate>Wed, 02 Jul 2014 08:32:42 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/07/02/puppetlabs-corosync-pcs/</guid>
+      <description>Great news for people using an el-based distribution and the puppetlabs-corosync puppet module: pcs support has been merged into master.
+This change is important because it means that all the RPM required for these providers are in the main repositories, which ensure they are tested and supported.
+Starting from CentOS 6.4, the crm shell was not provided by Red Hat anymore, but the puppet module was using that package in its only provider for custom types.</description>
+    </item>
+    
+    <item>
+      <title>Puppet 3.6.1 depreciation warning</title>
+      <link>https://roidelapluie.be/blog/2014/05/26/puppet-361-depreciation/</link>
+      <pubDate>Mon, 26 May 2014 10:48:41 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/05/26/puppet-361-depreciation/</guid>
+      <description>Dear puppet users using a yum-based distribution1, once you will upgrade to puppet 3.6.1, you will notice the following warning message each time you use a package type:
+Warning: The package type&#39;s allow_virtual parameter will be changing its default value from false to true in a future release. If you do not want to allow virtual packages, please explicitly set allow_virtual to false. (at /usr/lib/ruby/site_ruby/1.8/puppet/type.rb:816:in `set_default&#39;)  There is nothing you can do with that except setting a global parameter in your puppet tree, as stated in the release notes:</description>
+    </item>
+    
+    <item>
+      <title>CentOS users should skip puppet release 3.5.0</title>
+      <link>https://roidelapluie.be/blog/2014/04/11/puppet-350-yumrepo/</link>
+      <pubDate>Fri, 11 Apr 2014 09:51:14 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/04/11/puppet-350-yumrepo/</guid>
+      <description>Dear puppet users using a yum-based distribution, if you use the Yumrepo resource type, don&amp;rsquo;t upgrade to puppet 3.5.0. That resource type has been rewritten and the release has come with very annoying bugs.
+Bugs  PUP-2163: yumrepo resource completely broken PUP-2150: yumrepo removable URL properties cannot be set to ‘absent’ PUP-2179: Ensuring absent on a yumrepo removes all repos in the same file PUP-2178: yumrepo ‘descr’ property doesn’t map to the ‘name’ INI property PUP-2181: Setting yumrepo string properties to absent assigns the literal ‘absent’ string  Fixes Fixes have been merged to master and will be released with Puppet 3.</description>
+    </item>
+    
+    <item>
+      <title>lab0, a light frontend to foreman</title>
+      <link>https://roidelapluie.be/blog/2014/03/14/lab0/</link>
+      <pubDate>Fri, 14 Mar 2014 08:50:37 +0000</pubDate>
+      
+      <guid>https://roidelapluie.be/blog/2014/03/14/lab0/</guid>
+      <description>I have written a small frontend to Foreman and its Puppet integration.
+The only goal is to provide our developers to change the puppet parameters of their hosts in an easy way, and to rebuild the nodes in a few clicks.
+The project consists is presented as a single web page, where you make changes. Angularjs makes that page reactive.
+It requires admin rights on foreman (it uses the API).</description>
+    </item>
+    
+  </channel>
+</rss>
